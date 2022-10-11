@@ -1,0 +1,110 @@
+###########################################
+# THIS IS A TEMPLATE DOCKER CONFIGURATION #
+# UN(COMMENT) FOR YOUR OWN USAGE          #
+###########################################
+
+version: '3.4'
+
+networks: 
+    sym:
+
+volumes:
+    app_volume:
+    mysql:
+    phpfpm_home_volume:
+
+services: 
+    ###########
+    # PHP-FPM #
+    ###########
+    phpfpm: 
+        ###########
+        # "Target" can be one of :
+        # - CORE     with php:8.1-fpm empty
+        # - SIMPLE   with apt utils and network tools
+        # - EXT      with docker-php selected extensions and databases
+        # - DB_EXT with added Pecl extensions and databases
+        # - FULL     with bench and profiling
+        #
+        # Feel free to modify for your own configuration.
+        # Then add specific extension in conf.d/php-custom.ini
+        ###########
+        build:
+            context: .docker
+            target: DB_EXT
+        restart: always
+        environment:
+            - MYSQL_DSN=mysql:host=mysql;port=3307;dbname=mydb
+        volumes:
+            - /WEBSERVER/symplay:/var/www/application
+            - /WEBSERVER/symplay/.docker/.home/Makefile:/tmp/Makefile:ro
+            - /WEBSERVER/symplay/.docker/server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
+            - /WEBSERVER/symplay/.docker/server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
+            - phpfpm_home_volume:/root
+        #command: bash -c "cp /tmp/Makefile /root/Makefile && docker-php-ext-install pdo_mysql && php-fpm"
+        networks:
+            - sym
+
+    apache:
+        image: httpd:2.4
+        restart: always
+        depends_on:
+            - phpfpm
+        volumes:
+            - /WEBSERVER/symplay/:/var/www/application
+
+            # (Un)comment for your own config.
+            - /WEBSERVER/symplay//.docker/server/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+            - /WEBSERVER/symplay//.docker/server/apache/httpd-custom.conf:/usr/local/apache2/conf/httpd-custom.conf:ro
+            - /WEBSERVER/symplay//.docker/server/apache/my-extra:/usr/local/apache2/conf/my-extra:ro
+        ports: 
+            - 8001:80
+        networks:
+            - sym
+
+    mysql:
+        image: mysql:8.0
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: user
+            MYSQL_PASSWORD: pass
+            MYSQL_DATABASE: mydb
+            MYSQL_TCP_PORT: 3307
+        volumes:
+            - /WEBSERVER/symplay/.docker/data/mysql/my.cnf:/etc/mysql/my.cnf:ro
+            - /WEBSERVER/symplay/.docker/data/mysql/conf.d/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf:ro
+            - /WEBSERVER/symplay/.docker/data/mysql/initdb.d/:/docker-entrypoint-initdb.d/:ro
+            - mysql:/var/lib/mysql
+        networks: 
+            - sym
+
+    phpmyadmin:
+        image: phpmyadmin:5.0
+        restart: always
+        ports: 
+            - 8081:80
+        environment: 
+            - PMA_ARBITRARY=1
+        external_links:
+            - mysql:mysql
+        networks:
+            - sym
+
+    adminer:
+        image: adminer:4.7-standalone
+        restart: always
+        ports:
+            - 8082:8080
+        networks:
+            - sym
+
+######################
+# Other useful boxes #
+# https://devilbox.org
+# https://easyphp.org
+# https://laradock.io
+# https://laragon.org
+# https://github.com/laraedit/laraedit-docker
+# https://hub.docker.com/r/mattrayner/lamp
+######################
