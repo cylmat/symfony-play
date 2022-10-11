@@ -36,7 +36,7 @@ services:
         environment:
             - MYSQL_DSN=mysql:host=mysql;port=3307;dbname=mydb
         volumes:
-            - /WEBSERVER/symplay:/var/www/application
+            - app_volume:/var/www/application
             - /WEBSERVER/symplay/.docker/.home/Makefile:/tmp/Makefile:ro
             - /WEBSERVER/symplay/.docker/server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
             - /WEBSERVER/symplay/.docker/server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
@@ -51,7 +51,7 @@ services:
         depends_on:
             - phpfpm
         volumes:
-            - /WEBSERVER/symplay/:/var/www/application
+            - app_volume:/var/www/application
 
             # (Un)comment for your own config.
             - /WEBSERVER/symplay//.docker/server/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
