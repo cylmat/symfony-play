@@ -1,0 +1,179 @@
+#########
+# Config
+# @see https://github.com/phpro/grumphp
+#
+# Usage:
+# - bin/grumphp run --tasks=<task1>,<task2>
+#########
+
+grumphp:
+    stop_on_failure: true
+    ignore_unstaged_changes: true
+    parallel:
+        enabled: true
+        max_workers: 32
+
+    fixer:
+        enabled: false # Don't ask to fix.
+
+    environment:
+        variables: {}
+
+    ###################################
+    # TEST SUITES                     #
+    #                                 #
+    # (Un)comment for your own usage. #
+    ###################################
+    testsuites: 
+      git_commit_msg:
+          tasks: []
+
+      git_pre_commit:
+          tasks: []
+
+      fixers:
+        tasks:
+          - phpcsfixer
+          - phpparser
+
+      linters:
+        tasks:
+          - phplint
+          - phpcpd
+          - phpcs
+          - phpmd
+          - phpstan
+          - make # run "phan"
+        
+      behav:
+        tasks:
+          - codeception
+          - phpspec
+
+      tests:
+        tasks:
+          - infection
+          - pest
+          #- paratest
+          #- phpunit
+
+    #######################
+    # TASKS               #
+    #######################
+    tasks: 
+      git_commit_message:
+        allow_empty_message: false
+        enforce_capitalized_subject: true
+        enforce_no_subject_trailing_period: true
+        enforce_single_lined_subject: true
+        max_subject_width: 120
+        max_body_width: 500
+        matchers:
+          Must contain a short description: '/.+/'
+        case_insensitive: false
+        multiline: false
+        metadata:
+          priority: 100
+
+      git_branch_name:
+        whitelist:
+            - "/.+/"
+
+      # Only with git add and git commit.
+      git_blacklist:
+        keywords:
+          - "var_dump"
+          - '_GET'
+          - '_POST'
+          - '_REQUEST'
+        whitelist_patterns:
+          - /^src\/(.*)/
+        regexp_type: G
+        match_word: false
+
+      file_size:
+          max_size: 5M
+          ignore_patterns: []
+
+      ### Task COMPOSER #####################
+
+      composer:
+        file: composer.json
+        no_check_all: true
+        no_check_publish: true
+        no_local_repository: true
+        with_dependencies: true
+        strict: false
+
+      ### Task FIXERS #######################
+
+      phpcsfixer:
+        config: tools/linter/.php-cs-fixer.php
+
+      # Analyse black-listed pattern
+      phpparser:
+        ignore_patterns: 
+          - /^cest\/.*/
+          - /^spec\/.*/
+          - /^tests\/.*/
+          - /deploy.php/
+        visitors:
+          no_exit_statements: ~
+          never_use_else: ~ 
+          forbidden_function_calls:
+            blacklist:
+            - 'var_dump'
+            - 'dump'
+            - 'echo'
+            - 'print' 
+        metadata:
+            priority: 100
+
+      ### Task LINTERS ######################
+
+      phpcpd:
+        directory: ['./src']
+
+      phpcs:
+        standard: tools/linter/phpcs.xml
+
+      phpmd:
+        ruleset: ['tools/linter/phpmd.xml']
+
+      phpstan:
+        configuration: tools/linter/phpstan.neon
+
+      # Phplint as a standalone extension
+      phplint:
+        exclude: []
+        triggered_by: ['php', 'phtml']
+
+      # Phan is runned from make without ast extension
+      make:
+        make_file: Makefile
+        task: phan
+
+      ### Task Behaviors ###################
+
+      codeception:
+        config_file: tools/test/codeception.yml
+
+      phpspec:
+        config_file: tools/test/phpspec.yml
+
+      ### Task Tests #######################
+
+      infection:
+        configuration: tools/test/infection.json
+
+      paratest:
+        configuration: tools/test/phpunit.xml
+
+      pest:
+        config_file: tools/test/phpunit.xml
+
+      phpunit:
+        config_file: tools/test/phpunit.xml
+
+      # shell:
+      #     scripts: []

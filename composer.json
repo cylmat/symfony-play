@@ -1,0 +1,45 @@
+{
+    "name": "vendor/project",
+    "type": "project",
+    "description": "My project",
+    "license": "proprietary",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin",
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpro/grumphp": true
+        }
+    },
+    "require": {
+        "php": ">=7"
+    },
+    "require-dev": {
+        "brianium/paratest": "^6.6",
+        "friends-of-phpspec/phpspec-code-coverage": "^6.1",
+        "nikic/php-parser": "^4.15",
+        "pestphp/pest": "^1.22",
+        "phpro/grumphp": "^1.13",
+        "phpspec/phpspec": "^7.2",
+        "phpunit/phpunit": "^9.5",
+        "phpunitgen/console": "^4.1",
+        "sebastian/phpcpd": "^6.0",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    }
+}

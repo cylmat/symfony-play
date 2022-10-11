@@ -1,0 +1,51 @@
+###########
+# PHPSPEC #
+###########
+
+# Website
+# @see http://phpspec.net
+#
+# Doc
+# @see http://phpspec.net/en/stable/manual/introduction.html
+#
+# Usage 
+# - bin/phpspec describe App/Sample --config=tools/test/phpspec.yml
+
+suites:
+    app_suite:
+        namespace: App
+        psr4_prefix: App
+        spec_prefix: spec
+        spec_path: .
+        src_path: '%paths.config%/../../src'
+
+        # Can be pretty, html/h, dot, default: progress
+        formatter.name: pretty
+        code_generation: false
+        stop_on_failure: false
+        verbose: true
+
+        # composer_suite_detection: true 
+          # translates to:
+          # - root_directory: '.'
+          # - spec_prefix: spec
+
+# Must implements PhpSpec\Matcher\Matcher interface
+# matchers:
+#     - Acme\Matchers\ValidJsonMatcher
+#     - Acme\Matchers\PositiveIntegerMatcher
+
+# Bootstrap php file
+# bootstrap: path/to/different-bootstrap.php
+
+extensions:
+  # https://github.com/friends-of-phpspec/phpspec-code-coverage
+#   FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
+#     format:
+#       - text
+#       - html
+#     output:
+#       text: var/spec-coverage.txt
+#       html: var/spec-coverage
+#     whitelist:
+#       - src
