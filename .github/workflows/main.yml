@@ -54,20 +54,11 @@ jobs:
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-plugins --no-scripts 
 
-    #################
-    # LINT AND TEST #
-    #################
-    - name: Install
-      run: make install-all-bin
-
+    ##########
+    #  TEST  #
+    ##########
     - name: Run linters
-      run: make all-linters
-  
-    #- name: Run tests
-    #  run: make all-tests
-      
-    #- name: Run behav
-    #  run: make all-behav
+      run: make unit
 
   deploy:
     runs-on: ubuntu-latest
