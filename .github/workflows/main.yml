@@ -57,7 +57,7 @@ jobs:
     ##########
     #  TEST  #
     ##########
-    - name: Run linters
+    - name: Run tests
       run: make unit
 
   deploy:

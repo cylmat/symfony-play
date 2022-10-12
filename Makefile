@@ -317,6 +317,7 @@ paraunit:
 	bin/paratest -c tools/test/phpunit.xml
 
 unit:
+	test -e bin/phpunit || ln -s vendor/bin/phpunit bin/phpunit
 	bin/phpunit -c tools/test/phpunit.xml
 
 ############
