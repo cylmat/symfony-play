@@ -3,6 +3,7 @@
 **/vendor/
 **.local
 **.cache
+/.env.deploy
 
 ###> symfony/framework-bundle ###
 /.env.local
