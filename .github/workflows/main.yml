@@ -60,7 +60,7 @@ jobs:
     - name: Run tests
       run: |
         sudo mkdir -p bin
-        make unit
+        sudo make unit
 
   deploy:
     runs-on: ubuntu-latest
