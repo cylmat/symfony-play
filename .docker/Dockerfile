@@ -10,7 +10,7 @@
 
 ### Debian GNU/Linux 11 (bullseye) ###
 
-FROM php:8.1-fpm AS CORE
+FROM php:7.4-fpm AS CORE
 
 RUN apt update && apt install -y curl git zip
 WORKDIR /var/www/application

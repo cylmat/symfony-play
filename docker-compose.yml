@@ -31,7 +31,7 @@ services:
         ###########
         build:
             context: .docker
-            target: DB_EXT
+            target: FULL
         restart: always
         environment:
             - MYSQL_DSN=mysql:host=mysql;port=3307;dbname=mydb
