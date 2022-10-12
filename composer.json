@@ -1,4 +1,6 @@
 {
+    "name": "cylmat/symplay",
+    "description": "",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
