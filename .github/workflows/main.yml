@@ -58,7 +58,9 @@ jobs:
     #  TEST  #
     ##########
     - name: Run tests
-      run: make unit
+      run: |
+        sudo mkdir -p bin
+        make unit
 
   deploy:
     runs-on: ubuntu-latest
@@ -74,6 +76,5 @@ jobs:
       env: 
         VCS_REPOSITORY: ${{ secrets.VCS_REPOSITORY }}
       run: |
-        sudo mkdir -p bin
         sudo make deployer-bin
         make deploy
