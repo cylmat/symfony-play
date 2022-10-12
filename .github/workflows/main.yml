@@ -77,10 +77,10 @@ jobs:
         VCS_BRANCH_NAME: ${{ secrets.VCS_BRANCH_NAME }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_DIRECTORY: ${{ secrets.REMOTE_DIRECTORY }}
-        LOCAL_SSH_KEY: ~/.ssh/id_ed25519
+        LOCAL_SSH_KEY: ~/.ssh/id_ed25519.github
         SSH_PRIVATE_KEY_CONTENT: ${{ secrets.SSH_PRIVATE_KEY_CONTENT }}
       run: |
-        mkdir -p /home/runner/.ssh
-        echo "$SSH_PRIVATE_KEY_CONTENT" > ~/.ssh/id_ed25519 && chmod 600 ~/.ssh/id_ed25519
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY_CONTENT" > ~/.ssh/id_ed25519.github && chmod 600 ~/.ssh/id_ed25519.github
         sudo make deployer-bin
         make deploy
