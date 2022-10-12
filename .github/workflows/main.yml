@@ -57,14 +57,17 @@ jobs:
     #################
     # LINT AND TEST #
     #################
+    - name: Install
+      run: make install-all-bin
+
     - name: Run linters
       run: make all-linters
   
-    - name: Run tests
-      run: make all-tests
+    #- name: Run tests
+    #  run: make all-tests
       
-    - name: Run behav
-      run: make all-behav
+    #- name: Run behav
+    #  run: make all-behav
 
   deploy:
     runs-on: ubuntu-latest
