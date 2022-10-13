@@ -21,7 +21,7 @@ jobs:
   run:
     
     runs-on: ubuntu-latest
-    name: Lint, tests, cover, build
+    name: Test and build
     strategy:
       fail-fast: false
       matrix:
@@ -75,6 +75,7 @@ jobs:
       env: 
         VCS_REPOSITORY: ${{ secrets.VCS_REPOSITORY }}
         VCS_BRANCH_NAME: ${{ secrets.VCS_BRANCH_NAME }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_DIRECTORY: ${{ secrets.REMOTE_DIRECTORY }}
         LOCAL_SSH_KEY: ~/.ssh/id_ed25519.github
@@ -82,5 +83,6 @@ jobs:
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY_CONTENT" > ~/.ssh/id_ed25519.github && chmod 600 ~/.ssh/id_ed25519.github
+        ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
         sudo make deployer-bin
         make deploy
