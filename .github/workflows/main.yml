@@ -81,10 +81,8 @@ jobs:
         LOCAL_SSH_KEY: ~/.ssh/id_ed25519.github
         SSH_PRIVATE_KEY_CONTENT: ${{ secrets.SSH_PRIVATE_KEY_CONTENT }}
       run: |
-        git config --list
-        git config --get user.name
-# mkdir -p ~/.ssh
-# echo "$SSH_PRIVATE_KEY_CONTENT" > ~/.ssh/id_ed25519.github && chmod 600 ~/.ssh/id_ed25519.github
-# ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
-# sudo make deployer-bin
-# make deploy
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY_CONTENT" > ~/.ssh/id_ed25519.github && chmod 600 ~/.ssh/id_ed25519.github
+        ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+        sudo make deployer-bin
+        make deploy
