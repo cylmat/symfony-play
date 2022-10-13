@@ -66,7 +66,7 @@ host($REMOTE_HOST)
 
 /*** CUSTOM TASKS ***/
 
-task('custom:upload', function () {
+task('local:upload', function () {
     upload(__DIR__ . "/", '{{release_path}}');
 });
 
@@ -81,14 +81,9 @@ task('cache:clear', function () {
     run("cd {{release_path}} && $php_bin_path bin/composer dump-autoload");
 });
 
-task('fromlocal:update_code', function () {
-    upload(__DIR__ . "/", '{{release_path}}');
-});
-
 task('build', function () {
     cd('{{release_path}}');
     run('npm install');
-    run('npm run prod');
 });
 
 /*** RUN TASKS ***/
@@ -106,7 +101,7 @@ task('deploy', [
     // 'deploy:shared',
     // 'deploy:writable',
 //'deploy:vendors',
-'deploy:cache:clear',
+'cache:clear',
 'deploy:publish',
         // 'deploy:symlink',
         // 'deploy:unlock',
