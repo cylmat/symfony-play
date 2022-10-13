@@ -97,22 +97,21 @@ task('build', function () {
 #prepare->vendor->publish
 desc('Deploy your project');
 task('deploy', [
-#'deploy:prepare',
-    'deploy:info',
-    'deploy:setup',
-    'deploy:lock',
-    'deploy:release',
-        'deploy:update_code',
-        #'local:update_code', #
-    'deploy:shared',
-    'deploy:writable',
+'deploy:prepare',
+    // 'deploy:info',
+    // 'deploy:setup',
+    // 'deploy:lock',
+    // 'deploy:release',
+    // 'deploy:update_code',
+    // 'deploy:shared',
+    // 'deploy:writable',
 //'deploy:vendors',
-//'deploy:cache:clear',
-//'deploy:publish',
-        'deploy:symlink',
-        'deploy:unlock',
-        'deploy:cleanup',
-        'deploy:success'
+'deploy:cache:clear',
+'deploy:publish',
+        // 'deploy:symlink',
+        // 'deploy:unlock',
+        // 'deploy:cleanup',
+        // 'deploy:success'
 ]);
 # deploy:push ?
 # deploy:copy_dirs?
