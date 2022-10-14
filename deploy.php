@@ -84,8 +84,9 @@ task('commit:hash', function () {
 });
 
 task('vendors', function () {
+    $php_bin_path = '/usr/local/php7.4/bin/php';
     cd('{{release_path}}');
-    run("bin/composer install --no-dev --no-scripts --no-plugins");
+    run("$php_bin_path bin/composer install --no-dev --no-scripts --no-plugins");
 });
 
 task('cache:clear', function () {
