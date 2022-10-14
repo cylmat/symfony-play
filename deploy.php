@@ -79,14 +79,16 @@ task('local:upload', function () {
 });
 
 task('commit:hash', function () {
-    run("cd {{release_path}} && echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
+    cd('{{release_path}}');
+    run("echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
 });
 
 task('cache:clear', function () {
     $php_bin_path = '/usr/local/php7.4/bin/php';
-    run("cd {{release_path}} && rm var/cache/* -rf");
-    run("cd {{release_path}} && $php_bin_path bin/console cache:clear");
-    run("cd {{release_path}} && $php_bin_path bin/composer dump-autoload");
+    cd('{{release_path}}');
+    run("rm var/cache/* -rf");
+    run("$php_bin_path bin/console cache:clear");
+    run("$php_bin_path bin/composer dump-autoload");
 });
 
 task('build', function () {
@@ -101,6 +103,8 @@ desc('Deploy your project');
 task('deploy', [
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
+
+    'cache:clear',
 
     # Run symlink,unlock,cleanup,success
     'deploy:publish',
