@@ -59,7 +59,7 @@ jobs:
     ##########
     - name: Run tests
       run: |
-# make unit
+      make unit
 
   deploy:
     runs-on: ubuntu-latest
