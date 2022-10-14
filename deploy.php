@@ -83,6 +83,11 @@ task('commit:hash', function () {
     run("echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
 });
 
+task('vendors', function () {
+    cd('{{release_path}}');
+    run("bin/composer install --no-dev --no-scripts --no-plugins");
+});
+
 task('cache:clear', function () {
     $php_bin_path = '/usr/local/php7.4/bin/php';
     cd('{{release_path}}');
@@ -104,7 +109,7 @@ task('deploy', [
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
 
-    'deploy:vendors',
+    'vendors',
     'cache:clear',
 
     # Run symlink,unlock,cleanup,success
