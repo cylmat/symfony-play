@@ -14,11 +14,19 @@ namespace Deployer;
 
 require 'recipe/common.php';
 
-/** Read .env files */
-foreach ([__DIR__ . '/.env.deploy', __DIR__ . '/.env.deploy.dist'] as $env) {
+/**
+ * Read .env files
+ * Priority: Environment, .deploy.local, .deploy, .deploy.dist
+ */
+foreach ([__DIR__ . '/.env.deploy.local', __DIR__ . '/.env.deploy', __DIR__ . '/.env.deploy.dist'] as $env) {
     if (\file_exists($env) && $env = new \SplFileObject($env)) {
         foreach ($env as $line) {
-            preg_match('/^VCS_|REMOTE_|LOCAL_/', $line) ? putenv($line) : null;
+            if (
+                preg_match('/^((VCS_|REMOTE_|LOCAL_).+)\=(.+)/', $line, $match)
+                && !getenv($match[1])
+            ) {
+                putenv($match[0]);
+            }
         }
     }
 }
@@ -31,7 +39,7 @@ if (!(
 ($REMOTE_DIRECTORY = trim($_ENV['REMOTE_DIRECTORY'] ?? getenv('REMOTE_DIRECTORY')) ?? null) &&
 ($LOCAL_SSH_KEY    = trim($_ENV['LOCAL_SSH_KEY'] ?? getenv('LOCAL_SSH_KEY')) ?? null)
  )) {
-    throw new \Exception("Impossible to find all constants, neither in .env(.local) file nor in environment.");
+    throw new \Exception("Impossible to find all constants, neither in .env.deploy(.local) file nor in environment.");
  }
 
 /*** COMMON PARAMS ***/
