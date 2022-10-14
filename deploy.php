@@ -104,6 +104,7 @@ task('deploy', [
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
 
+    'deploy:vendors',
     'cache:clear',
 
     # Run symlink,unlock,cleanup,success
