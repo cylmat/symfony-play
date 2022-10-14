@@ -12,10 +12,21 @@ framework:
         cookie_samesite: lax
         storage_factory_id: session.storage.factory.native
 
-    #esi: true
+    esi: true
     #fragments: true
     php_errors:
         log: true
+
+    assets:
+        enabled: true
+        strict_mode: true
+        version_strategy: null
+        version: null
+        packages:
+            script:
+                base_path: assets/script
+            style:
+                base_path: assets/style
 
 when@test:
     framework:
