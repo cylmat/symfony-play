@@ -58,8 +58,7 @@ jobs:
     #  TEST  #
     ##########
     - name: Run tests
-      run: |
-      make unit
+      run: make unit
 
   deploy:
     runs-on: ubuntu-latest
