@@ -173,6 +173,13 @@ kint-bin:
 	curl -L https://raw.githubusercontent.com/kint-php/kint/master/build/kint.phar -o bin/kint
 	chmod a+x bin/kint
 
+# @see https://github.com/nvm-sh/nvm
+# @see https://www.npmjs.com
+nvm:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+	source "$$HOME/.nvm/nvm.sh" && source "$$HOME/.nvm/bash_completion"
+	nvm install node
+
 # @see https://github.com/krakjoe/pcov
 pcov-bin:
 	pecl install pcov && docker-php-ext-enable pcov
