@@ -55,6 +55,7 @@ composer-install-dev:
 	test -e bin/composer || make composer-bin
 	bin/composer require --dev \
 	brianium/paratest \
+		behat/behat \
         friends-of-phpspec/phpspec-code-coverage \
         nikic/php-parser \
         pestphp/pest \
@@ -232,6 +233,9 @@ symfony-bin:
 ############
 # BEHAVIOR #
 ############
+
+behat:
+	@[ -f features/bootstrap/FeatureContext.php ] || bin/behat --init
 
 # @see https://codeception.com
 codecept:
