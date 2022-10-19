@@ -2,7 +2,7 @@
     Options +FollowSymlinks
     RewriteEngine On
     RewriteBase /
-    RewriteCond %{REQUEST_URI} !^public/
+    RewriteCond %{REQUEST_URI} !^public
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ public/index.php?$1 [QSA,L]
+    RewriteRule (.*) public/index.php?$1 [QSA,L]
 </IfModule>

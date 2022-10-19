@@ -1,3 +1,6 @@
+imports:
+    - { resource: assets.yml }
+
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
     secret: '%env(APP_SECRET)%'
@@ -17,16 +20,18 @@ framework:
     php_errors:
         log: true
 
-    assets:
-        enabled: true
-        strict_mode: true
-        version_strategy: null
-        version: null
-        packages:
-            script:
-                base_path: assets/script
-            style:
-                base_path: assets/style
+    # assets:
+    #     enabled: true
+    #     strict_mode: '%kernel.debug%'
+    #     #version_strategy: 'static'
+    #     version_format: '%%s?%%s'
+    #     # version: 'v1'
+
+    #     packages:
+    #         script:
+    #             base_path: assets/script
+    #         style:
+    #             base_path: assets/style
 
 when@test:
     framework:

@@ -1,0 +1,8 @@
+Front
+---
+* Weblink: HTTP/2 Preloading assets (HTTP/2 Server Push)
+
+Server
+---
+* Caddy: https://caddyserver.com
+* Symfony docker: https://github.com/dunglas/symfony-docker

@@ -9,6 +9,14 @@ network:
 	@echo -e "\033[1;32mPlease visit: https://busybox.net \033[0m"
 	apt update && apt install -y busybox dnsutils iputils-ping netcat net-tools nmap tcpdump telnet
 
+#############
+### ALIAS ###
+#############
+alias:
+	s="symfony"
+	sc="symfony console"
+	sr="symfony composer"
+
 ###############
 ### PROMPTS ###
 ###############
