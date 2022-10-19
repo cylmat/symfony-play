@@ -1,6 +1,15 @@
 Front
 ---
+* Bootstrap: https://getbootstrap.com
+* CommonJs: https://requirejs.org/docs/commonjs.html
+* Handlebars: https://handlebarsjs.com
+* Sass: https://sass-lang.com
 * Weblink: HTTP/2 Preloading assets (HTTP/2 Server Push)
+* Webpack: https://webpack.js.org
+
+Hotwire
+---
+https://stimulus.hotwired.dev
 
 Server
 ---

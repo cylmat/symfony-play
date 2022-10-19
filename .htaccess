@@ -2,7 +2,15 @@
     Options +FollowSymlinks
     RewriteEngine On
     RewriteBase /
-    RewriteCond %{REQUEST_URI} !^public
+    RewriteCond %{REQUEST_URI} !^/public
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule (.*) public/index.php?$1 [QSA,L]
+    RewriteRule (.*) public/$1 [QSA,L]
 </IfModule>
+
+<filesMatch ".*">
+    # Remove cache
+    # Header set Cache-Control "max-age=0, private, no-store, no-cache, must-revalidate"
+</filesMatch>
+
+# Rewrite any assets file
+# RewriteRule .*\.(css|js) public/$1 [L]

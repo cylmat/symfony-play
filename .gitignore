@@ -1,6 +1,7 @@
 /bin/
 !/bin/console
 !/bin/composer
+**/node_modules
 **/var/
 **/vendor/
 **.local
