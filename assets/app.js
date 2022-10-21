@@ -1,12 +1,23 @@
 /*
- * Welcome to your app's main JavaScript file!
+ * ! Can't use internal Node modules with Webpack ! Browser doesn't like it !
+ * const fs = eval('require("fs")') || __non_webpack_require__("fs")
  *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
+ * @see https://stackoverflow.com/questions/39249237/node-cannot-find-module-fs-when-using-webpack
  */
 
-// any CSS you import will output into a single css file (app.css in this case)
-import './styles/app.css';
+// Any CSS you import will output into a single css file (app.css in this case)
+
+// e.g. import './styles/app.css'
+/*
+ * Dynamic imports
+ * @see https://github.com/webpack/webpack/issues/118
+ */
+require.context("./styles", true, /* (sub) */ /.*/)
+
+/*
+ * Can't use dynamic require on js files, they went to "unused" 
+ */
+import './scripts/global.js'
 
 // start the Stimulus application
-import './bootstrap';
+// import './bootstrap';

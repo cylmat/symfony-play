@@ -176,10 +176,15 @@ kint-bin:
 
 # @see https://github.com/nvm-sh/nvm
 # @see https://www.npmjs.com
+# As nvm is a sourced function(), not a shell script, it can be used anywhere without alias
+# Then run "nvm install node"
 nvm:
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 	source "$$HOME/.nvm/nvm.sh" && source "$$HOME/.nvm/bash_completion"
-	nvm install node
+
+# One must install "make nvm" before
+npm-bin:
+	$$(nvm which)
 
 # @see https://github.com/krakjoe/pcov
 pcov-bin:
