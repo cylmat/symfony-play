@@ -1,11 +1,13 @@
-framework:
-    assets:
-        enabled: true
-        strict_mode: '%kernel.debug%'
-        version_format: '%%s?%%s'
-        version: 'v1'
-        # - version_strategy: Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy
-        base_path: assets
+# Using Webpack Encore instead
+
+# framework:
+#     assets:
+#         enabled: true
+#         strict_mode: '%kernel.debug%'
+        # version_format: '%%s?%%s'
+        # version: 'v1'
+        # # - version_strategy: Symfony\Component\Asset\VersionStrategy\StaticVersionStrategy
+        # base_path: assets
 
         # packages:
             # script:
