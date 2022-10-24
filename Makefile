@@ -44,7 +44,6 @@ install-all-bin:
 # Utils
 	make composer-bin
 	make deployer-bin
-	make kint-bin
 	make phing-bin
 	make phive-bin
 	make phpenv-bin
@@ -57,6 +56,7 @@ composer-install-dev:
 	brianium/paratest \
 		behat/behat \
         friends-of-phpspec/phpspec-code-coverage \
+		kint-php/kint \
         nikic/php-parser \
         pestphp/pest \
         phpro/grumphp \
@@ -256,7 +256,8 @@ symfony-bin:
 ############
 
 behat:
-	@[ -f features/bootstrap/FeatureContext.php ] || bin/behat --init
+#	@[ -f features/bootstrap/FeatureContext.php ] || bin/behat --init
+	bin/behat -c behat.yml
 
 # @see https://codeception.com
 codecept:
