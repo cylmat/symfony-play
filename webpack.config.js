@@ -29,10 +29,10 @@ Encore
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     // Avoid dependencies duplication, and change "filename" as "filename.123hash123.js"
-    // .splitEntryChunks()
-    // .configureSplitChunks(function(splitChunks) {
-    //     //splitChunks.minSize = 0;
-    // })
+    .splitEntryChunks()
+    .configureSplitChunks(function(splitChunks) {
+        //splitChunks.minSize = 0;
+    })
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
