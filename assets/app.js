@@ -8,12 +8,17 @@
 // Any CSS you import will output into a single css file (app.css in this case)
 
 // e.g. import './styles/app.css'
-/*
- * Dynamic imports
+/**
+ * STYLES
+ */
+/* Dynamic imports
  * @see https://github.com/webpack/webpack/issues/118
  */
-require.context("./styles", true, /* (sub) */ /.*/)
+require.context("./styles/app", true, /* (sub) */ /.*/)
 
+/**
+ * SCRIPTS
+ */
 /*
  * Can't use dynamic require on js files, they went to "unused" 
  */
