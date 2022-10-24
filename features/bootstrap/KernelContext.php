@@ -27,4 +27,19 @@ class KernelContext implements Context
     {
         $this->kernel = $kernel;
     }
+
+    protected function request(...$params): Request
+    {
+        return Request::create(...$params);
+    }
+
+    protected function handleRequest(...$params)
+    {
+        return $this->handle($this->request(...$params));
+    }
+
+    protected function handle(Request $request)
+    {
+        return $this->kernel->handle($request);
+    }
 }

@@ -1,5 +1,5 @@
 Feature: Homepage
-  In order to see Homepage
+  In order to see the application
   As a client
   I need to access homepage
 

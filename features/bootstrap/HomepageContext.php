@@ -6,17 +6,12 @@ namespace App\Features;
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode;
-use Behat\Gherkin\Node\TableNode;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
  *
  * Defines application features from the specific context.
  */
-final class HomepageContext extends KernelContext //implements Context
+final class HomepageContext extends KernelContext implements Context
 {
     /*
      * Initializes context.
@@ -34,18 +29,18 @@ final class HomepageContext extends KernelContext //implements Context
      * @When /^I create (\d+) monsters$/i
      * @Given /^(\d+) monster(?:s|) (?:have|has) been created$/i
      */
-    public function __construct(KernelInterface $kernel, string $arg = '5')
+    /*public function __construct(KernelInterface $kernel, string $arg = '5')
     {
         parent::__construct($kernel);
         //PHPUnit\Framework_Assert::assertCount(intval(1), 1);
-    }
+    }*/
 
     /**
      * @When a demo scenario sends a request to :path
      */
     public function aDemoScenarioSendsARequestTo(string $path): void
     {
-        $this->response = $this->kernel->handle(Request::create($path, 'GET'));
+        $this->response = $this->handleRequest($path, 'GET');
     }
 
     /**
