@@ -74,13 +74,18 @@ all-fix:
 	make csfixer
 # make cbf
 
+.PHONY: lints all-lints all-linters
+lints: 
+	@make all-linters
+all-lints: 
+	@make all-linters
 all-linters:
 	make paralint
 	make cpd
 	make cs
 	make md
 	make stan
-	make phan
+#	make phan
 # make psalm
 	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 
@@ -89,6 +94,11 @@ all-behav:
 	make phpspec
 	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 
+.PHONY: test tests all-tests
+test:
+	@make all-tests
+tests:
+	@make all-tests
 all-tests:
 	make cover
 	make infection
@@ -96,8 +106,12 @@ all-tests:
 # make unit
 	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 
+.PHONY: build all-builds
+build:
+	@make all-builds
 all-builds:
-	make phing
+#   make phing
+	@make npm-build
 
 ###########
 # GRUMPHP #
@@ -196,8 +210,8 @@ phing-bin:
 	curl -LO https://www.phing.info/get/phing-2.17.4.phar.sha512
 	sha512sum --check phing-2.17.4.phar.sha512
 	rm phing-2.17.4.phar.sha512
-	mv phing-2.17.4.phar /usr/local/bin/phing
-	chmod +x /usr/local/bin/phing
+	mv phing-2.17.4.phar bin/phing
+	chmod +x bin/phing
 
 # PHAR Installation and Verification Environment
 # https://phar.io
@@ -296,7 +310,7 @@ stan:
 # @see https://github.com/phan/phan/wiki
 # --allow-polyfill-parser avoid to use ast-ext
 phan: 
-	bin/phan --config-file tools/linter/phan.config.php --allow-polyfill-parser
+	PHAN_ALLOW_XDEBUG=0 bin/phan --config-file tools/linter/phan.config.php --allow-polyfill-parser
 
 # Caution: can be slow
 # @see https://psalm.dev
@@ -343,16 +357,16 @@ unit:
 
 # @see https://www.phing.info
 phing:
-	phing -f tools/build.xml
+	bin/phing -f tools/build.xml
 
 ##########
 # DEPLOY #
 ##########
 
 # @see https://deployer.org
-build:
+npm-build:
 	npm run build
-.PHONY: build
+.PHONY: npm-build
 
 # @see https://deployer.org
 deploy:
