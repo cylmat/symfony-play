@@ -350,6 +350,11 @@ phing:
 ##########
 
 # @see https://deployer.org
+build:
+	npm run build
+.PHONY: build
+
+# @see https://deployer.org
 deploy:
 	bin/deployer deploy -f tools/deployer.yaml -v
 
