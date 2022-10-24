@@ -22,9 +22,10 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('bootstrap', './assets/bootstrap.js')
+    .addEntry('bootstrap-stimulus', './assets/bootstrap-stimulus.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-//    .enableStimulusBridge('./assets/controllers.json')
+    .enableStimulusBridge('./assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     // Avoid dependencies duplication.
@@ -35,8 +36,8 @@ Encore
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-//  .enableSingleRuntimeChunk()
-    .disableSingleRuntimeChunk()
+    .enableSingleRuntimeChunk()
+    //.disableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG

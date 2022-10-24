@@ -113,6 +113,8 @@ all-builds:
 #   make phing
 	@make npm-build
 
+watch: npm run watch
+
 ###########
 # GRUMPHP #
 # @see https://github.com/phpro/grumphp

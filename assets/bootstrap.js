@@ -1,9 +1,4 @@
 /**
- * STYLES
- */
- import './styles/bootstrap.scss'
-
-/**
  * SCRIPTS 
  */
 const $ = require('jquery');
@@ -11,3 +6,8 @@ const $ = require('jquery');
 //import sample from './sample.js';
 
 import * as bootstrap from 'bootstrap';
+
+/**
+ * STYLES
+ */
+ import './styles/bootstrap.scss'
