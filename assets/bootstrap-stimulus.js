@@ -1,3 +1,11 @@
+/**
+ * Symfony UX
+ * @see https://symfony.com/doc/current/frontend/ux.html
+ * 
+ * @see https://stimulus.hotwired.dev
+ * @see https://turbo.hotwired.dev
+ */
+
 import { startStimulusApp } from '@symfony/stimulus-bridge';
 
 // Registers Stimulus controllers from controllers.json and in the controllers/ directory
