@@ -1,3 +1,9 @@
+/**
+ * FRONT END 
+ * 
+ * @see https://symfony.com/doc/current/frontend.html
+ */
+
 /*
  * ! Can't use internal Node modules with Webpack ! Browser doesn't like it !
  * const fs = eval('require("fs")') || __non_webpack_require__("fs")
