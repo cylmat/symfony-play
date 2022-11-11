@@ -8,7 +8,7 @@
 # DOC
 # @see https://github.com/actions/starter-workflows/
 
-name: Workflow
+name: Symplay
 
 on:
   push:
