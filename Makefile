@@ -373,7 +373,7 @@ npm-build:
 
 # @see https://deployer.org
 deploy:
-	bin/deployer deploy -f tools/deployer.yaml -v
+	bin/deployer deploy -f tools/deployer.yaml -vvv
 
 #######
 # SSH #
