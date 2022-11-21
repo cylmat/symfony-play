@@ -86,15 +86,15 @@ task('commit:hash', function () {
 task('vendors', function () {
     $php_bin_path = '/usr/local/php7.4/bin/php';
     cd('{{release_path}}');
-    run("$php_bin_path bin/composer install --no-dev --no-scripts --no-plugins");
+    run("cd {{release_path}} && $php_bin_path bin/composer install --no-dev --no-scripts --no-plugins");
 });
 
 task('cache:clear', function () {
     $php_bin_path = '/usr/local/php7.4/bin/php';
     cd('{{release_path}}');
-    run("rm var/cache/* -rf");
-    run("$php_bin_path bin/console cache:clear"); // --env=prod
-    run("$php_bin_path bin/composer dump-autoload");
+    run("cd {{release_path}} && rm var/cache/* -rf");
+    run("cd {{release_path}} && $php_bin_path bin/console cache:clear"); // --env=prod
+    run("cd {{release_path}} && $php_bin_path bin/composer dump-autoload");
 });
 
 task('build', function () {
