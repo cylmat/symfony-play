@@ -93,7 +93,7 @@ task('cache:clear', function () {
     $php_bin_path = '/usr/local/php7.4/bin/php';
     cd('{{release_path}}');
     run("rm var/cache/* -rf");
-    run("$php_bin_path bin/console cache:clear --env=prod");
+    run("$php_bin_path bin/console cache:clear"); // --env=prod
     run("$php_bin_path bin/composer dump-autoload");
 });
 
