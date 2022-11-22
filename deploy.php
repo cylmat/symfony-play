@@ -115,6 +115,7 @@ task('deploy', [
     'npm:build',
     'composer:vendors',
     'cache:clear',
+    'commit:hash',
 
     # Run symlink,unlock,cleanup,success
     'deploy:publish',
