@@ -112,7 +112,7 @@ task('deploy', [
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
 
-    'npm:build',
+    #'npm:build',
     'composer:vendors',
     'cache:clear',
     'commit:hash',
