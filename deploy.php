@@ -83,7 +83,7 @@ task('commit:hash', function () {
     run("echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
 });
 
-task('vendors', function () {
+task('composer:vendors', function () {
     $php_bin_path = '/usr/local/php7.4/bin/php';
     cd('{{release_path}}');
     run("$php_bin_path bin/composer install --no-dev --no-scripts --no-plugins");
@@ -97,7 +97,7 @@ task('cache:clear', function () {
     //run("$php_bin_path bin/composer dump-autoload");
 });
 
-task('build', function () {
+task('npm:build', function () {
     cd('{{release_path}}');
     run('npm install');
 });
@@ -112,7 +112,8 @@ task('deploy', [
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
 
-    'vendors',
+    'npm:build',
+    'composer:vendors',
     'cache:clear',
 
     # Run symlink,unlock,cleanup,success
