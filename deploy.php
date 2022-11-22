@@ -107,6 +107,8 @@ task('build', function () {
 # @see https://deployer.org/docs/7.x/recipe/symfony
 desc('Deploy your project');
 task('deploy', [
+    'deploy:unlock',
+    
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
 
