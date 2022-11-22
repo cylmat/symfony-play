@@ -18,6 +18,7 @@
  * Can't use dynamic require on js files, they went to "unused" 
  */
 import './scripts/app.js'
+import './scripts/startbootstrap.js'
 
 /**
  * STYLES
