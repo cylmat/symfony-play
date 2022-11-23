@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Application\Controller;
 
-use App\Form\CryptoType;
+use App\Application\Form\CryptoType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
