@@ -10,4 +10,4 @@ import * as bootstrap from 'bootstrap';
 /**
  * STYLES
  */
- import './styles/bootstrap.scss'
+import './styles/bootstrap.scss'

@@ -115,6 +115,10 @@ all-builds:
 
 watch: npm run watch
 
+cache:
+	rm var/cache/* -rf
+	bin/console cache:clear
+
 ###########
 # GRUMPHP #
 # @see https://github.com/phpro/grumphp
