@@ -143,6 +143,11 @@ csfixer-bin:
 	curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o bin/php-cs-fixer
 	chmod a+x bin/php-cs-fixer
 
+deptrac-bin:
+	apt update && apt-get install -y graphviz
+	curl -L https://github.com/qossmic/deptrac/releases -o bin/deptrac
+	chmod a+x bin/deptrac
+
 infection-bin:
 	apt update && apt install -y gpg
 	curl -L https://github.com/infection/infection/releases/download/0.26.6/infection.phar -o bin/infection
