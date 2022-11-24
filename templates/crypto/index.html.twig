@@ -29,6 +29,12 @@
                         <div>
                             {{ form(form) }}
                         </div>
+
+                        {% if result is not empty %}
+                        <div>
+                            Result: {{ result }}
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
