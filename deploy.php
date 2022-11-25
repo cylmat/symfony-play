@@ -84,13 +84,13 @@ task('commit:hash', function () {
 });
 
 task('composer:vendors', function () {
-    $php_bin_path = '/usr/local/php7.4/bin/php';
+    $php_bin_path = '/usr/local/php8.1/bin/php';
     cd('{{release_path}}');
     run("$php_bin_path bin/composer install --no-dev --no-scripts --no-plugins");
 });
 
 task('cache:clear', function () {
-    $php_bin_path = '/usr/local/php7.4/bin/php';
+    $php_bin_path = '/usr/local/php8.1/bin/php';
     cd('{{release_path}}');
     run("rm ./var/cache/* -rf");
     //run("$php_bin_path bin/console cache:clear --env=prod");
