@@ -1,4 +1,5 @@
 # deptrac.yaml
+# @see https://qossmic.github.io/deptrac/configuration
 
 deptrac:
   paths:
@@ -13,6 +14,18 @@ deptrac:
           type: className
           value: .*Controller.*
     -
+      name: Factory
+      collectors:
+        -
+          type: className
+          value: .*Factory.*
+    -
+      name: Manager
+      collectors:
+        -
+          type: className
+          value: .*Manager.*
+    -
       name: Repository
       collectors:
         -
@@ -26,7 +39,22 @@ deptrac:
           value: .*Service.*
   ruleset:
     Controller:
+      - Manager
       - Service
+    Factory:
+      - Service
+    Manager:
+      - Factory
+      - Repository
     Service:
       - Repository
     Repository: ~
+  formatters:
+    graphviz:
+      groups:
+        Entrypoints:
+          - Controllers
+          - Commands
+        Persistence:
+          - Repositories
+          - Entities
