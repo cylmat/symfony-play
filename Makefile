@@ -101,6 +101,7 @@ tests:
 	@make all-tests
 all-tests:
 	make cover
+	make deptrac
 	make infection
 	make pest
 # make unit
@@ -342,6 +343,10 @@ cover:
 	php -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
 #	XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
 #	phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
+
+# @see https://qossmic.github.io/deptrac
+deptrac:
+	bin/deptrac analyse --config-file=tools/test/deptrac.yaml
 
 # @see https://infection.github.io
 infection:
