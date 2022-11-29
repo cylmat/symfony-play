@@ -145,7 +145,7 @@ csfixer-bin:
 
 deptrac-bin:
 	apt update && apt-get install -y graphviz
-	curl -L https://github.com/qossmic/deptrac/releases -o bin/deptrac
+	curl -L https://github.com/qossmic/deptrac/releases/download/1.0.0/deptrac.phar -o bin/deptrac
 	chmod a+x bin/deptrac
 
 infection-bin:
