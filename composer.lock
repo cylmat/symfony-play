@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff1e6cb530a2f4d2ac540dc8bd1a21d0",
+    "content-hash": "c63f738f4671668cdcf8cb20675fa7b2",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1882,6 +1882,48 @@
                 "source": "https://github.com/php-fig/log/tree/3.0.0"
             },
             "time": "2021-07-14T16:46:02+00:00"
+        },
+        {
+            "name": "robinbressan/regex-parser",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RobinBressan/regex-parser.git",
+                "reference": "7df263ade37e3d4e3e3d267cc7dda52a08331806"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RobinBressan/regex-parser/zipball/7df263ade37e3d4e3e3d267cc7dda52a08331806",
+                "reference": "7df263ade37e3d4e3e3d267cc7dda52a08331806",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpspec/prophecy": "~1.0",
+                "phpunit/phpunit": "3.7.32"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "RegexParser\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin Bressan",
+                    "email": "robin@buddey.net"
+                }
+            ],
+            "description": "AST for PCRE Regex",
+            "support": {
+                "issues": "https://github.com/RobinBressan/regex-parser/issues",
+                "source": "https://github.com/RobinBressan/regex-parser/tree/master"
+            },
+            "time": "2015-11-03T10:51:47+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -11206,7 +11248,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "robinbressan/regex-parser": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
