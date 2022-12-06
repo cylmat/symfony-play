@@ -3,6 +3,7 @@
 ## Encrypt
 Encrypt value with encoder and options  
 
+@input data: SensioExtra-paramConverter
 @display: icu/i18n
 @users: user/ip/security/voter
 @TextPrompt: filtervar
@@ -40,3 +41,7 @@ Type regex then generate fake data with it
 - @Generator: Soap/Dom/Xml
 
 ## Git playground
+
+---
+Liip, utf8, imagick, Generator (inversed), DS, Reflection, OPCache, Sockets, Wrappers, Gettext
+EasyAdmin, FOSUser, FOSRest, SonataAdmin, Intl, Lock, Clock, Notifier, VarDumper, PropertyAccess
