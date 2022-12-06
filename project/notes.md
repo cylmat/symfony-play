@@ -3,11 +3,11 @@
 ## Encrypt
 Encrypt value with encoder and options  
 
-@input data: SensioExtra-paramConverter
-@display: icu/i18n
-@users: user/ip/security/voter
-@TextPrompt: filtervar
-@Encryption: hash/random
+@input data: SensioExtra-paramConverter  
+@display: icu/i18n  
+@users: user/ip/security/voter  
+@TextPrompt: filtervar  
+@Encryption: hash/random  
 @Results: 
 - splobserver
 - cache Apc [one text-one result]
