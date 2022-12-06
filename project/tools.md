@@ -12,8 +12,17 @@ Front
 * Weblink: HTTP/2 Preloading assets (HTTP/2 Server Push)
 * Webpack: https://webpack.js.org
 
-Hotwire
+Bundles
 ---
+https://api-platform.com/docs
+https://symfony.com/bundles
+https://symfony.com/bundles/DoctrineFixturesBundle/current/index.html
+https://symfony.com/bundles/EasyAdminBundle/current/index.html
+https://symfony.com/bundles/StofDoctrineExtensionsBundle/current/index.html
+
+Stimulus Hotwire
+---
+https://ux.symfony.com
 https://stimulus.hotwired.dev
 
 Server
