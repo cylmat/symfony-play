@@ -3,7 +3,9 @@
 namespace App\Application\Controller;
 
 use App\Application\Form\CryptoType;
+use App\Application\ParamConverter\EncryptManagerConverter;
 use App\Domain\Manager\EncryptManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class CryptoController extends AbstractController
 {
     /**
-     * @Route("/cry", name="app_crypto_index")
+     * @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html
      */
+    #[Route("/cry", name:"app_crypto_index")]
+    #[ParamConverter('encryptManager', class: EncryptManagerConverter::class)]
     public function index(Request $request, EncryptManager $encryptManager): Response
     {
         $form = $this->createForm(CryptoType::class);

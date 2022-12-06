@@ -1,4 +1,5 @@
-# composer req annotations
 sensio_framework_extra:
     router:
         annotations: false
+    request:
+        converters: true
