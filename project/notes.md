@@ -31,6 +31,8 @@ Encoder object:
 ## Grep-sed
 Grep-sed-awk: text traitement
 
+## Httpcodes quizz
+
 ## Enluminure
 Traitement images, enluminure et calligraphie
 
