@@ -4,8 +4,8 @@ namespace App\Domain\Service\Encryption;
 
 class BcryptEncryption implements EncryptionInterface
 {
-    public function encrypt(string $value): string
+    public function encrypt(string $value, array $options): string
     {
-        return \password_hash($value, PASSWORD_BCRYPT);
+        return \password_hash($value, PASSWORD_BCRYPT, $options);
     }
 }

@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CryptoController extends AbstractController
 {
+    private const NEEDTOBECHANGED = 'bcrypt';
+
     /**
      * @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html
      */
@@ -26,7 +28,7 @@ class CryptoController extends AbstractController
                 $value = $form->getData('crypto_ClearDataToConvert')['ClearDataToConvert'];
                 $this->addFlash('success', 'Form sended');
 
-                $result = $encryptManager->encryptValue($value);
+                $result = $encryptManager->encryptValue(self::NEEDTOBECHANGED, $value, []);
             }
         }
 

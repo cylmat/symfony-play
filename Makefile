@@ -349,11 +349,12 @@ deptrac:
 	bin/deptrac analyse --config-file=tools/test/deptrac.yaml
 
 # @see https://infection.github.io
+# -derror_reporting=24575 remove deprecated
 infection:
 	@test -d /tmp/infection || mkdir /tmp/infection
 	@test -f /tmp/infection/index.xml || touch /tmp/infection/index.xml
 	@echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use infection \033[0m"
-	bin/infection run -c tools/test/infection.json --debug --show-mutations
+	php -derror_reporting=24575 bin/infection run -c tools/test/infection.json --debug --show-mutations
 
 # @see https://pestphp.com
 pest:

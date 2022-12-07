@@ -14,12 +14,6 @@ deptrac:
           type: className
           value: .*Controller.*
     -
-      name: Factory
-      collectors:
-        -
-          type: className
-          value: .*Factory.*
-    -
       name: Manager
       collectors:
         -
@@ -40,11 +34,8 @@ deptrac:
   ruleset:
     Controller:
       - Manager
-      - Service
-    Factory:
-      - Service
     Manager:
-      - Factory
+      - Service
       - Repository
     Service:
       - Repository
