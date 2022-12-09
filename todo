@@ -4,6 +4,9 @@ https://themer.dev
 let's encrypt, openio.io, min.io, openswift, openstack, traefik, messageoriented middleware
 https://tideways.com/profiler/features
 cqrs
+design pattern
+fiber
+weakobject
 https://www.sonarqube.org
 https://www.elastic.co/fr/what-is/elk-stack
 https://www.blackfire.io
@@ -16,3 +19,5 @@ https://app.redislabs.com
 https://newrelic.com
 
 https://docs.phpdoc.org/guide/guides/docblocks.html
+
+PCRE + Parle (or doctrine parse)
