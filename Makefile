@@ -278,6 +278,10 @@ spec:
 	@make phpspec
 .PHONY: spec
 
+spec:
+	@make phpspec
+.PHONY: spec
+
 # @see http://phpspec.net
 phpspec:
 	bin/phpspec run --config=tools/test/phpspec.yml

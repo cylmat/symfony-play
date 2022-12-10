@@ -92,7 +92,8 @@
     "autoload-dev": {
         "psr-4": {
             "App\\Tests\\": "tests/",
-            "App\\Features\\": "features/bootstrap/"
+            "App\\Features\\": "features/bootstrap/",
+            "spec\\App\\": "spec/"
         }
     },
     "replace": {
@@ -122,7 +123,6 @@
             "allow-contrib": false,
             "require": "6.2.*"
         },
-        "runtime": {
-        }
+        "runtime": {}
     }
 }
