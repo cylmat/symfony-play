@@ -100,7 +100,7 @@ task('cache:clear', function () {
 });
 
 task('env:symlink', function () {
-    run('ln -s {{release_path}}/.env.prod.local {{deploy_path}}/.env.prod.local');
+    run('ln -s {{deploy_path}}/.env.prod.local {{release_path}}/.env.prod.local');
 });
 
 task('npm:build', function () {
