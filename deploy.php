@@ -47,7 +47,8 @@ if (!(
 // Project //
 set('repository', $VCS_REPOSITORY);
 set('branch', $VCS_BRANCH_NAME);
-set('deploy_path', $REMOTE_DIRECTORY);
+set('deploy_path', $REMOTE_DIRECTORY); // deploy on "<application>/current"
+// {{release_path}} is the application's root directory
 
 // Stage //
 
@@ -81,6 +82,7 @@ task('local:upload', function () {
 task('commit:hash', function () {
     cd('{{release_path}}');
     run("echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
+    run ("ln -s ./RELEASE ./public/RELEASE");
 });
 
 task('composer:vendors', function () {
@@ -95,6 +97,10 @@ task('cache:clear', function () {
     run("rm ./var/cache/* -rf");
     //run("$php_bin_path bin/console cache:clear --env=prod");
     //run("$php_bin_path bin/composer dump-autoload");
+});
+
+task('env:symlink', function () {
+    run('ln -s {{release_path}}/.env.prod.local {{deploy_path}}/.env.prod.local');
 });
 
 task('npm:build', function () {
@@ -116,6 +122,7 @@ task('deploy', [
     'composer:vendors',
     'cache:clear',
     'commit:hash',
+    'env:symlink',
 
     # Run symlink,unlock,cleanup,success
     'deploy:publish',
