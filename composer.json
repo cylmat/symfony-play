@@ -121,6 +121,8 @@
         "symfony": {
             "allow-contrib": false,
             "require": "6.2.*"
+        },
+        "runtime": {
         }
     }
 }

@@ -2,8 +2,8 @@
 !/bin/console
 !/bin/composer
 **/node_modules
-**/var/
-**/vendor/
+**/var
+**/vendor
 **.local
 **.cache
 /.env.deploy
