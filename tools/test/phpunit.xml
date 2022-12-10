@@ -49,6 +49,9 @@ Doc
         <include>
             <directory suffix=".php">../../src</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">../../src/DataFixtures</directory>
+        </exclude>
 
         <report>
             <html outputDirectory="../../var/coverage/html-coverage" lowUpperBound="50" highLowerBound="90"/>

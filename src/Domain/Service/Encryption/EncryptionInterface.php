@@ -2,7 +2,9 @@
 
 namespace App\Domain\Service\Encryption;
 
+use App\Domain\Model\EncryptedData;
+
 interface EncryptionInterface
 {
-    public function encrypt(string $value, array $options): string;
+    public function encrypt(string $value, array $options): EncryptedData;
 }

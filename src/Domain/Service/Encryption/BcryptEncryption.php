@@ -2,10 +2,12 @@
 
 namespace App\Domain\Service\Encryption;
 
+use App\Domain\Model\EncryptedData;
+
 class BcryptEncryption implements EncryptionInterface
 {
-    public function encrypt(string $value, array $options): string
+    public function encrypt(string $value, array $options): EncryptedData
     {
-        return \password_hash($value, PASSWORD_BCRYPT, $options);
+        return new EncryptedData(\password_hash($value, PASSWORD_BCRYPT, $options));
     }
 }

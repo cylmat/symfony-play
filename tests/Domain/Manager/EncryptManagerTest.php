@@ -3,6 +3,7 @@
 namespace App\Tests\Domain\Manager;
 
 use App\Domain\Manager\EncryptManager;
+use App\Domain\Model\EncryptedData;
 use App\Domain\Service\Encryption\BcryptEncryption;
 use App\Domain\Service\Encryption\EncryptionFactory;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +16,7 @@ class EncryptManagerTest extends TestCase
         $bcrypt
             ->method('encrypt')
             ->with('testvalue', [])
-            ->willReturn('$2y$12x');
+            ->willReturn($data = new EncryptedData('$2y$12x'));
 
         $factory = $this->createMock(EncryptionFactory::class);
         $factory
@@ -24,6 +25,6 @@ class EncryptManagerTest extends TestCase
             ->willReturn($bcrypt);
         $manager = new EncryptManager($factory);
 
-        $this->assertSame('$2y$12x', $manager->encryptValue('bcrypt', 'testvalue', []));
+        $this->assertSame($data->getValue(), $manager->encryptValue('bcrypt', 'testvalue', []));
     }
 }

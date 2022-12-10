@@ -273,10 +273,6 @@ behat:
 codecept:
 	bin/codecept run -c tools/test/codeception.yml
 	@echo -e "\033[1;32mAll good \033[0m"
-	
-spec:
-	@make phpspec
-.PHONY: spec
 
 spec:
 	@make phpspec
