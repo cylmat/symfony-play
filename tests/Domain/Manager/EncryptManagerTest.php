@@ -8,8 +8,17 @@ use App\Domain\Service\Encryption\BcryptEncryption;
 use App\Domain\Service\Encryption\EncryptionFactory;
 use PHPUnit\Framework\TestCase;
 
-class EncryptManagerTest extends TestCase
+final class EncryptManagerTest extends TestCase
 {
+    private EncryptionFactory $encryptFactory;
+    private EncryptManager $encryptManager;
+
+    protected function setUp(): void
+    {
+        $this->encryptFactory = $this->createMock(EncryptionFactory::class);
+        $this->encryptManager = new EncryptManager($this->encryptFactory);
+    }
+
     public function testEncryptValue(): void
     {
         $bcrypt = $this->createMock(BcryptEncryption::class);
@@ -18,13 +27,11 @@ class EncryptManagerTest extends TestCase
             ->with('testvalue', [])
             ->willReturn($data = new EncryptedData('$2y$12x'));
 
-        $factory = $this->createMock(EncryptionFactory::class);
-        $factory
+        $this->encryptFactory
             ->method('create')
             ->with('bcrypt')
             ->willReturn($bcrypt);
-        $manager = new EncryptManager($factory);
 
-        $this->assertSame($data->getValue(), $manager->encryptValue('bcrypt', 'testvalue', []));
+        $this->assertSame($data->getValue(), $this->encryptManager->encryptValue('bcrypt', 'testvalue', []));
     }
 }

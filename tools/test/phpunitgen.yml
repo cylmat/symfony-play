@@ -14,7 +14,8 @@
 
 overwriteFiles: false
 backupFiles: false
-excludedFiles: []
+excludedFiles:
+  - '.*DataFixtures.*'
 includedFiles:
   - '\.php$'
 generateOnMake: true
