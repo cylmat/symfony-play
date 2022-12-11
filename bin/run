@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+if [ $# -lt 1 ]; then
+    echo "Usage : $0 <script-name>"
+    exit
+fi
+
+case "$1" in
+
+"phpunit") bin/phpunit ;;
+
+*) echo "Command \"$1\" not found!" ;;
+
+esac

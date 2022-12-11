@@ -13,6 +13,7 @@ network:
 ### ALIAS ###
 #############
 alias:
+	run="bin/run"
 	s="symfony"
 	sc="symfony console"
 	sr="symfony composer"

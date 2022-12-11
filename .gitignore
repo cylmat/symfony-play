@@ -1,6 +1,8 @@
 /bin/
 !/bin/console
 !/bin/composer
+!/bin/install
+!/bin/run
 **/node_modules
 **/var
 **/vendor
