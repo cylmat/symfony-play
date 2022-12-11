@@ -10,8 +10,7 @@ class EncryptionFactory
     {
         return match (strtoupper($algorithm)) {
             HashAlgorithm::BCRYPT => new BcryptEncryption(),
+            default => throw new AlgorithmNotFoundException()
         };
-
-        throw new AlgorithmNotFoundException();
     }
 }

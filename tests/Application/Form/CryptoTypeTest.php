@@ -17,6 +17,7 @@ final class CryptoTypeTest extends TypeTestCase
         $this->cryptoType = new CryptoType();
     }
 
+    /** @todo fix that test called exaclty twice */
     public function testBuildForm(): void
     {
         $formBuilder = $this->createMock(FormBuilderInterface::class);
@@ -33,6 +34,13 @@ final class CryptoTypeTest extends TypeTestCase
 
     public function testConfigureOptions(): void
     {
-        $this->assertNull($this->cryptoType->configureOptions(new OptionsResolver()));
+        $optionResolver = $this->createMock(OptionsResolver::class);
+        $optionResolver
+            ->expects($this->once())
+            ->method('setDefaults')
+            ->with([])
+        ;
+
+        $this->cryptoType->configureOptions($optionResolver);
     }
 }

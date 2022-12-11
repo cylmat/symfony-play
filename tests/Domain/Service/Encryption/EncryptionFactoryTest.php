@@ -2,6 +2,7 @@
 
 namespace App\Domain\Service\Encryption;
 
+use App\Domain\Exception\AlgorithmNotFoundException;
 use App\Domain\Service\Encryption\EncryptionFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +17,13 @@ final class EncryptionFactoryTest extends TestCase
 
     public function testCreate(): void
     {
-        $this->markTestIncomplete();
+        $this->assertInstanceOf(BcryptEncryption::class, $this->encryptionFactory->create('bcrypt'));
+    }
+
+    /** @expectException AlgorithmNotFoundException */
+    public function testCreateFail(): void
+    {
+        $this->expectException(AlgorithmNotFoundException::class);
+        $this->encryptionFactory->create('not');
     }
 }

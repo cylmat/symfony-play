@@ -2,6 +2,7 @@
 
 namespace App\Domain\Service\Encryption;
 
+use App\Domain\Model\EncryptedData;
 use App\Domain\Service\Encryption\BcryptEncryption;
 use PHPUnit\Framework\TestCase;
 
@@ -16,6 +17,6 @@ final class BcryptEncryptionTest extends TestCase
 
     public function testEncrypt(): void
     {
-        $this->markTestIncomplete();
+        $this->assertInstanceOf(EncryptedData::class, $this->bcryptEncryption->encrypt('value', []));
     }
 }
