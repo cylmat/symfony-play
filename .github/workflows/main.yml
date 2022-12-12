@@ -58,7 +58,9 @@ jobs:
     #  TEST  #
     ##########
     - name: Run tests
-      run: bin/run unit
+      run: |
+        bin/composer req --dev phpunit/phpunit
+        bin/run unit
 
   deploy:
     runs-on: ubuntu-latest
