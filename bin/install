@@ -57,7 +57,7 @@ case "$1" in
 ;;
 
 "composer-nodev")
-	bin/composer install --no-dev --no-scripts --no-plugins ;;
+	bin/composer install --prefer-dist --no-progress --no-dev --no-scripts --no-plugins ;;
 
 ##########
 # BINARY #

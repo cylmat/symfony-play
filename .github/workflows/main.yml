@@ -52,13 +52,13 @@ jobs:
 
     - name: Install composer dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-plugins --no-scripts 
+      run: bin/install composer-nodev
 
     ##########
     #  TEST  #
     ##########
     - name: Run tests
-      run: make unit
+      run: bin/run unit
 
   deploy:
     runs-on: ubuntu-latest
