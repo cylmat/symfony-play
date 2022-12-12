@@ -83,5 +83,5 @@ jobs:
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY_CONTENT" > ~/.ssh/id_ed25519.github && chmod 600 ~/.ssh/id_ed25519.github
         ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
-        sudo make deployer-bin
-        make deploy
+        sudo bin/install deployer
+        bin/run deploy
