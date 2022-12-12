@@ -8,12 +8,11 @@ SHELL := /bin/bash
 define all-scripts
 	make all-fix
 	make all-linters
-	make all-behav 
-	make all-tests
+	make all-behav
 	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 endef
 
-all-lints-and-tests:
+all-lints:
 	@$(call all-scripts)
 	
 install-all-tools:
@@ -21,7 +20,7 @@ install-all-tools:
 	make composer-install-dev
 	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 
-.PHONY: install-all-bin composer-install-dev all-fix all-linters all-behav all-tests all-builds grump
+.PHONY: install-all-bin composer-install-dev all-fix all-linters all-behav all-builds grump
 
 ### Test config from host
 # docker run --rm -it -v tmpvar:/var/www php:7.4-fpm sh -c "apt update && apt install -y git rsync unzip && bash"
@@ -92,19 +91,6 @@ all-linters:
 all-behav:
 	make codecept
 	make phpspec
-	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
-
-.PHONY: test tests all-tests
-test:
-	@make all-tests
-tests:
-	@make all-tests
-all-tests:
-	make cover
-	make deptrac
-	make infection
-	make pest
-# make unit
 	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 
 .PHONY: build all-builds
@@ -333,45 +319,6 @@ phan:
 # @see https://psalm.dev
 psalm:
 	bin/psalm -c tools/linter/psalm.xml --memory-limit=2G --threads=4
-
-###########
-# TESTING #
-###########
-
-# @see https://phpunitgen.io
-test-gen:
-	bin/phpunitgen --config=tools/test/phpunitgen.yml src
-
-cover:
-	@echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use code coverage \033[0m"
-	php -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
-#	XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
-#	phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
-
-# @see https://qossmic.github.io/deptrac
-deptrac:
-	bin/deptrac analyse --config-file=tools/test/deptrac.yaml
-
-# @see https://infection.github.io
-# -derror_reporting=24575 remove deprecated
-infection:
-	@test -d /tmp/infection || mkdir /tmp/infection
-	@test -f /tmp/infection/index.xml || touch /tmp/infection/index.xml
-	@echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use infection \033[0m"
-	php -derror_reporting=24575 bin/infection run -c tools/test/infection.json --debug --show-mutations
-
-# @see https://pestphp.com
-pest:
-	bin/pest -c tools/test/phpunit.xml
-
-# @see https://github.com/paratestphp/paratest
-# @see https://phpunit.de
-paraunit:
-	bin/paratest -c tools/test/phpunit.xml
-
-unit:
-	test -e bin/phpunit || ln -s vendor/bin/phpunit bin/phpunit
-	bin/phpunit -c tools/test/phpunit.xml
 
 ############
 # BUILDING #
