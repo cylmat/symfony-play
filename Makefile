@@ -14,11 +14,6 @@ endef
 
 all-lints:
 	@$(call all-scripts)
-	
-install-all-tools:
-	make install-all-bin
-	make composer-install-dev
-	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 
 .PHONY: install-all-bin composer-install-dev all-fix all-linters all-behav all-builds grump
 
@@ -26,44 +21,6 @@ install-all-tools:
 # docker run --rm -it -v tmpvar:/var/www php:7.4-fpm sh -c "apt update && apt install -y git rsync unzip && bash"
 ###
 
-###########
-# INSTALL #
-###########
-
-install-all-bin:
-	mkdir -p bin
-	make csfixer-bin
-	make codeception-bin
-	make infection-bin
-	make parallel-bin
-	make phan-bin
-	make phpmd-bin
-	make phpstan-bin
-	make psalm-bin
-# Utils
-	make composer-bin
-	make deployer-bin
-	make phing-bin
-	make phive-bin
-	make phpenv-bin
-	@echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
-	
-# COMPOSER #
-composer-install-dev:
-	test -e bin/composer || make composer-bin
-	bin/composer require --dev \
-	brianium/paratest \
-		behat/behat \
-        friends-of-phpspec/phpspec-code-coverage \
-		kint-php/kint \
-        nikic/php-parser \
-        pestphp/pest \
-        phpro/grumphp \
-        phpspec/phpspec \
-        phpunit/phpunit \
-        phpunitgen/console \
-        sebastian/phpcpd \
-        squizlabs/php_codesniffer
 	
 ###########
 # RUN ALL #
@@ -117,135 +74,6 @@ grump:
 
 grump-tasks:
 	bin/grumphp run --tasks=$(ts)
-
-#######
-# BIN #
-#######
-
-codeception-bin:
-	curl -L https://codeception.com/codecept.phar -o bin/codecept
-	chmod a+x bin/codecept
-
-csfixer-bin:
-	curl -L https://cs.symfony.com/download/php-cs-fixer-v3.phar -o bin/php-cs-fixer
-	chmod a+x bin/php-cs-fixer
-
-deptrac-bin:
-	apt update && apt-get install -y graphviz
-	curl -L https://github.com/qossmic/deptrac/releases/download/1.0.0/deptrac.phar -o bin/deptrac
-	chmod a+x bin/deptrac
-
-infection-bin:
-	apt update && apt install -y gpg
-	curl -L https://github.com/infection/infection/releases/download/0.26.6/infection.phar -o bin/infection
-	curl -L https://github.com/infection/infection/releases/download/0.26.6/infection.phar.asc -o /tmp/infection.phar.asc
-	gpg --recv-keys C6D76C329EBADE2FB9C458CFC5095986493B4AA0
-	gpg --with-fingerprint --verify /tmp/infection.phar.asc bin/infection
-	rm /tmp/infection.phar.asc
-	chmod +x bin/infection
-
-parallel-bin:
-	curl -LO https://github.com/php-parallel-lint/PHP-Parallel-Lint/releases/download/v1.3.2/parallel-lint.phar
-	chmod +x parallel-lint.phar
-	mv parallel-lint.phar bin/parallel-lint
-
-phan-bin:
-	curl -L https://github.com/phan/phan/releases/download/5.4.1/phan.phar -o bin/phan
-	chmod +x bin/phan
-
-phpmd-bin:
-	curl -L https://github.com/phpmd/phpmd/releases/download/2.13.0/phpmd.phar -o bin/phpmd
-	chmod a+x bin/phpmd
-
-phpstan-bin:
-	curl -L https://github.com/phpstan/phpstan/releases/download/1.8.6/phpstan.phar -o bin/phpstan
-	chmod a+x bin/phpstan
-
-psalm-bin:
-	curl -L https://github.com/vimeo/psalm/releases/latest/download/psalm.phar -o bin/psalm
-	chmod +x bin/psalm
-
-### Utils ###
-
-# @see https://getcomposer.org
-composer-bin:
-	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-	php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-	php composer-setup.php
-	php -r "unlink('composer-setup.php');"
-	mv composer.phar bin/composer
-
-# @see https://deployer.org
-deployer-bin:
-	mkdir -p bin
-	curl -L https://github.com/deployphp/deployer/releases/download/v7.0.2/deployer.phar -o bin/deployer
-	chmod a+x bin/deployer
-
-# @see https://kint-php.github.io
-kint-bin:
-	curl -L https://raw.githubusercontent.com/kint-php/kint/master/build/kint.phar -o bin/kint
-	chmod a+x bin/kint
-
-# @see https://github.com/nvm-sh/nvm
-# @see https://www.npmjs.com
-# As nvm is a sourced function(), not a shell script, it can be used anywhere without alias
-# Then run "nvm install node"
-nvm:
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-	source "$$HOME/.nvm/nvm.sh" && source "$$HOME/.nvm/bash_completion"
-
-# One must install "make nvm" before
-npm-bin:
-	$$(nvm which)
-
-# @see https://github.com/krakjoe/pcov
-pcov-bin:
-	pecl install pcov && docker-php-ext-enable pcov
-
-# @see https://phing.info
-phing-bin:
-	curl -LO https://www.phing.info/get/phing-2.17.4.phar
-	curl -LO https://www.phing.info/get/phing-2.17.4.phar.sha512
-	sha512sum --check phing-2.17.4.phar.sha512
-	rm phing-2.17.4.phar.sha512
-	mv phing-2.17.4.phar bin/phing
-	chmod +x bin/phing
-
-# PHAR Installation and Verification Environment
-# https://phar.io
-phive-bin:
-	apt update && apt install -y gpg
-	curl -L "https://phar.io/releases/phive.phar" -o phive.phar
-	curl -L "https://phar.io/releases/phive.phar.asc" -o /tmp/phive.phar.asc 
-	gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x6AF725270AB81E04D79442549D8A98B29B2D5D79
-	gpg --verify /tmp/phive.phar.asc phive.phar
-	rm /tmp/phive.phar.asc
-	chmod +x phive.phar
-	mv phive.phar /usr/local/bin/phive
-	
-#########################
-# SPECIFIC INSTALL      #
-# Not included in 'all' #
-#########################
-# PHP env #
-# @see https://github.com/phpenv/phpenv
-phpenv-bin:
-	curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-
-# PCOV #
-# @see https://github.com/krakjoe/pcov
-pcov:
-	pecl install pcov && docker-php-ext-enable pcov
-
-# STUBS #
-# @see https://github.com/JetBrains
-stubs:
-	test -d vendor/jetbrains/phpstorm-stubs || \
-	git clone https://github.com/JetBrains/phpstorm-stubs.git vendor/jetbrains/phpstorm-stubs
-	
-symfony-bin:
-	curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash
-	apt install -y symfony-cli
 
 ############
 # BEHAVIOR #
