@@ -82,13 +82,13 @@ task('local:upload', function () {
 task('commit:hash', function () {
     cd('{{release_path}}');
     run("echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
-    run ("ln -s ./RELEASE ./public/RELEASE");
+    run ("ln -s ./REVISION ./public/REVISION");
 });
 
 task('composer:vendors', function () {
     $php_bin_path = '/usr/local/php8.1/bin/php';
     cd('{{release_path}}');
-    run("$php_bin_path bin/composer install --no-dev --no-scripts --no-plugins");
+    run("$php_bin_path bin/install composer-nodev");
 });
 
 task('cache:clear', function () {
