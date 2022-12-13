@@ -108,7 +108,7 @@ case "$1" in
 	$0 cover &&
 	$0 deptrac &&
 	$0 infection &&
-	$0 pest && # Run like paratest or phpunit
+	$0 paratest && # Run like pest or phpunit
 	echogood
 ;;
 
@@ -139,7 +139,7 @@ case "$1" in
 ;;
 
 # @see https://github.com/paratestphp/paratest
-"paratest")
+"para"|"paratest")
     bin/paratest -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 # @see https://pestphp.com
