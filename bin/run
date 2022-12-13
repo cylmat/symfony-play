@@ -2,6 +2,8 @@
 
 if [ $# -lt 1 ]; then echo "Usage : $0 <script-name>"; exit; fi
 
+ARGUMENT=$2
+
 echogood () {
 	echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 }
@@ -111,7 +113,7 @@ case "$1" in
 ;;
 
 # @see https://phpunitgen.io
-"test-gen")
+"gen"|"test-gen")
     bin/phpunitgen --config=tools/test/phpunitgen.yml src ;;
 
 # Specifics
@@ -133,22 +135,22 @@ case "$1" in
 	test -d /tmp/infection || mkdir /tmp/infection
 	test -f /tmp/infection/index.xml || touch /tmp/infection/index.xml
 	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use infection \033[0m"
-	php -derror_reporting=24575 bin/infection run -c tools/test/infection.json --debug --show-mutations
+	php -derror_reporting=24575 bin/infection run -c tools/test/infection.json --debug --show-mutations ${ARGUMENT}
 ;;
 
 # @see https://github.com/paratestphp/paratest
 "paratest")
-    bin/paratest -c tools/test/phpunit.xml ;;
+    bin/paratest -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 # @see https://pestphp.com
 "pest")
-    bin/pest -c tools/test/phpunit.xml ;;
+    bin/pest -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 # @see https://phpunit.readthedocs.io
 "phpunit")
-    bin/phpunit -c tools/test/phpunit.xml ;;
+    bin/phpunit -c tools/test/phpunit.xml ${ARGUMENT} ;;
 "unit")
-    $0 phpunit ;;
+    $0 phpunit ${ARGUMENT} ;;
 
 ##########################################################
 
@@ -181,9 +183,9 @@ case "$1" in
 ###########
 
 "grump"|"grumphp")
-	if [ ! -z $2 ]; then
-		echo "Run task $2"
-		bin/grumphp run --tasks=$2;
+	if [ ! -z ${ARGUMENT} ]; then
+		echo "Run task ${ARGUMENT}"
+		bin/grumphp run --tasks=${ARGUMENT};
 	else 
 		bin/grumphp run
 	fi
