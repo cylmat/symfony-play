@@ -9,22 +9,25 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CryptoController extends AbstractController
+class EncryptController extends AbstractController
 {
     private const NEEDTOBECHANGED = 'bcrypt';
 
     /**
      * @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html
      */
-    #[Route("/cry", name:"app_crypto_index")]
+    #[Route("/cry", name:"app_encrypt_index")]
     public function index(Request $request, EncryptManager $encryptManager): Response
     {
         $form = $this->createForm(CryptoType::class);
         $form->handleRequest($request);
 
+        /** @infection-ignore-all */
+        $formValid = $form->isSubmitted() && $form->isValid();
+
         $result = null;
         if (Request::METHOD_POST === $request->getMethod()) {
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($formValid) {
                 $value = $form->getData('crypto_ClearDataToConvert')['ClearDataToConvert'];
                 $this->addFlash('success', 'Form sended');
 
