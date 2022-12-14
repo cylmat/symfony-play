@@ -23,7 +23,6 @@ class ControllerTestCase extends TestCase
 
     protected function setUp(): void
     {
-        $t = $this;
         $this->initServices();
 
         $this->container = $this->createMock(ContainerInterface::class);

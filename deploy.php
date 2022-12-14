@@ -31,6 +31,7 @@ foreach ([__DIR__ . '/.env.deploy.local', __DIR__ . '/.env.deploy', __DIR__ . '/
     }
 }
 
+# phpcs:disable
 if (!(
 ($VCS_REPOSITORY   = trim($_ENV['VCS_REPOSITORY'] ?? getenv('VCS_REPOSITORY')) ?? null) &&
 ($VCS_BRANCH_NAME  = trim($_ENV['VCS_BRANCH_NAME'] ?? getenv('VCS_BRANCH_NAME') ?? 'main')) &&
@@ -38,9 +39,9 @@ if (!(
 ($REMOTE_HOST      = trim($_ENV['REMOTE_HOST'] ?? getenv('REMOTE_HOST')) ?? null) &&
 ($REMOTE_DIRECTORY = trim($_ENV['REMOTE_DIRECTORY'] ?? getenv('REMOTE_DIRECTORY')) ?? null) &&
 ($LOCAL_SSH_KEY    = trim($_ENV['LOCAL_SSH_KEY'] ?? getenv('LOCAL_SSH_KEY')) ?? null)
- )) {
+)) {
     throw new \Exception("Impossible to find all constants, neither in .env.deploy(.local) file nor in environment.");
- }
+} # phpcs:enable
 
 /*** COMMON PARAMS ***/
 
@@ -82,7 +83,7 @@ task('local:upload', function () {
 task('commit:hash', function () {
     cd('{{release_path}}');
     run("echo $(git rev-parse HEAD) > ./public/COMMIT_ID");
-    run ("ln -s ./REVISION ./public/REVISION");
+    run("ln -s ./REVISION ./public/REVISION");
 });
 
 task('composer:vendors', function () {
@@ -114,7 +115,7 @@ task('npm:build', function () {
 desc('Deploy your project');
 task('deploy', [
     #'deploy:unlock',
-    
+
     # Run info,setup,lock,release,update_code,shared,writable
     'deploy:prepare',
 

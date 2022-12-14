@@ -87,12 +87,13 @@ case "$1" in
 
 # @see https://phpmd.org
 "md")
-	bin/phpmd src ansi tools/linter/phpmd.xml --reportfile=STDOUT ;;
+	php -derror_reporting=24575 bin/phpmd src ansi tools/linter/phpmd.xml --reportfile=STDOUT ;;
 
 # @see https://phpstan.org
 "stan")
 	bin/phpstan analyse --level 8 --configuration tools/linter/phpstan.neon --memory-limit 2G ;;
 
+# Caution: can be slow
 # @see https://github.com/phan/phan/wiki
 # --allow-polyfill-parser avoid to use ast-ext
 "phan") 
@@ -190,7 +191,6 @@ case "$1" in
 	else 
 		bin/grumphp run
 	fi
-	echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
 ;;
 
 #############

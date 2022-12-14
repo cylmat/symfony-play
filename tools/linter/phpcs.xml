@@ -23,12 +23,16 @@
     <file>../../src/</file>
 
     <exclude-pattern>cest/*</exclude-pattern>
+    <exclude-pattern>spec/*</exclude-pattern>
+    <exclude-pattern>tests/*</exclude-pattern>
     <exclude-pattern>tools/*</exclude-pattern>
 
     <!-- Include the whole PSR12 standard -->
     <rule ref="PSR12">
         <exclude name="Generic.Files.LineLength"/>
         <exclude name="Generic.Commenting.DocComment.MissingShort"/>
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
     </rule>
 
     <!-- Private methods MUST not be prefixed with an underscore -->

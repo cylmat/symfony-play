@@ -28,6 +28,7 @@ return [
      */
     'directory_list' => [
         __DIR__ . '/../../src',
+        __DIR__ . '/../../vendor', // third party parsed !
     ],
 
     /**
@@ -44,7 +45,7 @@ return [
      *      to `exclude_analysis_directory_list`.
      */
     "exclude_analysis_directory_list" => [
-        // 'exclude_dir'
+        __DIR__ . '/../../vendor', // third party not analysed !
     ],
 
     /**

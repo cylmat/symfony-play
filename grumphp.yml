@@ -41,9 +41,8 @@ grumphp:
           - phplint
           - phpcpd
           - phpcs
-          - phpmd
+          - shell #- phpmd
           - phpstan
-          - make # run "phan"
         
       behav:
         tasks:
@@ -52,10 +51,8 @@ grumphp:
 
       tests:
         tasks:
+          - paratest
           - infection
-          - pest
-          #- paratest
-          #- phpunit
 
     #######################
     # TASKS               #
@@ -137,8 +134,7 @@ grumphp:
       phpcs:
         standard: tools/linter/phpcs.xml
 
-      phpmd:
-        ruleset: ['tools/linter/phpmd.xml']
+      # phpmd: run from script to avoid php deprecation warnings
 
       phpstan:
         configuration: tools/linter/phpstan.neon
@@ -147,11 +143,6 @@ grumphp:
       phplint:
         exclude: []
         triggered_by: ['php', 'phtml']
-
-      # Phan is runned from make without ast extension
-      make:
-        make_file: Makefile
-        task: phan
 
       ### Task Behaviors ###################
 
@@ -175,5 +166,6 @@ grumphp:
       phpunit:
         config_file: tools/test/phpunit.xml
 
-      # shell:
-      #     scripts: []
+      shell:
+        scripts:
+          - ['bin/run', 'md']

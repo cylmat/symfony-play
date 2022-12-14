@@ -8,7 +8,8 @@ class EncryptManager
 {
     public function __construct(
         private readonly EncryptionFactory $factory
-    ) {}
+    ) {
+    }
 
     public function encryptValue(string $algo, string $value, array $options = []): string
     {

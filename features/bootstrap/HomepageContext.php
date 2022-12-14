@@ -19,10 +19,10 @@ final class HomepageContext extends KernelContext implements Context
      * Every scenario gets its own context instance.
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
-     * 
+     *
      * Sample
-     *  @Before/After Suite, Feature, Scenario, Step 
-     * 
+     *  @Before/After Suite, Feature, Scenario, Step
+     *
      * @When I do something with :stringArgument and with :numberArgument
      * @When there is/are :count monster(s)
      * @When /^there (?:is|are) (\d+) monsters?$/i

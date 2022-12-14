@@ -7,12 +7,12 @@ $php = "PHP ".PHP_VERSION;
 
 $isCheck = key_exists('check', $_GET);
 
-$errors = 
-$maria_version = 
+$errors =
+$maria_version =
 $mysql_version = '';
 
 try {
-    $maria_version = 
+    $maria_version =
         (new PDO(getenv('MARIADB_DSN'), 'user', 'pass'))
             ->getAttribute(PDO::ATTR_SERVER_VERSION);
 } catch (Throwable $exception) {
