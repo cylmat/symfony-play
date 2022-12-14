@@ -131,7 +131,7 @@ case "$1" in
 
 # @see https://qossmic.github.io/deptrac
 "deptrac")
-	bin/deptrac analyse --config-file=tools/test/deptrac.yaml ;;
+	bin/deptrac analyse --config-file=tools/test/deptrac.yaml --cache-file=./var/.deptrac.cache ;;
 
 # @see https://infection.github.io
 # -derror_reporting=24575 remove deprecated

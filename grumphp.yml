@@ -25,11 +25,19 @@ grumphp:
     # (Un)comment for your own usage. #
     ###################################
     testsuites: 
+
+      ### Git tasks ##
+
       git_commit_msg:
-          tasks: []
+        tasks:
+          # fixers
+          - phpcsfixer
+          - phpparser
 
       git_pre_commit:
           tasks: []
+
+      ### Specific tasks ###
 
       fixers:
         tasks:
@@ -80,6 +88,8 @@ grumphp:
       git_blacklist:
         keywords:
           - "var_dump"
+          - "echo"
+          - "print"
           - '_GET'
           - '_POST'
           - '_REQUEST'
@@ -104,25 +114,22 @@ grumphp:
 
       ### Task FIXERS #######################
 
+      # @see https://github.com/phpro/grumphp/blob/master/doc/tasks/phpcsfixer.md
       phpcsfixer:
         config: tools/linter/.php-cs-fixer.php
 
       # Analyse black-listed pattern
       phpparser:
         ignore_patterns: 
-          - /^cest\/.*/
-          - /^spec\/.*/
-          - /^tests\/.*/
-          - /deploy.php/
+          - /bootstrap\.php/
         visitors:
+          # @todo declare_strict_types: ~
           no_exit_statements: ~
           never_use_else: ~ 
           forbidden_function_calls:
             blacklist:
             - 'var_dump'
             - 'dump'
-            - 'echo'
-            - 'print' 
         metadata:
             priority: 100
 
@@ -153,6 +160,11 @@ grumphp:
         config_file: tools/test/phpspec.yml
 
       ### Task Tests #######################
+
+      # @see https://github.com/phpro/grumphp/blob/master/doc/tasks/deptrac.md
+      deptrac:
+        cache_file: var/.deptrac.cache
+        depfile: tools/test/deptrac.yaml
 
       infection:
         configuration: tools/test/infection.json

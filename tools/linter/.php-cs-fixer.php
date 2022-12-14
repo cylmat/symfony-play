@@ -12,8 +12,8 @@
 
 $rules = [
     '@PSR12' => true,         # https://cs.symfony.com/doc/ruleSets/PSR12.html
-    //'@PhpCsFixer' => true,  # https://cs.symfony.com/doc/ruleSets/PhpCsFixer.html
-    //'@Symfony' => true,     # https://cs.symfony.com/doc/ruleSets/Symfony.html
+    '@Symfony' => true,       # https://cs.symfony.com/doc/ruleSets/Symfony.html
+    # '@PhpCsFixer' => false, # https://cs.symfony.com/doc/ruleSets/PhpCsFixer.html
 
     'array_syntax' => ['syntax' => 'short'],
     'full_opening_tag' => true,

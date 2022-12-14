@@ -16,7 +16,7 @@ class EncryptController extends AbstractController
     /**
      * @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html
      */
-    #[Route("/encrypt", name:"app_encrypt_index")]
+    #[Route('/encrypt', name: 'app_encrypt_index')]
     public function index(Request $request, EncryptManager $encryptManager): Response
     {
         $form = $this->createForm(CryptoType::class);
