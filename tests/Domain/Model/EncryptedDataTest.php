@@ -19,6 +19,6 @@ final class EncryptedDataTest extends TestCase
 
     public function testGetValue(): void
     {
-        $this->markTestIncomplete();
+        $this->assertSame('42', $this->encryptedData->getValue());
     }
 }

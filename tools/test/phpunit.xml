@@ -8,9 +8,9 @@ Doc
 @see https://phpunit.readthedocs.io
 -->
 
-<!-- Schema: xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd" -->
 <phpunit 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
     bootstrap="../../vendor/autoload.php"
     cacheResultFile="../../var/cache/.phpunit.result.cache"
     colors="true"
@@ -61,6 +61,10 @@ Doc
 
     <php>
         <server name="SHELL_VERBOSITY" value="-1"/>
+        <server name="KERNEL_CLASS" value="App\Kernel"/>
+        <server name="APP_SECRET" value="blob"/>
+        <server name="DATABASE_URL" value=""/>
+        <server name="CORS_ALLOW_ORIGIN" value="true"/>
     </php>
 
     <logging>
@@ -69,7 +73,11 @@ Doc
     </logging>
 
     <!-- "@group" annotation -->
-    <!--groups></groups-->
+    <groups>
+        <exclude>
+            <group>functional</group>
+        </exclude>
+    </groups>
 
     <!--listeners></listeners-->
 

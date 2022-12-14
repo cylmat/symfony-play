@@ -16,18 +16,15 @@ class EncryptController extends AbstractController
     /**
      * @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html
      */
-    #[Route("/cry", name:"app_encrypt_index")]
+    #[Route("/encrypt", name:"app_encrypt_index")]
     public function index(Request $request, EncryptManager $encryptManager): Response
     {
         $form = $this->createForm(CryptoType::class);
         $form->handleRequest($request);
 
-        /** @infection-ignore-all */
-        $formValid = $form->isSubmitted() && $form->isValid();
-
         $result = null;
         if (Request::METHOD_POST === $request->getMethod()) {
-            if ($formValid) {
+            if ($form->isSubmitted() && $form->isValid()) {
                 $value = $form->getData('crypto_ClearDataToConvert')['ClearDataToConvert'];
                 $this->addFlash('success', 'Form sended');
 

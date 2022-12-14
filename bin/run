@@ -147,10 +147,8 @@ case "$1" in
     bin/pest -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 # @see https://phpunit.readthedocs.io
-"phpunit")
-    bin/phpunit -c tools/test/phpunit.xml ${ARGUMENT} ;;
-"unit")
-    $0 phpunit ${ARGUMENT} ;;
+"unit"|"phpunit")
+    bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 ##########################################################
 
