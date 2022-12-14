@@ -8,6 +8,10 @@ echogood () {
 	echo -e "\033[1;32m------------\n- All good -\n------------\033[0m"
 }
 
+echoinfo () {
+	echo -e "\033[1;33m$1\033[0m"
+}
+
 ##########################
 # Php Quality Assurance  #
 #  @see https://phpqa.io #
@@ -27,19 +31,22 @@ case "$1" in
 ;;
 
 # @see https://docs.behat.org
-"behat")
+"behat")	
+	echoinfo "Running Behat"
 #	@[ -f features/bootstrap/FeatureContext.php ] || bin/behat --init
 	bin/behat -c behat.yml ;;
 
 # @see https://codeception.com
 "cept"|"codecept")
+	echoinfo "Running Codeception"
 	bin/codecept run -c tools/test/codeception.yml ;;
 
 # @see http://phpspec.net
 "spec"|"phpspec")
+	echoinfo "Running Phpspec"
 	bin/phpspec run --config=tools/test/phpspec.yml ${ARGUMENT} ;;
 "desc"|"spec-desc")
-	echo -e "\033[1;33mUsage: bin/run desc App/Namespace/Class/Generated\033[0m"
+	echoinfo "Usage: bin/run desc App/Namespace/Class/Generated"
 	bin/phpspec desc --config=tools/test/phpspec.yml ${ARGUMENT} ;;
 
 ##########
@@ -47,15 +54,14 @@ case "$1" in
 # Please use one or other to avoid conflicts
 ##########
 
-"fix")
-	$0 csfixer ;; 
-
 # @see https://cs.symfony.com
-"csfixer")
+"fix"|"csfixer")
+	echoinfo "Running Symfony CsFixer"
 	bin/php-cs-fixer fix --config tools/linter/.php-cs-fixer.php -v ;;
 
 # @see https://github.com/squizlabs/PHP_CodeSniffer
 "cbf")
+	echoinfo "Running Phpcbf"
 	bin/phpcbf --colors --standard=tools/linter/phpcs.xml -v ;;
 
 ###########
@@ -68,40 +74,46 @@ case "$1" in
 	$0 cs &&
 	$0 md &&
 	$0 stan &&
-	$0 phan &&
-	# $0 psalm
+	# $0 phan && $0 psalm
 	echogood
 ;;
 
 # @see https://github.com/php-parallel-lint/PHP-Parallel-Lint
 "paralint")
+	echoinfo "Running Paralint"
 	bin/parallel-lint src --exclude vendor ;;
 
 # @see https://github.com/sebastianbergmann/phpcpd
-"cpd")
+"cpd"|"phpcpd")
+	echoinfo "Running Phpcpd"
 	bin/phpcpd src ;;
 
 # @see https://squizlabs.github.io/HTML_CodeSniffer
-"cs")
+"cs"|"phpcs")
+	echoinfo "Running Phpcs"	
 	bin/phpcs --colors --standard=tools/linter/phpcs.xml -s ;;
 
 # @see https://phpmd.org
-"md")
+"md"|"phpmd")
+	echoinfo "Running Phpmd"
 	php -derror_reporting=24575 bin/phpmd src ansi tools/linter/phpmd.xml --reportfile=STDOUT ;;
 
 # @see https://phpstan.org
-"stan")
+"stan"|"phpstan")
+	echoinfo "Running Phpstan"
 	bin/phpstan analyse --level 8 --configuration tools/linter/phpstan.neon --memory-limit 2G ;;
 
-# Caution: can be slow
+# Caution: can be slow !
 # @see https://github.com/phan/phan/wiki
 # --allow-polyfill-parser avoid to use ast-ext
-"phan") 
+"phan")
+	echoinfo "Running Phan"
 	PHAN_ALLOW_XDEBUG=0 bin/phan --config-file tools/linter/phan.config.php --allow-polyfill-parser ;;
 
-# Caution: can be slow
+# Caution: can be slow !
 # @see https://psalm.dev
 "psalm")
+	echoinfo "Running Psalm"
 	bin/psalm -c tools/linter/psalm.xml --memory-limit=2G --threads=4 ;;
 
 ###########
@@ -122,8 +134,8 @@ case "$1" in
 
 # Specifics
 
-"cover")
-	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use code coverage\033[0m\n"
+"cover"|"coverage")
+	echoinfo "You must install pcov, phpdbg or xdebug to use code coverage\n"
 	php -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
     # XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
     # phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
@@ -131,27 +143,32 @@ case "$1" in
 
 # @see https://qossmic.github.io/deptrac
 "deptrac")
+	echoinfo "Running Deptrac"
 	bin/deptrac analyse --config-file=tools/test/deptrac.yaml --cache-file=./var/.deptrac.cache ;;
 
 # @see https://infection.github.io
 # -derror_reporting=24575 remove deprecated
 "infection")
+	echoinfo "Running Infection"
+	echoinfo "You must install pcov, phpdbg or xdebug to use infection"
 	test -d /tmp/infection || mkdir /tmp/infection
 	test -f /tmp/infection/index.xml || touch /tmp/infection/index.xml
-	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use infection\033[0m"
 	php -derror_reporting=24575 bin/infection run -c tools/test/infection.json --debug --show-mutations
 ;;
 
 # @see https://github.com/paratestphp/paratest
 "para"|"paratest")
+	echoinfo "Running Paratest"
     bin/paratest -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 # @see https://pestphp.com
 "pest")
+	echoinfo "Running Pest"
     bin/pest -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 # @see https://phpunit.readthedocs.io
 "unit"|"phpunit")
+	echoinfo "Running Phpunit"
     bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ;;
 
 ##########################################################
@@ -208,12 +225,12 @@ case "$1" in
 # SSH #
 #######
 "ssh-memo")
-	echo -e "\n\033[1;34mUse following to create an ed25519 ssh key:\033[0m"
+	echoinfo "Use following to create an ed25519 ssh key:"
 	echo -e "apt update && apt install -y ssh"
 	echo -e 'ssh-keygen -t ed25519 -C "your_email@example.com"'
 	echo 'eval "$$(ssh-agent -s)"'
 	echo "ssh-add ~/.ssh/id_ed25519"
-	echo -e "\n\033[1;34mUse following to send an ssh key on remote host:\033[0m"
+	echoinfo "Use following to send an ssh key on remote host:"
 	echo -e "ssh-copy-id -i ~/.ssh/id_ed25519.pub user@remote-host.com \n"
 ;;
 

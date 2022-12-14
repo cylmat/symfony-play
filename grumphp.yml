@@ -28,14 +28,36 @@ grumphp:
 
       ### Git tasks ##
 
+      # Specify the test-suite for the grumphp git:commit-msg command
       git_commit_msg:
         tasks:
           # fixers
           - phpcsfixer
           - phpparser
+          # linters
+          - phpcpd
+          - phpcs
+          - phplint
+          - shell
 
+      # Specify the test-suite for the grumphp git:pre-commit command
       git_pre_commit:
-          tasks: []
+        tasks:
+          # fixers
+          - phpcsfixer
+          - phpparser
+          # linters
+          - phpcpd
+          - phpcs
+          - phplint
+          - shell
+          # behav
+          - codeception
+          - phpspec
+          # test
+          - deptrac
+          - infection
+          - pest
 
       ### Specific tasks ###
 
@@ -46,11 +68,10 @@ grumphp:
 
       linters:
         tasks:
-          - phplint
           - phpcpd
           - phpcs
-          - shell #- phpmd
-          - phpstan
+          - phplint
+          - shell # paralint + phpmd + phpstan
         
       behav:
         tasks:
@@ -59,8 +80,9 @@ grumphp:
 
       tests:
         tasks:
-          - paratest
+          - deptrac
           - infection
+          - pest
 
     #######################
     # TASKS               #
@@ -143,8 +165,7 @@ grumphp:
 
       # phpmd: run from script to avoid php deprecation warnings
 
-      phpstan:
-        configuration: tools/linter/phpstan.neon
+      # phpstan: run from script to avoir memory size exhausted
 
       # Phplint as a standalone extension
       phplint:
@@ -169,15 +190,17 @@ grumphp:
       infection:
         configuration: tools/test/infection.json
 
-      paratest:
-        configuration: tools/test/phpunit.xml
+      #paratest:
+      #  configuration: tools/test/phpunit.xml
 
       pest:
         config_file: tools/test/phpunit.xml
 
-      phpunit:
-        config_file: tools/test/phpunit.xml
+      #phpunit:
+      #  config_file: tools/test/phpunit.xml
 
       shell:
         scripts:
           - ['bin/run', 'md']
+          - ['bin/run', 'paralint']
+          - ['bin/run', 'stan']

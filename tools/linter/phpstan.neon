@@ -4,11 +4,11 @@
 
 # Website
 # @see https://phpstan.org
-#
+
 # CODE
 # @see https://github.com/phpstan/phpstan
 # @see https://github.com/phpstan/phpstan-symfony
-#
+
 # DOC
 # @see https://phpstan.org/config-reference
 
@@ -23,7 +23,7 @@ parameters:
     level: 8
 
     # Cache path
-    tmpDir: ../../var/phpstan
+    tmpDir: ../../var/cache/phpstan
 
     # Analysed folders
     paths:
@@ -35,7 +35,6 @@ parameters:
         - ../../spec/*
         - ../../tests/*
         - ../../tools/*
-        - ../../deploy.php
     
     # Stub files, readed for PhpDoc inside
     stubFiles:
@@ -47,5 +46,5 @@ parameters:
     # checkMissingIterableValueType: true 
     # checkGenericClassInNonGenericObjectType: true
 
-    # ignoreErrors:
+    # ignoreErrors: (sample)
     #     - '#Call to an undefined method [a-zA-Z0-9\\_]+::doFoo\(\)#'
