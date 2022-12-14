@@ -5,7 +5,7 @@ if [ $# -lt 1 ]; then echo "Usage : $0 <script-name>"; exit; fi
 ARGUMENT=$2
 
 echogood () {
-	echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
+	echo -e "\033[1;32m------------\n- All good -\n------------\033[0m"
 }
 
 ##########################
@@ -37,7 +37,10 @@ case "$1" in
 
 # @see http://phpspec.net
 "spec"|"phpspec")
-	bin/phpspec run --config=tools/test/phpspec.yml ;;
+	bin/phpspec run --config=tools/test/phpspec.yml ${ARGUMENT} ;;
+"desc"|"spec-desc")
+	echo -e "\033[1;33mUsage: bin/run desc App/Namespace/Class/Generated\033[0m"
+	bin/phpspec desc --config=tools/test/phpspec.yml ${ARGUMENT} ;;
 
 ##########
 # FIXERS #
@@ -119,7 +122,7 @@ case "$1" in
 # Specifics
 
 "cover")
-	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use code coverage \033[0m\n"
+	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use code coverage\033[0m\n"
 	php -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
     # XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
     # phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
@@ -134,7 +137,7 @@ case "$1" in
 "infection")
 	test -d /tmp/infection || mkdir /tmp/infection
 	test -f /tmp/infection/index.xml || touch /tmp/infection/index.xml
-	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use infection \033[0m"
+	echo -e "\033[1;33mYou must install pcov, phpdbg or xdebug to use infection\033[0m"
 	php -derror_reporting=24575 bin/infection run -c tools/test/infection.json --debug --show-mutations
 ;;
 
