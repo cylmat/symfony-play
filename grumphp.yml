@@ -56,7 +56,6 @@ grumphp:
           - phpspec
           # test
           - deptrac
-          - infection
           - pest
 
       ### Specific tasks ###
@@ -81,7 +80,6 @@ grumphp:
       tests:
         tasks:
           - deptrac
-          - infection
           - pest
 
     #######################
@@ -187,8 +185,8 @@ grumphp:
         cache_file: var/.deptrac.cache
         depfile: tools/test/deptrac.yaml
 
-      infection:
-        configuration: tools/test/infection.json
+      #infection:
+      #  configuration: tools/test/infection.json
 
       #paratest:
       #  configuration: tools/test/phpunit.xml

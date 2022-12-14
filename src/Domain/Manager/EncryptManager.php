@@ -11,6 +11,7 @@ class EncryptManager
     ) {
     }
 
+    /** @param int[] $options */
     public function encryptValue(string $algo, string $value, array $options = []): string
     {
         return $this->factory->create($algo)->encrypt($value, $options)->getValue();

@@ -25,7 +25,7 @@ class EncryptController extends AbstractController
         $result = null;
         if (Request::METHOD_POST === $request->getMethod()) {
             if ($form->isSubmitted() && $form->isValid()) {
-                $value = $form->getData('crypto_ClearDataToConvert')['ClearDataToConvert'];
+                $value = $form->getData()['ClearDataToConvert'];
                 $this->addFlash('success', 'Form sended');
 
                 $result = $encryptManager->encryptValue(self::NEEDTOBECHANGED, $value, []);

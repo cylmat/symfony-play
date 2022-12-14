@@ -46,13 +46,15 @@ class ControllerTestCase extends TestCase
         $this->twig = $this->createMock(Environment::class);
     }
 
-    public function containerCallback(string $serviceName): object
+    public function containerCallback(string $serviceName): ?object
     {
+        /* @phpstan-ignore-next-line */
         $this->sessionFlashBag
             ->method('getFlashBag')
             ->willReturn($this->flashBag)
         ;
 
+        /* @phpstan-ignore-next-line */
         $this->requestStack
             ->method('getSession')
             ->willReturn($this->sessionFlashBag)
@@ -62,6 +64,7 @@ class ControllerTestCase extends TestCase
             'form.factory' => $this->formFactory,
             'request_stack' => $this->requestStack,
             'twig' => $this->twig,
+            default => null,
         };
     }
 }
