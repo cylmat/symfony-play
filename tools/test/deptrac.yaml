@@ -8,6 +8,12 @@ deptrac:
     - '#.*Test.*#'
   layers:
     -
+      name: Action
+      collectors:
+        -
+          type: className
+          value: .*Action.*
+    -
       name: Controller
       collectors:
         -
@@ -33,6 +39,8 @@ deptrac:
           value: .*Service.*
   ruleset:
     Controller:
+      - Action
+    Action:
       - Manager
     Manager:
       - Service
