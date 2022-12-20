@@ -52,7 +52,6 @@ grumphp:
           - phplint
           - shell
           # behav
-          - codeception
           - phpspec
           # test
           - deptrac
@@ -74,7 +73,6 @@ grumphp:
         
       behav:
         tasks:
-          - codeception
           - phpspec
 
       tests:
@@ -172,8 +170,8 @@ grumphp:
 
       ### Task Behaviors ###################
 
-      codeception:
-        config_file: tools/test/codeception.yml
+      # codeception:
+        # config_file: tools/test/codeception.yml
 
       phpspec:
         config_file: tools/test/phpspec.yml

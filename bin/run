@@ -57,7 +57,7 @@ case "$1" in
 # @see https://cs.symfony.com
 "fix"|"csfixer")
 	echoinfo "Running Symfony CsFixer"
-	bin/php-cs-fixer --config tools/linter/.php-cs-fixer.php -v fix ;;
+	bin/php-cs-fixer --config=tools/linter/.php-cs-fixer.php -v fix ;;
 
 # @see https://github.com/squizlabs/PHP_CodeSniffer
 "cbf")
