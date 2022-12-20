@@ -51,3 +51,4 @@ extensions:
     show_uncovered_files: true
     lower_upper_bound: 35
     high_lower_bound: 70
+    show_only_summary: true

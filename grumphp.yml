@@ -52,7 +52,6 @@ grumphp:
           - phplint
           - shell
           # behav
-          - phpspec
           # test
           - deptrac
           - pest
@@ -71,9 +70,9 @@ grumphp:
           - phplint
           - shell # paralint + phpmd + phpstan
         
-      behav:
-        tasks:
-          - phpspec
+      #behav:
+        #tasks:
+          #- phpspec
 
       tests:
         tasks:
@@ -173,8 +172,8 @@ grumphp:
       # codeception:
         # config_file: tools/test/codeception.yml
 
-      phpspec:
-        config_file: tools/test/phpspec.yml
+      # phpspec:
+        # config_file: tools/test/phpspec.yml
 
       ### Task Tests #######################
 
