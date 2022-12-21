@@ -12,7 +12,7 @@ doctrine:
         mappings:
             App\Encrypt:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Chose/Encrypt/Domain/Entity'
+                dir: '%kernel.project_dir%/src/Component/Encrypt/Domain/Entity'
                 prefix: 'App\Encrypt\Entity'
                 alias: Encrypt
 

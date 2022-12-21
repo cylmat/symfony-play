@@ -13,17 +13,12 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-    App\AppBundle\Controller\:
-        resource: ../src/AppBundle/Controller/
 
     App\AppBundle\:
         resource: ../src/AppBundle/
-        exclude:
-            - ../src/AppBundle/DependencyInjection/
-            - ../src/AppBundle/Controller/
 
     App\Encrypt\:
-        resource: ../src/Chose/Encrypt/
+        resource: ../src/Component/Encrypt/
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
