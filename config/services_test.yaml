@@ -2,6 +2,10 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        public: true
 
-    App\Features\:
-        resource: '../features/bootstrap/*'
+    #App\Features\:
+    #    resource: '../features/bootstrap/*'
+
+    #App\Component\Encrypt\Application\Action\:
+     #   resource: ../src/Component/Encrypt/Application/Action/

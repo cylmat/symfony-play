@@ -12,8 +12,8 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Domain/Entity'
-                prefix: 'App\Entity'
+                dir: '%kernel.project_dir%/src/Component/Encrypt/Domain/Entity'
+                prefix: 'App\Component\Encrypt\Entity'
                 alias: App
 
 when@test:

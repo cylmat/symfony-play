@@ -5,11 +5,6 @@ namespace App\Test\AppBundle\DependencyInjection;
 use App\AppBundle\DependencyInjection\AppExtension;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class AppExtensionTest.
- *
- * @covers \App\AppBundle\DependencyInjection\AppExtension
- */
 final class AppExtensionTest extends TestCase
 {
     private AppExtension $appExtension;

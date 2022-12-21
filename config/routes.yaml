@@ -1,3 +1,5 @@
+# @todo check what is diff with routes/annotations ?
+# @todo put it in appbundle
 controllers:
-    resource: ../src/Application/Controller/
+    resource: ../src/AppBundle/Controller/
     type: annotation
