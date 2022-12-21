@@ -3,22 +3,25 @@
 namespace App\Tests\Encrypt\Application\Action;
 
 use App\Encrypt\Application\Action\EncryptAction;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Encrypt\Domain\Manager\EncryptManager;
+use PHPUnit\Framework\TestCase;
 
-final class EncryptActionTest extends WebTestCase
+final class EncryptActionTest extends TestCase
 {
-    private EncryptAction $encryptAction;
-
     protected function setUp(): void
     {
-        self::bootKernel();
-        $container = static::getContainer();
-        $this->encryptAction = $container->get(EncryptAction::class);
+        $this->encryptManager = $this->createMock(EncryptManager::class);
+        $this->encryptAction = new EncryptAction($this->encryptManager);
     }
 
     public function testExecute(): void
     {   
-        $res = $this->encryptAction->execute('go', []);
-        $this->assertStringStartsWith('$2y$', $res);
+        $this->encryptManager
+            ->method('encryptValue')
+            ->with('bcrypt', 'value', ['option'])
+            ->willReturn('$2y$');
+
+        $res = $this->encryptAction->execute('value', ['option']);
+        $this->assertSame('$2y$', $res);
     }
 }

@@ -10,18 +10,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class CryptoTypeTest extends TypeTestCase
 {
-    private CryptoType $cryptoType;
-
     protected function setUp(): void
     {
         $this->cryptoType = new CryptoType();
+        $this->formBuilder = $this->createMock(FormBuilderInterface::class);
     }
 
     /** @todo fix that test called exaclty twice */
     public function testBuildForm(): void
     {
-        $formBuilder = $this->createMock(FormBuilderInterface::class);
-        $formBuilder
+        $this->formBuilder
             ->expects($this->exactly(1))
             ->method('add')
             ->withConsecutive(
@@ -29,7 +27,7 @@ final class CryptoTypeTest extends TypeTestCase
                 ['Submit', Type\SubmitType::class],
             );
 
-        $this->cryptoType->buildForm($formBuilder, []);
+        $this->cryptoType->buildForm($this->formBuilder, []);
     }
 
     public function testConfigureOptions(): void

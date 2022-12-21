@@ -10,9 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 final class EncryptManagerTest extends TestCase
 {
-    private EncryptionFactory $encryptFactory;
-    private EncryptManager $encryptManager;
-
     protected function setUp(): void
     {
         $this->encryptFactory = $this->createMock(EncryptionFactory::class);

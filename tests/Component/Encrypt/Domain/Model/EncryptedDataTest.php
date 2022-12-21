@@ -7,9 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 final class EncryptedDataTest extends TestCase
 {
-    private EncryptedData $encryptedData;
-    private string $value;
-
     protected function setUp(): void
     {
         $this->value = '42';

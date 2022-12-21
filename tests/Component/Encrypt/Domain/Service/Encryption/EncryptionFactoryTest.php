@@ -9,8 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 final class EncryptionFactoryTest extends TestCase
 {
-    private EncryptionFactory $encryptionFactory;
-
     protected function setUp(): void
     {
         $this->encryptionFactory = new EncryptionFactory();
