@@ -88,14 +88,14 @@
         "psr-4": {
             "App\\": "src/",
             "App\\AppBundle\\": "src/AppBundle/",
-            "App\\Component\\Encrypt\\": "src/Component/Encrypt/"
+            "App\\Encrypt\\": "src/Chose/Encrypt/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "App\\Features\\": "features/bootstrap/",
             "App\\Tests\\": "tests/",
-            "App\\Tests\\Component\\Encrypt\\": "tests/Component/Encrypt/",
+            "App\\Tests\\Encrypt\\": "tests/Chose/Encrypt/",
             "spec\\App\\": "spec/"
         }
     },
