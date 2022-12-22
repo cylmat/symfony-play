@@ -51,7 +51,7 @@ Doc
             <directory suffix=".php">../../src</directory>
         </include>
         <exclude>
-            <directory suffix=".php">../../src/DataFixtures</directory>
+            <directory suffix=".php">**Bundle</directory>
         </exclude>
 
         <report>
