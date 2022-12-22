@@ -4,5 +4,5 @@ services:
         autoconfigure: true
         public: true
 
-    #App\Features\:
-    #    resource: '../features/bootstrap/*'
+    App\Features\:
+        resource: '../features/bootstrap/*'

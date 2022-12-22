@@ -10,35 +10,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * This context class contains the definitions of the steps used by the demo
- * feature file. Learn how to get started with Behat and BDD on Behat's website.
- *
  * @see http://behat.org/en/latest/quick_start.html
  */
 class KernelContext implements Context
 {
-    /** @var KernelInterface */
-    protected $kernel;
+    protected ?Response $response;
 
-    /** @var Response|null */
-    protected $response;
-
-    public function __construct(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
+    public function __construct(
+        protected KernelInterface $kernel
+    ) {
     }
 
-    protected function request(...$params): Request
+    protected function request(string $uri, string $method, ...$params): Request
     {
-        return Request::create(...$params);
+        return Request::create($uri, $method, ...$params);
     }
 
-    protected function handleRequest(...$params)
+    protected function handleRequest(...$params): Response
     {
         return $this->handle($this->request(...$params));
     }
 
-    protected function handle(Request $request)
+    protected function handle(Request $request): Response
     {
         return $this->kernel->handle($request);
     }

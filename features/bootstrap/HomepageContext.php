@@ -8,7 +8,6 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
 
 /**
- *
  * Defines application features from the specific context.
  */
 final class HomepageContext extends KernelContext implements Context
