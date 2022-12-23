@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace App\Features;
 
-use Behat\Behat\Context\Context;
 use Behat\Behat\Tester\Exception\PendingException;
 
 /**
  * Defines application features from the specific context.
  */
-final class HomepageContext extends KernelContext implements Context
+final class HomepageContext extends KernelContext
 {
     /*
      * Initializes context.
