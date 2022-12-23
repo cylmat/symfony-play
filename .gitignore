@@ -38,7 +38,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###> friends-of-behat/symfony-extension ###
-/behat.yml
+/behat.yml.local
 ###< friends-of-behat/symfony-extension ###
 
 ###> liip/imagine-bundle ###
