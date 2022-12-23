@@ -1,3 +1,5 @@
+# @see https://docs.behat.org/en/latest/user_guide.html
+
 default:
     extensions:
         # @see https://github.com/FriendsOfBehat/SymfonyExtension
