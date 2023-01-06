@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace App\Features;
 
 use Behat\Behat\Context\Context;
+use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
+ * KernelContext
  * @see http://behat.org/en/latest/quick_start.html
  */
-class KernelContext implements Context
+class BaseContext extends MinkContext implements Context
 {
     protected ?Response $response;
 

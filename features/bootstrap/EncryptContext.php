@@ -8,7 +8,7 @@ use App\Encrypt\Application\Action\EncryptAction;
 use App\Encrypt\Domain\Manager\EncryptManager;
 use App\Encrypt\Domain\Service\Encryption\EncryptionFactory;
 
-final class EncryptContext extends KernelContext
+final class EncryptContext extends BaseContext
 {
     /** @todo */
 
@@ -18,6 +18,8 @@ final class EncryptContext extends KernelContext
      */
     public function encryptForm()
     {
+        //$this->getSession()->wait(5000, "$('.suggestions-results').children().length > 0");
+
         /*$action = new EncryptAction(new EncryptManager(new EncryptionFactory()));
         $result = $action->execute('a', []);
         preg_match('/^\$2y\$/', $result) || throw new \LogicException();*/

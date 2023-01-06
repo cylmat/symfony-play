@@ -5,8 +5,14 @@ default:
         # @see https://github.com/FriendsOfBehat/SymfonyExtension
         FriendsOfBehat\SymfonyExtension:
             bootstrap: tests/bootstrap.php
+        # @see https://github.com/FriendsOfBehat/MinkExtension
+        Behat\MinkExtension:
+            # base_url:  'http://example.com'
+            sessions:
+                default:
+                    goutte: ~
     suites:
         default:
-            paths: [ '%paths.base%' ]
+            paths: [ 'features' ] # %paths.base%
             contexts:
                 - App\Features\EncryptContext

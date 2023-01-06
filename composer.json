@@ -48,8 +48,11 @@
     },
     "require-dev": {
         "behat/behat": "^3.11",
+        "behat/mink": "^1.10",
+        "behat/mink-goutte-driver": "^2.0",
         "brianium/paratest": "^6.6",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "friends-of-behat/mink-extension": "^2.7",
         "friends-of-behat/symfony-extension": "^2.3",
         "friends-of-phpspec/phpspec-code-coverage": "^6.1",
         "jetbrains/phpstorm-stubs": "^2022.2",
