@@ -62,7 +62,8 @@ Doc
 
     <php>
         <ini name="display_errors" value="on" />
-        <ini name="error_reporting" value="-1" />
+        <ini name="error_reporting" value="24575" /><!-- E_ALL & ~E_DEPRECATED -->
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="APP_SECRET" value="blob"/>
         <server name="CORS_ALLOW_ORIGIN" value="true"/>

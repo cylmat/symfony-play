@@ -136,8 +136,9 @@ case "$1" in
 # Specifics
 
 "cover"|"coverage")
+	echoinfo "Running Coverage"
 	echoinfo "You must install pcov, phpdbg or xdebug to use code coverage\n"
-	php -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
+	php -derror_reporting=24575 -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
     # XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
     # phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
 ;;
@@ -148,7 +149,7 @@ case "$1" in
 	bin/deptrac analyse --config-file=tools/test/deptrac.yaml --cache-file=./var/.deptrac.cache ;;
 
 # @see https://infection.github.io
-# -derror_reporting=24575 remove deprecated
+# -derror_reporting=24575 (E_ALL & ~E_DEPRECATED)
 "infection")
 	echoinfo "Running Infection"
 	echoinfo "You must install pcov, phpdbg or xdebug to use infection"
@@ -171,7 +172,7 @@ case "$1" in
 "unit"|"phpunit")
 	echoinfo "Running Phpunit"
     bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ;;
-"funit")
+"funit"|"ftest")
 	echoinfo "Running Phpunit functional"
     bin/phpunit -v -c tools/test/phpunit.xml --group functional ${ARGUMENT} ;;
 
