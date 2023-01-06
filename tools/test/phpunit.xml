@@ -51,7 +51,7 @@ Doc
             <directory suffix=".php">../../src</directory>
         </include>
         <exclude>
-            <directory suffix=".php">**Bundle</directory>
+            <directory>../../src/*Bundle</directory>
         </exclude>
 
         <report>
