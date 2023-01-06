@@ -1,8 +1,7 @@
 Feature: Encrypt
-  In order to encrypt a value
-  As a client
-  I need to receipt a encrypted value after sended it
+  In order to see an encrypted value
+  I need to send a form with clear data
 
   Scenario: It receives an encrypted value
-    When a demo scenario sends a request to "/"
-    Then the response should be received
+    When the encrypt form is sended
+    Then the encrypted value should be seen

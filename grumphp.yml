@@ -54,7 +54,7 @@ grumphp:
           # behav
           # test
           - deptrac
-          - pest
+          - paratest
 
       ### Specific tasks ###
 
@@ -77,7 +77,7 @@ grumphp:
       tests:
         tasks:
           - deptrac
-          - pest
+          - paratest
 
     #######################
     # TASKS               #
@@ -185,11 +185,11 @@ grumphp:
       #infection:
       #  configuration: tools/test/infection.json
 
-      #paratest:
-      #  configuration: tools/test/phpunit.xml
+      paratest:
+        configuration: tools/test/phpunit.xml
 
-      pest:
-        config_file: tools/test/phpunit.xml
+      #pest:
+      #  config_file: tools/test/phpunit.xml
 
       #phpunit:
       #  config_file: tools/test/phpunit.xml

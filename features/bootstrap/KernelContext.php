@@ -21,14 +21,14 @@ class KernelContext implements Context
     ) {
     }
 
-    protected function request(string $uri, string $method, ...$params): Request
+    protected function handleRequest(string $uri, string $method, array $parameters = [], ...$params): Response
     {
-        return Request::create($uri, $method, ...$params);
+        return $this->handle($this->request($uri, $method, $parameters, ...$params));
     }
 
-    protected function handleRequest(...$params): Response
+    protected function request(string $uri, string $method, array $parameters = [], ...$params): Request
     {
-        return $this->handle($this->request(...$params));
+        return Request::create($uri, $method, $parameters, ...$params);
     }
 
     protected function handle(Request $request): Response

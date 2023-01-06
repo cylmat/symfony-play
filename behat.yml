@@ -9,4 +9,4 @@ default:
         default:
             paths: [ '%paths.base%' ]
             contexts:
-                - App\Features\HomepageContext
+                - App\Features\EncryptContext
