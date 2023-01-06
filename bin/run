@@ -171,6 +171,9 @@ case "$1" in
 "unit"|"phpunit")
 	echoinfo "Running Phpunit"
     bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ;;
+"funit")
+	echoinfo "Running Phpunit functional"
+    bin/phpunit -v -c tools/test/phpunit.xml --group functional ${ARGUMENT} ;;
 
 ##########################################################
 

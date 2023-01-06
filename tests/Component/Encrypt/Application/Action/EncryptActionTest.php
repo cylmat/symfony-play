@@ -4,12 +4,18 @@ namespace App\Tests\Encrypt\Application\Action;
 
 use App\Encrypt\Application\Action\EncryptAction;
 use App\Encrypt\Domain\Manager\EncryptManager;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-final class EncryptActionTest extends TestCase
+/**
+ * @group integration
+ */
+final class EncryptActionTest extends KernelTestCase
 {
     protected function setUp(): void
     {
+        self::bootKernel();
+        $container = static::getContainer();
+
         $this->encryptManager = $this->createMock(EncryptManager::class);
         $this->encryptAction = new EncryptAction($this->encryptManager);
     }
