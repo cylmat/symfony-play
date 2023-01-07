@@ -17,9 +17,7 @@ class EncryptControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'cryptographique');
 
-        /* $crawler = $client->submitForm('Submit', [
-            'crypto[ClearDataToConvert]' => 'alpha',
-        ]); */
+        /* SAMPLE: $client->submitForm('Submit', ['crypto[ClearDataToConvert]' => 'alpha']); */
         $form = $crawler->selectButton('Submit')->form();
         $form['crypto[ClearDataToConvert]'] = 'alpha';
 

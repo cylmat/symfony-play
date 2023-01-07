@@ -7,12 +7,16 @@ default:
             bootstrap: tests/bootstrap.php
         # @see https://github.com/FriendsOfBehat/MinkExtension
         Behat\MinkExtension:
-            # base_url:  'http://example.com'
+            base_url: 'http://apache:80'
             sessions:
                 default:
+                    ### Goutte / HttpClient :
                     goutte: ~
+                    ### Mink + Symfony extension :
+                    # symfony:
+                    #     symfony: ~
     suites:
         default:
-            paths: [ 'features' ] # %paths.base%
+            paths: [ '%paths.base%/features' ]
             contexts:
                 - App\Features\EncryptContext
