@@ -44,7 +44,7 @@ grumphp:
       git_pre_commit:
         tasks:
           # fixers
-  # @todo        - phpcsfixer
+          - phpcsfixer
           - phpparser
           # linters
           - phpcpd
