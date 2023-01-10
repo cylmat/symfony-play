@@ -69,7 +69,7 @@ case "$1" in
 # LINTERS #
 ###########
 
-"lint"|"lints"|"linters"|"all-lints")
+"lints"|"linters"|"all-lints")
 	$0 paralint &&
 	$0 cpd &&
 	$0 cs &&

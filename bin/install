@@ -21,6 +21,7 @@ case "$1" in
 	mkdir -p bin
 	$0 csfixer
 	$0 codeception
+	$0 deptrac
 	$0 infection
 	$0 parallel
 	$0 phan
