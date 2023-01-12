@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Text{% endblock %}
+{% block title %}Encrypt{% endblock %}
 
 {% block body %}
-    
-    <section>
-        <div id="text-section" class="text-center">
+
+        <!-- SAMPLE div {{ stimulus_controller('@symfony/ux-chartjs/chart') }}> </div-->
+
+        <!-- Crypto -->
+        <section id="encrypt" class="text-center mt-100">
             <div class="px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-12">
-                        <h2 class="mb-4">Text substitution</h2>
+                        <h2 class="mb-4">Encryption de donnée</h2>
 
                         {% include('_form_error.html.twig') %}
 
@@ -25,7 +27,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 {% endblock %}

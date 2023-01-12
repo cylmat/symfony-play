@@ -30,7 +30,7 @@ class EncryptController extends AbstractController
             }
         }
 
-        return $this->render('crypto/index.html.twig', [
+        return $this->render('encrypt/index.html.twig', [
             'form' => $form->createView(),
             'result' => $result,
         ]);

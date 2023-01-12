@@ -1,0 +1,13 @@
+
+    {% set flashes = app.flashes(['error']) %}
+    {% if flashes.error is not empty %}
+    <div class="alert alert-error">
+        {% for label, messages in flashes %}
+            {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    {% endif %}
