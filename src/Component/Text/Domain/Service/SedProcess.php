@@ -5,7 +5,7 @@ namespace App\Text\Domain\Service;
 use Symfony\Component\Process\Process;
 
 // @see https://symfony.com/doc/current/components/process.html
-class SedProcess
+final class SedProcess
 {
     /**
      * @param string[] $args

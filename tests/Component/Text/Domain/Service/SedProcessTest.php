@@ -5,7 +5,7 @@ namespace App\Tests\Text\Domain\Service;
 use App\Text\Domain\Service\SedProcess;
 use PHPUnit\Framework\TestCase;
 
-class SedProcessTest extends TestCase
+final class SedProcessTest extends TestCase
 {
     public function setUp(): void
     {

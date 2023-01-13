@@ -2,11 +2,11 @@
 
 namespace App\Tests\Text\Domain\Manager;
 
-use App\Component\Text\Domain\Manager\SedManager;
+use App\Text\Domain\Manager\SedManager;
 use App\Text\Domain\Service\SedProcess;
 use PHPUnit\Framework\TestCase;
 
-class SedManagerTest extends TestCase
+final class SedManagerTest extends TestCase
 {
     public function setUp(): void
     {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Component\Text\Domain\Manager;
+namespace App\Text\Domain\Manager;
 
 use App\Text\Domain\Service\SedProcess;
 
-class SedManager
+final class SedManager
 {
     public function __construct(
         private readonly SedProcess $process
