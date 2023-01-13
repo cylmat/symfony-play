@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Encrypt\Application;
+namespace App\Tests\Text\Application;
 
 use App\AppBundle\Common\AppRequest;
 use App\Text\Application\TextAction;

@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Common;
 
-class Request
+class AppRequest
 {
     /** @param mixed[] $data */
     public function __construct(

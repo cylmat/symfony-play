@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @group functional
  */
-class EncryptControllerTest extends WebTestCase
+final class EncryptControllerTest extends WebTestCase
 {
     public function testEncrypt()
     {

@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 /**
  * @group functional
  */
-class TextControllerTest extends WebTestCase
+final class TextControllerTest extends WebTestCase
 {
     public function testSomething(): void
     {

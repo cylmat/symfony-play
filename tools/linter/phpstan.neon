@@ -46,5 +46,6 @@ parameters:
     # checkMissingIterableValueType: true 
     # checkGenericClassInNonGenericObjectType: true
 
-    # ignoreErrors: (sample)
-    #     - '#Call to an undefined method [a-zA-Z0-9\\_]+::doFoo\(\)#'
+    ignoreErrors:
+        - '#Access to an undefined property App\\AppBundle\\Common\\AppRequest.*#'
+#       - '#Sample [a-zA-Z0-9\\_]+::doFoo\(\)#'

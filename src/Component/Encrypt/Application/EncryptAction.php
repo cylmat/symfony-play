@@ -2,9 +2,11 @@
 
 namespace App\Encrypt\Application;
 
+use App\AppBundle\Common\ActionInterface;
+use App\AppBundle\Common\AppRequest;
 use App\Encrypt\Domain\Manager\EncryptManager;
 
-class EncryptAction
+class EncryptAction implements ActionInterface
 {
     private const NEEDTOBECHANGED = 'bcrypt';
 
@@ -13,9 +15,8 @@ class EncryptAction
     ) {
     }
 
-    /** @param mixed[] $options */
-    public function execute(string $value, array $options): string
+    public function execute(AppRequest $request): string
     {
-        return $this->encryptManager->encryptValue(self::NEEDTOBECHANGED, $value, $options);
+        return $this->encryptManager->encryptValue(self::NEEDTOBECHANGED, $request->value, $request->options);
     }
 }

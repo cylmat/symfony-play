@@ -2,6 +2,7 @@
 
 namespace App\Tests\Encrypt\Application;
 
+use App\AppBundle\Common\AppRequest;
 use App\Encrypt\Application\EncryptAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -16,8 +17,9 @@ final class EncryptActionTest extends KernelTestCase
     }
 
     public function testExecute(): void
-    {   
-        $res = $this->encryptAction->execute('value', ['option']);
+    {
+        $request = new AppRequest(['value' => 'value', 'options' => ['options']]);
+        $res = $this->encryptAction->execute($request);
         $this->assertStringStartsWith('$2y$', $res);
     }
 }

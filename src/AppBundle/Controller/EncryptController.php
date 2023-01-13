@@ -2,6 +2,7 @@
 
 namespace App\AppBundle\Controller;
 
+use App\AppBundle\Common\AppRequest;
 use App\Encrypt\Application\EncryptAction;
 use App\Encrypt\Application\Form\CryptoType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,9 @@ class EncryptController extends AbstractController
                 $value = $form->getData()['ClearDataToConvert'];
                 $this->addFlash('success', 'Form sended');
 
-                $result = $action->execute($value, []);
+                $result = $action->execute(
+                    new AppRequest(['value' => $value, 'options' => []])
+                );
             }
         }
 
