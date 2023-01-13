@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Controller;
 
-use App\Encrypt\Application\Action\EncryptAction;
+use App\Encrypt\Application\EncryptAction;
 use App\Encrypt\Application\Form\CryptoType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

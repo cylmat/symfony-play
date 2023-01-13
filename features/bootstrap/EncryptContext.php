@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Features;
 
-use App\Encrypt\Application\Action\EncryptAction;
+use App\Encrypt\Application\EncryptAction;
 use App\Encrypt\Domain\Manager\EncryptManager;
 use App\Encrypt\Domain\Service\Encryption\EncryptionFactory;
 use PHPUnit\Framework\Assert;

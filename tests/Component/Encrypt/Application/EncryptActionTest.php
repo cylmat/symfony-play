@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\Encrypt\Application\Action;
+namespace App\Tests\Encrypt\Application;
 
-use App\Encrypt\Application\Action\EncryptAction;
+use App\Encrypt\Application\EncryptAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**

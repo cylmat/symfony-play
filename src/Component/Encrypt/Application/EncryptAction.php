@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Encrypt\Application\Action;
+namespace App\Encrypt\Application;
 
 use App\Encrypt\Domain\Manager\EncryptManager;
 

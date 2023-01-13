@@ -17,6 +17,7 @@ backupFiles: false
 excludedFiles:
   - '.*DataFixtures.*'
   - '.*TestCase.*'
+  - 'AppBundle\/*'
 includedFiles:
   - '\.php$'
 generateOnMake: true
