@@ -10,12 +10,12 @@
 
 ### Debian GNU/Linux 11 (bullseye) ###
 
-FROM php:8.1-fpm AS CORE
+FROM php:8.1-fpm AS core
 
 RUN apt update && apt install -y curl git zip
 WORKDIR /var/www/application
 
-FROM CORE AS SIMPLE
+FROM core AS simple
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt update
@@ -45,7 +45,7 @@ RUN apt install -y \
 # PHP extensions #
 ##################
 
-FROM CORE AS EXT
+FROM core AS ext
 
 RUN apt update
 
@@ -102,7 +102,7 @@ RUN pecl channel-update pecl.php.net && echo "\n" | pecl install \
 ### DB extensions ###
 #####################
 
-FROM EXT AS DB_EXT
+FROM ext AS db_ext
 
 RUN apt update
 
@@ -119,7 +119,7 @@ RUN docker-php-ext-install -j$(nproc) \
 ### Coverage & Profiling ###
 ############################
 
-FROM DB_EXT AS FULL
+FROM db_ext AS full
 
 RUN apt update
 
