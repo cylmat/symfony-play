@@ -1,25 +1,28 @@
+Symfony:
+- Workflow -> tests
+Pattern:
+- Memory in encryptdata class
+declare(strict_types=1)
+logs in database
+- - -
 https://github.com/rectorphp/rector
 https://themer.dev
-
 let's encrypt, openio.io, min.io, openswift, openstack, traefik, messageoriented middleware
 https://tideways.com/profiler/features
 cqrs
-design pattern
+design pattern: memory
 fiber
 weakobject
 https://www.sonarqube.org
 https://www.elastic.co/fr/what-is/elk-stack
 https://www.blackfire.io
 https://phpinsights.com
-
 https://www.cloudamqp.com
 https://www.elephantsql.com
 https://sentry.io
 https://app.redislabs.com
 https://newrelic.com
 http://jmsyst.com/libs/serializer
-
 https://docs.phpdoc.org/guide/guides/docblocks.html
-
 PCRE + Parle (or doctrine parse)
 runtime
