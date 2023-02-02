@@ -4,35 +4,40 @@ framework:
             # logs
             audit_trail: 
                 enabled: false
-            type: state_machine # One of "workflow"; "state_machine"
+            type: workflow # One of "workflow"; "state_machine"
             supports:
                 - App\Encrypt\Domain\Model\EncryptedData
 
+            initial_marking: start
+            marking_store:
+                type: method
+                property: currentPlace # replace default 'getMarking()'
+
             # Select which Transition events should be dispatched for this Workflow
-            # events_to_dispatch:
-                # Examples:
-                # - workflow.enter
+            events_to_dispatch:
+                - workflow.entered
+                - workflow.transition
 
             places:
-                - request
+                - start
                 - processing
                 - done
 
             transitions:
-                to_process:
-                    from: request
+                process:
+                    from: start
                     to: processing
-                to_finish:
+                finish:
                     from: processing
                     to: done
-                # An expression to block the transition
-                # guard: ~ # Example: "is_fully_authenticated() and is_granted('ROLE_JOURNALIST') and subject.getTitle() == 'My first article'"
-                # from:                 []
-                # to:                   []
-                # metadata:
-                    # Examples:
-                    # color:               blue
-                    # description:         'Workflow to manage article.'
+                    # An expression to block the transition
+                    # Example: "is_fully_authenticated() and is_granted('ROLE_JOURNALIST') and subject.getTitle() == 'My first article'"
+                    guard: subject.getValue() # sample
+
+                    # metadata:
+                        # Examples:
+                        # color:               blue
+                        # description:         'Workflow to manage article.'
 
             metadata: ~
                 # Examples:
