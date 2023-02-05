@@ -2,9 +2,11 @@ Symfony:
 - Workflow -> tests
 Pattern:
 - Memory in encryptdata class
+
+= = = TODO
 declare(strict_types=1)
 logs in database
-- - -
+xml
 https://github.com/rectorphp/rector
 https://themer.dev
 let's encrypt, openio.io, min.io, openswift, openstack, traefik, messageoriented middleware
