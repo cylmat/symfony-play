@@ -9,7 +9,7 @@ class EncryptionFactory
 {
     public function __construct(
         private readonly WorkflowInterface $encryptWorkflow
-    ){
+    ) {
     }
 
     public function create(string $algorithm): EncryptionInterface

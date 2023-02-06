@@ -6,12 +6,14 @@ use App\Encrypt\Domain\Exception\AlgorithmNotFoundException;
 use App\Encrypt\Domain\Service\Encryption\BcryptEncryption;
 use App\Encrypt\Domain\Service\Encryption\EncryptionFactory;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Workflow\WorkflowInterface;
 
 final class EncryptionFactoryTest extends TestCase
 {
     protected function setUp(): void
     {
-        $this->encryptionFactory = new EncryptionFactory();
+        $this->encryptWorkflow = $this->createMock(WorkflowInterface::class);
+        $this->encryptionFactory = new EncryptionFactory($this->encryptWorkflow);
     }
 
     public function testCreate(): void

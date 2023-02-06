@@ -1,7 +1,5 @@
 Symfony:
-- Workflow -> tests
-Pattern:
-- Memory in encryptdata class
+- Workflow
 
 = = = TODO
 declare(strict_types=1)
@@ -12,7 +10,8 @@ https://themer.dev
 let's encrypt, openio.io, min.io, openswift, openstack, traefik, messageoriented middleware
 https://tideways.com/profiler/features
 cqrs
-design pattern: memory
+design pattern: 
+    memory in encryptdata class
 fiber
 weakobject
 https://www.sonarqube.org
