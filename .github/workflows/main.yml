@@ -60,7 +60,7 @@ jobs:
     - name: Run tests
       # @todo use bin/run tests instead !
       run: |
-        bin/composer req --dev phpunit/phpunit
+        bin/composer install --dev
         bin/run unit
 
   deploy:
