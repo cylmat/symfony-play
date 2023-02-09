@@ -21,12 +21,12 @@ class WorkflowListener implements EventSubscriberInterface
     /** @SuppressWarnings(PHPMD) */
     public function entered(EnteredEvent $event): void
     {
-        $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event must be an instance of '.EncryptedData::class);
+        $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);
     }
 
     /** @SuppressWarnings(PHPMD) */
     public function transition(TransitionEvent $event): void
     {
-        $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event must be an instance of '.EncryptedData::class);
+        $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);
     }
 }
