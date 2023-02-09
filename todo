@@ -6,9 +6,10 @@ https://themer.dev
 let's encrypt, openio.io, min.io, openswift, openstack, traefik, messageoriented middleware
 https://tideways.com/profiler/features
 cqrs
-design pattern: 
-    memory in encryptdata class
+design pattern: memory in encryptdata class
 fiber
+cache with apcu
+serialize data
 weakobject
 https://www.sonarqube.org
 https://www.elastic.co/fr/what-is/elk-stack
