@@ -7,14 +7,16 @@ use PHPUnit\Framework\TestCase;
 
 final class EncryptedDataTest extends TestCase
 {
+    private string $value = '42';
+    private EncryptedData $encryptedData;
+
     protected function setUp(): void
     {
-        $this->value = '42';
         $this->encryptedData = new EncryptedData($this->value);
     }
 
     public function testGetValue(): void
     {
-        $this->assertSame('42', $this->encryptedData->getValue());
+        $this->assertSame($this->value, $this->encryptedData->getValue());
     }
 }

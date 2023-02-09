@@ -11,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 final class EncryptActionTest extends KernelTestCase
 {
+    private EncryptAction $encryptAction;
+
     protected function setUp(): void
     {
         $this->encryptAction = static::getContainer()->get(EncryptAction::class);

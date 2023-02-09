@@ -1,0 +1,5 @@
+Symfony:
+- Workflow (EncryptedData)
+
+Pattern:
+- Factory (Encryption)

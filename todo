@@ -1,7 +1,3 @@
-Symfony:
-- Workflow
-
-= = = TODO
 declare(strict_types=1)
 logs in database
 xml

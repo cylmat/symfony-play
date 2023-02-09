@@ -7,6 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 final class SedProcessTest extends TestCase
 {
+    private SedProcess $sedProcess;
+
     public function setUp(): void
     {
         $this->sedProcess = new SedProcess();

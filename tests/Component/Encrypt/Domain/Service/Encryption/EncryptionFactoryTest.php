@@ -10,6 +10,9 @@ use Symfony\Component\Workflow\WorkflowInterface;
 
 final class EncryptionFactoryTest extends TestCase
 {
+    private WorkflowInterface $encryptWorkflow;
+    private EncryptionFactory $encryptionFactory;
+
     protected function setUp(): void
     {
         $this->encryptWorkflow = $this->createMock(WorkflowInterface::class);

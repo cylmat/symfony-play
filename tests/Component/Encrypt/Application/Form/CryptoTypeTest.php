@@ -10,6 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class CryptoTypeTest extends TypeTestCase
 {
+    private CryptoType $cryptoType;
+    private FormBuilderInterface $formBuilder;
+
     protected function setUp(): void
     {
         $this->cryptoType = new CryptoType();

@@ -8,6 +8,8 @@ use PHPUnit\Framework\TestCase;
 
 final class SedManagerTest extends TestCase
 {
+    private SedManager $sedManager;
+
     public function setUp(): void
     {
         $this->sedManager = new SedManager(new SedProcess());

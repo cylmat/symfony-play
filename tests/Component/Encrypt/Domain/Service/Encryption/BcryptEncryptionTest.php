@@ -9,6 +9,9 @@ use Symfony\Component\Workflow\WorkflowInterface;
 
 final class BcryptEncryptionTest extends TestCase
 {
+    private WorkflowInterface $encryptWorkflow;
+    private BcryptEncryption $bcryptEncryption;
+
     protected function setUp(): void
     {
         $this->encryptWorkflow = $this->createMock(WorkflowInterface::class);

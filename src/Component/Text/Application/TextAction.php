@@ -2,18 +2,18 @@
 
 namespace App\Text\Application;
 
+use App\AppBundle\Common\AbstractAction;
 use App\AppBundle\Common\AppRequest;
 use App\Text\Domain\Manager\SedManager;
 
-final class TextAction
+final class TextAction extends AbstractAction
 {
     public function __construct(
         private SedManager $sedManager
-    ) {
-    }
+    ) {}
 
     public function execute(AppRequest $request): string
     {
-        return $this->sedManager->substituteText($request->text, $request->arguments);
+        return $this->sedManager->substituteText($request->text, [$request->replace => $request->pattern]);
     }
 }
