@@ -4,9 +4,25 @@
 deptrac:
   paths:
     - ../../src
+
   exclude_files:
     - '#.*Test.*#'
+
   layers:
+    # Doctrine
+    -
+      name: DoctrineRepository
+      collectors:
+        -
+          type: className
+          value: .*ServiceEntityRepository
+    -
+      name: DoctrineManager
+      collectors:
+        -
+          type: className
+          value: .*ManagerRegistry
+
     -
       name: Action
       collectors:
@@ -37,6 +53,7 @@ deptrac:
         -
           type: className
           value: .*Service.*
+
   ruleset:
     Controller:
       - Action
@@ -47,7 +64,10 @@ deptrac:
       - Repository
     Service:
       - Repository
-    Repository: ~
+    Repository:
+      - DoctrineRepository
+      - DoctrineManager
+
   formatters:
     graphviz:
       groups:
@@ -55,5 +75,5 @@ deptrac:
           - Controllers
           - Commands
         Persistence:
-          - Repositories
           - Entities
+          - Repositories

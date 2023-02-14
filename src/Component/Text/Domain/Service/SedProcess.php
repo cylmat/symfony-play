@@ -10,7 +10,7 @@ final class SedProcess
     /**
      * @param string[] $args
      *
-     * @SuppressWarnings(PHPMD)
+     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function processText(string $text, array $args): string
     {

@@ -2,16 +2,18 @@
 
 namespace App\Test\Encrypt\Application\Listener;
 
-use App\Encrypt\Application\Listener\WorkflowListener;
+use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
 use App\Encrypt\Domain\Model\EncryptedData;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Workflow\Event\EnteredEvent;
 use Symfony\Component\Workflow\Event\TransitionEvent;
 use Symfony\Component\Workflow\Marking;
 
 final class WorkflowListenerTest extends TestCase
 {
-    private WorkflowListener $workflowListener;
+    private object $logger;
+    private WorkflowSubscriber $workflowListener;
 
     /**
      * Sample
@@ -19,7 +21,8 @@ final class WorkflowListenerTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->workflowListener = new WorkflowListener();
+        $this->logger = $this->createMock(LoggerInterface::class);
+        $this->workflowListener = new WorkflowSubscriber($this->logger);
     }
 
     public function testGetSubscribedEvents(): void
@@ -29,6 +32,11 @@ final class WorkflowListenerTest extends TestCase
 
     public function testEntered(): void
     {
+        $this->logger
+            ->expects($this->once())
+            ->method('debug')
+            ->with($this->stringStartsWith(EncryptedData::class.' entered'));
+
         $event = new EnteredEvent(new EncryptedData(''), new Marking());
         $this->assertNull($this->workflowListener->entered($event));
 

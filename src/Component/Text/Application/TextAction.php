@@ -10,7 +10,8 @@ final class TextAction extends AbstractAction
 {
     public function __construct(
         private SedManager $sedManager
-    ) {}
+    ) {
+    }
 
     public function execute(AppRequest $request): string
     {

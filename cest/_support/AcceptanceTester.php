@@ -13,8 +13,6 @@
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method void pause()
- *
- * @SuppressWarnings(PHPMD)
 */
 class AcceptanceTester extends \Codeception\Actor
 {

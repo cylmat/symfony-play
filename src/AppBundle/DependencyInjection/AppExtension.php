@@ -11,16 +11,16 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 /**
  * Symfony 6.2: Can extends AbstractBundle to avoid using Extension class
  * Called from MergeExtensionConfigurationPass::process().
- *
- * @SuppressWarnings(PHPMD)
  */
 class AppExtension extends Extension implements ExtensionInterface, PrependExtensionInterface
 {
-    // Contains all services
+    // Contains all service
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function prepend(ContainerBuilder $container): void
     {
     }
 
+    /** @SuppressWarnings(PHPMD.IfStatementAssignment) */
     public function load(array $config, ContainerBuilder $container): void
     {
         if ($configuration = $this->getConfiguration($config, $container)) {

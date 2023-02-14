@@ -7,8 +7,9 @@ use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TextType extends AbstractType
+final class TextType extends AbstractType
 {
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

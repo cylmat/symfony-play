@@ -18,7 +18,7 @@ class TextController extends AbstractController
         $textForm->handleRequest($request);
 
         $result = null;
-        /** @todo use Model */
+        /* @todo use Model */
         if ($textForm->isSubmitted() && $textForm->isValid()) {
             $result = $textAction->executeRequest([
                 'text' => $textForm->get('text')->getData(),

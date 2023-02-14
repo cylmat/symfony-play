@@ -1,14 +1,20 @@
 <?php
 
-namespace App\Encrypt\Application\Listener;
+namespace App\Encrypt\Application\EventSubscriber;
 
 use App\Encrypt\Domain\Model\EncryptedData;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Workflow\Event\EnteredEvent;
 use Symfony\Component\Workflow\Event\TransitionEvent;
 
-class WorkflowListener implements EventSubscriberInterface
+class WorkflowSubscriber implements EventSubscriberInterface
 {
+    public function __construct(
+        private readonly LoggerInterface $mainLogger
+    ) {
+    }
+
     /** @return string[] */
     public static function getSubscribedEvents(): array
     {
@@ -18,13 +24,14 @@ class WorkflowListener implements EventSubscriberInterface
         ];
     }
 
-    /** @SuppressWarnings(PHPMD) */
+    /** @SuppressWarnings(PHPMD.MissingImport) */
     public function entered(EnteredEvent $event): void
     {
         $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);
+        $this->mainLogger->debug(EncryptedData::class.' entered in "'.\array_key_first($event->getSubject()->getCurrentPlace()).'" place.');
     }
 
-    /** @SuppressWarnings(PHPMD) */
+    /** @SuppressWarnings(PHPMD.MissingImport) */
     public function transition(TransitionEvent $event): void
     {
         $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);

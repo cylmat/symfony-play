@@ -5,8 +5,11 @@ monolog:
 when@dev:
     monolog:
         handlers:
+            # Can autowire ($mainLogger)
             main:
-                type: stream
+                type: rotating_file # stream
+                max_files: 10
+
                 path: "%kernel.logs_dir%/%kernel.environment%.log"
                 level: debug
                 channels: ["!event"]
@@ -27,6 +30,7 @@ when@test:
     monolog:
         handlers:
             main:
+                # Stores all log messages during a request but only passes them to a second handler if one of the messages reaches an action_level
                 type: fingers_crossed
                 action_level: error
                 handler: nested
