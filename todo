@@ -24,3 +24,4 @@ http://jmsyst.com/libs/serializer
 https://docs.phpdoc.org/guide/guides/docblocks.html
 PCRE + Parle (or doctrine parse)
 runtime
+FOSUserBundle
