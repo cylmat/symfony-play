@@ -18,6 +18,12 @@ services:
     App\AppBundle\:
         resource: ../src/AppBundle/
 
+    App\AppBundle\Command\MakeEntityWrapper:
+        arguments: 
+            - '@maker.maker.make_entity'
+    
+    # BUNDLES #
+
     App\Encrypt\:
         resource: ../src/Component/Encrypt/
 

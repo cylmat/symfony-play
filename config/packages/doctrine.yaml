@@ -1,20 +1,77 @@
 doctrine:
-    dbal:
-        url: '%env(resolve:DATABASE_URL)%'
+    # @see https://symfony.com/doc/current/reference/configuration/doctrine.html
 
+    # DB Abstraction Layer
+    dbal:
+        # Replace dbname, host and port
+        url: '%env(resolve:DATABASE_URL)%'
+        driver: pdo_mysql
+        dbname_suffix: ''
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)
-        #server_version: '14'
+        server_version: '6'
+        charset: utf8mb4
+        memory: true
+        driver_class: ~
+        wrapper_class: ~
+
+        ### FOR MULTIPLE CONNECTIONS ##
+        # default_connection:       default
+        # connections:
+        #     default:
+        #         dbname:           Symfony
+        # ###
+
+    # Object Relational Mapping
     orm:
-        auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        auto_mapping: true
+        ### MAPPING ###
+        # Loads attribute configuration from the Entity
+        # auto_mapping: false
+        # mappings:
+        #     AppBundle:
+        #         type: xml
+        #         dir: <SomeResources/config/doctrine>
+
+        # Otherwise
+        # SomeEntityNamespace:
+        #     type: annotation
+        #     dir: '%kernel.project_dir%/src/Entity'
+        #     is_bundle: false
+        #     prefix: App\Entity
+        #     # Gives them an MyApp alias (so you can say things like MyApp:Post)
+        #     alias: MyApp
+        # ###
+
+        ### SAMPLE attributes ###
         mappings:
-            App\Encrypt:
+            Encrypt:
+                # Use AttributeDriver class (with MappingDriverChain)
+                alias: Encrypt # Can use "console App:<entity> --regenerate"
+                type: attribute
+                dir: '%kernel.project_dir%/src/Component/Encrypt/Entity'
+                prefix: 'App\Encrypt' # MUST begin with <mapping-name>\
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Component/Encrypt/Domain/Entity'
-                prefix: 'App\Encrypt\Entity'
-                alias: Encrypt
+
+        # entity_managers:
+        #     # This is doctrine.orm.default_entity_manager
+        #     default:
+        #         #auto_generate_proxy_classes: true
+        #         #class_metadata_factory_name: Doctrine\ORM\Mapping\ClassMetadataFactory
+        #         #default_repository_class:  Doctrine\ORM\EntityRepository
+
+        #         connection: default
+        #         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        #         hydrators: ~
+        #         dql: ~
+        #         filters: ~
+        #         mappings:
+        #             App:
+        #                 # Use AttributeDriver class (with MappingDriverChain)
+        #                 alias: App # Can use "console App:<entity> --regenerate"
+        #                 type: attribute 
+        #                 dir: '%kernel.project_dir%/src/Entity'
+        #                 prefix: 'App\Entity' # MUST begin with <mapping-name>\
+        #                 is_bundle: false
 
 when@test:
     doctrine:
