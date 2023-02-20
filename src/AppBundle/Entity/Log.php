@@ -16,8 +16,8 @@ class Log
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
-    #[ORM\Column(type: 'integer')]
-    private int $level;
+    #[ORM\Column(type: 'string')]
+    private string $level;
 
     #[ORM\Column(type: 'string')]
     private string $channel;
@@ -35,7 +35,7 @@ class Log
         return $this->level;
     }
 
-    public function setLevel(int $level): self
+    public function setLevel(string $level): self
     {
         $this->level = $level;
 

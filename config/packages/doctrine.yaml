@@ -44,13 +44,13 @@ doctrine:
 
         ### SAMPLE attributes ###
         mappings:
-            Encrypt:
+            AppBundle:
                 # Use AttributeDriver class (with MappingDriverChain)
-                alias: Encrypt # Can use "console App:<entity> --regenerate"
+                alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
                 type: attribute
-                dir: '%kernel.project_dir%/src/Component/Encrypt/Entity'
-                prefix: 'App\Encrypt' # MUST begin with <mapping-name>\
-                is_bundle: false
+                dir: 'Entity'
+                prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
+                is_bundle: true # change 'dir' attribute as relative path 
 
         # entity_managers:
         #     # This is doctrine.orm.default_entity_manager
