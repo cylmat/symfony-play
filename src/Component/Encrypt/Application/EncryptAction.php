@@ -8,7 +8,8 @@ use App\Encrypt\Domain\Manager\EncryptManager;
 
 class EncryptAction implements ActionInterface
 {
-    private const NEEDTOBECHANGED = 'bcrypt';
+    /* @todo Use array of values and factory */
+    private const BCRYPT = 'bcrypt';
 
     public function __construct(
         private EncryptManager $encryptManager
@@ -17,6 +18,6 @@ class EncryptAction implements ActionInterface
 
     public function execute(AppRequest $request): string
     {
-        return $this->encryptManager->encryptValue(self::NEEDTOBECHANGED, $request->value, $request->options);
+        return $this->encryptManager->encryptValue(self::BCRYPT, $request->value, $request->options);
     }
 }

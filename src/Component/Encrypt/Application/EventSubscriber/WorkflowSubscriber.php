@@ -3,8 +3,8 @@
 namespace App\Encrypt\Application\EventSubscriber;
 
 use App\AppBundle\Entity\Log;
+use App\AppBundle\Infrastructure\Doctrine;
 use App\Encrypt\Domain\Model\EncryptedData;
-use Doctrine\Persistence\ManagerRegistry;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -15,7 +15,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly LoggerInterface $mainLogger,
-        private readonly ManagerRegistry $doctrine
+        private readonly Doctrine $doctrine
     ) {
     }
 
@@ -35,8 +35,9 @@ class WorkflowSubscriber implements EventSubscriberInterface
         $this->mainLogger->debug(EncryptedData::class.' entered in "'.($place = \array_key_first($event->getSubject()->getCurrentPlace())).'" place.');
         
         $log = (new Log())->setChannel('workflow')->setLevel(LogLevel::INFO)->setMessage('Encrypted data entered in '.$place);
-        $this->doctrine->getManager()->persist($log);
-        $this->doctrine->getManager()->flush();
+
+        $this->doctrine->persist($log);
+        $this->doctrine->flush();
     }
 
     /** @SuppressWarnings(PHPMD.MissingImport) */

@@ -31,9 +31,9 @@ final class Version20230220201158 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TEMPORARY TABLE __temp__Log AS SELECT id, level, channel, message FROM Log');
-        $this->addSql('DROP TABLE Log');
-        $this->addSql('CREATE TABLE Log (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, level INTEGER NOT NULL, channel VARCHAR(255) NOT NULL, message VARCHAR(255) NOT NULL)');
-        $this->addSql('INSERT INTO Log (id, level, channel, message) SELECT id, level, channel, message FROM __temp__Log');
+        $this->addSql('DROP TABLE log');
+        $this->addSql('CREATE TABLE log (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, level INTEGER NOT NULL, channel VARCHAR(255) NOT NULL, message VARCHAR(255) NOT NULL)');
+        $this->addSql('INSERT INTO log (id, level, channel, message) SELECT id, level, channel, message FROM __temp__Log');
         $this->addSql('DROP TABLE __temp__Log');
     }
 }
