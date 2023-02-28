@@ -1,4 +1,5 @@
 declare(strict_types=1)
+decorator stack
 logs in database
 xml
 https://github.com/rectorphp/rector
@@ -10,6 +11,7 @@ design pattern: memory in encryptdata class
 fiber
 cache with apcu
 serialize data
+tests for AppBundle
 weakobject
 https://www.sonarqube.org
 https://www.elastic.co/fr/what-is/elk-stack

@@ -1,2 +1,4 @@
 * ServiceNotFoundException: The service has been removed ... You should make it public...
     -> Use the service somewhere (e.g. in an other class) to avoid it be pruning
+
+* Twig's namespace of "App/AppBundle" is "@App" */
