@@ -18,7 +18,7 @@ class Doctrine
         // Doctrine\DBAL\Schema\SqliteSchemaManager
         $schema = $connection->getSchemaManager();
         $params = $connection->getParams();
-        d( $connection->getParams());
+
         $this->doctrine->getManager()->persist($object);
     }
 
