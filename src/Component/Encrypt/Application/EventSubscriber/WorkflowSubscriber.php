@@ -33,7 +33,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
     {
         $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);
         $this->mainLogger->debug(EncryptedData::class.' entered in "'.($place = \array_key_first($event->getSubject()->getCurrentPlace())).'" place.');
-        
+
         $log = (new Log())->setChannel('workflow')->setLevel(LogLevel::INFO)->setMessage('Encrypted data entered in '.$place);
 
         $this->doctrine->persist($log);

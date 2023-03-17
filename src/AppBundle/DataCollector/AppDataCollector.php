@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\DataCollector\LateDataCollectorInterface;
 final class AppDataCollector extends AbstractDataCollector implements DataCollectorInterface, LateDataCollectorInterface
 {
     // Called during kernel.response
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function collect(Request $request, Response $response, ?\Throwable $exception = null): void
     {
         $this->data = [
@@ -28,6 +29,7 @@ final class AppDataCollector extends AbstractDataCollector implements DataCollec
 
     // ... for template ... //
 
+    /** @return string[] */
     public function getData(?string $key = null): array|string
     {
         return $key ? $this->data[$key] : $this->data;

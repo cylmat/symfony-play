@@ -38,6 +38,7 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Application');
     }
 
+    /** @SuppressWarnings(PHPMD.StaticAccess) */
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');

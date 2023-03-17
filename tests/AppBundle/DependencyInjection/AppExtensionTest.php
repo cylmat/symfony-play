@@ -14,7 +14,7 @@ final class AppExtensionTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->container = $this->createMock(ContainerBuilder::class);
+        $this->container = $this->createStub(ContainerBuilder::class);
         $this->appExtension = new AppExtension();
     }
 
@@ -25,7 +25,6 @@ final class AppExtensionTest extends TestCase
 
     public function testLoad(): void
     {
-        $this->markTestIncomplete('Insert container configuration');
         $this->assertNull(
             $this->appExtension->load(['config'], $this->container)
         );
@@ -33,7 +32,6 @@ final class AppExtensionTest extends TestCase
 
     public function testGetConfiguration(): void
     {
-        $this->markTestIncomplete('Insert container configuration');
         $this->assertNull(
             $this->appExtension->getConfiguration(['config'], $this->container)
         );

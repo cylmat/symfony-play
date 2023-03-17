@@ -11,19 +11,19 @@ class AppDoctrine
     ) {
     }
 
-    public function persist(object $object)
+    public function persist(object $object): void
     {
         // Doctrine\DBAL\Connection
-        //$connection = $this->doctrine->getConnection();
+        // $connection = $this->doctrine->getConnection();
 
         // Doctrine\DBAL\Schema\SqliteSchemaManager
-        //$schema = $connection->getSchemaManager();
-        //$params = $connection->getParams();
+        // $schema = $connection->getSchemaManager();
+        // $params = $connection->getParams();
 
         $this->doctrine->getManager()->persist($object);
     }
 
-    public function flush()
+    public function flush(): void
     {
         $this->doctrine->getManager()->flush();
     }
