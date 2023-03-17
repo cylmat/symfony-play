@@ -4,9 +4,7 @@ namespace App\Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-/**
- * @group functional
- */
+/** @group functional */
 final class EncryptControllerTest extends WebTestCase
 {
     public function testEncrypt()

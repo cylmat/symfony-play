@@ -4,6 +4,7 @@ namespace App\Test\AppBundle\Entity;
 
 use App\AppBundle\Entity\Log;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\LogLevel;
 
 final class LogTest extends TestCase
 {
@@ -14,38 +15,25 @@ final class LogTest extends TestCase
         $this->log = new Log();
     }
 
-    public function testGetId(): void
+    public function testData(): void
     {
-        $this->markTestIncomplete();
-    }
+        $this->log->setChannel('channel');
+        $this->log->setLevel('debug');
+        $this->log->setMessage('msg');
 
-    public function testGetLevel(): void
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testSetLevel(): void
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testGetChannel(): void
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testSetChannel(): void
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testGetMessage(): void
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testSetMessage(): void
-    {
-        $this->markTestIncomplete();
+        $this->assertSame(
+            [
+                null,
+                'channel',
+                LogLevel::DEBUG,
+                'msg',
+            ],
+            [
+                $this->log->getId(),
+                $this->log->getChannel(),
+                $this->log->getLevel(),
+                $this->log->getMessage(),
+            ]
+        );
     }
 }

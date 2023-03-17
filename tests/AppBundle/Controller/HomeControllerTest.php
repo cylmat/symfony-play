@@ -5,6 +5,7 @@ namespace App\Test\AppBundle\Controller;
 use App\AppBundle\Controller\HomeController;
 use PHPUnit\Framework\TestCase;
 
+/** @group functional */
 final class HomeControllerTest extends TestCase
 {
     private HomeController $homeController;

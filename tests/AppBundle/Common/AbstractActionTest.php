@@ -13,7 +13,7 @@ final class AbstractActionTest extends TestCase
     protected function setUp(): void
     {
         $this->abstractAction = $this->getMockBuilder(AbstractAction::class)
-            //->setConstructorArgs([])
+            ->setConstructorArgs([])
             ->getMockForAbstractClass();
 
         $this->abstractAction

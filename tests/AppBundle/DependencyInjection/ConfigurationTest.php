@@ -4,6 +4,7 @@ namespace App\Test\AppBundle\DependencyInjection;
 
 use App\AppBundle\DependencyInjection\Configuration;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 final class ConfigurationTest extends TestCase
 {
@@ -16,6 +17,6 @@ final class ConfigurationTest extends TestCase
 
     public function testGetConfigTreeBuilder(): void
     {
-        $this->markTestIncomplete();
+        $this->assertInstanceOf(TreeBuilder::class, $this->configuration->getConfigTreeBuilder());
     }
 }

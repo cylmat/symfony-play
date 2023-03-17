@@ -5,6 +5,7 @@ namespace App\Test\AppBundle\Controller\Admin;
 use App\AppBundle\Controller\Admin\DashboardController;
 use PHPUnit\Framework\TestCase;
 
+/** @group functional */
 final class DashboardControllerTest extends TestCase
 {
     private DashboardController $dashboardController;

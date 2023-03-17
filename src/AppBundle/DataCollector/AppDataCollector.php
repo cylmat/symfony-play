@@ -16,7 +16,7 @@ final class AppDataCollector extends AbstractDataCollector implements DataCollec
     {
         $this->data = [
             'method' => $request->getMethod(),
-            'data' => 1,
+            'data' => '1',
         ];
     }
 
@@ -28,15 +28,15 @@ final class AppDataCollector extends AbstractDataCollector implements DataCollec
 
     // ... for template ... //
 
+    public function getData(?string $key = null): array|string
+    {
+        return $key ? $this->data[$key] : $this->data;
+    }
+
     public static function getTemplate(): string
     {
         /* Namespace is from "App/AppBundle" so "App" only */
         /* @todo Change @App/AppBundle to @AppBundle */
         return '@App/app_collector.html.twig';
-    }
-
-    public function getData(?string $key): array|string
-    {
-        return $key ? $this->data[$key] : $this->data;
     }
 }

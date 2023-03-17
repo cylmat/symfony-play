@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
+//use ApiPlatform\Metadata\ApiResource;
 use App\AppBundle\Repository\LogRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,7 +31,7 @@ class Log
         return $this->id;
     }
 
-    public function getLevel(): int
+    public function getLevel(): string
     {
         return $this->level;
     }
