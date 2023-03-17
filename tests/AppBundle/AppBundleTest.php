@@ -3,6 +3,7 @@
 namespace App\Test\AppBundle;
 
 use App\AppBundle\AppBundle;
+use App\AppBundle\DependencyInjection\AppExtension;
 use PHPUnit\Framework\TestCase;
 
 final class AppBundleTest extends TestCase
@@ -16,6 +17,6 @@ final class AppBundleTest extends TestCase
 
     public function testGetContainerExtension(): void
     {
-        $this->markTestIncomplete();
+        $this->assertInstanceOf(AppExtension::class, $this->appBundle->getContainerExtension());
     }
 }

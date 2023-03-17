@@ -2,11 +2,9 @@
 
 namespace App\Test\Encrypt\Application\EventSubscriber;
 
-use App\AppBundle\Infrastructure\Doctrine;
+use App\AppBundle\Infrastructure\AppDoctrine;
 use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
 use App\Encrypt\Domain\Model\EncryptedData;
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -27,8 +25,7 @@ final class WorkflowSubscriberTest extends TestCase
     protected function setUp(): void
     {
         $this->logger = $this->createMock(LoggerInterface::class);
-        $this->doctrine = $this->createStub(Doctrine::class);
-
+        $this->doctrine = $this->createMock(AppDoctrine::class);
         $this->workflowListener = new WorkflowSubscriber($this->logger, $this->doctrine);
     }
 

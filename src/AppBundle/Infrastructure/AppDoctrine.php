@@ -4,7 +4,7 @@ namespace App\AppBundle\Infrastructure;
 
 use Doctrine\Persistence\ManagerRegistry;
 
-class Doctrine
+class AppDoctrine
 {
     public function __construct(
         private readonly ManagerRegistry $doctrine
@@ -14,10 +14,11 @@ class Doctrine
     public function persist(object $object)
     {
         // Doctrine\DBAL\Connection
-        $connection = $this->doctrine->getConnection();
+        //$connection = $this->doctrine->getConnection();
+
         // Doctrine\DBAL\Schema\SqliteSchemaManager
-        $schema = $connection->getSchemaManager();
-        $params = $connection->getParams();
+        //$schema = $connection->getSchemaManager();
+        //$params = $connection->getParams();
 
         $this->doctrine->getManager()->persist($object);
     }
