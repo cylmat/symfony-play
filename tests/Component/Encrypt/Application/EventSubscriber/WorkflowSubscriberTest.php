@@ -2,6 +2,7 @@
 
 namespace App\Test\Encrypt\Application\EventSubscriber;
 
+use App\AppBundle\Infrastructure\Doctrine;
 use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
 use App\Encrypt\Domain\Model\EncryptedData;
 use Doctrine\Persistence\ManagerRegistry;
@@ -16,7 +17,6 @@ use Symfony\Component\Workflow\Marking;
 final class WorkflowSubscriberTest extends TestCase
 {
     private MockObject $logger;
-    private MockObject $manager;
     private MockObject $doctrine;
     private WorkflowSubscriber $workflowListener;
 
@@ -27,12 +27,7 @@ final class WorkflowSubscriberTest extends TestCase
     protected function setUp(): void
     {
         $this->logger = $this->createMock(LoggerInterface::class);
-
-        $this->manager = $this->createMock(ObjectManager::class);
-        $this->doctrine = $this->createStub(ManagerRegistry::class);
-        $this->doctrine
-            ->method('getManager')
-            ->will($this->returnValue($this->manager));
+        $this->doctrine = $this->createStub(Doctrine::class);
 
         $this->workflowListener = new WorkflowSubscriber($this->logger, $this->doctrine);
     }
@@ -49,10 +44,10 @@ final class WorkflowSubscriberTest extends TestCase
             ->method('debug')
             ->with($this->stringStartsWith(EncryptedData::class.' entered'));
 
-        $this->manager
+        $this->doctrine
             ->expects($this->once())
             ->method('persist');
-        $this->manager
+        $this->doctrine
             ->expects($this->once())
             ->method('flush');
 
