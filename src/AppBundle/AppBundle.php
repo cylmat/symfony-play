@@ -2,7 +2,7 @@
 
 namespace App\AppBundle;
 
-// use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -15,9 +15,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class AppBundle extends Bundle
 {
     /* Called from Kernel::prepareContainer() */
-    /*public function build(ContainerBuilder $container): void
+    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+    public function build(ContainerBuilder $container): void
     {
-    }*/
+    }
 
     /* Called from Kernel::buildContainer() */
     public function getContainerExtension(): ?ExtensionInterface

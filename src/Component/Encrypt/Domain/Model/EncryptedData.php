@@ -21,9 +21,11 @@ class EncryptedData
     }
 
     /** @param int[] $workflowPlace */
-    public function setCurrentPlace(array $workflowPlace): void
+    public function setCurrentPlace(array $workflowPlace): self
     {
         $this->workflowPlace = $workflowPlace;
+
+        return $this;
     }
 
     /** @return int[] */

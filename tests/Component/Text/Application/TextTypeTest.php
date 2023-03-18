@@ -25,6 +25,10 @@ final class TextTypeTest extends TypeTestCase
     public function testBuildForm(): void
     {
         $builder = $this->createMock(FormBuilderInterface::class);
+        $builder
+            ->expects($this->exactly(4))
+            ->method('add')
+            ->willReturn($builder);
         $this->assertNull($this->textType->buildForm($builder, []));
     }
 

@@ -5,7 +5,8 @@
             "src"
         ],
         "excludes": [
-            "{.*Controller.*.php}"
+            "{.*Controller|Fixtures.php}",
+            "{.*Configuration.php}"
         ]
     },
     "phpUnit": {
@@ -15,8 +16,10 @@
         "text": "var/logs/infection.log"
     },
     "mutators": {
-        "@default": true
+        "@default": true,
+        "Concat": false,
+        "ConcatOperandRemoval": false
     },
-    "minMsi": 80,
+    "minMsi": 90,
     "minCoveredMsi": 100
 }

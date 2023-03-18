@@ -39,7 +39,7 @@ Doc
         </testsuite>
     </testsuites>
 
-    <coverage 
+    <coverage
         cacheDirectory="../../var/cache" 
         includeUncoveredFiles="true"
         processUncoveredFiles="true"
@@ -52,6 +52,7 @@ Doc
         </include>
         <exclude>
             <directory suffix="Controller.php">../../src</directory>
+            <directory suffix="Fixtures.php">../../src</directory>
         </exclude>
 
         <report>

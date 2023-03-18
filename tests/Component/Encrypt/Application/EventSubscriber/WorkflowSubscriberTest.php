@@ -2,6 +2,7 @@
 
 namespace App\Test\Encrypt\Application\EventSubscriber;
 
+use App\AppBundle\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
 use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
 use App\Encrypt\Domain\Model\EncryptedData;
@@ -14,8 +15,8 @@ use Symfony\Component\Workflow\Marking;
 
 final class WorkflowSubscriberTest extends TestCase
 {
-    private MockObject $logger;
-    private MockObject $doctrine;
+    private LoggerInterface|MockObject $logger;
+    private AppDoctrine|MockObject $doctrine;
     private WorkflowSubscriber $workflowListener;
 
     /**
@@ -25,13 +26,14 @@ final class WorkflowSubscriberTest extends TestCase
     protected function setUp(): void
     {
         $this->logger = $this->createMock(LoggerInterface::class);
-        $this->doctrine = $this->createMock(AppDoctrine::class);
+        $this->doctrine = $this->createStub(AppDoctrine::class);
         $this->workflowListener = new WorkflowSubscriber($this->logger, $this->doctrine);
     }
 
     public function testGetSubscribedEvents(): void
     {
-        $this->assertIsArray($this->workflowListener->getSubscribedEvents());
+        $this->assertArrayHasKey('workflow.encrypt.entered', $this->workflowListener->getSubscribedEvents());
+        $this->assertArrayHasKey('workflow.encrypt.transition', $this->workflowListener->getSubscribedEvents());
     }
 
     public function testEntered(): void
@@ -48,7 +50,10 @@ final class WorkflowSubscriberTest extends TestCase
             ->expects($this->once())
             ->method('flush');
 
-        $event = new EnteredEvent(new EncryptedData(''), new Marking());
+        $event = new EnteredEvent(
+            (new EncryptedData(''))->setCurrentPlace(['TESTPLACE' => true]),
+            new Marking()
+        );
         $this->assertNull($this->workflowListener->entered($event));
 
         $this->expectException(\RuntimeException::class);

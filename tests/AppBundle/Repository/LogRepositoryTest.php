@@ -4,77 +4,76 @@ namespace App\Test\AppBundle\Repository;
 
 use App\AppBundle\Entity\Log;
 use App\AppBundle\Repository\LogRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Mapping\ClassMetadata;
-use Doctrine\Persistence\ManagerRegistry;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
+use RepositoryTestCase;
 
-final class LogRepositoryTest extends TestCase
+final class LogRepositoryTest extends RepositoryTestCase
 {
     private LogRepository $logRepository;
-    protected EntityManager|MockObject $em;
-    protected ClassMetadata|MockObject $meta;
-    protected ManagerRegistry|MockObject $registry;
 
     protected function setUp(): void
     {
-        $this->initManager();
+        parent::setUp();
 
         $this->logRepository = new LogRepository($this->registry);
     }
 
-    protected function initManager()
-    {
-        $this->meta = $this->createMock(ClassMetadata::class);
-        $this->em = $this->createMock(EntityManager::class);
-        $this->em
-            ->method('getClassMetadata')
-            ->with(Log::class)
-            ->willReturn($this->meta);
-        $this->registry = $this->createMock(ManagerRegistry::class);
-        $this->registry
-            ->method('getManagerForClass')
-            ->with(Log::class)
-            ->willReturn($this->em);
-            
-    }
-
-    public function testSave(): void
+    /**
+     * @testWith [true]
+     *           [false]
+     */
+    public function testSave(bool $flush): void
     {
         $log = new Log();
 
         $this->em
-            ->expects($this->exactly(2))
+            ->expects($this->once())
             ->method('persist')
             ->with($log);
 
-        $this->logRepository->save($log);
+        if ($flush) {
+            $this->em
+                ->expects($this->once())
+                ->method('flush');
 
-        // Flush
+            $this->logRepository->save($log, $flush);
+
+            return;
+        }
+
         $this->em
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('flush');
-
-        $this->logRepository->save($log, true);
+        
+        $this->logRepository->save($log);
     }
 
-    public function testRemove(): void
+    /**
+     * @testWith [true]
+     *           [false]
+     */
+    public function testRemove(bool $flush): void
     {
         $log = new Log();
 
         $this->em
-            ->expects($this->exactly(2))
+            ->expects($this->once())
             ->method('remove')
             ->with($log);
 
-        $this->logRepository->remove($log);
+        if ($flush) {
+            $this->em
+                ->expects($this->once())
+                ->method('flush');
 
-        // Flush
+            $this->logRepository->remove($log, $flush);
+
+            return;
+        }
+
         $this->em
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('flush');
-
-        $this->logRepository->remove($log, true);
+        
+        $this->logRepository->remove($log);
     }
 }
