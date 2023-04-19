@@ -2,12 +2,12 @@
 
 namespace App\AppBundle\Entity;
 
-// use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\ApiResource;
 use App\AppBundle\Repository\LogRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/** @todo #[ApiResource] */
 /** @SuppressWarnings(PHPMD.ShortVariable) */
+#[ApiResource]
 #[ORM\Table(name: 'log')]
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 class Log

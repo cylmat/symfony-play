@@ -12,9 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EncryptController extends AbstractController
 {
-    /**
-     * @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html
-     */
+    /** @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html */
     #[Route('/encrypt', name: 'app_encrypt_encrypt')]
     public function encrypt(Request $request, EncryptAction $action): Response
     {

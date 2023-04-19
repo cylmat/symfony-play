@@ -1,5 +1,10 @@
 # @todo check what is diff with routes/annotations ?
 # @todo put it in appbundle
+api_controllers:
+    resource: ../src/ApiResource/
+    type: annotation
+    prefix: /api
+
 controllers:
     resource: ../src/AppBundle/Controller/
     type: annotation
