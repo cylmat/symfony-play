@@ -51,21 +51,11 @@ class LogController extends AbstractCrudController
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());    
         $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
-        
-        // this can happen after deleting some items and trying to return
-        // to a 'index' page that no longer exists. Redirect to the last page instead
-        if ($paginator->isOutOfRange()) {
-            return $this->redirect($this->container->get(AdminUrlGenerator::class)
-                ->set(EA::PAGE, $paginator->getLastPage())
-                ->generateUrl());
-        }
 
         $a = $context->getCrud()->getActionsConfig();
         $adto = new ActionDto();
         $adto->setName('flush');
         $a = new ActionConfigDto();
-        $a->setPageName('index');
-        $a->appendAction('index', $adto);
         
         /** @var EntityCollection $entities */
         $entities = $this->container->get(EntityFactory::class)->createCollection($context->getEntity(), $paginator->getResults());
