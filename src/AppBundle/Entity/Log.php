@@ -7,7 +7,7 @@ use App\AppBundle\Repository\LogRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */
-#[ApiResource]
+#[ApiResource()]
 #[ORM\Table(name: 'log')]
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 class Log

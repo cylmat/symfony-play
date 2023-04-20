@@ -3,6 +3,7 @@
 namespace App\AppBundle\Controller\Admin;
 
 use App\AppBundle\Entity\Log;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -41,8 +42,15 @@ class DashboardController extends AbstractDashboardController
     /** @see https://symfony.com/bundles/EasyAdminBundle/current/dashboards.html */
     public function configureDashboard(): Dashboard
     {
-        return Dashboard::new()
+        return parent::configureDashboard()
             ->setTitle('Application')
+        ;
+    }
+
+    public function configureCrud(): Crud
+    {
+        return parent::configureCrud()
+            ->setPaginatorPageSize(9999)
         ;
     }
 
