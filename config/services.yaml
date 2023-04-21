@@ -33,5 +33,14 @@ services:
     App\Text\:
         resource: ../src/Component/Text/
 
+    # TAGS #
+    _instanceof:
+        App\Text\Domain\Service\CommandProcessInterface:
+            tags: ['app.command_process']
+
+    # App\Text\Domain\Manager\CommandManager:
+    #     arguments:
+    #         - !tagged_iterator { tag: app.command_process } # !tagged_iterator app.command_process
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

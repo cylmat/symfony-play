@@ -4,6 +4,7 @@ namespace App\AppBundle\Controller;
 
 use App\Text\Application\TextAction;
 use App\Text\Application\TextType;
+use App\Text\Domain\Service\SedProcess;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,8 +23,15 @@ class TextController extends AbstractController
         if ($textForm->isSubmitted() && $textForm->isValid()) {
             $result = $textAction->executeRequest([
                 'text' => $textForm->get('text')->getData(),
-                'replace' => $textForm->get('replace')->getData(),
-                'pattern' => $textForm->get('pattern')->getData(),
+                'commands' => [
+                    $this->commandArguments(
+                        SedProcess::CMD, 
+                        [
+                            'pattern' => $textForm->get('pattern')->getData(),
+                            'replace' => $textForm->get('replace')->getData(),
+                        ]
+                    ),
+                ],
             ]);
         }
 
@@ -31,5 +39,13 @@ class TextController extends AbstractController
             'form' => $textForm,
             'result' => $result,
         ]);
+    }
+
+    private function commandArguments(string $command, array $arguments): array
+    {
+        return [
+            'cmd' => $command,
+            'arguments' => $arguments,
+        ];
     }
 }

@@ -14,8 +14,8 @@ final class TextType extends AbstractType
     {
         $builder
             ->add('text', Type\TextType::class)
-            ->add('replace', Type\TextType::class)
             ->add('pattern', Type\TextType::class)
+            ->add('replace', Type\TextType::class)
             ->add('submit', Type\SubmitType::class, [])
         ;
     }

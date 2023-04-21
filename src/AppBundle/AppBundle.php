@@ -2,6 +2,7 @@
 
 namespace App\AppBundle;
 
+use App\AppBundle\DependencyInjection\Compiler\AppCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -18,6 +19,9 @@ class AppBundle extends Bundle
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function build(ContainerBuilder $container): void
     {
+        parent::build($container);
+
+        $container->addCompilerPass(new AppCompilerPass());
     }
 
     /* Called from Kernel::buildContainer() */

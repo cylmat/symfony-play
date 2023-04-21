@@ -6,9 +6,7 @@ use App\AppBundle\Common\AppRequest;
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-/**
- * @group integration
- */
+/** @groups integration */
 final class TextActionTest extends KernelTestCase
 {
     private TextAction $textAction;
@@ -20,8 +18,20 @@ final class TextActionTest extends KernelTestCase
 
     public function testExecute(): void
     {  
-        $request = new AppRequest(['text' => 'alpha-beta', 'replace' => 'alpha', 'pattern' => 'gamma']);
+        $request = new AppRequest([
+            'text' => 'alpha-beta',
+            'commands' => [
+                [
+                    'cmd' => 'sed',
+                    'arguments' => [
+                        'pattern' => 'alpha',
+                        'replace' => 'gamma',
+                    ],
+                ]
+            ],
+        ]);
         $res = $this->textAction->execute($request);
+
         $this->assertSame('gamma-beta', $res);
     }
 }

@@ -3,6 +3,8 @@
 if [ $# -lt 1 ]; then echo "Usage : $0 <script-name>"; exit; fi
 
 ARGUMENT=$2
+ARGUMENT2=$3
+ARGUMENT3=$4
 
 echogood () {
 	echo -e "\033[1;32m------------\n- All good -\n------------\033[0m"
@@ -171,7 +173,7 @@ case "$1" in
 # @see https://phpunit.readthedocs.io
 "unit"|"phpunit")
 	echoinfo "Running Phpunit"
-    bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ;;
+    bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ${ARGUMENT2} ${ARGUMENT3};;
 "funit"|"ftest")
 	echoinfo "Running Phpunit functional"
     bin/phpunit -v -c tools/test/phpunit.xml --group functional ${ARGUMENT} ;;

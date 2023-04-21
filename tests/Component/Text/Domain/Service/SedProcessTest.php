@@ -20,8 +20,8 @@ final class SedProcessTest extends TestCase
         $this->assertSame($expect, $this->sedProcess->processText(
             'this is a standard test',
             [
-                'this' => 'This',
-                'test' => 'text',
+                ['pattern' => 'this', 'replace' => 'This'],
+                ['pattern' => 'test', 'replace' => 'text'],
             ]
         ));
     }
