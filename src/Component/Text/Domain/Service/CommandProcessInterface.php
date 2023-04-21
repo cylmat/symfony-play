@@ -8,5 +8,8 @@ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 #[AutoconfigureTag('app.auto_command_process')]
 interface CommandProcessInterface
 {
+    public const CMD = '';
+
+    /** @param string[][] $args */
     public function processText(string $text, array $args): string;
 }

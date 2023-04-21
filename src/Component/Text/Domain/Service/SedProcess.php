@@ -10,9 +10,9 @@ final class SedProcess implements CommandProcessInterface
     public const CMD = 'sed';
 
     /**
-     * @param string[] $args
+     * Replace with arguments ['textpattern' => 'textreplacement'].
      *
-     * Replace with arguments ['textpattern' => 'textreplacement']
+     * @param string[][] $args
      *
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
@@ -29,6 +29,11 @@ final class SedProcess implements CommandProcessInterface
         return $text;
     }
 
+    /**
+     * @param string[][] $arguments
+     *
+     * @return string[]
+     */
     private function flattenArguments(array $arguments): array
     {
         $return = [];

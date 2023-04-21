@@ -21,7 +21,7 @@ class AppCompilerPass implements CompilerPassInterface
             return;
         }
 
-        $commandManagerDefinition = $container->findDefinition(CommandManager::class);
+        $commandDefinition = $container->findDefinition(CommandManager::class);
         $tags = $container->findTaggedServiceIds('app.command_process');
 
         /**
@@ -35,6 +35,6 @@ class AppCompilerPass implements CompilerPassInterface
         });
 
         $iterator = new IteratorArgument($processes);
-        $commandManagerDefinition->setArgument('$commandProcesses', $iterator);
+        $commandDefinition->setArgument('$commandProcesses', $iterator);
     }
 }

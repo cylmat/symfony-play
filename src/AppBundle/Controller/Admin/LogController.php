@@ -19,7 +19,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Factory\FilterFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\PaginatorFactory;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
+use Symfony\Component\HttpFoundation\Response;
 
+/** @SuppressWarnings(PHPMD.CouplingBetweenObjects) */
 class LogController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -38,15 +40,17 @@ class LogController extends AbstractCrudController
         return $actions;
     }
 
-    public function flush(AdminContext $context)
+    /** @SuppressWarnings(PHPMD.StaticAccess) */
+    public function flush(AdminContext $context): Response
     {
         if (!$this->isGranted(Permission::EA_EXECUTE_ACTION, ['action' => Action::INDEX, 'entity' => null])) {
             throw new ForbiddenActionException($context);
         }
 
         $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
-        $context->getCrud()->setFieldAssets($this->getFieldAssets($fields));
+        $context->getCrud()?->setFieldAssets($this->getFieldAssets($fields));
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
+        /** @phpstan-ignore-next-line */
         $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
 

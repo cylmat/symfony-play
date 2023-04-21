@@ -40,6 +40,11 @@ class TextController extends AbstractController
         ]);
     }
 
+    /**
+     * @param mixed[][] $arguments
+     *
+     * @return mixed[]
+     */
     private function commandArguments(string $command, array $arguments): array
     {
         return [

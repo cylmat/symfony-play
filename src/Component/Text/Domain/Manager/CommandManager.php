@@ -3,6 +3,7 @@
 namespace App\Text\Domain\Manager;
 
 use App\Text\Domain\Service\CommandProcessInterface;
+use LogicException;
 
 final class CommandManager
 {
@@ -12,7 +13,7 @@ final class CommandManager
     ) {
     }
 
-    /** @param array[] $commandsParams */
+    /** @param mixed[][] $commandsParams */
     public function processText(string $text, array $commandsParams): string
     {
         foreach ($commandsParams as $commandParams) {
@@ -23,6 +24,7 @@ final class CommandManager
         return $text;
     }
 
+    /** @param string[] $commandParams */
     private function chooseCommand(array &$commandParams): CommandProcessInterface
     {
         foreach ($this->commandProcesses as $process) {
@@ -33,6 +35,6 @@ final class CommandManager
             }
         }
 
-        throw new \LogicException('Command "'.$commandParams['cmd'].'" not found!');
+        throw new LogicException('Command "'.$commandParams['cmd'].'" not found!');
     }
 }

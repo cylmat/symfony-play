@@ -21,6 +21,9 @@ $rules = [
     'no_useless_else' => true,
     'no_useless_return' => true,
     'php_unit_internal_class' => false,
+
+    // ex: use DateTimeImmutable
+    'global_namespace_import' => ['import_classes' => true, 'import_constants' => false, 'import_functions' => false],
 ];
 
 $root = __DIR__.'/../../';

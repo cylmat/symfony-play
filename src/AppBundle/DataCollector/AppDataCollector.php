@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollectorInterface;
 use Symfony\Component\HttpKernel\DataCollector\LateDataCollectorInterface;
+use Throwable;
 
 /** @see https://symfony.com/doc/current/profiler.html */
 final class AppDataCollector extends AbstractDataCollector implements DataCollectorInterface, LateDataCollectorInterface
 {
     // Called during kernel.response
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
-    public function collect(Request $request, Response $response, ?\Throwable $exception = null): void
+    public function collect(Request $request, Response $response, ?Throwable $exception = null): void
     {
         $this->data = [
             'method' => $request->getMethod(),

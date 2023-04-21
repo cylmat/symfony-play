@@ -7,6 +7,7 @@ use App\AppBundle\Infrastructure\AppDoctrine;
 use App\Encrypt\Domain\Model\EncryptedData;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
+use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Workflow\Event\EnteredEvent;
 use Symfony\Component\Workflow\Event\TransitionEvent;
@@ -31,7 +32,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
     /** @SuppressWarnings(PHPMD.MissingImport) */
     public function entered(EnteredEvent $event): void
     {
-        $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);
+        $event->getSubject() instanceof EncryptedData or throw new RuntimeException('Event subject must be an instance of '.EncryptedData::class);
         $this->mainLogger->debug(EncryptedData::class.' entered in "'.($place = \array_key_first($event->getSubject()->getCurrentPlace())).'" place.');
 
         $log = (new Log())
@@ -46,6 +47,6 @@ class WorkflowSubscriber implements EventSubscriberInterface
     /** @SuppressWarnings(PHPMD.MissingImport) */
     public function transition(TransitionEvent $event): void
     {
-        $event->getSubject() instanceof EncryptedData or throw new \RuntimeException('Event subject must be an instance of '.EncryptedData::class);
+        $event->getSubject() instanceof EncryptedData or throw new RuntimeException('Event subject must be an instance of '.EncryptedData::class);
     }
 }
