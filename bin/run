@@ -140,7 +140,15 @@ case "$1" in
 "cover"|"coverage")
 	echoinfo "Running Coverage"
 	echoinfo "You must install pcov, phpdbg or xdebug to use code coverage\n"
-	php -derror_reporting=24575 -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text tests
+	php -derror_reporting=24575 -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-text -- tests 
+    # XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
+    # phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
+;;
+
+"cover-html")
+	echoinfo "Running Coverage"
+	echoinfo "You must install pcov, phpdbg or xdebug to use code coverage\n"
+	php -derror_reporting=24575 -dpcov.enabled=1 bin/phpunit -c tools/test/phpunit.xml --coverage-html public/coverage
     # XDEBUG_MODE=coverage bin/phpunit -c tools/test/phpunit.xml --coverage-html=var/unit-coverage
     # phpdbg -qrr bin/phpunit -c phpunit.xml --coverage-html var/unit-coverage
 ;;

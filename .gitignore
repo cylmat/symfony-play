@@ -9,6 +9,7 @@
 **.local
 **.cache
 /.env.deploy
+/public/coverage/
 
 ###> symfony/framework-bundle ###
 /.env.local

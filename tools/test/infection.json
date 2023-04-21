@@ -5,8 +5,7 @@
             "src"
         ],
         "excludes": [
-            "{.*Controller|Fixtures.php}",
-            "{.*Configuration.php}"
+            "{.*(Controller|Fixtures|Configuration|Extension|Bundle).php}"
         ]
     },
     "phpUnit": {

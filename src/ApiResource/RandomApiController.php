@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /** @see https://fosrestbundle.readthedocs.io */
 class RandomApiController extends AbstractFOSRestController
 {
-    #[Route("/random")]
+    #[Route('/random')]
     public function getRandomIntAction(): Response
     {
         $data = [

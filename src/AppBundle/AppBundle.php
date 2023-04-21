@@ -11,7 +11,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * Symfony 6.2: Can extends AbstractBundle (with BundleExtension)
  * to avoid using Configuration and Extension class.
  *
- *  @see https://symfony.com/doc/current/bundles.html
+ * @see https://symfony.com/doc/current/bundles.html
+ *
+ * @codeCoverageIgnore
  */
 class AppBundle extends Bundle
 {

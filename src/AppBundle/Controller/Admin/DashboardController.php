@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * EasyAdmin
+ * EasyAdmin.
+ *
  * @see https://symfonycasts.com/screencast/easyadminbundle
  * @see https://symfony.com/bundles/EasyAdminBundle/current/index.html
  */
@@ -21,7 +22,7 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        //return parent::index();
+        // return parent::index();
 
         // Option 1. You can make your dashboard redirect to some common page of your backend
         //
@@ -59,9 +60,11 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud('Log', 'fas fa-list', Log::class);
-        yield MenuItem::linkToUrl('Log -Flush-', 'fas fa-list',
+        yield MenuItem::linkToUrl(
+            'Log -Flush-',
+            'fas fa-list',
             $this->container->get(AdminUrlGenerator::class)->setAction('flush')->generateUrl()
         );
-        //yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
     }
 }

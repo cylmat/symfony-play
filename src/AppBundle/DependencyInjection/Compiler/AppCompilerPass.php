@@ -9,9 +9,12 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
 /** @see https://symfony.com/doc/current/service_container/tags.html */
+/** @codeCoverageIgnore */
 class AppCompilerPass implements CompilerPassInterface
 {
-    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function process(ContainerBuilder $container): void
     {
         if (!$container->has(CommandManager::class)) {
@@ -22,12 +25,14 @@ class AppCompilerPass implements CompilerPassInterface
         $tags = $container->findTaggedServiceIds('app.command_process');
 
         /**
-         * Replace the 
+         * Replace the
          *   arguments:
-         *     - !tagged_iterator { tag: app.sample, exclude: ['App\Handler\Class'] }
+         *     - !tagged_iterator { tag: app.sample, exclude: ['App\Handler\Class'] }.
          */
         $processes = [];
-        \array_walk($tags, function($value, $key) use (&$processes) { $processes[] = new Reference($key); });
+        \array_walk($tags, function ($value, $key) use (&$processes) {
+            $processes[] = new Reference($key);
+        });
 
         $iterator = new IteratorArgument($processes);
         $commandManagerDefinition->setArgument('$commandProcesses', $iterator);

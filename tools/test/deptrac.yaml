@@ -7,22 +7,18 @@ deptrac:
 
   exclude_files:
     - '#.*Test.*#'
+    - '#.*Admin.*#'
 
   layers:
     # Doctrine
     -
-      name: DoctrineRepository
+      name: Doctrine
       collectors:
         -
           type: className
-          value: .*ServiceEntityRepository
-    -
-      name: DoctrineManager
-      collectors:
-        -
-          type: className
-          value: .*ManagerRegistry
+          value: Doctrine\\.*
 
+    # Application
     -
       name: Action
       collectors:
@@ -54,6 +50,7 @@ deptrac:
           type: className
           value: .*Service.*
 
+  # RULES
   ruleset:
     Controller:
       - Action
@@ -65,8 +62,7 @@ deptrac:
     Service:
       - Repository
     Repository:
-      - DoctrineRepository
-      - DoctrineManager
+      - Doctrine
 
   formatters:
     graphviz:

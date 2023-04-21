@@ -12,8 +12,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Option\EA;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\ActionConfigDto;
-use EasyCorp\Bundle\EasyAdminBundle\Dto\ActionDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\FilterConfigDto;
 use EasyCorp\Bundle\EasyAdminBundle\Exception\ForbiddenActionException;
 use EasyCorp\Bundle\EasyAdminBundle\Factory\EntityFactory;
@@ -46,17 +44,19 @@ class LogController extends AbstractCrudController
             throw new ForbiddenActionException($context);
         }
 
-        $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));   
-        $context->getCrud()->setFieldAssets($this->getFieldAssets($fields)); 
-        $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());    
+        $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
+        $context->getCrud()->setFieldAssets($this->getFieldAssets($fields));
+        $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
         $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
 
+        /*
         $a = $context->getCrud()->getActionsConfig();
         $adto = new ActionDto();
         $adto->setName('flush');
         $a = new ActionConfigDto();
-        
+        */
+
         /** @var EntityCollection $entities */
         $entities = $this->container->get(EntityFactory::class)->createCollection($context->getEntity(), $paginator->getResults());
 
