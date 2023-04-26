@@ -18,7 +18,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class AppBundle extends Bundle
 {
     /* Called from Kernel::prepareContainer() */
-    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);

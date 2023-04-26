@@ -34,9 +34,19 @@ services:
         resource: ../src/Component/Text/
 
     # TAGS #
+    # @todo move to TEXT bundle !!
     _instanceof:
         App\Text\Domain\Service\CommandProcessInterface:
             tags: ['app.command_process']
+
+        # LOGGER #
+        App\AppBundle\Service\LoggerAwareInterface:
+            calls:
+                - ['setLogger', ['@app.logger']]
+
+    App\AppBundle\Service\LoggerInterface: '@App\AppBundle\Service\Logger'
+
+    app.logger: '@App\AppBundle\Service\LoggerInterface'
 
     # App\Text\Domain\Manager\CommandManager:
     #     arguments:

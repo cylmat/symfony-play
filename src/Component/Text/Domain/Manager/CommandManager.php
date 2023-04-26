@@ -2,11 +2,17 @@
 
 namespace App\Text\Domain\Manager;
 
+use App\AppBundle\Service\LoggerAwareInterface;
+use App\AppBundle\Service\LoggerTrait;
 use App\Text\Domain\Service\CommandProcessInterface;
 use LogicException;
 
-final class CommandManager
+final class CommandManager implements LoggerAwareInterface
 {
+    use LoggerTrait;
+
+    private const LOGGER_CHANNEL = 'command';
+
     public function __construct(
         /** @var CommandProcessInterface[] $commandProcesses */
         private readonly iterable $commandProcesses
@@ -29,6 +35,7 @@ final class CommandManager
     {
         foreach ($this->commandProcesses as $process) {
             if ($process::CMD === $commandParams['cmd']) {
+                $this->getLogger(self::LOGGER_CHANNEL)->info('Command "'.$process::CMD.'" being processed.');
                 unset($commandParams['cmd']);
 
                 return $process;

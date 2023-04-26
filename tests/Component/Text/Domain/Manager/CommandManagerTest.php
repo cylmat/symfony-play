@@ -4,7 +4,7 @@ namespace App\Tests\Text\Domain\Manager;
 
 use App\Text\Domain\Manager\CommandManager;
 use App\Text\Domain\Service\CommandProcessInterface;
-use PHPUnit\Framework\TestCase;
+use AppTestCase;
 
 final class TestCommandProcess implements CommandProcessInterface
 {
@@ -15,21 +15,30 @@ final class TestCommandProcess implements CommandProcessInterface
     }
 }
 
-final class CommandManagerTest extends TestCase
+final class CommandManagerTest extends AppTestCase
 {
     private CommandManager $cmdManager;
     private TestCommandProcess $commandProcess;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
-        // @see RewindableGenerator
+        parent::setUp();
+
+        // See RewindableGenerator.
         $this->commandProcess = new TestCommandProcess();
         $iterable = new \ArrayIterator([$this->commandProcess]);
+
         $this->cmdManager = new CommandManager($iterable);
+        $this->cmdManager->setLogger($this->mockedLogger);
     }
 
     public function testProcesses(): void
     {
+        $this->mockedLogger
+            ->expects($this->once())
+            ->method('info')
+        ;
+
         $text = $this->cmdManager->processText('gamma-delta', [
             [
                 'cmd' => 'test-cmd',
