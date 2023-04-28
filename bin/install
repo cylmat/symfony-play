@@ -205,7 +205,7 @@ case "$1" in
 
 # @see https://www.phpliteadmin.org
 "phplite")
-	wget https://bitbucket.org/phpliteadmin/public/downloads/phpLiteAdmin_v1-9-8-2.zip -o phpLiteAdmin_v1-9-8-2.zip
+	wget https://bitbucket.org/phpliteadmin/public/downloads/phpLiteAdmin_v1-9-8-2.zip -O phpLiteAdmin_v1-9-8-2.zip
 	unzip phpLiteAdmin_v1-9-8-2.zip
 ;;
 
