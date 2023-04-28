@@ -6,7 +6,7 @@ use App\AppBundle\Common\AppRequest;
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-/** @groups integration */
+/** @group integration */
 final class TextActionTest extends KernelTestCase
 {
     private TextAction $textAction;
