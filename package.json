@@ -1,5 +1,5 @@
 {
-    "devDependencies": {
+    "dependencies": {
         "@babel/core": "^7.17.0",
         "@babel/preset-env": "^7.16.0",
         "@hotwired/stimulus": "^3.0.0",
@@ -8,8 +8,9 @@
         "@symfony/webpack-encore": "^4.0.0",
         "bootstrap": "^5.2.2",
         "core-js": "^3.23.0",
+        "json5": "^2.2.2",
         "jquery": "^3.6.1",
-        "loader-utils": ">=2.0.4",
+        "loader-utils": "^2.0.4",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.55.0",
         "sass-loader": "^13.1.0",
