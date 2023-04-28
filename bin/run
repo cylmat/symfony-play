@@ -21,6 +21,8 @@ echoinfo () {
 
 case "$1" in
 
+"lintests") $0 lints && $0 tests ;;
+
 ############
 # BEHAVIOR #
 ############
