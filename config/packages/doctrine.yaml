@@ -80,7 +80,7 @@ when@test:
             #
             # @todo see why DATABASE_URL doesn't works for tests
             #
-            url: "sqlite:///%kernel.project_dir%/var/data.db"
+            url: '%env(DEV_SQLITE_URL)%'
             driver: pdo_sqlite
             server_version: '3'
             charset: utf8mb4
