@@ -11,6 +11,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home_index')]
     public function index(): Response
     {
-        return $this->forward(EncryptController::class.'::encrypt');
+        return $this->forward(TextController::class.'::index');
     }
 }

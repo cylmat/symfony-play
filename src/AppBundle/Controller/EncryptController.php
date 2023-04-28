@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * NOT USED FOR NOW !
+ */
 class EncryptController extends AbstractController
 {
     /** @see https://symfony.com/bundles/SensioFrameworkExtraBundle/current/annotations/converters.html */
