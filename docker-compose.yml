@@ -62,6 +62,9 @@ services:
         networks:
             - sym
 
+    ############
+    # DATABASE #
+    ############
     mysql:
         image: mysql:5.7
         restart: always
@@ -78,6 +81,37 @@ services:
         networks: 
             - sym
 
+    ##############
+    # Key-values #
+    ##############
+    redis:
+        image: redis:6.0  
+        restart: always
+        volumes: 
+            - .docker/data/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+        # ports: [6379:6379]
+        networks:
+            - sym
+
+    #########
+    # ADMIN #
+    #########
+
+    adminer:
+        image: adminer:4-standalone
+        restart: always
+        networks: [sym]
+        ports: [8081:8080]
+
+    redisadmin:
+        image: erikdubbelboer/phpredisadmin
+        restart: always
+        environment:
+            - REDIS_1_HOST=redis
+            - REDIS_1_NAME=AppRedis
+        networks: [sym]
+        ports: [8082:80]
+
     # phpmyadmin:
     #     image: phpmyadmin:5.0
     #     restart: always
@@ -90,13 +124,6 @@ services:
     #     networks:
     #         - sym
 
-    # adminer:
-    #     image: adminer:4.7-standalone
-    #     restart: always
-    #     ports:
-    #         - 8082:8080
-    #     networks:
-    #         - sym
 
 ######################
 # Other useful boxes #
