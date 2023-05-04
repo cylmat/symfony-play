@@ -32,7 +32,7 @@ case "$1" in
 	$0 composer
 	$0 deployer
 	$0 kint
-	$0 nvm
+	$0 volta
 	$0 symfony
 	# $0 phing
 	# $0 phive
@@ -186,6 +186,11 @@ case "$1" in
 	rm /tmp/phive.phar.asc
 	chmod +x phive.phar
 	mv phive.phar /usr/local/bin/phive
+;;
+
+# @see https://docs.volta.sh
+"volta")
+	curl https://get.volta.sh | bash
 ;;
 
 #########################
