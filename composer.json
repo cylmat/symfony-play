@@ -95,6 +95,7 @@
             "App\\": "src/",
             "App\\AppBundle\\": "src/AppBundle/",
             "App\\Encrypt\\": "src/Component/Encrypt/",
+            "App\\Local\\": "src/Component/Local/",
             "App\\Text\\": "src/Component/Text/"
         }
     },
@@ -108,6 +109,7 @@
             "App\\Tests\\": "tests/",
             "App\\Tests\\AppBundle\\": "tests/AppBundle/",
             "App\\Tests\\Encrypt\\": "tests/Component/Encrypt/",
+            "App\\Tests\\Local\\": "tests/Component/Local/",
             "App\\Tests\\Text\\": "tests/Component/Text/",
             "spec\\App\\": "spec/"
         }
