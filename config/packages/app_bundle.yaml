@@ -1,0 +1,4 @@
+app:
+  enabled: false # sample
+  #redis:
+  #  enabled: ~ # use null / local / remote_url
