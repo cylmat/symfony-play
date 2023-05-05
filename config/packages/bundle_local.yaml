@@ -1,17 +1,8 @@
 services:
-
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
-    _instanceof:
-        App\Local\Domain\AbstractLocalManager:
-            bind:
-                # @see https://symfony.com/doc/current/reference/formats/expression_language.html
-                $isLocal: "@='dev' === env('APP_ENV')"
-
     App\Local\:
         resource: ../../src/Component/Local/
-
-   

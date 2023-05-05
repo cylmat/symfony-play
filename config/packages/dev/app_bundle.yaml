@@ -1,0 +1,3 @@
+
+parameters:
+    use_redis: remote # use null / local / remote
