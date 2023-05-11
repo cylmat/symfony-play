@@ -11,11 +11,12 @@
  */
 
 $rules = [
-    '@PSR12' => true,         # https://cs.symfony.com/doc/ruleSets/PSR12.html
-    '@Symfony' => true,       # https://cs.symfony.com/doc/ruleSets/Symfony.html
-    # '@PhpCsFixer' => false, # https://cs.symfony.com/doc/ruleSets/PhpCsFixer.html
+    '@PSR12' => true,         # @see https://cs.symfony.com/doc/ruleSets/PSR12.html
+    '@Symfony' => true,       # @see https://cs.symfony.com/doc/ruleSets/Symfony.html
+    # '@PhpCsFixer' => false, # @see https://cs.symfony.com/doc/ruleSets/PhpCsFixer.html
 
     'array_syntax' => ['syntax' => 'short'],
+    'phpdoc_to_comment' => ['ignored_tags' => ['todo', 'var']],
     'full_opening_tag' => true,
     'echo_tag_syntax' => true,
     'no_useless_else' => true,

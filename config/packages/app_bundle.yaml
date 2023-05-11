@@ -1,10 +1,11 @@
 app:
   enabled: false # sample
   #redis:
-  #  enabled: ~ # use null / local / remote
+  #  enabled: ~
 
 parameters:
-    use_redis: ~ # default
+    # @TODO use "app.redis.enabled" parameters
+    use_redis: ~ # use null/local/remote : default null
 
 services:
     _defaults:

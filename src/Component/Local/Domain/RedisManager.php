@@ -12,16 +12,13 @@ class RedisManager
     private NullClient|\Predis\Client $redisClient;
 
     public function __construct(
-        private RedisClientFactory $redisClientFactory
+        RedisClientFactory $redisClientFactory
     ) {
         $this->redisClient = $redisClientFactory();
     }
 
-    /**
-     * @todo REMOVE TEST !!!
-     */
-    public function test()
+    public function getClient(): NullClient|\Predis\Client
     {
-        $this->redisClient->set('y', 'b');
+        return $this->redisClient;
     }
 }

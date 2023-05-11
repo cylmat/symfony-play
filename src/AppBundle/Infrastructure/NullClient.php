@@ -4,7 +4,8 @@ namespace App\AppBundle\Infrastructure;
 
 class NullClient implements AppClientInterface
 {
-    public function __call($name, $arguments): void
+    /** @param mixed $arguments */
+    public function __call(string $name, $arguments): void
     {
     }
 }

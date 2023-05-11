@@ -2,15 +2,28 @@
 
 namespace App\AppBundle\Infrastructure;
 
+use Predis\Client as PredisClient;
+use Throwable;
+
 class RedisClientFactory
 {
     public function __construct(
-        private ?string $redis_url
+        private ?string $redisUrl
     ) {
     }
 
-    public function __invoke(): NullClient|\Predis\Client
+    /** @infection-ignore-all */
+    public function __invoke(): NullClient|PredisClient
     {
-        return $this->redis_url ? new \Predis\Client($this->redis_url) : new NullClient();
+        $client = $this->redisUrl ? new PredisClient($this->redisUrl) : new NullClient();
+
+        try {
+            /** @var PredisClient $client */
+            $client->connect();
+        } catch (Throwable $exception) {
+            return new NullClient();
+        }
+
+        return $client;
     }
 }

@@ -66,6 +66,7 @@
         "phpmd/phpmd": "^2.13",
         "phpro/grumphp": "^1.15",
         "phpspec/phpspec": "^7.3",
+        "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.5",
         "phpunitgen/console": "^4.2",
         "sebastian/phpcpd": "^6.0",
