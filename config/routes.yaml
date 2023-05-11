@@ -6,7 +6,7 @@ api_controllers:
     prefix: /api
 
 controllers:
-    resource: ../src/AppBundle/Controller/
+    resource: ../src/AppBundle/Application/Controller/
     type: annotation
 
 controllers_admin:

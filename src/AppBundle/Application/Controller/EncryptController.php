@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Controller;
+namespace App\AppBundle\Application\Controller;
 
 use App\AppBundle\Common\AppRequest;
 use App\Encrypt\Application\EncryptAction;
