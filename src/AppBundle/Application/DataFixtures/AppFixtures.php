@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\DataFixtures;
+namespace App\AppBundle\Application\DataFixtures;
 
 use App\AppBundle\Entity\Log;
 use Doctrine\Bundle\FixturesBundle\Fixture;
