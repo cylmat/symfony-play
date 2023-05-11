@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\DataCollector;
+namespace App\AppBundle\Application\DataCollector;
 
 use Symfony\Bundle\FrameworkBundle\DataCollector\AbstractDataCollector;
 use Symfony\Component\HttpFoundation\Request;
