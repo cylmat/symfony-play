@@ -19,6 +19,10 @@ services:
     App\AppBundle\:
         resource: ../../src/AppBundle/
 
+    App\AppBundle\Command\MakeEntityWrapper:
+        arguments: 
+            - '@maker.maker.make_entity'
+
     App\AppBundle\Infrastructure\RedisClientFactory:
         arguments:
             # env function come from ExpressionLanguageProvider.php
@@ -30,6 +34,5 @@ services:
                         parameter('use_redis') === 'remote' && env('REDIS_REMOTE_URL')
                         ? env('REDIS_REMOTE_URL')
                         : null
-                    )
-            "
+                    )"
     

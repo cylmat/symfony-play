@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controller;
+namespace App\Admin\Application\Controller;
 
 use App\AppBundle\Entity\Log;
 use Doctrine\ORM\EntityManager;
@@ -21,6 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
+/** Used for DashboardController */
 /** @SuppressWarnings(PHPMD.CouplingBetweenObjects) */
 class LogController extends AbstractCrudController
 {

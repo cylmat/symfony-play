@@ -1,14 +1,6 @@
-api_controllers:
-    resource: ../../src/ApiResource/
-    type: annotation
-
-controllers:
-    resource: ../../src/AppBundle/Controller/
-    type: annotation
-
-admin_controllers:
-    resource: ../../src/Admin/
-    type: annotation
+# controllers:
+#     resource: ../../src/Controller/
+#     type: annotation
 
 kernel:
     resource: ../../src/Kernel.php

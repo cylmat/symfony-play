@@ -1,5 +1,5 @@
-# @todo check what is diff with routes/annotations ?
-# @todo put it in appbundle
+# Must be configured to avoir error: "No route found"
+
 api_controllers:
     resource: ../src/ApiResource/
     type: annotation
@@ -7,4 +7,8 @@ api_controllers:
 
 controllers:
     resource: ../src/AppBundle/Controller/
+    type: annotation
+
+controllers_admin:
+    resource: ../src/Admin/Application/Controller/
     type: annotation

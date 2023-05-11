@@ -18,10 +18,6 @@ services:
     App\ApiResource\:
         resource: ../src/ApiResource/
 
-    App\AppBundle\Command\MakeEntityWrapper:
-        arguments: 
-            - '@maker.maker.make_entity'
-    
     # BUNDLES #
 
     App\Encrypt\:
