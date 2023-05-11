@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Controller\Admin;
+namespace App\Admin\Controller;
 
 use App\AppBundle\Entity\Log;
 use Doctrine\ORM\EntityManager;

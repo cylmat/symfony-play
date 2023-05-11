@@ -23,7 +23,7 @@ services:
         arguments:
             # env function come from ExpressionLanguageProvider.php
             # @todo: use custom expression "isset"
-            $redis_url: "@=
+            $redisUrl: "@=
                 parameter('use_redis') === 'local' && env('REDIS_URL')
                     ? env('REDIS_URL')
                     : (
