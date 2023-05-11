@@ -17,7 +17,6 @@ class AppFixtures extends Fixture
             ->setMessage('test')
         ;
         $manager->persist($logEntity);
-
         $manager->flush();
     }
 }
