@@ -12,6 +12,8 @@ use Monolog\Logger as MonologLogger;
 final class Logger extends MonologLogger implements LoggerInterface
 {
     public string $channel = 'default';
+    protected array $handlers = []; // avoid "reset" errors in tests
+    protected array $processors = []; // avoid "reset" errors in tests
 
     public function __construct(
         private readonly AppDoctrine $doctrine
