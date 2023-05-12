@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle\Service;
+namespace App\AppBundle\Application\Service;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
 use DateTimeImmutable;
 use Monolog\Level;

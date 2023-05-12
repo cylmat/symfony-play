@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle\Application\DataFixtures;
+namespace App\AppBundle\Domain\DataFixtures;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Psr\Log\LogLevel;

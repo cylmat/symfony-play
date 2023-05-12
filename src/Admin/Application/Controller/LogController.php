@@ -2,7 +2,7 @@
 
 namespace App\Admin\Application\Controller;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use Doctrine\ORM\EntityManager;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\EntityCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;

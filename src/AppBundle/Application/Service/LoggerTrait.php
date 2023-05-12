@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Service;
+namespace App\AppBundle\Application\Service;
 
 trait LoggerTrait
 {

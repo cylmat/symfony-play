@@ -2,7 +2,6 @@
 
 namespace App\Test\Encrypt\Application\EventSubscriber;
 
-use App\AppBundle\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
 use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
 use App\Encrypt\Domain\Model\EncryptedData;

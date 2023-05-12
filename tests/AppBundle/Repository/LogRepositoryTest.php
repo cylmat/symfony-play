@@ -2,8 +2,8 @@
 
 namespace App\Test\AppBundle\Repository;
 
-use App\AppBundle\Entity\Log;
-use App\AppBundle\Repository\LogRepository;
+use App\AppBundle\Domain\Entity\Log;
+use App\AppBundle\Infrastructure\Repository\LogRepository;
 use RepositoryTestCase;
 
 final class LogRepositoryTest extends RepositoryTestCase

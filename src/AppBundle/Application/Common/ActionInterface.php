@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Common;
+namespace App\AppBundle\Application\Common;
 
 interface ActionInterface
 {

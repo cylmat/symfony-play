@@ -6,9 +6,7 @@ use App\AppBundle\Common\AppRequest;
 use App\Encrypt\Application\EncryptAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-/**
- * @group integration
- */
+/** @group integration */
 final class EncryptActionTest extends KernelTestCase
 {
     private EncryptAction $encryptAction;

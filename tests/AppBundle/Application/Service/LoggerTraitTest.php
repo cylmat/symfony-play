@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Test\AppBundle\Service;
+namespace App\Test\AppBundle\Application\Service;
 
-use App\AppBundle\Service\LoggerInterface;
-use App\AppBundle\Service\LoggerTrait;
+use App\AppBundle\Application\Service\LoggerInterface;
+use App\AppBundle\Application\Service\LoggerTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

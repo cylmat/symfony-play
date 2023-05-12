@@ -2,7 +2,7 @@
 
 namespace App\Test\AppBundle\Entity;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LogLevel;
 

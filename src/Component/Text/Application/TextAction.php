@@ -2,8 +2,8 @@
 
 namespace App\Text\Application;
 
-use App\AppBundle\Common\AbstractAction;
-use App\AppBundle\Common\AppRequest;
+use App\AppBundle\Application\Common\AbstractAction;
+use App\AppBundle\Application\Common\AppRequest;
 use App\Text\Domain\Manager\CommandManager;
 
 final class TextAction extends AbstractAction

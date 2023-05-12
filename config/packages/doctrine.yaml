@@ -48,7 +48,7 @@ doctrine:
                 # Use AttributeDriver class (with MappingDriverChain)
                 alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
                 type: attribute
-                dir: 'Entity'
+                dir: 'Domain/Entity'
                 prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
                 is_bundle: true # change 'dir' attribute as relative path 
 

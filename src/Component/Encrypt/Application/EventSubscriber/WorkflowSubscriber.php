@@ -2,7 +2,7 @@
 
 namespace App\Encrypt\Application\EventSubscriber;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
 use App\Encrypt\Domain\Model\EncryptedData;
 use Psr\Log\LoggerInterface;

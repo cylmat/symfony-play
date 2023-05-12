@@ -2,8 +2,8 @@
 
 namespace App\Encrypt\Application;
 
-use App\AppBundle\Common\ActionInterface;
-use App\AppBundle\Common\AppRequest;
+use App\AppBundle\Application\Common\ActionInterface;
+use App\AppBundle\Application\Common\AppRequest;
 use App\Encrypt\Domain\Manager\EncryptManager;
 
 class EncryptAction implements ActionInterface

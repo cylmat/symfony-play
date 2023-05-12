@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Test\AppBundle\Service;
+namespace App\Test\AppBundle\Application\Service;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
-use App\AppBundle\Service\Logger;
+use App\AppBundle\Application\Service\Logger;
 use PHPUnit\Framework\TestCase;
 
 final class LoggerTest extends TestCase

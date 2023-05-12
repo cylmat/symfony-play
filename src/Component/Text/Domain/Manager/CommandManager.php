@@ -2,8 +2,8 @@
 
 namespace App\Text\Domain\Manager;
 
-use App\AppBundle\Service\LoggerAwareInterface;
-use App\AppBundle\Service\LoggerTrait;
+use App\AppBundle\Application\Service\LoggerAwareInterface;
+use App\AppBundle\Application\Service\LoggerTrait;
 use App\Text\Domain\Service\CommandProcessInterface;
 use LogicException;
 

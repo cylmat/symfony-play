@@ -33,13 +33,13 @@ services:
             tags: ['app.command_process']
 
         # LOGGER #
-        App\AppBundle\Service\LoggerAwareInterface:
+        App\AppBundle\Application\Service\LoggerAwareInterface:
             calls:
                 - ['setLogger', ['@app.logger']]
 
-    App\AppBundle\Service\LoggerInterface: '@App\AppBundle\Service\Logger'
+    App\AppBundle\Application\Service\LoggerInterface: '@App\AppBundle\Application\Service\Logger'
 
-    app.logger: '@App\AppBundle\Service\LoggerInterface'
+    app.logger: '@App\AppBundle\Application\Service\LoggerInterface'
 
     # App\Text\Domain\Manager\CommandManager:
     #     arguments:

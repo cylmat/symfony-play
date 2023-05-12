@@ -1,4 +1,5 @@
 f tests
+WorkflowSubscriber use infrastructure!
 ---------------------
 declare(strict_types=1)
 decorator stack

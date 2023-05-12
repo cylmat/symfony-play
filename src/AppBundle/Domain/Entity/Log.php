@@ -1,9 +1,9 @@
 <?php
 
-namespace App\AppBundle\Entity;
+namespace App\AppBundle\Domain\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\AppBundle\Repository\LogRepository;
+use App\AppBundle\Infrastructure\Repository\LogRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */

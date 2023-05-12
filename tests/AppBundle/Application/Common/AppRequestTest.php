@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\AppBundle\Common;
+namespace App\Tests\AppBundle\Application\Common;
 
-use App\AppBundle\Common\AppRequest;
+use App\AppBundle\Application\Common\AppRequest;
 use PHPUnit\Framework\TestCase;
 
 final class AppRequestTest extends TestCase

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Test\AppBundle\Common;
+namespace App\Test\AppBundle\Application\Common;
 
-use App\AppBundle\Common\AbstractAction;
-use App\AppBundle\Common\AppRequest;
+use App\AppBundle\Application\Common\AbstractAction;
+use App\AppBundle\Application\Common\AppRequest;
 use PHPUnit\Framework\TestCase;
 
 final class AbstractActionTest extends TestCase

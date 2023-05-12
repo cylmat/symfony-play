@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle\Repository;
+namespace App\AppBundle\Infrastructure\Repository;
 
-use App\AppBundle\Entity\Log;
+use App\AppBundle\Domain\Entity\Log;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
