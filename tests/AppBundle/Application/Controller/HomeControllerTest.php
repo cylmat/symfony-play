@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Test\AppBundle\Controller;
+namespace App\Test\AppBundle\Application\Controller;
 
-use App\AppBundle\Controller\HomeController;
+use App\AppBundle\Application\Controller\HomeController;
 use PHPUnit\Framework\TestCase;
 
 /** @group functional */

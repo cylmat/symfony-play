@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Tests\AppBundle\Controller;
+namespace App\Test\Admin\Application\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /** @group functional */
-final class TextControllerTest extends WebTestCase
+final class DashboardControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testIndex(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/text');
 
+        $client->request('GET', '/admin');
         $this->assertResponseIsSuccessful();
     }
 }
