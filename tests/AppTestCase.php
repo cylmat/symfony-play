@@ -1,6 +1,6 @@
 <?php
 
-use App\AppBundle\Service\Logger;
+use App\AppBundle\Application\Service\Logger;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

@@ -56,8 +56,8 @@ Doc
         </exclude>
 
         <report>
-            <html outputDirectory="../../var/coverage/html-coverage" lowUpperBound="50" highLowerBound="90"/>
-            <text outputFile="../../var/coverage/text-coverage.txt" showUncoveredFiles="false" showOnlySummary="false"/>
+            <html outputDirectory="../../public/coverage" lowUpperBound="50" highLowerBound="90"/>
+            <text outputFile="../../public/coverage/text-coverage.txt" showUncoveredFiles="false" showOnlySummary="false"/>
         </report>
     </coverage>
 

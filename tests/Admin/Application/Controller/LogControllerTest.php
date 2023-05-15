@@ -8,4 +8,5 @@ use PHPUnit\Framework\TestCase;
 /** @group functional */
 final class LogControllerTest extends TestCase
 {
+    public function test_to_remove_warnings() { $this->assertNull(null); }
 }

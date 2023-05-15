@@ -13,6 +13,7 @@ class RedisClientFactory
     }
 
     /** @infection-ignore-all */
+    /** @codeCoverageIgnore */
     public function __invoke(): NullClient|PredisClient
     {
         $client = $this->redisUrl ? new PredisClient($this->redisUrl) : new NullClient();

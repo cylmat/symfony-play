@@ -9,6 +9,28 @@ use PHPUnit\Framework\TestCase;
 
 final class LoggerTest extends TestCase
 {
+    private AppDoctrine $doctrine;
+
+    protected function setUp(): void
+    {
+        $this->doctrine = $this->createMock(AppDoctrine::class);
+    }
+
+    public function testDefault(): void
+    {
+        $logger = new Logger($this->doctrine);
+        
+        $this->assertEquals([], $logger->getHandlers());
+        $this->assertEquals([], $logger->getProcessors());
+    }
+
+    public function testSetChannel(): void
+    {
+        $logger = new Logger($this->doctrine);
+
+        $this->assertInstanceOf(Logger::class, $logger->setChannel('test'));
+    }
+
     public function testAddRecord(): void
     {
         $log = (new Log())
@@ -17,16 +39,16 @@ final class LoggerTest extends TestCase
             ->setMessage('Test')
         ;
 
-        $doctrine = $this->createMock(AppDoctrine::class);
-        $doctrine
+        $this->doctrine
             ->expects($this->once())
             ->method('persist')
             ->with($log)
         ;
-        $doctrine
+        $this->doctrine
             ->expects($this->once())
             ->method('flush');
-        $logger = new Logger($doctrine);
+
+        $logger = new Logger($this->doctrine);
         
         $this->assertTrue($logger->addRecord(100, 'Test'));
     }
