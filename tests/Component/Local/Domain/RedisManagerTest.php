@@ -27,4 +27,9 @@ final class RedisManagerTest extends TestCase
     {
         $this->assertEquals(new NullClient(), $this->redisManager->getClient());
     }
+
+    public function testGetLuaRandomInt(): void
+    {
+        $this->assertEquals(0, $this->redisManager->getLuaRandomInt());
+    }
 }

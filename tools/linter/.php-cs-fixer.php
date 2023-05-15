@@ -16,7 +16,7 @@ $rules = [
     # '@PhpCsFixer' => false, # @see https://cs.symfony.com/doc/ruleSets/PhpCsFixer.html
 
     'array_syntax' => ['syntax' => 'short'],
-    'phpdoc_to_comment' => ['ignored_tags' => ['todo', 'var']],
+    'phpdoc_to_comment' => ['ignored_tags' => ['see', 'todo', 'var']],
     'full_opening_tag' => true,
     'echo_tag_syntax' => true,
     'no_useless_else' => true,

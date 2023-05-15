@@ -2,7 +2,7 @@
 
 namespace App\Test\ApiResource;
 
-use App\ApiResource\RandomApiController;
+use App\ApiResource\Application\Controller\RandomApiController;
 use PHPUnit\Framework\TestCase;
 
 /** @group functional */

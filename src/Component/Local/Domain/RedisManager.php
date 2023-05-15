@@ -21,4 +21,17 @@ class RedisManager
     {
         return $this->redisClient;
     }
+
+    /**
+     * @see http://lua-users.org/wiki/MathLibraryTutorial
+     * @see https://redis.io/docs/manual/programmability/eval-intro
+     * @see https://redis-doc-test.readthedocs.io/en/latest/commands/eval
+     *
+     * @infection-ignore-all
+     */
+    public function getLuaRandomInt(): int
+    {
+        /* @phpstan-ignore-next-line */
+        return (int) $this->redisClient->eval('math.randomseed(ARGV[1]); return math.random(0, 100)', 0, time());
+    }
 }

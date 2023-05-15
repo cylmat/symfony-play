@@ -1,14 +1,14 @@
 # Must be configured to avoir error: "No route found"
 
 api_controllers:
-    resource: ../src/ApiResource/
+    resource: ../src/ApiResource/Application/Controller
     type: annotation
     prefix: /api
 
 controllers:
-    resource: ../src/AppBundle/Application/Controller/
+    resource: ../src/AppBundle/Application/Controller
     type: annotation
 
 controllers_admin:
-    resource: ../src/Admin/Application/Controller/
+    resource: ../src/Admin/Application/Controller
     type: annotation

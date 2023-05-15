@@ -14,6 +14,7 @@ class RedisClientFactory
 
     /** @infection-ignore-all */
     /** @codeCoverageIgnore */
+    /** @todo Use config instead of $redisUrl */
     public function __invoke(): NullClient|PredisClient
     {
         $client = $this->redisUrl ? new PredisClient($this->redisUrl) : new NullClient();
