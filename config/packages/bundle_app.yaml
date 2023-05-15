@@ -19,6 +19,10 @@ services:
     App\AppBundle\:
         resource: ../../src/AppBundle/
 
+    # @todo: Remove this and use fake Doctrine for tests 
+    App\AppBundle\Infrastructure\AppDoctrine:
+        arguments: ['@doctrine', '%env(resolve:APP_ENV)%']
+
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
             - '@maker.maker.make_entity'

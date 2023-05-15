@@ -6,8 +6,13 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class AppDoctrine
 {
+    /** @todo: Remove this and use fake Doctrine for tests */
+    private const TEST_ENV = 'test';
+
+    /** @todo Remove "env" parameters */
     public function __construct(
-        private readonly ManagerRegistry $doctrine
+        private readonly ManagerRegistry $doctrine,
+        private readonly string $env
     ) {
     }
 
@@ -20,11 +25,15 @@ class AppDoctrine
         // $schema = $connection->getSchemaManager();
         // $params = $connection->getParams();
 
-        $this->doctrine->getManager()->persist($object);
+        if (self::TEST_ENV !== $this->env) {
+            $this->doctrine->getManager()->persist($object);
+        }
     }
 
     public function flush(): void
     {
-        $this->doctrine->getManager()->flush();
+        if (self::TEST_ENV !== $this->env) {
+            $this->doctrine->getManager()->flush();
+        }
     }
 }

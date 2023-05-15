@@ -83,12 +83,11 @@ Doc
     <!-- "@group" annotation -->
     <!-- @see https://symfony.com/doc/current/testing.html -->
     <groups>
-        <!-- Action class are integration -->
-        <!-- Controller class are functional -->
+        <!-- Controller class are "functional" -->
         <exclude>
             <group>functional</group>
-            <group>integration</group><!-- @todo use integration tests -->
         </exclude>
+        <!-- Action class are "integration" -->
     </groups>
 
     <!--listeners>

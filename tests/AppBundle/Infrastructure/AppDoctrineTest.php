@@ -21,7 +21,8 @@ final class AppDoctrineTest extends TestCase
         $this->doctrine
             ->method('getManager')
             ->willReturn($this->objectManager);
-        $this->appDoctrine = new AppDoctrine($this->doctrine);
+
+        $this->appDoctrine = new AppDoctrine($this->doctrine, 'dev');
     }
 
     public function testPersist(): void

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Text\Application;
 
-use App\AppBundle\Common\AppRequest;
+use App\AppBundle\Application\Common\AppRequest;
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
