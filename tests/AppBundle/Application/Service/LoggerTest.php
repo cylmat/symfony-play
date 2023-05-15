@@ -5,6 +5,7 @@ namespace App\Test\AppBundle\Application\Service;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
 use App\AppBundle\Application\Service\Logger;
+use Monolog\Level;
 use PHPUnit\Framework\TestCase;
 
 final class LoggerTest extends TestCase
@@ -31,7 +32,8 @@ final class LoggerTest extends TestCase
         $this->assertInstanceOf(Logger::class, $logger->setChannel('test'));
     }
 
-    public function testAddRecord(): void
+    /** @dataProvider addRecordProvider */
+    public function testAddRecord($level): void
     {
         $log = (new Log())
             ->setChannel('default')
@@ -50,6 +52,12 @@ final class LoggerTest extends TestCase
 
         $logger = new Logger($this->doctrine);
         
-        $this->assertTrue($logger->addRecord(100, 'Test'));
+        $this->assertTrue($logger->addRecord($level, 'Test'));
+    }
+
+    public function addRecordProvider(): iterable
+    {
+        yield 'level' => [Level::Debug];
+        yield 'int' => [100];
     }
 }
