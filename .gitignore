@@ -11,6 +11,11 @@
 /.env.deploy
 /public/coverage/
 
+# local parameters
+/config/local/*
+!/config/local/.gitkeep
+!/config/local/*.dist
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

@@ -1,11 +1,5 @@
 app:
   enabled: false # sample
-  #redis:
-  #  enabled: ~
-
-parameters:
-    # @TODO use "app.redis.enabled" parameters
-    use_redis: ~ # use null/local/remote : default null
 
 services:
     _defaults:
@@ -30,7 +24,7 @@ services:
     App\AppBundle\Infrastructure\RedisClientFactory:
         arguments:
             # env function come from ExpressionLanguageProvider.php
-            # @todo: use custom expression "isset"
+            # @todo: use custom expression like "isset()"
             $redisUrl: "@=
                 parameter('use_redis') === 'local' && env('REDIS_URL')
                     ? env('REDIS_URL')

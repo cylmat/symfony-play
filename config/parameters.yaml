@@ -1,0 +1,3 @@
+parameters:
+    # @TODO use "app.redis.enabled" parameters
+    use_redis: ~ # ~|local|remote

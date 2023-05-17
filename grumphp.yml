@@ -142,7 +142,6 @@ grumphp:
         visitors:
           # @todo declare_strict_types: ~
           no_exit_statements: ~
-          never_use_else: ~ 
           forbidden_function_calls:
             blacklist:
             - 'var_dump'
