@@ -22,6 +22,10 @@ $rules = [
     'no_useless_else' => true,
     'no_useless_return' => true,
     'php_unit_internal_class' => false,
+    'phpdoc_separation' => [
+        'groups' => [['deprecated', 'link', 'see', 'since'], ['author', 'copyright', 'license'], ['category', 'package', 'subpackage'], ['property', 'property-read', 'property-write']],
+        'skip_unlisted_annotations' => true
+    ],
 
     // ex: use DateTimeImmutable
     'global_namespace_import' => ['import_classes' => true, 'import_constants' => false, 'import_functions' => false],

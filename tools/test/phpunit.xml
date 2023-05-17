@@ -53,6 +53,7 @@ Doc
         <exclude>
             <directory suffix="Controller.php">../../src</directory>
             <directory suffix="Fixtures.php">../../src</directory>
+            <directory suffix="Kernel.php">../../src</directory>
         </exclude>
 
         <report>

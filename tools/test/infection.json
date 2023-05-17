@@ -5,7 +5,7 @@
             "src"
         ],
         "excludes": [
-            "{.*(Bundle|Controller|Configuration|Extension|Fixtures|Pass).php}"
+            "{.*(Bundle|Controller|Configuration|Extension|Fixtures|Kernel|Pass).php}"
         ]
     },
     "phpUnit": {

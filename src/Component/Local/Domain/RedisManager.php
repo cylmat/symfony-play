@@ -4,12 +4,13 @@ namespace App\Local\Domain;
 
 use App\AppBundle\Infrastructure\NullClient;
 use App\AppBundle\Infrastructure\RedisClientFactory;
+use Predis\Client as PredisClient;
 
 /* @see https://app.redislabs.com */
 /* @see https://github.com/predis/predis/wiki */
 class RedisManager
 {
-    private NullClient|\Predis\Client $redisClient;
+    private NullClient|PredisClient $redisClient;
 
     public function __construct(
         RedisClientFactory $redisClientFactory
@@ -17,7 +18,7 @@ class RedisManager
         $this->redisClient = $redisClientFactory();
     }
 
-    public function getClient(): NullClient|\Predis\Client
+    public function getClient(): NullClient|PredisClient
     {
         return $this->redisClient;
     }
@@ -31,7 +32,7 @@ class RedisManager
      */
     public function getLuaRandomInt(): int
     {
-        /* @phpstan-ignore-next-line */
-        return (int) $this->redisClient->eval('math.randomseed(ARGV[1]); return math.random(0, 100)', 0, time());
+        /* @phpstan-ignore-next-line: Client method not exists */
+        return (int) $this->redisClient->eval('math.randomseed(ARGV[1]); return math.random(0, 100)', 0, time() * rand());
     }
 }
