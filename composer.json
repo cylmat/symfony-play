@@ -15,6 +15,7 @@
         "doctrine/orm": "^2.14",
         "easycorp/easyadmin-bundle": "^4.4",
         "friendsofsymfony/rest-bundle": "^3.5",
+        "friendsofsymfony/user-bundle": "^3.1",
         "liip/imagine-bundle": "^2.10",
         "nelmio/cors-bundle": "^2.2",
         "php-amqplib/php-amqplib": "^3.5",

@@ -1,5 +1,9 @@
-f tests
+funcional tests
 WorkflowSubscriber use infrastructure!
+use multiple databases
+use postgre/mongodb
+https://sentry.io
+https://newrelic.com
 ---------------------
 declare(strict_types=1)
 decorator stack
@@ -12,6 +16,8 @@ https://tideways.com/profiler/features
 cqrs
 design pattern: memory in encryptdata class
 fiber
+use Liip\ImagineBundle
+use fosuserbundle
 cache with apcu
 serialize data
 tests for AppBundle
@@ -22,9 +28,7 @@ https://www.blackfire.io
 https://phpinsights.com
 https://www.cloudamqp.com
 https://www.elephantsql.com
-https://sentry.io
 https://app.redislabs.com
-https://newrelic.com
 http://jmsyst.com/libs/serializer
 https://docs.phpdoc.org/guide/guides/docblocks.html
 PCRE + Parle (or doctrine parse)

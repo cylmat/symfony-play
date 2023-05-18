@@ -99,6 +99,9 @@
             "config/packages/fos_rest.yaml"
         ]
     },
+    "friendsofsymfony/user-bundle": {
+        "version": "v3.1.0"
+    },
     "liip/imagine-bundle": {
         "version": "2.10",
         "recipe": {
