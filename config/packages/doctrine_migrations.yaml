@@ -6,10 +6,10 @@ doctrine_migrations:
     enable_profiler: false
 
     # Connection to use for the migrations
-    #connection: default
+    connection: default
 
     # Entity manager to use for migrations. This overrides the "connection" setting.
-    #em: default
+    # em: default
 
     # Possible values: "BY_YEAR", "BY_YEAR_AND_MONTH", false
     organize_migrations: false

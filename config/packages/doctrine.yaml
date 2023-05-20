@@ -3,75 +3,47 @@ doctrine:
 
     # DB Abstraction Layer
     dbal:
-        # Replace dbname, host and port
-        url: '%env(resolve:DATABASE_URL)%'
-        driver: pdo_mysql
-        dbname_suffix: ''
-        # IMPORTANT: You MUST configure your server version,
-        # either here or in the DATABASE_URL env var (see .env file)
-        server_version: '6'
-        charset: utf8mb4
-        memory: true
-        driver_class: ~
-        wrapper_class: ~
-
-        ### FOR MULTIPLE CONNECTIONS ##
-        # default_connection:       default
-        # connections:
-        #     default:
-        #         dbname:           Symfony
-        # ###
+        default_connection: default
+        connections:
+            default:
+                url: '%env(resolve:DATABASE_URL)%'
+                driver: pdo_mysql
+                dbname_suffix: ''
+                # IMPORTANT: You MUST configure your server version,
+                # either here or in the DATABASE_URL env var (see .env file)
+                server_version: '5.6'
+                charset: utf8mb4
+                memory: true
+                driver_class: ~
+                wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
 
     # Object Relational Mapping
     orm:
-        ### MAPPING ###
-        # Loads attribute configuration from the Entity
-        # auto_mapping: false
-        # mappings:
-        #     AppBundle:
-        #         type: xml
-        #         dir: <SomeResources/config/doctrine>
+        default_entity_manager: default
+        # auto_generate_proxy_classes: true
+        # proxy_namespace: Proxies
+        # proxy_dir: '%kernel.cache_dir%/doctrine/orm/Proxies'
+        # class_metadata_factory_name: Doctrine\ORM\Mapping\ClassMetadataFactory
+        # default_repository_
 
-        # Otherwise
-        # SomeEntityNamespace:
-        #     type: annotation
-        #     dir: '%kernel.project_dir%/src/Entity'
-        #     is_bundle: false
-        #     prefix: App\Entity
-        #     # Gives them an MyApp alias (so you can say things like MyApp:Post)
-        #     alias: MyApp
-        # ###
-
-        ### SAMPLE attributes ###
-        mappings:
-            AppBundle:
-                # Use AttributeDriver class (with MappingDriverChain)
-                alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
-                type: attribute
-                dir: 'Domain/Entity'
-                prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
-                is_bundle: true # change 'dir' attribute as relative path 
-
-        # entity_managers:
-        #     # This is doctrine.orm.default_entity_manager
-        #     default:
-        #         #auto_generate_proxy_classes: true
-        #         #class_metadata_factory_name: Doctrine\ORM\Mapping\ClassMetadataFactory
-        #         #default_repository_class:  Doctrine\ORM\EntityRepository
-
-        #         connection: default
-        #         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
-        #         hydrators: ~
-        #         dql: ~
-        #         filters: ~
-        #         mappings:
-        #             App:
-        #                 # Use AttributeDriver class (with MappingDriverChain)
-        #                 alias: App # Can use "console App:<entity> --regenerate"
-        #                 type: attribute 
-        #                 dir: '%kernel.project_dir%/src/Entity'
-        #                 prefix: 'App\Entity' # MUST begin with <mapping-name>\
-        #                 is_bundle: false
+        # @see https://symfony.com/doc/current/doctrine/multiple_entity_managers.html
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    AppBundle:
+                        # Use AttributeDriver class (with MappingDriverChain)
+                        alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
+                        type: attribute
+                        dir: 'Domain/Entity'
+                        prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
+                        is_bundle: true # change 'dir' attribute as relative path
+                # metadata_cache_driver:
+                #     type: pool
+                #     pool: doctrine.system_cache_pool
+                # query_cache_driver:
+                #     type: service
+                #     id: CacheDriver
 
 when@test:
     doctrine:
