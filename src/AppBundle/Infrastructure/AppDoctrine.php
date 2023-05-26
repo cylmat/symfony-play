@@ -19,7 +19,7 @@ class AppDoctrine
         private readonly ManagerRegistry $doctrine,
         private readonly string $env
     ) {
-        $this->managers = $this->doctrine->getManagers();
+        
     }
 
     public function persist(object $object): void
@@ -35,27 +35,18 @@ class AppDoctrine
          */
 
         if (self::TEST_ENV !== $this->env) {
-            foreach ($this->managers as $manager) {
-                $manager->persist($object);
-            }
+            
+                $this->doctrine->getManagerForClass($object::class)->persist($object);
+            
         }
     }
 
     public function flush(): void
     {
         if (self::TEST_ENV !== $this->env) {
-            foreach ($this->managers as $manager) {
-                $manager->flush();
-            }
-        }
-    }
-
-    public function truncate(): void
-    {
-        if (self::TEST_ENV !== $this->env) {
-            foreach ($this->managers as $manager) {
-                $manager->fetchAll();
-            }
+            
+            $this->doctrine->getManager()->flush();
+            
         }
     }
 }

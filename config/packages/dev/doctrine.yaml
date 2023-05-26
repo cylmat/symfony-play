@@ -50,12 +50,12 @@ doctrine:
                 connection: sqlite
                 # @todo Can we mutualized mapping ? #
                 mappings:
-                    AppBundle:
-                        alias: AppBundle
+                    AppLocal:
+                        alias: Local
                         type: attribute
-                        dir: 'Domain/Entity'
-                        prefix: 'App\AppBundle'
-                        is_bundle: true # change 'dir' attribute as relative path
+                        dir: '%kernel.project_dir%/src/Component/Local/Domain/Entity'
+                        prefix: 'App\Local'
+                        is_bundle: false # change 'dir' attribute as relative path
 
 when@test:
     doctrine:

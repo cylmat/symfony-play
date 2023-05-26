@@ -2,7 +2,7 @@
 
 namespace App\Admin\Application\Controller;
 
-use App\AppBundle\Domain\Entity\Log;
+use App\Local\Domain\Entity\SqliteLog;
 use Doctrine\ORM\EntityManager;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\EntityCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
@@ -23,11 +23,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 /* Used for DashboardController */
 /** @SuppressWarnings(PHPMD.CouplingBetweenObjects) */
-class LogController extends AbstractCrudController
+class SqliteLogController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Log::class;
+        return SqliteLog::class;
     }
 
     public function configureActions(Actions $actions): Actions

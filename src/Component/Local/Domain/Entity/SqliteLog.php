@@ -1,16 +1,14 @@
 <?php
 
-namespace App\AppBundle\Domain\Entity;
+namespace App\Local\Domain\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use App\AppBundle\Infrastructure\Repository\LogRepository;
+use App\Local\Infrastructure\Repository\SqliteLogRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */
-#[ApiResource()]
 #[ORM\Table(name: 'log')]
-#[ORM\Entity(repositoryClass: LogRepository::class)]
-class Log
+#[ORM\Entity(repositoryClass: SqliteLogRepository::class)]
+class SqliteLog
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -4,6 +4,7 @@ namespace App\AppBundle\Application\Service;
 
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
+use App\Local\Domain\Entity\SqliteLog;
 use DateTimeImmutable;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
@@ -37,6 +38,15 @@ final class Logger extends MonologLogger implements LoggerInterface
         $level = \strtolower($level);
 
         $log = (new Log())
+            ->setChannel($this->channel)
+            ->setLevel($level)
+            ->setMessage($message)
+        ;
+
+        $this->doctrine->persist($log);
+        $this->doctrine->flush();
+
+        $log = (new SqliteLog())
             ->setChannel($this->channel)
             ->setLevel($level)
             ->setMessage($message)
