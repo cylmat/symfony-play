@@ -3,6 +3,7 @@
 namespace App\Admin\Application\Controller;
 
 use App\AppBundle\Domain\Entity\Log;
+use App\AppBundle\Infrastructure\AppDoctrine;
 use Doctrine\ORM\EntityManager;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\EntityCollection;
 use EasyCorp\Bundle\EasyAdminBundle\Collection\FieldCollection;
@@ -48,11 +49,16 @@ class LogController extends AbstractCrudController
             throw new ForbiddenActionException($context);
         }
 
-        $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
-        $context->getCrud()?->setFieldAssets($this->getFieldAssets($fields));
+        $fields = FieldCollection::new($this
+            ->configureFields(Crud::PAGE_INDEX));
+        $context->getCrud()
+            ?->setFieldAssets($this->getFieldAssets($fields))
+        ;
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
         /* @phpstan-ignore-next-line: expects SearchDto, SearchDto|null given */
-        $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
+        $queryBuilder = $this->createIndexQueryBuilder(
+            $context->getSearch(), $context->getEntity(), $fields, $filters
+        );
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
 
         /*
@@ -77,6 +83,11 @@ class LogController extends AbstractCrudController
             return $this->redirect($referrer);
         }
 
-        return $this->redirect($this->container->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->unset(EA::ENTITY_ID)->generateUrl());
+        return $this->redirect(
+            $this->container->get(AdminUrlGenerator::class)
+                ->setAction(Action::INDEX)
+                ->unset(EA::ENTITY_ID)
+                ->generateUrl()
+        );
     }
 }

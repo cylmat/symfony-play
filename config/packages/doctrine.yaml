@@ -45,20 +45,6 @@ doctrine:
                 #     type: service
                 #     id: CacheDriver
 
-when@test:
-    doctrine:
-        dbal:
-            #url: '%env(resolve:DATABASE_URL)%'
-            #
-            # @todo see why DATABASE_URL doesn't works for tests
-            #
-            url: '%env(DEV_SQLITE_URL)%'
-            driver: pdo_sqlite
-            server_version: '3'
-            charset: utf8mb4
-            # "TEST_TOKEN" is typically set by ParaTest
-            #dbname_suffix: '_test%env(default::TEST_TOKEN)%'
-
 when@prod:
     doctrine:
         orm:
