@@ -1,5 +1,8 @@
 app:
-  enabled: false # sample
+    enabled: false # sample
+
+parameters:
+    replicateEntities: [] # default value
 
 services:
     _defaults:
@@ -15,7 +18,7 @@ services:
 
     # @todo: Remove this and use fake Doctrine for tests 
     App\AppBundle\Infrastructure\AppDoctrine:
-        arguments: ['@doctrine', '%env(resolve:APP_ENV)%']
+        arguments: ['@doctrine', '%env(resolve:APP_ENV)%', '%replicateEntities%']
 
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
@@ -23,14 +26,4 @@ services:
 
     App\AppBundle\Infrastructure\RedisClientFactory:
         arguments:
-            # env function come from ExpressionLanguageProvider.php
-            # @todo: use custom expression like "isset()"
-            $redisUrl: "@=
-                parameter('use_redis') === 'local' && env('REDIS_URL')
-                    ? env('REDIS_URL')
-                    : (
-                        parameter('use_redis') === 'remote' && env('REDIS_REMOTE_URL')
-                        ? env('REDIS_REMOTE_URL')
-                        : null
-                    )"
-    
+            $redisUrl: ~

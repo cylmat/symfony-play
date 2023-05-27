@@ -1,4 +1,7 @@
-funcional tests
+set logger in domain/service
+set depinjection and resources in application
+
+functional tests
 WorkflowSubscriber use infrastructure!
 use multiple databases
 use postgre/mongodb

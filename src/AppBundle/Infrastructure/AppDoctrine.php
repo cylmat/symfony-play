@@ -3,26 +3,29 @@
 namespace App\AppBundle\Infrastructure;
 
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
 
+/** @SuppressWarnings(PHPMD.BooleanArgumentFlag) */
 class AppDoctrine
 {
     /** @todo: Remove this and use fake Doctrine for tests */
     private const TEST_ENV = 'test';
 
-    /** @var ObjectManager[] */
-    private $managers = [];
-
     /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
     /** @todo Remove "env" parameters and use config file only */
     public function __construct(
         private readonly ManagerRegistry $doctrine,
-        private readonly string $env
+        private readonly string $env,
+        private readonly array $replicateEntities
     ) {
-        
     }
 
-    public function persist(object $object): void
+    public function persist(object $object, bool $flush = false): void
+    {
+        $this->classManagerPersist($object, $flush);
+        $this->replicateEntities($object, $flush);
+    }
+
+    private function classManagerPersist(object $object, bool $flush = false): void
     {
         /*
          * Sample
@@ -35,18 +38,34 @@ class AppDoctrine
          */
 
         if (self::TEST_ENV !== $this->env) {
-            
-                $this->doctrine->getManagerForClass($object::class)->persist($object);
-            
+            $this->doctrine->getManagerForClass($object::class)->persist($object);
+        }
+
+        if ($flush) {
+            $this->doctrine->getManagerForClass($object::class)->flush();
         }
     }
 
-    public function flush(): void
+    private function replicateEntities(object $object, bool $flush = false): void
     {
-        if (self::TEST_ENV !== $this->env) {
-            
-            $this->doctrine->getManager()->flush();
-            
+        if (!isset($this->replicateEntities[\get_class($object)])) {
+            return;
+        }
+
+        foreach ($this->replicateEntities[\get_class($object)] as $entity) {
+            $obj2 = new $entity();
+            $meths = get_class_methods($object);
+            $meths = array_filter($meths,
+                fn ($v) => false !== strpos($v, 'get')
+                && false === strpos($v, 'getId')
+            );
+
+            foreach ($meths as $get) {
+                $set = str_replace('get', 'set', $get);
+                $obj2->{$set}($object->{$get}());
+            }
+
+            $this->classManagerPersist($obj2, $flush);
         }
     }
 }

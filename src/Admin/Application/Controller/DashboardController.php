@@ -65,8 +65,18 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl(
             'Log -Flush-',
             'fas fa-list',
-            $this->container->get(AdminUrlGenerator::class)->setAction('flush')->generateUrl()
+            $this->container->get(AdminUrlGenerator::class)
+                ->setController(LogController::class)
+                ->setAction('flush')
+                ->generateUrl()
         );
-        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToUrl(
+            'LogSqlite -Flush-',
+            'fas fa-list',
+            $this->container->get(AdminUrlGenerator::class)
+                ->setController(SqliteLogController::class)
+                ->setAction('flush')
+                ->generateUrl()
+        );
     }
 }

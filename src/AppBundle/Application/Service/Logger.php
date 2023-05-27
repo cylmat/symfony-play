@@ -4,12 +4,11 @@ namespace App\AppBundle\Application\Service;
 
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
-use App\Local\Domain\Entity\SqliteLog;
 use DateTimeImmutable;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
 
-/* @phpstan-ignore-next-line: extends @final class Monolog\Logger */
+/** @phpstan-ignore-next-line: extends @final class Monolog\Logger */
 final class Logger extends MonologLogger implements LoggerInterface
 {
     public string $channel = 'default';
@@ -17,7 +16,7 @@ final class Logger extends MonologLogger implements LoggerInterface
     protected array $processors = []; // avoid "reset" errors in tests
 
     public function __construct(
-        private readonly AppDoctrine $doctrine
+        private readonly AppDoctrine $appDoctrine
     ) {
     }
 
@@ -43,17 +42,7 @@ final class Logger extends MonologLogger implements LoggerInterface
             ->setMessage($message)
         ;
 
-        $this->doctrine->persist($log);
-        $this->doctrine->flush();
-
-        $log = (new SqliteLog())
-            ->setChannel($this->channel)
-            ->setLevel($level)
-            ->setMessage($message)
-        ;
-
-        $this->doctrine->persist($log);
-        $this->doctrine->flush();
+        $this->appDoctrine->persist($log, true);
 
         return true;
     }
