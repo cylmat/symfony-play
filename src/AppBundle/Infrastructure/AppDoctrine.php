@@ -55,9 +55,9 @@ class AppDoctrine
         foreach ($this->replicateEntities[\get_class($object)] as $entity) {
             $obj2 = new $entity();
             $meths = get_class_methods($object);
-            $meths = array_filter($meths,
-                fn ($v) => false !== strpos($v, 'get')
-                && false === strpos($v, 'getId')
+            $meths = array_filter(
+                $meths,
+                fn (string $value) => false !== strpos($value, 'get') && false === strpos($value, 'getId')
             );
 
             foreach ($meths as $get) {

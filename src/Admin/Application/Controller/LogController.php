@@ -56,7 +56,10 @@ class LogController extends AbstractCrudController
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
         /* @phpstan-ignore-next-line: expects SearchDto, SearchDto|null given */
         $queryBuilder = $this->createIndexQueryBuilder(
-            $context->getSearch(), $context->getEntity(), $fields, $filters
+            $context->getSearch(),
+            $context->getEntity(),
+            $fields,
+            $filters
         );
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
 

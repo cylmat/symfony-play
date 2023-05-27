@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource()]
 #[ORM\Table(name: 'log')]
 #[ORM\Entity(repositoryClass: LogRepository::class)]
-class Log implements EntityInterface
+class Log
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/** @SuppressWarnings(PHPMD.ShortVariable) */
 #[ORM\Entity(repositoryClass: AppUserRepository::class)]
 class AppUser implements UserInterface, PasswordAuthenticatedUserInterface
 {
