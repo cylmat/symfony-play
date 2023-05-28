@@ -15,7 +15,7 @@ class Log
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    protected ?int $id = null;
+    protected ?int $id = null; // @phpstan-ignore-line: Only read
 
     #[ORM\Column(type: 'string')]
     protected string $level;

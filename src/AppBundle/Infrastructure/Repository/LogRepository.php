@@ -18,9 +18,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LogRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, $class = null)
+    public function __construct(ManagerRegistry $registry, ?string $class = null)
     {
-        parent::__construct($registry, $class ?? Log::class);
+        parent::__construct($registry, $class ?? Log::class); // @phpstan-ignore-line: class-string
     }
 
     public function save(Log $entity, bool $flush = false): void

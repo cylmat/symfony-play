@@ -10,8 +10,12 @@ class AppDoctrine
     /** @todo: Remove this and use fake Doctrine for tests */
     private const TEST_ENV = 'test';
 
-    /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
-    /** @todo Remove "env" parameters and use config file only */
+    /**
+     * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
+     * @todo Remove "env" parameters and use config file only
+     *
+     * @param string[][] $replicateEntities
+     */
     public function __construct(
         private readonly ManagerRegistry $doctrine,
         private readonly string $env,
@@ -38,11 +42,11 @@ class AppDoctrine
          */
 
         if (self::TEST_ENV !== $this->env) {
-            $this->doctrine->getManagerForClass($object::class)->persist($object);
+            $this->doctrine->getManagerForClass($object::class)?->persist($object);
         }
 
         if ($flush) {
-            $this->doctrine->getManagerForClass($object::class)->flush();
+            $this->doctrine->getManagerForClass($object::class)?->flush();
         }
     }
 
@@ -52,16 +56,16 @@ class AppDoctrine
             return;
         }
 
-        foreach ($this->replicateEntities[\get_class($object)] as $entity) {
-            $obj2 = new $entity();
+        foreach ($this->replicateEntities[\get_class($object)] as $entityName) {
+            $obj2 = new $entityName();
             $meths = get_class_methods($object);
             $meths = array_filter(
                 $meths,
-                fn (string $value) => false !== strpos($value, 'get') && false === strpos($value, 'getId')
+                fn (string $value) => false !== \strpos($value, 'get') && false === \strpos($value, 'getId')
             );
 
             foreach ($meths as $get) {
-                $set = str_replace('get', 'set', $get);
+                $set = \str_replace('get', 'set', $get);
                 $obj2->{$set}($object->{$get}());
             }
 

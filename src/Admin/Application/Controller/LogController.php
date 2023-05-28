@@ -54,27 +54,23 @@ class LogController extends AbstractCrudController
             ?->setFieldAssets($this->getFieldAssets($fields))
         ;
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
-        /* @phpstan-ignore-next-line: expects SearchDto, SearchDto|null given */
         $queryBuilder = $this->createIndexQueryBuilder(
-            $context->getSearch(),
+            $context->getSearch(), // @phpstan-ignore-line: SearchDto|null given
             $context->getEntity(),
             $fields,
             $filters
         );
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
 
-        /*
-        $a = $context->getCrud()->getActionsConfig();
-        $adto = new ActionDto();
-        $adto->setName('flush');
-        $a = new ActionConfigDto();
-        */
-
         /** @var EntityCollection $entities */
-        $entities = $this->container->get(EntityFactory::class)->createCollection($context->getEntity(), $paginator->getResults());
+        $entities = $this->container
+            ->get(EntityFactory::class)
+            ->createCollection($context->getEntity(), $paginator->getResults());
 
         /** @var EntityManager $doctrine */
-        $doctrine = $this->container->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn());
+        $doctrine = $this->container
+            ->get('doctrine')
+            ->getManagerForClass($context->getEntity()->getFqcn());
 
         foreach ($entities->getIterator() as $entity) {
             $doctrine->remove($entity->getInstance());
