@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Infrastructure;
+namespace App\AppBundle\Domain;
 
 interface AppClientInterface
 {

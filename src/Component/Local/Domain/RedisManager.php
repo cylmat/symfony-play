@@ -2,23 +2,21 @@
 
 namespace App\Local\Domain;
 
-use App\AppBundle\Infrastructure\NullClient;
-use App\AppBundle\Infrastructure\RedisClientFactory;
-use Predis\Client as PredisClient;
+use App\AppBundle\Domain\AppClientInterface;
 
 /* @see https://app.redislabs.com */
 /* @see https://github.com/predis/predis/wiki */
 class RedisManager
 {
-    private NullClient|PredisClient $redisClient;
+    //private NullClient|PredisClient $redisClient;
 
     public function __construct(
-        RedisClientFactory $redisClientFactory
+        private readonly AppClientInterface $redisClient
     ) {
-        $this->redisClient = $redisClientFactory();
+        //$this->redisClient = $redisClientFactory();
     }
 
-    public function getClient(): NullClient|PredisClient
+    public function getClient(): AppClientInterface
     {
         return $this->redisClient;
     }

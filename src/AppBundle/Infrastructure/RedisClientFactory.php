@@ -2,6 +2,7 @@
 
 namespace App\AppBundle\Infrastructure;
 
+use App\AppBundle\Domain\AppClientInterface;
 use Predis\Client as PredisClient;
 use Throwable;
 
@@ -17,7 +18,7 @@ class RedisClientFactory
      * @codeCoverageIgnore
      * @todo Use config instead of $redisUrl
      */
-    public function __invoke(): NullClient|PredisClient
+    public function __invoke(): AppClientInterface
     {
         $client = $this->redisUrl ? new PredisClient($this->redisUrl) : new NullClient();
 
