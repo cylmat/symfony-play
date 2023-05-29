@@ -44,11 +44,8 @@ final class LoggerTest extends TestCase
         $this->doctrine
             ->expects($this->once())
             ->method('persist')
-            ->with($log)
+            ->with($log, true)
         ;
-        $this->doctrine
-            ->expects($this->once())
-            ->method('flush');
 
         $logger = new Logger($this->doctrine);
         

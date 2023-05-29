@@ -12,12 +12,13 @@ class AppDoctrine
 
     /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
+     *
      * @todo Remove "env" parameters and use config file only
      *
      * @param string[][] $replicateEntities
      */
     public function __construct(
-        private readonly ManagerRegistry $doctrine,
+        private readonly ManagerRegistry $doctrineRegistry,
         private readonly string $env,
         private readonly array $replicateEntities
     ) {
@@ -42,11 +43,11 @@ class AppDoctrine
          */
 
         if (self::TEST_ENV !== $this->env) {
-            $this->doctrine->getManagerForClass($object::class)?->persist($object);
+            $this->doctrineRegistry->getManagerForClass($object::class)?->persist($object);
         }
 
         if ($flush) {
-            $this->doctrine->getManagerForClass($object::class)?->flush();
+            $this->doctrineRegistry->getManagerForClass($object::class)?->flush();
         }
     }
 

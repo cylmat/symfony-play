@@ -2,6 +2,7 @@
 
 namespace App\Test\Encrypt\Application\EventSubscriber;
 
+use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
 use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
 use App\Encrypt\Domain\Model\EncryptedData;
@@ -44,10 +45,8 @@ final class WorkflowSubscriberTest extends TestCase
 
         $this->doctrine
             ->expects($this->once())
-            ->method('persist');
-        $this->doctrine
-            ->expects($this->once())
-            ->method('flush');
+            ->method('persist')
+            ->with($this->isInstanceOf(Log::class), true);
 
         $event = new EnteredEvent(
             (new EncryptedData(''))->setCurrentPlace(['TESTPLACE' => true]),
