@@ -15,6 +15,7 @@
 overwriteFiles: false
 backupFiles: false
 excludedFiles:
+  - '.*Controller.*'
   - '.*DataFixtures.*'
   - '.*TestCase.*'
 includedFiles:
