@@ -21,7 +21,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Security\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
-/** Used for DashboardController */
+/* Used for DashboardController */
 /** @SuppressWarnings(PHPMD.CouplingBetweenObjects) */
 class LogController extends AbstractCrudController
 {
@@ -48,25 +48,29 @@ class LogController extends AbstractCrudController
             throw new ForbiddenActionException($context);
         }
 
-        $fields = FieldCollection::new($this->configureFields(Crud::PAGE_INDEX));
-        $context->getCrud()?->setFieldAssets($this->getFieldAssets($fields));
+        $fields = FieldCollection::new($this
+            ->configureFields(Crud::PAGE_INDEX));
+        $context->getCrud()
+            ?->setFieldAssets($this->getFieldAssets($fields))
+        ;
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
-        /* @phpstan-ignore-next-line: expects SearchDto, SearchDto|null given */
-        $queryBuilder = $this->createIndexQueryBuilder($context->getSearch(), $context->getEntity(), $fields, $filters);
+        $queryBuilder = $this->createIndexQueryBuilder(
+            $context->getSearch(), // @phpstan-ignore-line: SearchDto|null given
+            $context->getEntity(),
+            $fields,
+            $filters
+        );
         $paginator = $this->container->get(PaginatorFactory::class)->create($queryBuilder);
 
-        /*
-        $a = $context->getCrud()->getActionsConfig();
-        $adto = new ActionDto();
-        $adto->setName('flush');
-        $a = new ActionConfigDto();
-        */
-
         /** @var EntityCollection $entities */
-        $entities = $this->container->get(EntityFactory::class)->createCollection($context->getEntity(), $paginator->getResults());
+        $entities = $this->container
+            ->get(EntityFactory::class)
+            ->createCollection($context->getEntity(), $paginator->getResults());
 
         /** @var EntityManager $doctrine */
-        $doctrine = $this->container->get('doctrine')->getManagerForClass($context->getEntity()->getFqcn());
+        $doctrine = $this->container
+            ->get('doctrine')
+            ->getManagerForClass($context->getEntity()->getFqcn());
 
         foreach ($entities->getIterator() as $entity) {
             $doctrine->remove($entity->getInstance());
@@ -77,6 +81,11 @@ class LogController extends AbstractCrudController
             return $this->redirect($referrer);
         }
 
-        return $this->redirect($this->container->get(AdminUrlGenerator::class)->setAction(Action::INDEX)->unset(EA::ENTITY_ID)->generateUrl());
+        return $this->redirect(
+            $this->container->get(AdminUrlGenerator::class)
+                ->setAction(Action::INDEX)
+                ->unset(EA::ENTITY_ID)
+                ->generateUrl()
+        );
     }
 }

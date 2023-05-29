@@ -40,8 +40,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
             ->setLevel(LogLevel::INFO)
             ->setMessage('Encrypted data entered in '.$place);
 
-        $this->doctrine->persist($log);
-        $this->doctrine->flush();
+        $this->doctrine->persist($log, true);
     }
 
     /** @SuppressWarnings(PHPMD.MissingImport) */

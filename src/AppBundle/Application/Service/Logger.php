@@ -16,7 +16,7 @@ final class Logger extends MonologLogger implements LoggerInterface
     protected array $processors = []; // avoid "reset" errors in tests
 
     public function __construct(
-        private readonly AppDoctrine $doctrine
+        private readonly AppDoctrine $appDoctrine
     ) {
     }
 
@@ -42,8 +42,7 @@ final class Logger extends MonologLogger implements LoggerInterface
             ->setMessage($message)
         ;
 
-        $this->doctrine->persist($log);
-        $this->doctrine->flush();
+        $this->appDoctrine->persist($log, true);
 
         return true;
     }

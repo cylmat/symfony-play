@@ -125,11 +125,12 @@ case "$1" in
 # TESTING #
 ###########
 
+
+# $0 infection && # TAKE TO MUCH DEV TIME !
 "tests"|"all-tests")
 	$0 cover &&
 	$0 deptrac &&
-	$0 infection &&
-	$0 paratest && # Run like pest or phpunit
+	$0 paratest && 	 # Run like pest or phpunit
 	echogood
 ;;
 

@@ -15,16 +15,16 @@ class Log
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
+    protected ?int $id = null; // @phpstan-ignore-line: Only read
 
     #[ORM\Column(type: 'string')]
-    private string $level;
+    protected string $level;
 
     #[ORM\Column(type: 'string')]
-    private string $channel;
+    protected string $channel;
 
     #[ORM\Column(type: 'string')]
-    private string $message;
+    protected string $message;
 
     public function getId(): ?int
     {

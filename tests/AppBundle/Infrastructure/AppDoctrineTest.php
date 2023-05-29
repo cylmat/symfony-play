@@ -18,27 +18,44 @@ final class AppDoctrineTest extends TestCase
     {
         $this->objectManager = $this->createMock(ObjectManager::class);
         $this->doctrine = $this->createStub(ManagerRegistry::class);
-        $this->doctrine
-            ->method('getManager')
-            ->willReturn($this->objectManager);
-
-        $this->appDoctrine = new AppDoctrine($this->doctrine, 'dev');
+        $this->appDoctrine = new AppDoctrine($this->doctrine, 'dev', []);
     }
 
-    public function testPersist(): void
+    public function testPersistNoReplicate(): void
     {
+        $this->doctrine
+            ->method('getManagerForClass')
+            ->with(\stdClass::class)
+            ->willReturn($this->objectManager);
+
         $this->objectManager
             ->expects($this->once())
             ->method('persist')
-            ->with($this->anything());
+            ->with(new \stdClass());
+
         $this->appDoctrine->persist(new \stdClass());
     }
 
-    public function testFlush(): void
+    public function testWithReplicate(): void
     {
+        $replicateEntities = [
+            \stdClass::class => [
+                \stdClass::class,
+                \stdClass::class,
+            ]
+        ];
+
+        $this->doctrine
+            ->method('getManagerForClass')
+            ->with(\stdClass::class)
+            ->willReturn($this->objectManager);
+
         $this->objectManager
-            ->expects($this->once())
-            ->method('flush');
-        $this->appDoctrine->flush();
+            ->expects($this->exactly(3))
+            ->method('persist')
+            ->with($this->isInstanceOf(\stdClass::class));
+
+        $appDoctrine = new AppDoctrine($this->doctrine, 'dev', $replicateEntities);
+        $appDoctrine->persist(new \stdClass(), true);
     }
 }

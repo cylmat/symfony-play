@@ -3,6 +3,7 @@
 namespace App\Admin\Application\Controller;
 
 use App\AppBundle\Domain\Entity\Log;
+use App\Local\Domain\Entity\SqliteLog;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -60,11 +61,22 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToCrud('Log', 'fas fa-list', Log::class);
+        yield MenuItem::linkToCrud('SqliteLog', 'fas fa-list', SqliteLog::class);
         yield MenuItem::linkToUrl(
             'Log -Flush-',
             'fas fa-list',
-            $this->container->get(AdminUrlGenerator::class)->setAction('flush')->generateUrl()
+            $this->container->get(AdminUrlGenerator::class)
+                ->setController(LogController::class)
+                ->setAction('flush')
+                ->generateUrl()
         );
-        // yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToUrl(
+            'LogSqlite -Flush-',
+            'fas fa-list',
+            $this->container->get(AdminUrlGenerator::class)
+                ->setController(SqliteLogController::class)
+                ->setAction('flush')
+                ->generateUrl()
+        );
     }
 }
