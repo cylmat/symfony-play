@@ -188,6 +188,9 @@ case "$1" in
 "funit"|"ftest")
 	echoinfo "Running Phpunit functional"
     bin/phpunit -v -c tools/test/phpunit.xml --group functional ${ARGUMENT} ;;
+"iunit"|"itest")
+	echoinfo "Running Phpunit integration (action)"
+    bin/phpunit -v -c tools/test/phpunit.xml --group integration ${ARGUMENT} ;;
 
 ##########################################################
 
