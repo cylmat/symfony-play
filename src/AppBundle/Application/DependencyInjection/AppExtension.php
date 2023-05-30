@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\DependencyInjection;
+namespace App\AppBundle\Application\DependencyInjection;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
