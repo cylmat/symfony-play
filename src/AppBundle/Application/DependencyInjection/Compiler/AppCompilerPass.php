@@ -12,8 +12,10 @@ use Symfony\Component\DependencyInjection\Reference;
 /** @codeCoverageIgnore */
 class AppCompilerPass implements CompilerPassInterface
 {
-    /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
-    /** @todo SET IT INTO TEXT BUNDLE */
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @todo SET IT INTO TEXT BUNDLE
+     */
     public function process(ContainerBuilder $container): void
     {
         if (!$container->has(CommandManager::class)) {
