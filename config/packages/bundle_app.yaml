@@ -25,4 +25,4 @@ services:
             - '@maker.maker.make_entity'
 
     App\AppBundle\Domain\AppClientInterface:
-        factory: '@App\AppBundle\Infrastructure\RedisClientFactory'
+        factory: '@App\Local\Infrastructure\RedisClientFactory'

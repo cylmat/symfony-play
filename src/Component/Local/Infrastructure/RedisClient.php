@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Infrastructure;
+namespace App\Local\Infrastructure;
 
 use App\AppBundle\Domain\AppClientInterface;
 use Predis\Client as PredisClient;

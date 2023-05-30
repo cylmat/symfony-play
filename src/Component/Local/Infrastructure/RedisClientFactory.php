@@ -1,8 +1,9 @@
 <?php
 
-namespace App\AppBundle\Infrastructure;
+namespace App\Local\Infrastructure;
 
 use App\AppBundle\Domain\AppClientInterface;
+use App\AppBundle\Infrastructure\NullClient;
 use Throwable;
 
 class RedisClientFactory

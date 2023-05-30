@@ -13,7 +13,7 @@ final class RandomApiActionTest extends KernelTestCase
 
     protected function setUp(): void
     {
-        $this->randomApiAction = static::getContainer()->get(RandomApiAction::class);  //new RandomApiAction($this->redisManager);
+        $this->randomApiAction = static::getContainer()->get(RandomApiAction::class);
     }
 
     public function testExecute(): void
