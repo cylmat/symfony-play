@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\DependencyInjection\Compiler;
+namespace App\AppBundle\Application\DependencyInjection\Compiler;
 
 use App\Text\Domain\Manager\CommandManager;
 use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
@@ -14,6 +14,7 @@ class AppCompilerPass implements CompilerPassInterface
 {
     /**
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @todo SET IT INTO TEXT BUNDLE
      */
     public function process(ContainerBuilder $container): void
     {

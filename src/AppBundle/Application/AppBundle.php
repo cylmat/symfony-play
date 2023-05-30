@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle;
+namespace App\AppBundle\Application;
 
-use App\AppBundle\DependencyInjection\Compiler\AppCompilerPass;
+use App\AppBundle\Application\DependencyInjection\Compiler\AppCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

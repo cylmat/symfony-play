@@ -39,7 +39,7 @@ final class AppDataCollector extends AbstractDataCollector implements DataCollec
     public static function getTemplate(): string
     {
         /* Namespace is from "App/AppBundle" so "App" only */
-        /* @todo Change @App/AppBundle to @AppBundle */
+        /** @todo Change @App/AppBundle to @AppBundle */
         return '@App/app_collector.html.twig';
     }
 }
