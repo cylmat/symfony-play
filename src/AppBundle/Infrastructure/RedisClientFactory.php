@@ -3,13 +3,13 @@
 namespace App\AppBundle\Infrastructure;
 
 use App\AppBundle\Domain\AppClientInterface;
-use Predis\Client as PredisClient;
+use App\AppBundle\Infrastructure\RedisClient;
 use Throwable;
 
 class RedisClientFactory
 {
     public function __construct(
-        private ?string $redisUrl
+        private readonly ?string $redisUrl = null
     ) {
     }
 
@@ -20,7 +20,7 @@ class RedisClientFactory
      */
     public function __invoke(): AppClientInterface
     {
-        $client = $this->redisUrl ? new PredisClient($this->redisUrl) : new NullClient();
+        $client = $this->redisUrl ? new RedisClient($this->redisUrl) : new NullClient();
 
         try {
             /** @var PredisClient $client */

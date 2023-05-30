@@ -8,12 +8,9 @@ use App\AppBundle\Domain\AppClientInterface;
 /* @see https://github.com/predis/predis/wiki */
 class RedisManager
 {
-    //private NullClient|PredisClient $redisClient;
-
     public function __construct(
         private readonly AppClientInterface $redisClient
     ) {
-        //$this->redisClient = $redisClientFactory();
     }
 
     public function getClient(): AppClientInterface

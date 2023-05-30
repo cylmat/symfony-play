@@ -23,12 +23,6 @@ services:
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
             - '@maker.maker.make_entity'
-    
-    App\AppBundle\Infrastructure\RedisClientFactory:
-        arguments:
-            $redisUrl: ~
 
-    redis.factory: '@App\AppBundle\Infrastructure\RedisClientFactory'
-
-    App\AppBundle\Infrastructure\RedisClient:
-        factory: '@redis.factory'
+    App\AppBundle\Domain\AppClientInterface:
+        factory: '@App\AppBundle\Infrastructure\RedisClientFactory'
