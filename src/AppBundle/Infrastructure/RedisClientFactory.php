@@ -3,7 +3,6 @@
 namespace App\AppBundle\Infrastructure;
 
 use App\AppBundle\Domain\AppClientInterface;
-use App\AppBundle\Infrastructure\RedisClient;
 use Throwable;
 
 class RedisClientFactory
@@ -23,8 +22,7 @@ class RedisClientFactory
         $client = $this->redisUrl ? new RedisClient($this->redisUrl) : new NullClient();
 
         try {
-            /** @var PredisClient $client */
-            $client->connect();
+            $client->connect(); // @phpstan-ignore-line: Undefined method
         } catch (Throwable $exception) {
             return new NullClient();
         }

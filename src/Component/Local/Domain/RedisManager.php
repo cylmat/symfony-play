@@ -5,7 +5,6 @@ namespace App\Local\Domain;
 use App\AppBundle\Domain\AppClientInterface;
 
 /* @see https://app.redislabs.com */
-/* @see https://github.com/predis/predis/wiki */
 class RedisManager
 {
     public function __construct(
@@ -13,17 +12,10 @@ class RedisManager
     ) {
     }
 
-    public function getClient(): AppClientInterface
-    {
-        return $this->redisClient;
-    }
-
     /**
      * @see http://lua-users.org/wiki/MathLibraryTutorial
      * @see https://redis.io/docs/manual/programmability/eval-intro
      * @see https://redis-doc-test.readthedocs.io/en/latest/commands/eval
-     *
-     * @infection-ignore-all
      */
     public function getLuaRandomInt(): int
     {
