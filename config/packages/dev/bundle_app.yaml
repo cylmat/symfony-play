@@ -4,7 +4,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
-    App\AppBundle\Infrastructure\RedisClientFactory:
+    App\Local\Infrastructure\RedisClientFactory:
         arguments:
             # env function come from ExpressionLanguageProvider.php
             # @todo: use custom expression like "isset()"
