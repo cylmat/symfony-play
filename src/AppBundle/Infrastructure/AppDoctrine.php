@@ -9,9 +9,6 @@ use Doctrine\Persistence\ManagerRegistry;
 /** @SuppressWarnings(PHPMD.BooleanArgumentFlag) */
 class AppDoctrine
 {
-    /** @todo: Remove this and use fake Doctrine for tests */
-    private const TEST_ENV = 'test';
-
     /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
      *
@@ -22,7 +19,6 @@ class AppDoctrine
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
         private RedisPersistanceManager $rpm,
-        private readonly string $env,
         private readonly array $replicateEntities
     ) {
     }
@@ -51,11 +47,8 @@ class AppDoctrine
          * $params = $connection->getParams();
          */
 
-        if (self::TEST_ENV !== $this->env) {
-            $this->doctrineRegistry->getManagerForClass($object::class)?->persist($object);
-            $flush ? $this->doctrineRegistry->getManagerForClass($object::class)?->flush() : null;
-        }
-
+        $this->doctrineRegistry->getManagerForClass($object::class)?->persist($object);
+        $flush ? $this->doctrineRegistry->getManagerForClass($object::class)?->flush() : null;
     }
 
     private function replicateEntities(object $object, bool $flush = false): void

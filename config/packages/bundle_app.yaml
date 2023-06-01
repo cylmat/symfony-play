@@ -18,8 +18,10 @@ services:
 
     # @todo: Remove this and use fake Doctrine for tests 
     App\AppBundle\Infrastructure\AppDoctrine:
-        arguments: 
-            $env: '%env(resolve:APP_ENV)%'
+        #class: App\AppBundle\Infrastructure\AppDoctrine
+        decorates: Doctrine\Common\Persistence\ManagerRegistry
+        # arguments: ['@.inner'] # Automatic with default service.yaml
+        arguments:
             $replicateEntities: '%replicateEntities%'
 
     App\AppBundle\Command\MakeEntityWrapper:
