@@ -25,6 +25,8 @@ use Symfony\Component\HttpFoundation\Response;
 /** @SuppressWarnings(PHPMD.CouplingBetweenObjects) */
 class LogController extends AbstractCrudController
 {
+    protected const ROOT = Log::class;
+
     public static function getEntityFqcn(): string
     {
         return Log::class;
@@ -39,6 +41,56 @@ class LogController extends AbstractCrudController
         ;
 
         return $actions;
+    }
+
+    private function getClassName($next): string
+    {
+        return substr($next,strrpos( $next,'\\')+1);
+    }
+
+    public function redirectToNextController($context)
+    {
+        $p = $this->getParameter('replicateEntities');
+        if (array_key_exists(static::getEntityFqcn(), $p)) { //root
+            $next = $p[static::getEntityFqcn()][0];
+            $logClass = $this->getClassName(static::getEntityFqcn());
+            $oneClass=$this->getClassName($next);
+            
+            $oneController=(str_replace($logClass, $oneClass, __CLASS__));
+           
+            return $this->redirect($this->container->get(AdminUrlGenerator::class)
+                ->setController($oneController)
+                ->setAction('flush')
+                ->unset(EA::ENTITY_ID)
+                ->generateUrl()
+            );
+        } else {
+            $next=null;
+            foreach ($p[self::ROOT] as $k => $t) {
+                if (static::getEntityFqcn() ===  $t) {
+                    $next = $k+1;
+                }
+            }
+            if (isset($p[self::ROOT][$next])) {
+                $rootClass=$this->getClassName(self::getEntityFqcn());
+                $nextClass = $this->getClassName($p[self::ROOT][$next]);
+                $nextController=(str_replace($rootClass, $nextClass, __CLASS__));
+            
+                return $this->redirect($this->container->get(AdminUrlGenerator::class)
+                    ->setController($nextController)
+                    ->setAction('flush')
+                    ->unset(EA::ENTITY_ID)
+                    ->generateUrl()
+                );
+            }
+        }
+
+        return $this->redirect($context->getReferrer()
+            ?? $this->container->get(AdminUrlGenerator::class)
+                ->setAction(Action::INDEX)
+                ->unset(EA::ENTITY_ID)
+                ->generateUrl()
+        );
     }
 
     /** @SuppressWarnings(PHPMD.StaticAccess) */
@@ -77,15 +129,6 @@ class LogController extends AbstractCrudController
         }
         $doctrine->flush();
 
-        if (null !== $referrer = $context->getReferrer()) {
-            return $this->redirect($referrer);
-        }
-
-        return $this->redirect(
-            $this->container->get(AdminUrlGenerator::class)
-                ->setAction(Action::INDEX)
-                ->unset(EA::ENTITY_ID)
-                ->generateUrl()
-        );
+        return $this->redirectToNextController($context);
     }
 }

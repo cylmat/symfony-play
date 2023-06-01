@@ -2,13 +2,13 @@
 
 namespace App\Local\Domain;
 
-use App\AppBundle\Domain\AppClientInterface;
+use App\AppBundle\Domain\RedisClientInterface;
 
 /* @see https://app.redislabs.com */
 class RedisManager
 {
     public function __construct(
-        private readonly AppClientInterface $redisClient
+        private readonly RedisClientInterface $redisClient
     ) {
     }
 

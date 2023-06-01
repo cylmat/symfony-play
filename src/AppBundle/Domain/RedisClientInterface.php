@@ -2,6 +2,6 @@
 
 namespace App\AppBundle\Domain;
 
-interface AppClientInterface
+interface RedisClientInterface
 {
 }

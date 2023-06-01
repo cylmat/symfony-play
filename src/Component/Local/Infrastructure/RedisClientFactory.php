@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure;
 
-use App\AppBundle\Domain\AppClientInterface;
+use App\AppBundle\Domain\RedisClientInterface;
 use App\AppBundle\Infrastructure\NullClient;
 use Throwable;
 
@@ -18,7 +18,7 @@ class RedisClientFactory
      * @codeCoverageIgnore
      * @todo Use config instead of $redisUrl
      */
-    public function __invoke(): AppClientInterface
+    public function __invoke(): RedisClientInterface
     {
         $client = $this->redisUrl ? new RedisClient($this->redisUrl) : new NullClient();
 

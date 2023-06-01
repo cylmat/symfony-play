@@ -1,5 +1,6 @@
 set logger in domain/service
-set depinjection and resources in application
+doctrine decorator instead of appdoctrine
+
 
 functional tests
 WorkflowSubscriber use infrastructure!

@@ -18,11 +18,13 @@ services:
 
     # @todo: Remove this and use fake Doctrine for tests 
     App\AppBundle\Infrastructure\AppDoctrine:
-        arguments: ['@doctrine', '%env(resolve:APP_ENV)%', '%replicateEntities%']
+        arguments: 
+            $env: '%env(resolve:APP_ENV)%'
+            $replicateEntities: '%replicateEntities%'
 
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
             - '@maker.maker.make_entity'
 
-    App\AppBundle\Domain\AppClientInterface:
+    App\AppBundle\Domain\RedisClientInterface:
         factory: '@App\Local\Infrastructure\RedisClientFactory'

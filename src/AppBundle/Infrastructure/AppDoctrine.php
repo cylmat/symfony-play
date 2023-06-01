@@ -2,6 +2,8 @@
 
 namespace App\AppBundle\Infrastructure;
 
+use App\Local\Domain\Entity\RedisLog;
+use App\Local\Infrastructure\Manager\RedisPersistanceManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /** @SuppressWarnings(PHPMD.BooleanArgumentFlag) */
@@ -19,6 +21,7 @@ class AppDoctrine
      */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
+        private RedisPersistanceManager $rpm,
         private readonly string $env,
         private readonly array $replicateEntities
     ) {
@@ -32,6 +35,12 @@ class AppDoctrine
 
     private function classManagerPersist(object $object, bool $flush = false): void
     {
+        if ($object instanceof RedisLog) {
+            $this->rpm->persist($object);
+
+            return;
+        }
+
         /*
          * Sample
          * Doctrine\DBAL\Connection
@@ -44,11 +53,9 @@ class AppDoctrine
 
         if (self::TEST_ENV !== $this->env) {
             $this->doctrineRegistry->getManagerForClass($object::class)?->persist($object);
+            $flush ? $this->doctrineRegistry->getManagerForClass($object::class)?->flush() : null;
         }
 
-        if ($flush) {
-            $this->doctrineRegistry->getManagerForClass($object::class)?->flush();
-        }
     }
 
     private function replicateEntities(object $object, bool $flush = false): void
