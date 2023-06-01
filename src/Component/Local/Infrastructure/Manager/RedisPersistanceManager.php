@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure\Manager;
 
-use App\AppBundle\Domain\RedisClientInterface;
+use App\Local\Domain\RedisClientInterface;
 use ReflectionAttribute;
 use ReflectionClass;
 

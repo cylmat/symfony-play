@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Infrastructure;
 
-use App\Local\Domain\Entity\RedisLog;
+use App\Local\Domain\Entity\RedisLog; /** @todo remove coupling between appbundle and "local" */
 use App\Local\Infrastructure\Manager\RedisPersistanceManager;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -11,8 +11,6 @@ class AppDoctrine
 {
     /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
-     *
-     * @todo Remove "env" parameters and use config file only
      *
      * @param string[][] $replicateEntities
      */

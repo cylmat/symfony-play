@@ -2,7 +2,7 @@
 
 namespace App\Local\Domain;
 
-use App\AppBundle\Domain\RedisClientInterface;
+use App\Local\Domain\RedisClientInterface;
 
 /* @see https://app.redislabs.com */
 class RedisManager

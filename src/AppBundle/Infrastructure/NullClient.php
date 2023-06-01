@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Infrastructure;
 
-use App\AppBundle\Domain\RedisClientInterface;
+use App\Local\Domain\RedisClientInterface;
 
 class NullClient implements RedisClientInterface
 {

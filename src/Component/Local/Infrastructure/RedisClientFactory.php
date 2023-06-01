@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure;
 
-use App\AppBundle\Domain\RedisClientInterface;
+use App\Local\Domain\RedisClientInterface;
 use App\AppBundle\Infrastructure\NullClient;
 use Throwable;
 

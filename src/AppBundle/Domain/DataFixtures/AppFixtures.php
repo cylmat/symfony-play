@@ -9,6 +9,7 @@ use Psr\Log\LogLevel;
 
 class AppFixtures extends Fixture
 {
+    /** @todo use appdoctrine for replicate persistence */
     public function load(ObjectManager $manager): void
     {
         $logEntity = (new Log())

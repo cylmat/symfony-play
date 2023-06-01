@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure;
 
-use App\AppBundle\Domain\RedisClientInterface;
+use App\Local\Domain\RedisClientInterface;
 use Predis\Client as PredisClient;
 
 /* @see https://github.com/predis/predis/wiki */

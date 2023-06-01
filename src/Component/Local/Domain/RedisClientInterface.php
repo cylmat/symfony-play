@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Domain;
+namespace App\Local\Domain;
 
 interface RedisClientInterface
 {
