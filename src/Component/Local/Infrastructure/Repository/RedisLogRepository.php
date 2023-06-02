@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure\Repository;
 
-use App\AppBundle\Infrastructure\AppDoctrine;
+use App\AppBundle\Domain\Manager\AppDoctrine;
 use App\AppBundle\Infrastructure\Repository\LogRepository;
 
 class RedisLogRepository extends LogRepository

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Infrastructure;
+namespace App\AppBundle\Domain\Manager;
 
 use App\Local\Domain\Entity\RedisLog; /** @todo remove coupling between appbundle and "local" */
 use App\Local\Infrastructure\Manager\RedisPersistanceManager;

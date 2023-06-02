@@ -2,7 +2,7 @@
 
 namespace App\Tests;
 
-use App\AppBundle\Infrastructure\AppDoctrine;
+use App\AppBundle\Domain\Manager\AppDoctrine;
 
 class AppDoctrineTestCase extends AppDoctrine
 {

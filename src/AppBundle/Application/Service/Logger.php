@@ -3,7 +3,7 @@
 namespace App\AppBundle\Application\Service;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppBundle\Infrastructure\AppDoctrine;
+use App\AppBundle\Domain\Manager\AppDoctrine;
 use DateTimeImmutable;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;

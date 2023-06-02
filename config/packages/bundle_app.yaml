@@ -17,8 +17,7 @@ services:
         resource: ../../src/AppBundle/
 
     # @todo: Remove this and use fake Doctrine for tests 
-    App\AppBundle\Infrastructure\AppDoctrine:
-        #class: App\AppBundle\Infrastructure\AppDoctrine
+    App\AppBundle\Domain\Manager\AppDoctrine:
         decorates: Doctrine\Common\Persistence\ManagerRegistry
         # arguments: ['@.inner'] # Automatic with default service.yaml
         arguments:
