@@ -100,9 +100,9 @@
             "App\\": "src/",
             "App\\AppBundle\\": "src/AppBundle/",
             "App\\Admin\\": "src/Admin/",
-            "App\\Encrypt\\": "src/Component/Encrypt/",
-            "App\\Local\\": "src/Component/Local/",
-            "App\\Text\\": "src/Component/Text/"
+            "App\\Encrypt\\": "src/Encrypt/",
+            "App\\Local\\": "src/Local/",
+            "App\\Text\\": "src/Text/"
         }
     },
     "autoload-dev": {
@@ -115,9 +115,9 @@
             "App\\Tests\\": "tests/",
             "App\\Tests\\AppBundle\\": "tests/AppBundle/",
             "App\\Tests\\Admin\\": "tests/Admin/",
-            "App\\Tests\\Encrypt\\": "tests/Component/Encrypt/",
-            "App\\Tests\\Local\\": "tests/Component/Local/",
-            "App\\Tests\\Text\\": "tests/Component/Text/",
+            "App\\Tests\\Encrypt\\": "tests/Encrypt/",
+            "App\\Tests\\Local\\": "tests/Local/",
+            "App\\Tests\\Text\\": "tests/Text/",
             "spec\\App\\": "spec/"
         }
     },

@@ -2,10 +2,9 @@
 
 namespace App\AppBundle\Application\Service;
 
+// Used with LoggerAwareInterface.
 trait LoggerTrait
 {
-    // Used with LoggerAwareInterface !
-
     protected LoggerInterface $logger;
 
     public function setLogger(LoggerInterface $logger): self

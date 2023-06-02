@@ -19,12 +19,8 @@ services:
         resource: ../src/ApiResource/
 
     # BUNDLES #
-
-    App\Encrypt\:
-        resource: ../src/Component/Encrypt/
-
     App\Text\:
-        resource: ../src/Component/Text/
+        resource: ../src/Text/
 
     # TAGS #
     # @todo move to TEXT bundle !!
@@ -38,12 +34,4 @@ services:
                 - ['setLogger', ['@app.logger']]
 
     App\AppBundle\Application\Service\LoggerInterface: '@App\AppBundle\Application\Service\Logger'
-
     app.logger: '@App\AppBundle\Application\Service\LoggerInterface'
-
-    # App\Text\Domain\Manager\CommandManager:
-    #     arguments:
-    #         - !tagged_iterator { tag: app.command_process } # !tagged_iterator app.command_process
-
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones

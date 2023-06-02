@@ -53,7 +53,7 @@ doctrine:
                     AppLocal:
                         alias: Local
                         type: attribute
-                        dir: '%kernel.project_dir%/src/Component/Local/Domain/Entity'
+                        dir: '%kernel.project_dir%/src/Local/Domain/Entity'
                         prefix: 'App\Local'
                         is_bundle: false # change 'dir' attribute as relative path
 
