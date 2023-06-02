@@ -4,15 +4,9 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
+# @todo remove this factory and select client with config only !
     App\Local\Infrastructure\RedisClientFactory:
         arguments:
-            # env function come from ExpressionLanguageProvider.php
-            # @todo: use custom expression like "isset()"
-            $redisUrl: "@=
-                parameter('use_redis') === 'local' && env('REDIS_URL')
-                    ? env('REDIS_URL')
-                    : (
-                        parameter('use_redis') === 'remote' && env('REDIS_REMOTE_URL')
-                        ? env('REDIS_REMOTE_URL')
-                        : null
-                    )"
+            $redisClient: "@= 
+                parameter('use_redis') === 'local' ? service('snc_redis.local') : (
+                    parameter('use_redis') === 'remote' ? service('snc_redis.remote') : null)"

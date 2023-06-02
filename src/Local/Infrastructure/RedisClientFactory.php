@@ -4,23 +4,23 @@ namespace App\Local\Infrastructure;
 
 use App\Local\Domain\RedisClientInterface;
 use App\AppBundle\Infrastructure\NullClient;
+use Predis\Client;
 use Throwable;
 
 class RedisClientFactory
 {
     public function __construct(
-        private readonly ?string $redisUrl = null
+        private readonly ?Client $redisClient = null // @snc_redis
     ) {
     }
 
     /**
      * @infection-ignore-all
      * @codeCoverageIgnore
-     * @todo Use config instead of $redisUrl
      */
     public function __invoke(): RedisClientInterface
     {
-        $client = $this->redisUrl ? new RedisClient($this->redisUrl) : new NullClient();
+        $client = $this->redisClient ? new RedisClient($this->redisClient) : new NullClient();
 
         try {
             $client->connect(); // @phpstan-ignore-line: Undefined method

@@ -8,16 +8,13 @@ use Predis\Client as PredisClient;
 /* @see https://github.com/predis/predis/wiki */
 class RedisClient implements RedisClientInterface
 {
-    private PredisClient $predis;
-
     public function __construct(
-        string $redisUrl
+        private readonly PredisClient $redisClient
     ) {
-        $this->predis = new PredisClient($redisUrl);
     }
 
     public function __call(string $name, mixed $arguments) // @phpstan-ignore-line: no return type
     {
-        return $this->predis->{$name}(...$arguments);
+        return $this->redisClient->{$name}(...$arguments);
     }
 }
