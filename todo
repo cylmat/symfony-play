@@ -1,5 +1,7 @@
 set logger in domain/service
 doctrine decorator instead of appdoctrine
+use snc/redis-bundle
+use FOS\UserBundle\FOSUserBundle
 
 
 functional tests
