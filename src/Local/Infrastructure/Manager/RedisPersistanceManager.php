@@ -2,24 +2,26 @@
 
 namespace App\Local\Infrastructure\Manager;
 
+use App\Local\Domain\Entity\RedisLog;
 use App\Local\Domain\RedisClientInterface;
 use ReflectionAttribute;
 use ReflectionClass;
 
-class RedisPersistanceManager
+class RedisPersistanceManager implements PersistanceManagerInterface
 {
     public function __construct(
         private readonly RedisClientInterface $redisClient
     ) {
     }
 
-    public function persist($object=null)
+    public function persist(RedisLog $object = null)
     {
-        $a = (new ReflectionClass($object))->getAttributes();
-        $t = \current(\array_filter($a, function(ReflectionAttribute $v) {
-            return $v->getName() === 'Doctrine\ORM\Mapping\Table';
+        $attributes = (new ReflectionClass($object))->getAttributes();
+        $table = \current(\array_filter($attributes, function (ReflectionAttribute $attribute) {
+            return $attribute->getName() === 'Doctrine\ORM\Mapping\Table';
         }));
-        $tableName = $t->getArguments()['name'];
+
+        $tableName = $table->getArguments()['name'];
         $this->redisClient->set(
             $tableName.':'.uniqId(),
             \serialize($object)

@@ -2,10 +2,9 @@
 
 namespace App\AppBundle\Domain\Manager;
 
-use App\Local\Domain\Entity\RedisLog; /** @todo remove coupling between appbundle and "local" */
-use App\Local\Infrastructure\Manager\RedisPersistanceManager;
 use Doctrine\Persistence\ManagerRegistry;
 
+/** Used for replication */
 /** @SuppressWarnings(PHPMD.BooleanArgumentFlag) */
 class AppDoctrine
 {
@@ -16,37 +15,25 @@ class AppDoctrine
      */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
-        private RedisPersistanceManager $rpm,
-        private readonly array $replicateEntities
+        private readonly array $replicateEntities = []
     ) {
     }
 
     public function persist(object $object, bool $flush = false): void
     {
-        $this->classManagerPersist($object, $flush);
+        $this->repositoryPersist($object, $flush); // for root entity
         $this->replicateEntities($object, $flush);
     }
 
-    private function classManagerPersist(object $object, bool $flush = false): void
+    private function repositoryPersist(object $object, bool $flush = false): void
     {
-        if ($object instanceof RedisLog) {
-            $this->rpm->persist($object);
-
-            return;
-        }
-
         /*
-         * Sample
-         * Doctrine\DBAL\Connection
-         * $connection = $this->doctrine->getConnection();
-         *
-         * Doctrine\DBAL\Schema\SqliteSchemaManager
-         * $schema = $connection->getSchemaManager();
-         * $params = $connection->getParams();
+         * Sample :
+         * $connection = $this->doctrine->getConnection(); # Doctrine\DBAL\Connection
+         * $schema = $connection->getSchemaManager(); # Doctrine\DBAL\Schema\SqliteSchemaManager
          */
 
-        $this->doctrineRegistry->getManagerForClass($object::class)?->persist($object);
-        $flush ? $this->doctrineRegistry->getManagerForClass($object::class)?->flush() : null;
+        $this->doctrineRegistry->getRepository($object::class)->save($object, $flush);
     }
 
     private function replicateEntities(object $object, bool $flush = false): void
@@ -68,7 +55,7 @@ class AppDoctrine
                 $obj2->{$set}($object->{$get}());
             }
 
-            $this->classManagerPersist($obj2, $flush);
+            $this->repositoryPersist($obj2, $flush);
         }
     }
 }

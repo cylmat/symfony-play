@@ -134,6 +134,13 @@ case "$1" in
 	echogood
 ;;
 
+"itests")
+	$0 cover &&
+	$0 deptrac &&
+	$0 iunit &&
+	echogood
+;;
+
 # @see https://phpunitgen.io
 "gen"|"test-gen")
     bin/phpunitgen --config=tools/test/phpunitgen.yml src ;;

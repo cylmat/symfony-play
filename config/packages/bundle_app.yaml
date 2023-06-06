@@ -2,7 +2,6 @@ app:
     enabled: false # sample
 
 parameters:
-    replicateEntities: [] # default value
 
 services:
     _defaults:
@@ -16,12 +15,10 @@ services:
     App\AppBundle\:
         resource: ../../src/AppBundle/
 
-    # @todo: Remove this and use fake Doctrine for tests 
+    # @todo: Remove this and use fake Doctrine for tests
     App\AppBundle\Domain\Manager\AppDoctrine:
         decorates: Doctrine\Common\Persistence\ManagerRegistry
-        # arguments: ['@.inner'] # Automatic with default service.yaml
-        arguments:
-            $replicateEntities: '%replicateEntities%'
+        # NOT NEEDED arguments: ['@.inner'] # Automatic with default service.yaml
 
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 

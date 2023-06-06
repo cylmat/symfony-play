@@ -45,43 +45,44 @@ class LogController extends AbstractCrudController
 
     private function getClassName($next): string
     {
-        return substr($next,strrpos( $next,'\\')+1);
+        return substr($next, strrpos($next, '\\')+1);
     }
 
+    /** @SuppressWarnings(PHPMD.ElseExpression) */
     public function redirectToNextController($context)
     {
-        $p = $this->getParameter('replicateEntities');
-        if (array_key_exists(static::getEntityFqcn(), $p)) { //root
-            $next = $p[static::getEntityFqcn()][0];
+        $replicateEntities = $this->getParameter('replicateEntities');
+        if (array_key_exists(static::getEntityFqcn(), $replicateEntities)) { //root
+            $next = $replicateEntities[static::getEntityFqcn()][0];
             $logClass = $this->getClassName(static::getEntityFqcn());
             $oneClass=$this->getClassName($next);
-            
+
             $oneController=(str_replace($logClass, $oneClass, __CLASS__));
-           
+
             return $this->redirect($this->container->get(AdminUrlGenerator::class)
                 ->setController($oneController)
                 ->setAction('flush')
                 ->unset(EA::ENTITY_ID)
-                ->generateUrl()
-            );
+                ->generateUrl())
+            ;
         } else {
-            $next=null;
-            foreach ($p[self::ROOT] as $k => $t) {
+            $next = null;
+            foreach ($replicateEntities[self::ROOT] as $k => $t) {
                 if (static::getEntityFqcn() ===  $t) {
                     $next = $k+1;
                 }
             }
-            if (isset($p[self::ROOT][$next])) {
+            if (isset($replicateEntities[self::ROOT][$next])) {
                 $rootClass=$this->getClassName(self::getEntityFqcn());
-                $nextClass = $this->getClassName($p[self::ROOT][$next]);
+                $nextClass = $this->getClassName($replicateEntities[self::ROOT][$next]);
                 $nextController=(str_replace($rootClass, $nextClass, __CLASS__));
-            
+
                 return $this->redirect($this->container->get(AdminUrlGenerator::class)
                     ->setController($nextController)
                     ->setAction('flush')
                     ->unset(EA::ENTITY_ID)
-                    ->generateUrl()
-                );
+                    ->generateUrl())
+                ;
             }
         }
 
@@ -89,8 +90,8 @@ class LogController extends AbstractCrudController
             ?? $this->container->get(AdminUrlGenerator::class)
                 ->setAction(Action::INDEX)
                 ->unset(EA::ENTITY_ID)
-                ->generateUrl()
-        );
+                ->generateUrl())
+            ;
     }
 
     /** @SuppressWarnings(PHPMD.StaticAccess) */

@@ -2,7 +2,9 @@
 
 namespace App\AppBundle\Application\DependencyInjection\Compiler;
 
+use App\AppBundle\Domain\Manager\AppDoctrine;
 use App\Text\Domain\Manager\CommandManager;
+use ReflectionClass;
 use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -24,6 +26,24 @@ class AppCompilerPass implements CompilerPassInterface
 
         $commandDefinition = $container->findDefinition(CommandManager::class);
         $tags = $container->findTaggedServiceIds('app.command_process');
+
+        $replicates = [];
+        foreach ($container->getServiceIds() as $id) {
+            if (false !== \strpos($id, '\\Entity\\')) { // all Entities
+                $entity = $container->get($id);
+                $attributesEntity = (new ReflectionClass($entity))->getAttributes();
+
+                foreach ($attributesEntity as $a) {
+                    if (false !== \strpos($a->getName(), '\\ReplicateEntity')) {
+                        $root = $a->getArguments()[0];
+                        $replicates[$root][] = $id;
+                    }
+                }
+            }
+        }
+
+        $doc = $container->findDefinition(AppDoctrine::class);
+        $doc->setArgument('$replicateEntities', $replicates);
 
         /**
          * Replace the

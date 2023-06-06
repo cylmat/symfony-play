@@ -36,7 +36,7 @@ final class Logger extends MonologLogger implements LoggerInterface
 
         $level = \strtolower($level);
 
-        $log = (new Log())
+        $log = (new Log()) // @todo use factory
             ->setChannel($this->channel)
             ->setLevel($level)
             ->setMessage($message)

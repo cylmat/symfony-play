@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class RedisLogController extends LogController
 {
     public function __construct(
-        private readonly RedisPersistanceManager $rpm
+        private readonly RedisPersistanceManager $rpm // @todo use it to retrieve data
     ) {
     }
 
@@ -20,7 +20,7 @@ class RedisLogController extends LogController
     }
 
     public function flush(AdminContext $context): Response
-    { 
+    {
         $this->rpm->flushall();
 
         if (null !== $referrer = $context->getReferrer()) {

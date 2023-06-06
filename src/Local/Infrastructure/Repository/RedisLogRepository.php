@@ -2,13 +2,19 @@
 
 namespace App\Local\Infrastructure\Repository;
 
-use App\AppBundle\Domain\Manager\AppDoctrine;
-use App\AppBundle\Infrastructure\Repository\LogRepository;
+use App\Local\Domain\Entity\RedisLog;
+use App\Local\Infrastructure\Manager\RedisPersistanceManager;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
-class RedisLogRepository extends LogRepository
+class RedisLogRepository extends ServiceEntityRepository
 {
     public function __construct(
-        private AppDoctrine $registry
+        private RedisPersistanceManager $redisPersistance
     ) {
+    }
+
+    public function save(RedisLog $entity): void
+    {
+        $this->redisPersistance->persist($entity);
     }
 }
