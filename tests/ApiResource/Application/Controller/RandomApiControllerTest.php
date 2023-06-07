@@ -3,10 +3,10 @@
 namespace App\Test\ApiResource;
 
 use App\ApiResource\Application\Controller\RandomApiController;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /** @group functional */
-final class RandomApiControllerTest extends TestCase
+final class RandomApiControllerTest extends WebTestCase
 {
     private RandomApiController $randomApiController;
 
@@ -17,6 +17,12 @@ final class RandomApiControllerTest extends TestCase
 
     public function testGetRandomIntAction(): void
     {
-        $this->markTestIncomplete();
+        $client = static::createClient();
+        $client->followRedirects();
+        $client->request('GET', '/api/');
+
+        // head
+        $this->assertResponseIsSuccessful();
+        $this->assertStringContainsString('"random_int"', $client->getResponse()->getContent());
     }
 }

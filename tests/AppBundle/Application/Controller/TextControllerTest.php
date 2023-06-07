@@ -10,8 +10,18 @@ final class TextControllerTest extends WebTestCase
     public function testIndex(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/text');
+        $client->followRedirects();
+        $crawler = $client->request('GET', '/text');
 
         $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h2', 'Text substitution');
+
+        $form = $crawler->selectButton('Submit')->form();
+        $form['text[text]'] = 'test';
+        $form['text[pattern]'] = 'e';
+        $form['text[replace]'] = 'y';
+
+        $client->submit($form, []);
+        $this->assertSelectorTextContains('#result', 'tyst');
     }
 }
