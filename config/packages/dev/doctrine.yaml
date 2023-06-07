@@ -56,15 +56,3 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Local/Domain/Entity'
                         prefix: 'App\Local'
                         is_bundle: false # change 'dir' attribute as relative path
-
-when@test:
-    doctrine:
-        dbal:
-            #url: '%env(resolve:DATABASE_URL)%'
-            # @todo see why DATABASE_URL doesn't works for tests
-            url: '%env(DEV_SQLITE_URL)%'
-            driver: pdo_sqlite
-            server_version: '3'
-            charset: utf8mb4
-            # "TEST_TOKEN" is typically set by ParaTest
-            #dbname_suffix: '_test%env(default::TEST_TOKEN)%'

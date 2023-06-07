@@ -2,21 +2,16 @@
 
 namespace App\Test\AppBundle\Application\Controller;
 
-use App\AppBundle\Application\Controller\HomeController;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /** @group functional */
-final class HomeControllerTest extends TestCase
+final class HomeControllerTest extends WebTestCase
 {
-    private HomeController $homeController;
-
-    protected function setUp(): void
-    {
-        $this->homeController = new HomeController();
-    }
-
     public function testIndex(): void
     {
-        $this->markTestIncomplete();
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+
+        $this->assertResponseIsSuccessful();
     }
 }

@@ -211,9 +211,16 @@ case "$1" in
 "watch")
 	npm run watch ;;
 
-"cache")
+"var")
 	rm var/cache/* -rf
+;;
+
+"cache")
 	bin/console cache:clear
+;;
+
+"varcache")
+	$0 var && $0 cache
 ;;
 
 # @see https://deployer.org

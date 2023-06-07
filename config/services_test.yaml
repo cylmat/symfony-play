@@ -6,8 +6,3 @@ services:
 
     App\Features\:
         resource: '../features/bootstrap/*'
-
-    App\AppBundle\Domain\Manager\AppDoctrine:
-        class: App\Tests\AppDoctrineTestCase
-        arguments:
-            $replicateEntities: '%replicateEntities%'
