@@ -15,7 +15,8 @@ class AppDoctrine
      */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
-        private readonly array $replicateEntities = []
+        private readonly array $replicateEntities = [],
+        private readonly iterable $appRepositories = [],
     ) {
     }
 
@@ -32,8 +33,17 @@ class AppDoctrine
          * $connection = $this->doctrine->getConnection(); # Doctrine\DBAL\Connection
          * $schema = $connection->getSchemaManager(); # Doctrine\DBAL\Schema\SqliteSchemaManager
          */
+        $attributes = (new \ReflectionClass($object))->getAttributes();
+        $stdClass = \array_filter($attributes, fn ($attribute)
+            => false !== \strpos($attribute->getName(), \stdClass::class)
+        )[0] ?? null;
 
-        $this->doctrineRegistry->getRepository($object::class)->save($object, $flush);
+        $repository = null;
+        if ($stdClass) {
+            $repository = $this->appRepositories[$stdClass->getArguments()['repositoryClass']];
+        }
+
+        $repository = $repository ?? $this->doctrineRegistry->getRepository($object::class);
     }
 
     private function replicateEntities(object $object, bool $flush = false): void

@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure\Repository;
 
-use App\Local\Domain\Entity\RedisLog;
+use App\Local\Domain\EntityNoDoctrine\RedisLog;
 use App\Local\Infrastructure\Manager\RedisPersistanceManager;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
