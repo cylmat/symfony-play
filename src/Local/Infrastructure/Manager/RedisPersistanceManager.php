@@ -17,10 +17,7 @@ class RedisPersistanceManager implements NoDoctrineEntityManagerInterface
 
     public function persist(object $object): void
     {
-        $attributes = (new ReflectionClass($object))->getAttributes();
-        $tableName = \current(\array_filter($attributes, function (ReflectionAttribute $attribute) {
-            return $attribute->getName() === ORM\Table::class;
-        }))->getArguments()['name'];
+        $tableName = $this->getTableNameFromEntity($object);
 
         $this->redisClient->set(
             $tableName.':'.uniqId(),
@@ -28,9 +25,21 @@ class RedisPersistanceManager implements NoDoctrineEntityManagerInterface
         );
     }
 
-    /** @todo use flush for a specific key */
-    public function flushall(): void
+    public function flushall(string $tableName): void
     {
+        $k = $this->redisClient->keys($tableName . '*');
+        d($k);die();
+
         $this->redisClient->flushall();
+    }
+
+    private function getTableNameFromEntity(object $object): string
+    {
+        $attributes = (new ReflectionClass($object))->getAttributes();
+        $tableName = \current(\array_filter($attributes, function (ReflectionAttribute $attribute) {
+            return $attribute->getName() === ORM\Table::class;
+        }))->getArguments()['name'];
+
+        return $tableName;
     }
 }

@@ -38,13 +38,14 @@ class AppDoctrine
         }
     }
 
-    public function flushall(): void
+    public function flushall(string $objectFqcn): void
     {
-        foreach ($this->doctrineRegistry->getManagers() as $k=>$entityManager) {
+        // @todo set this into a global repository
+        foreach ($this->doctrineRegistry->getManagers() as $entityManager) {
             /** @var QueryBuilder $queryBuilder */
             $entities = $entityManager->createQueryBuilder()
                 ->select('l')
-                ->from(Log::class, 'l')
+                ->from($objectFqcn, 'l')
                 ->getQuery()
                 ->execute();
 
@@ -54,8 +55,12 @@ class AppDoctrine
             $entityManager->flush();
         }
 
+        $tablename = $this->doctrineRegistry
+            ->getManagerForClass($objectFqcn)
+            ->getClassMetadata($objectFqcn)->getTableName();
+    
         foreach ($this->persistanceManagers as $manager) {
-            $manager->flushall();
+            $manager->flushall($tablename);
         }
     }
 }

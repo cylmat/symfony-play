@@ -26,8 +26,6 @@ use Symfony\Component\HttpFoundation\Response;
 /** @SuppressWarnings(PHPMD.CouplingBetweenObjects) */
 class LogController extends AbstractCrudController
 {
-    protected const ROOT = Log::class;
-
     public static function getEntityFqcn(): string
     {
         return Log::class;
@@ -75,13 +73,15 @@ class LogController extends AbstractCrudController
             ->get('doctrine')
             ->getManagerForClass($context->getEntity()->getFqcn());
 
-        $appDoctrine->flushall();
+        //$tablename = $doctrine->getClassMetadata($context->getEntity()->getFqcn())->getTableName();
+            
+        $appDoctrine->flushall($context->getEntity()->getFqcn());
 
         return $this->redirect($context->getReferrer()
-        ?? $this->container->get(AdminUrlGenerator::class)
-            ->setAction(Action::INDEX)
-            ->unset(EA::ENTITY_ID)
-            ->generateUrl())
+            ?? $this->container->get(AdminUrlGenerator::class)
+                ->setAction(Action::INDEX)
+                ->unset(EA::ENTITY_ID)
+                ->generateUrl())
         ;
     }
 }

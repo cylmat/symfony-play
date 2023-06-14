@@ -5,7 +5,6 @@ namespace App\AppBundle\Infrastructure\Repository;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Domain\Manager\AppDoctrine;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Log>
@@ -31,20 +30,12 @@ class LogRepository extends ServiceEntityRepository
 
     public function save(Log $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->persist($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        // to implements
     }
 
     public function remove(Log $entity, bool $flush = false): void
     {
-        $this->getEntityManager()->remove($entity);
-
-        if ($flush) {
-            $this->getEntityManager()->flush();
-        }
+        // to implements
     }
 
     /*
