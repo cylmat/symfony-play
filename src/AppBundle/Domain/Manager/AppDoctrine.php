@@ -2,6 +2,7 @@
 
 namespace App\AppBundle\Domain\Manager;
 
+use App\Local\Infrastructure\Manager\RedisPersistanceManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /** Used for replication */
@@ -10,29 +11,38 @@ class AppDoctrine
 {
     /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
-     *
-     * @param string[][] $replicateEntities
      */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
-        private readonly array $replicateEntities = [],
-        private readonly iterable $appRepositories = [],
+        private readonly RedisPersistanceManager $redis,
+        //private readonly array $replicateEntities = [],
+        //private readonly iterable $appRepositories = [],
     ) {
+    }
+
+    public function getDoctrineRegistry(): ManagerRegistry
+    {
+        return $this->doctrineRegistry;
     }
 
     public function persist(object $object, bool $flush = false): void
     {
-        $this->repositoryPersist($object, $flush); // for root entity
-        $this->replicateEntities($object, $flush);
+        $entityManager = $this->doctrineRegistry->getManagerForClass($object::class);
+        $othersDoctrineManagers = \array_diff_key($this->doctrineRegistry->getManagers(), ['default' => null]);
+        //d($othersDoctrineManagers);
+        $this->redis->persist($object);
+        //d($othersDoctrineManagers, get_class($entityManager));
+       // $this->repositoryPersist($object, $flush); // for root entity
+        //$this->replicateEntities($object, $flush);
     }
 
-    private function repositoryPersist(object $object, bool $flush = false): void
+  /*  private function repositoryPersist(object $object, bool $flush = false): void
     {
         /*
          * Sample :
          * $connection = $this->doctrine->getConnection(); # Doctrine\DBAL\Connection
          * $schema = $connection->getSchemaManager(); # Doctrine\DBAL\Schema\SqliteSchemaManager
-         */
+         *
         $attributes = (new \ReflectionClass($object))->getAttributes();
         $stdClass = \array_filter($attributes, fn ($attribute)
             => false !== \strpos($attribute->getName(), \stdClass::class)
@@ -44,9 +54,9 @@ class AppDoctrine
         }
 
         $repository = $repository ?? $this->doctrineRegistry->getRepository($object::class);
-    }
+    }*/
 
-    private function replicateEntities(object $object, bool $flush = false): void
+    /*private function replicateEntities(object $object, bool $flush = false): void
     {
         if (!isset($this->replicateEntities[\get_class($object)])) {
             return;
@@ -67,5 +77,5 @@ class AppDoctrine
 
             $this->repositoryPersist($obj2, $flush);
         }
-    }
+    }*/
 }

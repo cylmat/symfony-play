@@ -3,6 +3,7 @@
 namespace App\AppBundle\Infrastructure\Repository;
 
 use App\AppBundle\Domain\Entity\Log;
+use App\AppBundle\Domain\Manager\AppDoctrine;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -22,9 +23,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LogRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, ?string $class = null)
-    {
-        parent::__construct($registry, $class ?? Log::class); // @phpstan-ignore-line: class-string
+    public function __construct(
+        private readonly AppDoctrine $appDoctrine
+    ) {
+        parent::__construct($appDoctrine->getDoctrineRegistry(), Log::class); // @phpstan-ignore-line: class-string
     }
 
     public function save(Log $entity, bool $flush = false): void

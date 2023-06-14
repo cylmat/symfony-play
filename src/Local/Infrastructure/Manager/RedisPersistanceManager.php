@@ -2,26 +2,26 @@
 
 namespace App\Local\Infrastructure\Manager;
 
-use App\Local\Domain\EntityNoDoctrine\RedisLog;
+use App\AppBundle\Infrastructure\Repository\NoDoctrineEntityManagerInterface;
 use App\Local\Domain\RedisClientInterface;
+use Doctrine\ORM\Mapping as ORM;
 use ReflectionAttribute;
 use ReflectionClass;
 
-class RedisPersistanceManager implements PersistanceManagerInterface
+class RedisPersistanceManager implements NoDoctrineEntityManagerInterface
 {
     public function __construct(
         private readonly RedisClientInterface $redisClient
     ) {
     }
 
-    public function persist(RedisLog $object = null)
+    public function persist(object $object): void
     {
         $attributes = (new ReflectionClass($object))->getAttributes();
-        $table = \current(\array_filter($attributes, function (ReflectionAttribute $attribute) {
-            return $attribute->getName() === \stdClass::class;
-        }));
+        $tableName = \current(\array_filter($attributes, function (ReflectionAttribute $attribute) {
+            return $attribute->getName() === ORM\Table::class;
+        }))->getArguments()['name'];
 
-        $tableName = $table->getArguments()['tablename'];
         $this->redisClient->set(
             $tableName.':'.uniqId(),
             \serialize($object)

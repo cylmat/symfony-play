@@ -49,7 +49,7 @@ class LogController extends AbstractCrudController
     }
 
     /** @SuppressWarnings(PHPMD.ElseExpression) */
-    public function redirectToNextController($context)
+    /*public function redirectToNextController($context)
     {
         $replicateEntities = $this->getParameter('replicateEntities');
         if (array_key_exists(static::getEntityFqcn(), $replicateEntities)) { //root
@@ -92,7 +92,7 @@ class LogController extends AbstractCrudController
                 ->unset(EA::ENTITY_ID)
                 ->generateUrl())
             ;
-    }
+    }*/
 
     /** @SuppressWarnings(PHPMD.StaticAccess) */
     public function flush(AdminContext $context): Response
@@ -130,6 +130,13 @@ class LogController extends AbstractCrudController
         }
         $doctrine->flush();
 
-        return $this->redirectToNextController($context);
+        return $this->redirect($context->getReferrer()
+        ?? $this->container->get(AdminUrlGenerator::class)
+            ->setAction(Action::INDEX)
+            ->unset(EA::ENTITY_ID)
+            ->generateUrl())
+        ;
+
+        //return $this->redirectToNextController($context);
     }
 }

@@ -27,8 +27,8 @@ class AppCompilerPass implements CompilerPassInterface
         $commandDefinition = $container->findDefinition(CommandManager::class);
         $tags = $container->findTaggedServiceIds('app.command_process');
 
-        $this->replicates($container);
-        $this->repositories($container);
+        //$this->replicates($container);
+        //$this->repositories($container);
 
         /**
          * Replace the
@@ -44,7 +44,7 @@ class AppCompilerPass implements CompilerPassInterface
         $commandDefinition->setArgument('$commandProcesses', $iterator);
     }
 
-    private function replicates($container): void
+    /*private function replicates($container): void
     {
         $serviceIds = $container->getServiceIds();
 
@@ -78,5 +78,5 @@ class AppCompilerPass implements CompilerPassInterface
 
         $doc = $container->findDefinition(AppDoctrine::class);
         $doc->setArgument('$appRepositories', $appRepos);
-    }
+    }*/
 }
