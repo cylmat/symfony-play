@@ -2,22 +2,23 @@
 
 namespace App\AppBundle\Domain\Manager;
 
+use App\AppBundle\Domain\Entity\Log;
 use App\Local\Infrastructure\Manager\RedisPersistanceManager;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
-/** Used for replication */
 /** @SuppressWarnings(PHPMD.BooleanArgumentFlag) */
 class AppDoctrine
 {
-    /**
-     * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
-     */
+    /** @var NoDoctrineEntityManagerInterface[] */
+    private array $persistanceManagers = [];
+
+    /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
-        private readonly RedisPersistanceManager $redis,
-        //private readonly array $replicateEntities = [],
-        //private readonly iterable $appRepositories = [],
+        RedisPersistanceManager $redis
     ) {
+        $this->persistanceManagers[] = $redis;
     }
 
     public function getDoctrineRegistry(): ManagerRegistry
@@ -25,57 +26,36 @@ class AppDoctrine
         return $this->doctrineRegistry;
     }
 
-    public function persist(object $object, bool $flush = false): void
+    public function persist(object $object): void
     {
-        $entityManager = $this->doctrineRegistry->getManagerForClass($object::class);
-        $othersDoctrineManagers = \array_diff_key($this->doctrineRegistry->getManagers(), ['default' => null]);
-        //d($othersDoctrineManagers);
-        $this->redis->persist($object);
-        //d($othersDoctrineManagers, get_class($entityManager));
-       // $this->repositoryPersist($object, $flush); // for root entity
-        //$this->replicateEntities($object, $flush);
+        foreach ($this->doctrineRegistry->getManagers() as $entityManager) {
+            $entityManager->persist($object);
+            $entityManager->flush();
+        }
+
+        foreach ($this->persistanceManagers as $manager) {
+            $manager->persist($object);
+        }
     }
 
-  /*  private function repositoryPersist(object $object, bool $flush = false): void
+    public function flushall(): void
     {
-        /*
-         * Sample :
-         * $connection = $this->doctrine->getConnection(); # Doctrine\DBAL\Connection
-         * $schema = $connection->getSchemaManager(); # Doctrine\DBAL\Schema\SqliteSchemaManager
-         *
-        $attributes = (new \ReflectionClass($object))->getAttributes();
-        $stdClass = \array_filter($attributes, fn ($attribute)
-            => false !== \strpos($attribute->getName(), \stdClass::class)
-        )[0] ?? null;
+        foreach ($this->doctrineRegistry->getManagers() as $k=>$entityManager) {
+            /** @var QueryBuilder $queryBuilder */
+            $entities = $entityManager->createQueryBuilder()
+                ->select('l')
+                ->from(Log::class, 'l')
+                ->getQuery()
+                ->execute();
 
-        $repository = null;
-        if ($stdClass) {
-            $repository = $this->appRepositories[$stdClass->getArguments()['repositoryClass']];
-        }
-
-        $repository = $repository ?? $this->doctrineRegistry->getRepository($object::class);
-    }*/
-
-    /*private function replicateEntities(object $object, bool $flush = false): void
-    {
-        if (!isset($this->replicateEntities[\get_class($object)])) {
-            return;
-        }
-
-        foreach ($this->replicateEntities[\get_class($object)] as $entityName) {
-            $obj2 = new $entityName();
-            $meths = get_class_methods($object);
-            $meths = array_filter(
-                $meths,
-                fn (string $value) => false !== \strpos($value, 'get') && false === \strpos($value, 'getId')
-            );
-
-            foreach ($meths as $get) {
-                $set = \str_replace('get', 'set', $get);
-                $obj2->{$set}($object->{$get}());
+            foreach ($entities as $e) {
+                $entityManager->remove($e);
             }
-
-            $this->repositoryPersist($obj2, $flush);
+            $entityManager->flush();
         }
-    }*/
+
+        foreach ($this->persistanceManagers as $manager) {
+            $manager->flushall();
+        }
+    }
 }

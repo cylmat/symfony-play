@@ -2,7 +2,7 @@
 
 namespace App\Local\Infrastructure\Manager;
 
-use App\AppBundle\Infrastructure\Repository\NoDoctrineEntityManagerInterface;
+use App\AppBundle\Infrastructure\Manager\NoDoctrineEntityManagerInterface;
 use App\Local\Domain\RedisClientInterface;
 use Doctrine\ORM\Mapping as ORM;
 use ReflectionAttribute;
@@ -28,7 +28,8 @@ class RedisPersistanceManager implements NoDoctrineEntityManagerInterface
         );
     }
 
-    public function flushall()
+    /** @todo use flush for a specific key */
+    public function flushall(): void
     {
         $this->redisClient->flushall();
     }
