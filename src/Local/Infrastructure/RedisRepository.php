@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Local\Infrastructure\Manager;
+namespace App\Local\Infrastructure;
 
+use App\AppBundle\Infrastructure\AppEntityManagerInterface;
+use App\AppBundle\Infrastructure\AppRepositoryInterface;
+use App\Local\Infrastructure\Manager\RedisEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
-class RedisRepositoryManager
+class RedisRepository implements AppRepositoryInterface
 {
     private string $entityName;
 
     public function __construct(
-        private readonly RedisPersistanceManager $redisPersistance,
+        private readonly RedisEntityManager $redisPersistance,
         private readonly ManagerRegistry $doctrineRegistry
     ) {
     }
@@ -21,7 +24,7 @@ class RedisRepositoryManager
         return $this;
     }
 
-    public function getPersistanceManager(): RedisPersistanceManager
+    public function getEntityManager(): AppEntityManagerInterface
     {
         return $this->redisPersistance;
     }

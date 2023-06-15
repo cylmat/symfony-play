@@ -3,7 +3,7 @@
 namespace App\Encrypt\Application\EventSubscriber;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppBundle\Domain\Manager\AppDoctrine;
+use App\AppBundle\Domain\Manager\AppEntityRegistry;
 use App\Encrypt\Domain\Model\EncryptedData;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -16,7 +16,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly LoggerInterface $mainLogger,
-        private readonly AppDoctrine $doctrine
+        private readonly AppEntityRegistry $doctrine
     ) {
     }
 

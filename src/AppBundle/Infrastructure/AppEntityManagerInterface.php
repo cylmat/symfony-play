@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle\Infrastructure\Manager;
+namespace App\AppBundle\Infrastructure;
 
-interface NoDoctrineEntityManagerInterface
+interface AppEntityManagerInterface
 {
     public function persist(object $object): void;
 

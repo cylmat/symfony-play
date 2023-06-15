@@ -2,31 +2,27 @@
 
 namespace App\AppBundle\Domain\Manager;
 
-use App\Local\Infrastructure\Manager\RedisPersistanceManager;
+use App\Contracts\Infrastructure\Manager\EntityManagerInterface;
+use App\Local\Infrastructure\Manager\RedisEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /** @SuppressWarnings(PHPMD.BooleanArgumentFlag) */
-class AppDoctrine
+class AppEntityRegistry
 {
-    /** @var NoDoctrineEntityManagerInterface[] */
-    private array $persistanceRegistry = [];
+    /** @var EntityManagerInterface[] */
+    private array $persistanceEntityRegistry = [];
 
     /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
-        RedisPersistanceManager $redis
+        RedisEntityManager $redis //@todo iterable AppEntityManagerInterface
     ) {
-        $this->persistanceRegistry[] = $redis;
+        $this->persistanceEntityRegistry[] = $redis;
     }
 
     public function getDoctrineRegistry(): ManagerRegistry
     {
         return $this->doctrineRegistry;
-    }
-
-    public function getPersistanceRegistry(): array
-    {
-        return $this->persistanceRegistry;
     }
 
     public function persist(object $object): void
@@ -36,7 +32,7 @@ class AppDoctrine
             $entityManager->flush();
         }
 
-        foreach ($this->persistanceRegistry as $manager) {
+        foreach ($this->persistanceEntityRegistry as $manager) {
             $manager->persist($object);
         }
     }

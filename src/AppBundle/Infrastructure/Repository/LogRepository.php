@@ -3,8 +3,8 @@
 namespace App\AppBundle\Infrastructure\Repository;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppBundle\Domain\Manager\AppDoctrine;
-use App\Local\Infrastructure\Manager\RedisRepositoryManager;
+use App\AppBundle\Domain\Manager\AppEntityRegistry;
+use App\AppBundle\Infrastructure\Manager\AppRepositoryRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
@@ -24,17 +24,17 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 class LogRepository extends ServiceEntityRepository
 {
     public function __construct(
-        private readonly AppDoctrine $appDoctrine,
-        private readonly RedisRepositoryManager $redisRepository // @todo iterable
+        private readonly AppEntityRegistry $appEntityManager,
+        private readonly AppRepositoryRegistry $appRepositoryRegistry
     ) {
-        parent::__construct($appDoctrine->getDoctrineRegistry(), Log::class); // @phpstan-ignore-line: class-string
+        parent::__construct($appEntityManager->getDoctrineRegistry(), Log::class); // @phpstan-ignore-line: class-string
     }
 
     public function flushall() // LOG
     {
         $objectFqcn = $this->_entityName;
 
-        foreach ($this->appDoctrine->getDoctrineRegistry()->getManagers() as $entityManager) {
+        foreach ($this->appEntityManager->getDoctrineRegistry()->getManagers() as $entityManager) {
             $entities = $entityManager->createQueryBuilder()
                 ->select('l')
                 ->from($objectFqcn, 'l')
@@ -47,10 +47,13 @@ class LogRepository extends ServiceEntityRepository
             $entityManager->flush();
         }
 
-        $this->redisRepository->initialize($this->getEntityName());
-        $entities = $this->redisRepository->findAll();
-        foreach ($entities as $entity) {
-            $this->redisRepository->getPersistanceManager()->remove($entity);
+        foreach ($this->appRepositoryRegistry as $repository) {
+            $repository->initialize($this->getEntityName());
+            $entities = $repository->findAll();
+
+            foreach ($entities as $entity) {
+                $repository->getEntityManager()->remove($entity);
+            }
         }
     }
 

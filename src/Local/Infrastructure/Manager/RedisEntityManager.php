@@ -2,11 +2,11 @@
 
 namespace App\Local\Infrastructure\Manager;
 
-use App\AppBundle\Infrastructure\Manager\NoDoctrineEntityManagerInterface;
+use App\AppBundle\Infrastructure\AppEntityManagerInterface;
 use App\Local\Domain\RedisClientInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
-class RedisPersistanceManager implements NoDoctrineEntityManagerInterface
+class RedisEntityManager implements AppEntityManagerInterface
 {
     public function __construct(
         private readonly RedisClientInterface $redisClient,
