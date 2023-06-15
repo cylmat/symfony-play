@@ -4,42 +4,40 @@ namespace App\Local\Infrastructure\Manager;
 
 use App\AppBundle\Infrastructure\Manager\NoDoctrineEntityManagerInterface;
 use App\Local\Domain\RedisClientInterface;
-use Doctrine\ORM\Mapping as ORM;
-use ReflectionAttribute;
-use ReflectionClass;
+use Doctrine\Persistence\ManagerRegistry;
 
 class RedisPersistanceManager implements NoDoctrineEntityManagerInterface
 {
     public function __construct(
-        private readonly RedisClientInterface $redisClient
+        private readonly RedisClientInterface $redisClient,
+        private readonly ManagerRegistry $doctrineRegistry
     ) {
+    }
+
+    public function getClient(): RedisClientInterface
+    {
+        return $this->redisClient;
     }
 
     public function persist(object $object): void
     {
-        $tableName = $this->getTableNameFromEntity($object);
-
         $this->redisClient->set(
-            $tableName.':'.uniqId(),
+            $this->definedId($object),
             \serialize($object)
         );
     }
 
-    public function flushall(string $tableName): void
+    public function remove(object $object): void
     {
-        $k = $this->redisClient->keys($tableName . '*');
-        d($k);die();
-
-        $this->redisClient->flushall();
+        $this->redisClient->del($this->definedId($object));
     }
 
-    private function getTableNameFromEntity(object $object): string
+    private function definedId(object $object): string
     {
-        $attributes = (new ReflectionClass($object))->getAttributes();
-        $tableName = \current(\array_filter($attributes, function (ReflectionAttribute $attribute) {
-            return $attribute->getName() === ORM\Table::class;
-        }))->getArguments()['name'];
+        $tableName = $this->doctrineRegistry
+            ->getManagerForClass($object::class)
+            ->getClassMetadata($object::class)->getTableName();
 
-        return $tableName;
+        return $tableName.':'.$object->getId();
     }
 }

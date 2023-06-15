@@ -6,5 +6,5 @@ interface NoDoctrineEntityManagerInterface
 {
     public function persist(object $object): void;
 
-    public function flushall(string $tableName): void;
+    public function remove(object $object): void;
 }
