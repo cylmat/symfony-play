@@ -24,6 +24,7 @@ services:
 
     # TAGS #
     # @todo move to TEXT bundle !!
+    # @todo clear logger yaml location !!
     _instanceof:
         App\Text\Domain\Service\CommandProcessInterface:
             tags: ['app.command_process']

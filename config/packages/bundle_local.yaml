@@ -4,5 +4,18 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
+    ###
+    ### ! _instanceof only works for services declared in THIS file ! ###
+    ###
+    _instanceof:
+        App\AppBundle\Infrastructure\AppEntityManagerInterface:
+            tags: ['app.entity_manager']
+        
+        App\AppBundle\Infrastructure\AppRepositoryInterface:
+            tags: ['app.repository']
+
     App\Local\:
         resource: ../../src/Local/
+
+    App\Local\Domain\RedisClientInterface:
+        factory: '@App\Local\Infrastructure\RedisClientFactory'

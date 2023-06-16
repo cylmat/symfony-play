@@ -5,7 +5,7 @@ namespace App\Local\Infrastructure;
 use App\Local\Domain\RedisClientInterface;
 use Predis\Client as PredisClient;
 
-/* @see https://github.com/predis/predis/wiki */
+/** @see https://github.com/predis/predis/wiki */
 class RedisClient implements RedisClientInterface
 {
     public function __construct(

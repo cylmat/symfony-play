@@ -3,10 +3,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
-
-# @todo remove this factory and select client with config only !
+        
     App\Local\Infrastructure\RedisClientFactory:
         arguments:
-            $redisClient: "@= 
-                parameter('use_redis') === 'local' ? service('snc_redis.local') : (
-                    parameter('use_redis') === 'remote' ? service('snc_redis.remote') : null)"
+            $redisClient: '@snc_redis.test'

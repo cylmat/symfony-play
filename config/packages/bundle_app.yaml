@@ -15,13 +15,6 @@ services:
     App\AppBundle\:
         resource: ../../src/AppBundle/
 
-    _instanceof:
-        App\AppBundle\Infrastructure\AppEntityManagerInterface:
-            tags: ['app.entity_manager']
-        
-        App\AppBundle\Infrastructure\AppRepositoryInterface:
-            tags: ['app.repository']
-
     ################
     # APP REGISTRY #
     ################
@@ -36,10 +29,9 @@ services:
         arguments:
             $repositories: !tagged_iterator app.repository
 
+    ###########
+    # COMMAND #
+    ###########
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
             - '@maker.maker.make_entity'
-
-    # @todo set in local bundle
-    App\Local\Domain\RedisClientInterface:
-        factory: '@App\Local\Infrastructure\RedisClientFactory'

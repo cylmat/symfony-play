@@ -2,3 +2,5 @@
     -> Use the service somewhere (e.g. in an other class) to avoid it be pruning
 
 * Twig's namespace of "App/AppBundle" is "@App" */
+
+* _instanceof is like _default : it only works for services declared in current .yaml file !
