@@ -3,18 +3,20 @@
 namespace App\AppBundle\Infrastructure\Manager;
 
 use App\AppBundle\Domain\Manager\AppEntityRegistry;
-use App\Local\Infrastructure\RedisRepository;
+use App\AppBundle\Infrastructure\AppRepositoryInterface;
 
 class AppRepositoryRegistry
 {
+    /** @param AppRepositoryInterface[] $repositories */
     public function __construct(
         private readonly AppEntityRegistry $appDoctrine,
-        private readonly RedisRepository $redisRepository //@todo iterable AppRepositoryInterface
+        private readonly iterable $repositories
     ) {   
     }
 
+    /** @return AppRepositoryInterface[] */
     public function getRepositories(): iterable
     {
-        yield $this->redisRepository;
+        return $this->repositories;
     }
 }

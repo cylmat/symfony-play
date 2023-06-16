@@ -14,6 +14,8 @@ final class TextActionTest extends KernelTestCase
     protected function setUp(): void
     {
         $this->textAction = static::getContainer()->get(TextAction::class);
+
+        /** @todo check redis sessions */
     }
 
     public function testExecute(): void

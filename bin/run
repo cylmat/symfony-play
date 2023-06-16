@@ -142,8 +142,8 @@ case "$1" in
 ;;
 
 # @see https://phpunitgen.io
-"gen"|"test-gen")
-    bin/phpunitgen --config=tools/test/phpunitgen.yml src ;;
+"gen")
+    bin/phpunitgen --config=tools/test/phpunitgen.yml ${ARGUMENT} ;;
 
 # Specifics
 

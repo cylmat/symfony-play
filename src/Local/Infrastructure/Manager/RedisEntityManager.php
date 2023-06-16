@@ -27,6 +27,11 @@ class RedisEntityManager implements AppEntityManagerInterface
         );
     }
 
+    public function flush(): void
+    {
+        // nothing to do for redis ...
+    }
+
     public function remove(object $object): void
     {
         $this->redisClient->del($this->definedId($object));

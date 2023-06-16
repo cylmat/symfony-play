@@ -15,14 +15,31 @@ services:
     App\AppBundle\:
         resource: ../../src/AppBundle/
 
+    _instanceof:
+        App\AppBundle\Infrastructure\AppEntityManagerInterface:
+            tags: ['app.entity_manager']
+        
+        App\AppBundle\Infrastructure\AppRepositoryInterface:
+            tags: ['app.repository']
+
+    ################
+    # APP REGISTRY #
+    ################
     # @todo: Remove this and use fake Doctrine for tests
-    #App\AppBundle\Domain\Manager\AppDoctrine:
-    #    decorates: Doctrine\Common\Persistence\ManagerRegistry
+    App\AppBundle\Domain\Manager\AppEntityRegistry:
+        arguments: 
+            $persistanceEntityRegistry: !tagged_iterator app.entity_manager
+        # decorates: Doctrine\Common\Persistence\ManagerRegistry
         # NOT NEEDED arguments: ['@.inner'] # Automatic with default service.yaml
+
+    App\AppBundle\Infrastructure\Manager\AppRepositoryRegistry:
+        arguments:
+            $repositories: !tagged_iterator app.repository
 
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
             - '@maker.maker.make_entity'
 
+    # @todo set in local bundle
     App\Local\Domain\RedisClientInterface:
         factory: '@App\Local\Infrastructure\RedisClientFactory'
