@@ -35,3 +35,12 @@ services:
     App\AppBundle\Command\MakeEntityWrapper:
         arguments: 
             - '@maker.maker.make_entity'
+
+    ###########
+    # SESSION #
+    ###########
+    # https://symfony.com/doc/current/session.html#store-sessions-in-a-relational-database-mariadb-mysql-postgresql
+    App\AppBundle\Application\Session\AppPdoSessionHandler:
+        arguments:
+            - '%env(DATABASE_URL)%'
+            - { db_table: 'sessions' }
