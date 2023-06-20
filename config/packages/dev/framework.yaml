@@ -1,0 +1,6 @@
+framework:
+    # https://symfony.com/doc/current/session.html#store-sessions-in-a-database
+    session:
+        # Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
+        # RedisSessionHandler, MemcachedSessionHandler
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler

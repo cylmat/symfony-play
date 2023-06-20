@@ -40,7 +40,7 @@ services:
     # SESSION #
     ###########
     # https://symfony.com/doc/current/session.html#store-sessions-in-a-relational-database-mariadb-mysql-postgresql
-    App\AppBundle\Application\Session\AppPdoSessionHandler:
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
         arguments:
             - '%env(DATABASE_URL)%'
             - { db_table: 'sessions' }
