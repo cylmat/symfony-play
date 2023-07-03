@@ -24,10 +24,11 @@ framework:
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
+            #doctrine: '%env(MESSENGER_TRANSPORT_DOCTRINE_DSN)%'
 
         routing:
             # Route your messages to the transports
-            App\AppBundle\Domain\Message\LogMessage: sync
+            App\AppBundle\Domain\Message\MessageInterface: doctrine
 
 # when@test:
 #    framework:
