@@ -4,3 +4,8 @@
 * Twig's namespace of "App/AppBundle" is "@App" */
 
 * _instanceof is like _default : it only works for services declared in current .yaml file !
+
+* DDD
+    - Infra : Put symfony framework/config  -> can use Appli or Domain layer
+    - Application : No infra/framework      -> can use Domain
+    - Domain : No infra/framework           -> no aware of other layer

@@ -1,6 +1,11 @@
 # deptrac.yaml
 # @see https://qossmic.github.io/deptrac/configuration
 
+############
+# @todo framework in infrastructure
+# NOTHING in domain -> only business
+############
+
 deptrac:
   paths:
     - ../../src

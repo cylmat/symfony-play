@@ -4,7 +4,6 @@ use snc/redis-bundle
 use FOS\UserBundle\FOSUserBundle
 
 
-functional tests
 WorkflowSubscriber use infrastructure!
 use multiple databases
 use postgre/mongodb
