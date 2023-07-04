@@ -4,7 +4,8 @@ doctrine:
     dbal:
         default_connection: default
         connections:
-            #default: ~ (setted in packages/doctrine.yaml)
+            default: #~ (setted in packages/doctrine.yaml)
+                schema_filter: '~^(?!messenger_messages)~'
 
             sqlite:
                 url: '%env(resolve:DEV_SQLITE_URL)%'
@@ -17,6 +18,7 @@ doctrine:
                 memory: true
                 driver_class: ~
                 wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
+                schema_filter: '~^(?!messenger_messages)~'
 
     # Object Relational Mapping
     orm:

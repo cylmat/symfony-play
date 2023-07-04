@@ -114,7 +114,6 @@ RUN docker-php-ext-install -j$(nproc) \
     pdo_mysql \
     pdo_sqlite
 
-
 ############################
 ### Coverage & Profiling ###
 ############################
