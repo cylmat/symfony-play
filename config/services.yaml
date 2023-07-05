@@ -6,7 +6,7 @@
 parameters:
 
 services:
-    # default configuration for services in *this* file
+    # _default configuration for services in !this! file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
@@ -17,22 +17,6 @@ services:
 
     App\ApiResource\:
         resource: ../src/ApiResource/
-
-    # BUNDLES #
-    App\Text\:
-        resource: ../src/Text/
-
-    # TAGS #
-    # @todo move to TEXT bundle !!
-    # @todo clear logger yaml location !!
-    _instanceof:
-        App\Text\Domain\Service\CommandProcessInterface:
-            tags: ['app.command_process']
-
-        # LOGGER #
-        App\AppBundle\Application\Service\LoggerAwareInterface:
-            calls:
-                - ['setLogger', ['@app.logger']]
 
     App\AppBundle\Application\Service\LoggerInterface: '@App\AppBundle\Application\Service\Logger'
     app.logger: '@App\AppBundle\Application\Service\LoggerInterface'

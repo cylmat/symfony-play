@@ -7,3 +7,17 @@ services:
     # App\Text\Domain\Manager\CommandManager:
     #     arguments:
     #         - !tagged_iterator { tag: app.command_process } # !tagged_iterator app.command_process
+
+    # _defaults and _instanceof apply for THIS file services
+    _instanceof:
+        App\Text\Domain\Service\CommandProcessInterface:
+            tags: ['app.command_process']
+
+        # App LOGGER used in TextBundle #
+        App\AppBundle\Application\Service\LoggerAwareInterface:
+            calls:
+                - ['setLogger', ['@app.logger']]
+
+    # BUNDLES #
+    App\Text\:
+        resource: ../../src/Text/

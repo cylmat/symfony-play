@@ -37,6 +37,13 @@ services:
             - '@maker.maker.make_entity'
 
     ###########
+    # Message
+    ###########
+    App\AppBundle\Domain\MessageHandler\MessageHandler:
+        arguments: 
+            $logger: '@app.logger'
+
+    ###########
     # SESSION #
     ###########
     # https://symfony.com/doc/current/session.html#store-sessions-in-a-relational-database-mariadb-mysql-postgresql
