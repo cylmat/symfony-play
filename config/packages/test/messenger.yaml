@@ -10,5 +10,5 @@ framework:
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
             sync: 'sync://'
-            async: 'in-memory://'
+            async: 'in-memory://' # used for tests : not be delivered to the real transport
 

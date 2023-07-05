@@ -23,5 +23,9 @@ final class TextControllerTest extends WebTestCase
 
         $client->submit($form, []);
         $this->assertSelectorTextContains('#result', 'tyst');
+
+        # @todo : messenger test
+        # $this->getContainer()->get('messenger.transport.async_priority_normal');
+        # $this->assertCount(1, $transport->getSent());
     }
 }
