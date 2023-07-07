@@ -4,10 +4,12 @@ namespace App\Tests\Text\Application;
 
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\Entity\Log;
+use App\AppBundle\Domain\MessageHandler\MessageHandler;
 use App\Local\Domain\RedisClientInterface;
 use App\Local\Infrastructure\RedisRepository;
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Messenger\Transport\TransportInterface;
 
 /** @group integration */
 final class TextActionTest extends KernelTestCase
@@ -24,9 +26,9 @@ final class TextActionTest extends KernelTestCase
         $this->textAction = static::getContainer()->get(TextAction::class);
     }
 
-    public function testExecute(): void
-    {  
-        $request = new AppRequest([
+    private function getRequest(): AppRequest
+    {
+        return new AppRequest([
             'text' => 'alpha-beta',
             'commands' => [
                 [
@@ -38,16 +40,39 @@ final class TextActionTest extends KernelTestCase
                 ]
             ],
         ]);
-        $res = $this->textAction->execute($request);
-
-        $this->assertSame('gamma-beta', $res);
     }
 
-    /** @depends testExecute */
-    public function testRedisAfterExecute(): void
+    public function testExecute(): void
+    {  
+        $res = $this->textAction->execute($this->getRequest());
+        $this->assertSame('gamma-beta', $res);
+
+        $this->assertRepository(0);
+        $this->assertMessage();
+        $this->handleLogMessage();
+        $this->assertRepository(1);
+    }
+
+    private function assertMessage(): void
     {
-        /** @var RedisRepository $redisRepository */
+        /** @var TransportInterface $transport */
+        $transport = static::getContainer()->get('messenger.transport.async_memory');
+        $this->assertCount(1, $transport->get());
+    }
+
+    private function handleLogMessage(): void
+    {
+        /** @var TransportInterface $transport */
+        $transport = static::getContainer()->get('messenger.transport.async_memory');
+        $logMessage = $transport->get()[0]->getMessage();
+
+        // Async
+        static::getContainer()->get(MessageHandler::class)->handleLog($logMessage);
+    }
+
+    private function assertRepository(int $count): void
+    {
         $redisRepository = static::getContainer()->get(RedisRepository::class);
-        $this->assertSame(1, \count($redisRepository->initialize(Log::class)->findAll()));
+        $this->assertCount($count, $redisRepository->initialize(Log::class)->findAll());
     }
 }

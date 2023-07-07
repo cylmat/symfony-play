@@ -9,6 +9,7 @@ use multiple databases
 use postgre/mongodb
 https://sentry.io
 https://newrelic.com
+https://github.com/neomerx/json-api
 ---------------------
 declare(strict_types=1)
 decorator stack
