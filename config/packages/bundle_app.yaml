@@ -29,6 +29,15 @@ services:
         arguments:
             $repositories: !tagged_iterator app.repository
 
+    #############
+    # FORMATTER #
+    #############
+    App\AppBundle\Infrastructure\Validation\JsonApiValidator: ~
+    App\AppBundle\Application\Contracts\JsonApiValidatorInterface: '@App\AppBundle\Infrastructure\Validation\JsonApiValidator'
+
+    App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory: ~
+    App\AppBundle\Application\Contracts\JsonApiFormatterFactoryInterface: '@App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory'
+
     ###########
     # COMMAND #
     ###########

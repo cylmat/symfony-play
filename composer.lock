@@ -4,8 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "89dda6b7269c57be7ade4faf3839717a",
+    "content-hash": "71c8024b6ca0d51723bb97964746308c",
     "packages": [
+        {
+            "name": "alsvanzelf/jsonapi",
+            "version": "v2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lode/jsonapi.git",
+                "reference": "bae3f70d58af4c6d3ac5040c50e3b6b7e731de2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lode/jsonapi/zipball/bae3f70d58af4c6d3ac5040c50e3b6b7e731de2d",
+                "reference": "bae3f70d58af4c6d3ac5040c50e3b6b7e731de2d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "psr/http-message": "^1.0"
+            },
+            "suggest": {
+                "psr/http-message": "Allows constructing requests from Psr RequestInterface"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "alsvanzelf\\jsonapi\\": "src/",
+                    "alsvanzelf\\jsonapiTests\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lode Claassen",
+                    "email": "lode@alsvanzelf.nl",
+                    "homepage": "https://www.lodeclaassen.nl/"
+                }
+            ],
+            "description": "Human-friendly library to implement JSON:API without needing to know the specification.",
+            "homepage": "https://github.com/lode/jsonapi",
+            "keywords": [
+                "JSON-API",
+                "api",
+                "json",
+                "jsonapi"
+            ],
+            "support": {
+                "issues": "https://github.com/lode/jsonapi/issues",
+                "source": "https://github.com/lode/jsonapi/tree/v2.4.0"
+            },
+            "time": "2022-10-02T08:39:05+00:00"
+        },
         {
             "name": "api-platform/core",
             "version": "v3.1.12",
@@ -175,6 +232,61 @@
                 }
             ],
             "time": "2023-05-24T19:23:57+00:00"
+        },
+        {
+            "name": "art4/json-api-client",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Art4/json-api-client.git",
+                "reference": "1216f92a05409858583debffc1f21968730ba269"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Art4/json-api-client/zipball/1216f92a05409858583debffc1f21968730ba269",
+                "reference": "1216f92a05409858583debffc1f21968730ba269",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.99",
+                "phpunit/phpunit": "^9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Art4\\JsonApiClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Artur Weigandt",
+                    "email": "art4@wlabs.de",
+                    "homepage": "https://wlabs.de"
+                }
+            ],
+            "description": "JSON API client",
+            "homepage": "https://github.com/Art4/json-api-client",
+            "keywords": [
+                "JSON-API",
+                "api",
+                "client",
+                "json",
+                "parser",
+                "reader",
+                "validator"
+            ],
+            "support": {
+                "issues": "https://github.com/Art4/json-api-client/issues",
+                "source": "https://github.com/Art4/json-api-client/tree/1.1.0"
+            },
+            "time": "2021-10-05T11:52:31+00:00"
         },
         {
             "name": "beberlei/assert",

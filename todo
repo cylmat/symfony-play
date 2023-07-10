@@ -9,7 +9,6 @@ use multiple databases
 use postgre/mongodb
 https://sentry.io
 https://newrelic.com
-https://github.com/neomerx/json-api
 
 Opendata: https://www.data.gouv.fr https://opendata.paris.fr https://data.europa.eu
 ---------------------

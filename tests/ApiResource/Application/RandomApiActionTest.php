@@ -20,10 +20,10 @@ final class RandomApiActionTest extends KernelTestCase
     {
         $data = $this->randomApiAction->execute(new AppRequest());
 
-        $this->assertArrayHasKey('type', $data);
-        $this->assertArrayHasKey('format', $data);
         $this->assertArrayHasKey('data', $data);
-        $this->assertArrayHasKey('random_int', $data['data']);
-        $this->assertArrayHasKey('random_redis', $data['data']);
+        $this->assertArrayHasKey('id', $data['data']);
+        $this->assertArrayHasKey('type', $data['data']);
+        $this->assertArrayHasKey('random_int', $data['data']['attributes']);
+        $this->assertArrayHasKey('random_redis', $data['data']['attributes']);
     }
 }
