@@ -11,7 +11,7 @@ class AppRepositoryRegistry
     public function __construct(
         private readonly AppEntityRegistry $appDoctrine,
         private readonly iterable $repositories
-    ) {   
+    ) {
     }
 
     /** @return AppRepositoryInterface[] */

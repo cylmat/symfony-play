@@ -36,7 +36,7 @@ class RedisRepository implements AppRepositoryInterface
             ->getClassMetadata($this->entityName)->getTableName();
 
         $all = [];
-        $keys = $this->redisPersistance->getClient()->keys($tableName . ':*');
+        $keys = $this->redisPersistance->getClient()->keys($tableName.':*');
 
         foreach ($keys as $key) {
             $serializedEntity = $this->redisPersistance->getClient()->get($key);

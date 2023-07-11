@@ -20,7 +20,7 @@ class AppUserGuardAuthenticator extends AbstractAuthenticator
      * used for the request. Returning `false` will cause this authenticator
      * to be skipped.
      *
-     * @todo use token instead of user ! 
+     * @todo use token instead of user !
      */
     public function supports(Request $request): ?bool
     {
@@ -55,7 +55,7 @@ class AppUserGuardAuthenticator extends AbstractAuthenticator
     {
         $data = [
             // you may want to customize or obfuscate the message first
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
+            'message' => strtr($exception->getMessageKey(), $exception->getMessageData()),
 
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())

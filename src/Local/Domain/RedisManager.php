@@ -2,8 +2,6 @@
 
 namespace App\Local\Domain;
 
-use App\Local\Domain\RedisClientInterface;
-
 /* @see https://app.redislabs.com */
 class RedisManager
 {

@@ -11,8 +11,13 @@ framework:
         #app: cache.adapter.redis
         #default_redis_provider: redis://localhost
 
+        #default_memcached_provider:
+        #default_psr6_provider:
+
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
-        #app: cache.adapter.apcu
+        # cache.adapter.apcu, cache.adapter.system, cache.adapter.filesystem, cache.adapter.psr6, cache.adapter.redis
+        # cache.adapter.memcached, cache.adapter.pdo and cache.adapter.doctrine_dbal
+        # app: cache.adapter.psr6
 
         # Namespaced pools use the above "app" backend by default
         #pools:

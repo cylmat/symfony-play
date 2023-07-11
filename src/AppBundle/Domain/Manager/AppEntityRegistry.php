@@ -9,7 +9,7 @@ class AppEntityRegistry
 {
     /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
-     * 
+     *
      * @param AppEntityManagerInterface[] $persistanceEntityManager
      */
     public function __construct(

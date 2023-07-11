@@ -14,10 +14,10 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  * @method Log|null findOneBy(array $criteria, array $orderBy = null)
  * @method Log[]    findAll()
  * @method Log[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- *                  -
- *                  createQueryBuilder($alias, $indexBy = null)
- *                  createNamedQuery($queryName)
- *                  getEntityManager(): EntityManager
+ *
+ * createQueryBuilder($alias, $indexBy = null)
+ * createNamedQuery($queryName)
+ * getEntityManager(): EntityManager
  *
  * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
  */

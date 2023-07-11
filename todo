@@ -2,6 +2,7 @@ set logger in domain/service
 doctrine decorator instead of appdoctrine
 use snc/redis-bundle
 use FOS\UserBundle\FOSUserBundle
+redismodel dto + factory
 
 
 WorkflowSubscriber use infrastructure!
