@@ -1,10 +1,8 @@
+#
 # deptrac.yaml
+#
 # @see https://qossmic.github.io/deptrac/configuration
-
-############
-# @todo framework in infrastructure
-# NOTHING in domain -> only business
-############
+# @see https://codesoapbox.dev/ports-adapters-aka-hexagonal-architecture-explained/
 
 deptrac:
   paths:
@@ -15,66 +13,53 @@ deptrac:
     - '#.*Admin.*#'
 
   layers:
-    # Doctrine
-    -
-      name: Doctrine
-      collectors:
-        -
-          type: className
-          value: Doctrine\\.*
 
-    # Application
+    ### Application ###
+    # DRIVING models
+    # User or console input/output values
+
     -
-      name: Action
+      name: Application
       collectors:
         -
           type: className
-          value: .*Action.*
+          value: .*\\Application\\.*
+
+    ### Domain ###
+    # No dependencies or tech
+    # Business model and rules only
+
     -
-      name: Controller
+      name: Domain
       collectors:
         -
           type: className
-          value: .*Controller.*
+          value: .*\\Domain\\.*
+
+    ### Infrastructure ###
+    # DRIVERS models
+    # Server, framework, dependencies
+
     -
-      name: Manager
+      name: Infrastructure
       collectors:
         -
           type: className
-          value: .*Manager.*
-    -
-      name: Repository
-      collectors:
-        -
-          type: className
-          value: .*Repository.*
-    -
-      name: Service
-      collectors:
-        -
-          type: className
-          value: .*Service.*
+          value: .*\\Infrastructure\\.*
 
   # RULES
   ruleset:
-    Controller:
-      - Action
-    Action:
-      - Manager
-    Manager:
-      - Service
-      - Repository
-    Service:
-      - Repository
-    Repository:
-      - Doctrine
+    # Application
+    Application:
+      - Domain
+      - Infrastructure
+    Infrastructure:
+      - Domain
 
-  formatters:
-    graphviz:
-      groups:
-        Entrypoints:
-          - Controllers
-          - Commands
-        Persistence:
-          - Entities
-          - Repositories
+  # formatters:
+  #   graphviz:
+  #     groups:
+  #       Entrypoints:
+  #         - Controllers
+  #       Persistence:
+  #         - Entities
