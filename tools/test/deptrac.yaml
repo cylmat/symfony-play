@@ -2,7 +2,7 @@
 # deptrac.yaml
 #
 # @see https://qossmic.github.io/deptrac/configuration
-# @see https://codesoapbox.dev/ports-adapters-aka-hexagonal-architecture-explained/
+# @see https://codesoapbox.dev/ports-adapters-aka-hexagonal-architecture-explained
 
 deptrac:
   paths:
@@ -23,7 +23,7 @@ deptrac:
       collectors:
         -
           type: className
-          value: .*\\Application\\.*
+          value: App.*\\Application\\.*
 
     ### Domain ###
     # No dependencies or tech
@@ -34,7 +34,7 @@ deptrac:
       collectors:
         -
           type: className
-          value: .*\\Domain\\.*
+          value: App.*\\Domain\\.*
 
     ### Infrastructure ###
     # DRIVERS models
@@ -45,16 +45,24 @@ deptrac:
       collectors:
         -
           type: className
-          value: .*\\Infrastructure\\.*
+          value: App.*\\Infrastructure\\.*
+
+    -
+      name: Framework
+      collectors:
+        -
+          type: className
+          value: .*Symfony.*
 
   # RULES
   ruleset:
-    # Application
     Application:
       - Domain
-      - Infrastructure
+      - Framework
     Infrastructure:
+      - Application
       - Domain
+      - Framework
 
   # formatters:
   #   graphviz:
