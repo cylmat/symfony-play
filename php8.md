@@ -65,6 +65,7 @@ Deprecated
 # PHP 8.0
 [php.net](https://www.php.net/releases/8.0/en.php)
 [php.watch](https://php.watch/versions/8.0)
+Just-In-Time compilation
 
 Features
 - Named arguments: htmlspecialchars($string, double_encode: false);
@@ -73,3 +74,13 @@ Features
 - Union types: private int|float $number
 - Match expression: echo match (8.0) {'8.0' => "Ok!",};
 - Nullsafe operator: $country = $session?->user?->getAddress()?->country;
+- Saner string to number comparisons: 0 == 'foobar' // false
+- Type errors for internal functions: strlen([]); // TypeError: strlen(): Argument #1
+
+New
+- Weak Map class
+- Stringable interface
+- str_contains(), str_starts_with(), str_ends_with() functions
+- fdiv(), get_debug_type(), get_resource_id(), token_get_all()
+
+
