@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle\Application\DependencyInjection\Compiler;
+namespace App\AppBundle\Infrastructure\Bridge\DependencyInjection\Compiler;
 
-use App\Text\Domain\Manager\CommandManager;
+use App\Text\Domain\Manager\CommandManager; /** @todo move to TextBundle */
 use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

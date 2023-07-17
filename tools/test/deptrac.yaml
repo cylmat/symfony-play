@@ -48,21 +48,37 @@ deptrac:
           value: App.*\\Infrastructure\\.*
 
     -
-      name: Framework
+      name: Framework_Symfony
       collectors:
         -
           type: className
-          value: .*Symfony.*
+          value: Symfony.*
+
+    -
+      name: Framework_Doctrine
+      collectors:
+        -
+          type: className
+          value: Doctrine.*
+
+    -
+      name: Framework_Monolog
+      collectors:
+        -
+          type: className
+          value: Monolog.*
 
   # RULES
   ruleset:
     Application:
       - Domain
-      - Framework
+      - Framework_Symfony # @todo remove this ?
     Infrastructure:
       - Application
       - Domain
-      - Framework
+      - Framework_Symfony
+      - Framework_Doctrine
+      - Framework_Monolog
 
   # formatters:
   #   graphviz:
