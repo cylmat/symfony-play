@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Domain\DataFixtures;
+namespace App\AppBundle\Infrastructure\DataFixtures;
 
 use App\AppBundle\Domain\Entity\Log;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -9,7 +9,6 @@ use Psr\Log\LogLevel;
 
 class AppFixtures extends Fixture
 {
-    /** @todo use appdoctrine for replicate persistence */
     public function load(ObjectManager $manager): void
     {
         $logEntity = (new Log())
@@ -17,6 +16,7 @@ class AppFixtures extends Fixture
             ->setLevel(LogLevel::DEBUG)
             ->setMessage('test')
         ;
+
         $manager->persist($logEntity);
         $manager->flush();
     }

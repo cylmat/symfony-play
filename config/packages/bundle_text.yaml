@@ -14,7 +14,7 @@ services:
             tags: ['app.command_process']
 
         # App LOGGER used in TextBundle #
-        App\AppBundle\Application\Service\LoggerAwareInterface:
+        App\AppBundle\Domain\Service\LoggerAwareInterface:
             calls:
                 - ['setLogger', ['@app.logger']]
 

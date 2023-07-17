@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Application\Service;
+namespace App\AppBundle\Domain\Service;
 
 use Psr\Log\LoggerInterface as LogLoggerInterface;
 

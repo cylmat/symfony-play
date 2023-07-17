@@ -19,7 +19,7 @@ services:
     # APP REGISTRY #
     ################
     # @todo: Remove this and use fake Doctrine for tests
-    App\AppBundle\Domain\Manager\AppEntityRegistry:
+    App\AppBundle\Infrastructure\Manager\AppEntityRegistry:
         arguments: 
             $persistanceEntityRegistry: !tagged_iterator app.entity_manager
         # decorates: Doctrine\Common\Persistence\ManagerRegistry
@@ -33,10 +33,10 @@ services:
     # FORMATTER #
     #############
     App\AppBundle\Infrastructure\Validation\JsonApiValidator: ~
-    App\AppBundle\Application\Contracts\JsonApiValidatorInterface: '@App\AppBundle\Infrastructure\Validation\JsonApiValidator'
+    App\AppBundle\Infrastructure\Contracts\JsonApiValidatorInterface: '@App\AppBundle\Infrastructure\Validation\JsonApiValidator'
 
     App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory: ~
-    App\AppBundle\Application\Contracts\JsonApiFormatterFactoryInterface: '@App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory'
+    App\AppBundle\Infrastructure\Contracts\JsonApiFormatterFactoryInterface: '@App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory'
 
     ###########
     # COMMAND #
@@ -48,7 +48,7 @@ services:
     ###########
     # Message
     ###########
-    App\AppBundle\Domain\MessageHandler\MessageHandler:
+    App\AppBundle\Infrastructure\MessageHandler\MessageHandler:
         arguments: 
             $logger: '@app.logger'
 

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\AppBundle\Domain\MessageHandler;
+namespace App\AppBundle\Infrastructure\MessageHandler;
 
-use App\AppBundle\Application\Service\LoggerInterface;
 use App\AppBundle\Domain\Message\LogMessage;
+use App\AppBundle\Domain\Service\LoggerInterface;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 class MessageHandler
 {
     public function __construct(
-        private LoggerInterface $logger
+        private readonly LoggerInterface $logger
     ) {
     }
 

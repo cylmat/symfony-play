@@ -2,9 +2,9 @@
 
 namespace App\Text\Domain\Manager;
 
-use App\AppBundle\Application\Service\LoggerAwareInterface;
-use App\AppBundle\Application\Service\LoggerTrait;
 use App\AppBundle\Domain\Message\LogMessage;
+use App\AppBundle\Domain\Service\LoggerAwareInterface;
+use App\AppBundle\Infrastructure\Service\LoggerTrait;
 use App\Text\Domain\Service\CommandProcessInterface;
 use LogicException;
 use Symfony\Component\Messenger\MessageBusInterface;

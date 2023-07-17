@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Application\Contracts;
+namespace App\AppBundle\Infrastructure\Contracts;
 
 interface JsonApiValidatorInterface
 {

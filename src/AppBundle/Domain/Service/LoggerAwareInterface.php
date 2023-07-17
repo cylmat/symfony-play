@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Application\Service;
+namespace App\AppBundle\Domain\Service;
 
 // Use with LoggerTrait !
 interface LoggerAwareInterface

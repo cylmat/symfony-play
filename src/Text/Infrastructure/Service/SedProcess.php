@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Text\Domain\Service;
+namespace App\Text\Infrastructure\Service;
 
+use App\Text\Domain\Service\CommandProcessInterface;
 use Symfony\Component\Process\Process;
 
 // @see https://symfony.com/doc/current/components/process.html

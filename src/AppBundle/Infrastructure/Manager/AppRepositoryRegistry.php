@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Infrastructure\Manager;
 
-use App\AppBundle\Domain\Manager\AppEntityRegistry;
+use App\AppBundle\Infrastructure\Manager\AppEntityRegistry;
 use App\AppBundle\Infrastructure\AppRepositoryInterface;
 
 class AppRepositoryRegistry

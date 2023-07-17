@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Domain\Manager;
+namespace App\AppBundle\Infrastructure\Manager;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;

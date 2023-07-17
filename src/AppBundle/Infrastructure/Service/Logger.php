@@ -1,9 +1,10 @@
 <?php
 
-namespace App\AppBundle\Application\Service;
+namespace App\AppBundle\Infrastructure\Service;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppBundle\Domain\Manager\AppEntityRegistry;
+use App\AppBundle\Domain\Service\LoggerInterface;
+use App\AppBundle\Infrastructure\Manager\AppEntityRegistry;
 use DateTimeImmutable;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;

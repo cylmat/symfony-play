@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AppBundle\Application\Contracts;
+namespace App\AppBundle\Infrastructure\Contracts;
 
-use alsvanzelf\jsonapi\ResourceDocument; // todo set to infra
+use alsvanzelf\jsonapi\ResourceDocument;
 
 interface JsonApiFormatterFactoryInterface
 {
