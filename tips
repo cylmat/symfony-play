@@ -9,3 +9,6 @@
     - Infra : Put symfony framework/config  -> can use Appli or Domain layer
     - Application : No infra/framework      -> can use Domain
     - Domain : No infra/framework           -> no aware of other layer
+@https://www.invivoo.com/architecture-hexagonale
+@https://dev.to/juanoa/folder-structure-in-a-react-hexagonal-architecture-h77
+@https://blog.allegro.tech/2020/05/hexagonal-architecture-by-example.html
