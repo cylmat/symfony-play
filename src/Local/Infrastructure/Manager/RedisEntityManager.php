@@ -3,7 +3,7 @@
 namespace App\Local\Infrastructure\Manager;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
-use App\Local\Domain\RedisClientInterface;
+use App\Local\Infrastructure\RedisClientInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 class RedisEntityManager implements AppEntityManagerInterface

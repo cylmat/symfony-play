@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Local\Domain;
+namespace App\Local\Infrastructure;
 
 /**
  * @method del(array|string $keyOrKeys, ...$keys): int;

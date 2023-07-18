@@ -2,8 +2,7 @@
 
 namespace App\Test\AppBundle\Application\Service;
 
-use App\AppBundle\Application\Service\LoggerInterface;
-use App\AppBundle\Application\Service\LoggerTrait;
+use App\AppBundle\Domain\Service\LoggerInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 

@@ -7,3 +7,7 @@ services:
     App\Local\Infrastructure\RedisClientFactory:
         arguments:
             $redisClient: '@snc_redis.test'
+
+    # must be public cause called inside message handler (async)
+    App\Local\Infrastructure\RedisRepository:
+        public: true

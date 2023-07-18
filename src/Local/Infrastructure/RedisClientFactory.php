@@ -3,7 +3,6 @@
 namespace App\Local\Infrastructure;
 
 use App\AppBundle\Infrastructure\NullClient;
-use App\Local\Domain\RedisClientInterface;
 use Predis\Client;
 use Throwable;
 

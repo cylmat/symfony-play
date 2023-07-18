@@ -18,7 +18,7 @@ final class CommandManager implements LoggerAwareInterface
     public function __construct(
         /** @var CommandProcessInterface[] $commandProcesses */
         private readonly iterable $commandProcesses,
-        private readonly MessageBusInterface $logMessageBus // messenger.bus.default
+        private readonly MessageBusInterface $logMessageBus, // messenger.bus.default
     ) {
     }
 

@@ -3,7 +3,7 @@
 namespace App\AppBundle\Infrastructure\Factory;
 
 use alsvanzelf\jsonapi\ResourceDocument;
-use App\AppBundle\Application\Contracts\JsonApiFormatterFactoryInterface;
+use App\AppBundle\Infrastructure\Contracts\JsonApiFormatterFactoryInterface;
 
 /** @see https://jsonapi.org/format */
 final class DocumentFormatterFactory implements JsonApiFormatterFactoryInterface

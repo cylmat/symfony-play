@@ -4,7 +4,7 @@ namespace App\ApiResource\Application\Controller;
 
 use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\AppRequest;
-use App\AppBundle\Application\Contracts\JsonApiValidatorInterface;
+use App\AppBundle\Infrastructure\Contracts\JsonApiValidatorInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

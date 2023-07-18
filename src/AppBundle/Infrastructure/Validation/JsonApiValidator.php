@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Infrastructure\Validation;
 
-use App\AppBundle\Application\Contracts\JsonApiValidatorInterface;
+use App\AppBundle\Infrastructure\Contracts\JsonApiValidatorInterface;
 use Art4\JsonApiClient\Exception\InputException;
 use Art4\JsonApiClient\Exception\ValidationException;
 use Art4\JsonApiClient\Input\ResponseStringInput;

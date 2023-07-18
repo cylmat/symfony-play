@@ -9,7 +9,7 @@ services:
     ###
     _instanceof:
         App\AppBundle\Infrastructure\AppEntityManagerInterface:
-            tags: ['app.entity_manager']
+            tags: ['app.entity_manager'] # @todo use attributes
         
         App\AppBundle\Infrastructure\AppRepositoryInterface:
             tags: ['app.repository']
@@ -17,5 +17,5 @@ services:
     App\Local\:
         resource: ../../src/Local/
 
-    App\Local\Domain\RedisClientInterface:
+    App\Local\Infrastructure\RedisClientInterface:
         factory: '@App\Local\Infrastructure\RedisClientFactory'

@@ -5,7 +5,7 @@ namespace App\Tests\Text\Application;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\MessageHandler\MessageHandler;
-use App\Local\Domain\RedisClientInterface;
+use App\Local\Infrastructure\RedisClientInterface;
 use App\Local\Infrastructure\RedisRepository;  /** @todo use model redis repository interface */
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
