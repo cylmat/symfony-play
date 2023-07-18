@@ -6,3 +6,5 @@ services:
 
     App\Encrypt\:
         resource: ../../src/Encrypt/
+
+    App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'

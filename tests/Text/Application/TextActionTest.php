@@ -44,6 +44,8 @@ final class TextActionTest extends KernelTestCase
 
     public function testExecute(): void
     {  
+        // @todo use workflow
+
         $res = $this->textAction->execute($this->getRequest());
         $this->assertSame('gamma-beta', $res);
 

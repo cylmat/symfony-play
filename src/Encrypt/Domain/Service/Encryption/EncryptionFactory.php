@@ -2,13 +2,13 @@
 
 namespace App\Encrypt\Domain\Service\Encryption;
 
+use App\AppBundle\Domain\AppWorkflowInterface;
 use App\Encrypt\Domain\Exception\AlgorithmNotFoundException;
-use Symfony\Component\Workflow\WorkflowInterface;
 
 class EncryptionFactory
 {
     public function __construct(
-        private readonly WorkflowInterface $encryptWorkflow
+        private readonly AppWorkflowInterface $encryptWorkflow
     ) {
     }
 

@@ -73,6 +73,8 @@ deptrac:
     Application:
       - Domain
       - Framework_Symfony # @todo remove this ?
+    Domain:
+      - Framework_Doctrine
     Infrastructure:
       - Application
       - Domain
