@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Infrastructure\Service; /** @todo in domain */
+namespace App\AppBundle\Domain\Service;
 
 use App\AppBundle\Domain\Service\LoggerInterface;
 

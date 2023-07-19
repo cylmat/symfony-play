@@ -5,7 +5,7 @@ namespace App\Text\Domain\Manager;
 use App\AppBundle\Domain\Contracts\MessageBusInterface;
 use App\AppBundle\Domain\Message\LogMessage;
 use App\AppBundle\Domain\Service\LoggerAwareInterface;
-use App\AppBundle\Infrastructure\Service\LoggerTrait;
+use App\AppBundle\Domain\Service\LoggerTrait;
 use App\Text\Domain\Service\CommandProcessInterface;
 use LogicException;
 
