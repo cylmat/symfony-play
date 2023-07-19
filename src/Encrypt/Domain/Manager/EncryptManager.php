@@ -6,7 +6,7 @@ use App\AppBundle\Domain\AppWorkflowInterface;
 use App\Encrypt\Domain\Model\EncryptedData;
 use App\Encrypt\Domain\Service\Encryption\EncryptionFactory;
 
-class EncryptManager
+final class EncryptManager
 {
     public function __construct(
         private readonly EncryptionFactory $factory,

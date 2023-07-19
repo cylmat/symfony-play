@@ -11,7 +11,7 @@ services:
     # _defaults and _instanceof apply for THIS file services
     _instanceof:
         App\Text\Domain\Service\CommandProcessInterface:
-            tags: ['app.command_process']
+            tags: ['app.command_process'] # can use AutoconfigureTag too
 
         # App LOGGER used in TextBundle #
         App\AppBundle\Domain\Service\LoggerAwareInterface:

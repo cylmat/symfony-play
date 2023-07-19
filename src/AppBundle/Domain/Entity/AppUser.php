@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */
 #[ORM\Entity(repositoryClass: AppUserRepository::class)]
-class AppUser implements UserInterface, PasswordAuthenticatedUserInterface
+final class AppUser implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

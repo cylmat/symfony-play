@@ -52,6 +52,8 @@ services:
         arguments: 
             $logger: '@app.logger'
 
+    App\AppBundle\Domain\Contracts\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
+
     ###########
     # SESSION #
     ###########
