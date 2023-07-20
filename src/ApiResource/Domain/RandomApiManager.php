@@ -3,10 +3,8 @@
 namespace App\ApiResource\Domain;
 
 use App\ApiResource\Domain\Model\RandomApi;
+use App\AppBundle\Domain\Contracts\CacheInterface;
 use App\Local\Domain\RedisManager;
-use Psr\Cache\CacheItemInterface;
-use Symfony\Component\Cache\Adapter\AbstractAdapter;
-use Symfony\Contracts\Cache\CacheInterface;
 
 final class RandomApiManager
 {
@@ -18,23 +16,14 @@ final class RandomApiManager
 
     public function getData(): RandomApi
     {
-        /** @var CacheItemInterface $item */
-        $item = $this->cache->get('cache.get', fn (CacheItemInterface $item) => 'cache.get.'.\random_int(0, 10));
-
-        /** @var AbstractAdapter $dynamic */
-        $dynamic = clone $this->cache;
-        $res = $dynamic->getItem('cache.dynamic');
-        if (!$res->isHit()) {
-            $res->set('cache.dynamic.'.\random_int(0, 10));
-            $res->expiresAfter(3);
-            $dynamic->save($res);
-        }
+        $item = $this->cache->get('cache.get', 'cache_get_'.\random_int(0, 10));
+        $this->cache->setItem('cache.dynamic', 'cache_dynamic_'.\random_int(0, 10), 8);
 
         $randomApi = new RandomApi();
         $randomApi->random_int = \random_int(1, 99);
         $randomApi->random_redis = $this->redisManager->getLuaRandomInt();
         $randomApi->cache_get = $item;
-        $randomApi->cache_dynamic = $res->get();
+        $randomApi->cache_dynamic = $this->cache->get('cache.dynamic', fn () => 'nope');
 
         return $randomApi;
     }

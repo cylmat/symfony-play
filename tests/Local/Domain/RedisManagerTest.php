@@ -4,7 +4,6 @@ namespace App\Test\Local\Domain;
 
 use App\Local\Domain\RedisManager;
 use App\Local\Infrastructure\RedisClientInterface;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -13,7 +12,7 @@ final class RedisManagerTest extends TestCase
     use ProphecyTrait;
 
     private RedisManager $redisManager;
-    private RedisClientInterface|MockObject $redisClient;
+    private RedisClientInterface $redisClient;
 
     protected function setUp(): void
     {

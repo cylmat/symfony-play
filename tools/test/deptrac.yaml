@@ -48,13 +48,6 @@ deptrac:
           value: App.*\\Infrastructure\\.*
 
     -
-      name: Framework_Symfony
-      collectors:
-        -
-          type: className
-          value: Symfony.*
-
-    -
       name: Framework_Doctrine
       collectors:
         -
@@ -68,6 +61,13 @@ deptrac:
           type: className
           value: Monolog.*
 
+    -
+      name: Framework_Symfony
+      collectors:
+        -
+          type: className
+          value: Symfony.*
+
   # RULES
   ruleset:
     Application:
@@ -78,9 +78,9 @@ deptrac:
     Infrastructure:
       - Application
       - Domain
-      - Framework_Symfony
       - Framework_Doctrine
       - Framework_Monolog
+      - Framework_Symfony
 
   # formatters:
   #   graphviz:
