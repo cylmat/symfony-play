@@ -2,7 +2,7 @@
 
 namespace App\Text\Domain\Service;
 
-//use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+// Use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 /** @todo see how to use it in domain layer */
 
 /** @see https://symfony.com/doc/current/service_container/tags.html */

@@ -2,8 +2,6 @@
 
 namespace App\AppBundle\Domain\Service;
 
-use App\AppBundle\Domain\Service\LoggerInterface;
-
 // Used with LoggerAwareInterface.
 trait LoggerTrait
 {

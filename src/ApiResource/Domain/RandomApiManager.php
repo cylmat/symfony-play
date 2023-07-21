@@ -4,13 +4,13 @@ namespace App\ApiResource\Domain;
 
 use App\ApiResource\Domain\Model\RandomApi;
 use App\AppBundle\Domain\Contracts\CacheInterface;
-use App\Local\Infrastructure\Manager\RedisManager;
+use App\Local\Domain\Manager\RedisManagerInterface;
 
 final class RandomApiManager
 {
     public function __construct(
         private readonly CacheInterface $cache,
-        private readonly RedisManager $redisManager,
+        private readonly RedisManagerInterface $redisManager,
     ) {
     }
 

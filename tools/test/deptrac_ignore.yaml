@@ -1,0 +1,17 @@
+# deptrac_ignore.yaml
+
+deptrac:
+  skip_violations:
+
+    # Entity
+    App\AppBundle\Domain\Entity\AppUser:
+      - App\AppBundle\Infrastructure\Repository\AppUserRepository
+      - Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+      - Symfony\Component\Security\Core\User\UserInterface
+    App\AppBundle\Domain\Entity\Log:
+      - ApiPlatform\Metadata\ApiResource
+      - App\AppBundle\Infrastructure\Repository\LogRepository
+
+    # Psr
+    App\AppBundle\Domain\Service\LoggerInterface:
+      - Psr\Log\LoggerInterface

@@ -1,8 +1,10 @@
-#
 # deptrac.yaml
 #
 # @see https://qossmic.github.io/deptrac/configuration
 # @see https://codesoapbox.dev/ports-adapters-aka-hexagonal-architecture-explained
+
+imports:
+  - deptrac_ignore.yaml
 
 deptrac:
   paths:
@@ -11,6 +13,10 @@ deptrac:
   exclude_files:
     - '#.*Test.*#'
     - '#.*Admin.*#'
+
+  skip_violations:
+    App\AppBundle\Domain\Entity\AppUser:
+      - Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 
   # RULES
   ruleset:

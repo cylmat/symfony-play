@@ -11,7 +11,7 @@ final class MessageBus implements MessageBusInterface
     public function __construct(
         /** @todo use tagged iterator */
         private readonly SymfonyMessageBusInterface $symfonyMessageBus,  // messenger.bus.default
-    ){
+    ) {
     }
 
     public function dispatch(object $message, array $stamps = []): Envelope
