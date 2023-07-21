@@ -12,10 +12,15 @@ services:
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
 
+    # BUNDLE #
     App\AppBundle\:
         resource: ../../src/AppBundle/
 
+    #################
+    # DDD Interface #
+    #################
     App\AppBundle\Domain\Contracts\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
+    App\AppBundle\Domain\Contracts\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
 
     ################
     # APP REGISTRY #
@@ -48,13 +53,11 @@ services:
             - '@maker.maker.make_entity'
 
     ###########
-    # Message
+    # Message #
     ###########
     App\AppBundle\Infrastructure\MessageHandler\MessageHandler:
         arguments: 
             $logger: '@app.logger'
-
-    App\AppBundle\Domain\Contracts\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
 
     ###########
     # SESSION #

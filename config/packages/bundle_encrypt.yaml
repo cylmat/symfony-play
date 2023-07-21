@@ -4,7 +4,11 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
+    # BUNDLE #
     App\Encrypt\:
         resource: ../../src/Encrypt/
 
+    #################
+    # DDD Interface #
+    #################
     App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'

@@ -14,8 +14,17 @@ services:
         App\AppBundle\Infrastructure\AppRepositoryInterface:
             tags: ['app.repository']
 
+    # BUNDLE #
     App\Local\:
         resource: ../../src/Local/
 
+    #################
+    # DDD Interface #
+    #################
+    App\Local\Domain\Manager\RedisManagerInterface: '@App\Local\Infrastructure\Manager\RedisManager'
+
+    #########
+    # INFRA #
+    #########
     App\Local\Infrastructure\RedisClientInterface:
         factory: '@App\Local\Infrastructure\RedisClientFactory'

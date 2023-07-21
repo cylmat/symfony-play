@@ -12,6 +12,29 @@ deptrac:
     - '#.*Test.*#'
     - '#.*Admin.*#'
 
+  # RULES
+  ruleset:
+    Application:
+      - Domain
+      - Framework_Symfony # @todo remove this ?
+      - _Fos
+    Domain:
+      - Framework_Doctrine
+    Infrastructure:
+      - Application
+      - Domain
+      - Framework_Doctrine
+      - Framework_Symfony
+
+      # @todo remove dependencies ?
+      - _alsvanzelf
+      - _ApiPlatform
+      - _Art4
+      - _Monolog
+      - _Redis
+      - _Predis
+      - _Psr
+
   layers:
 
     ### Application ###
@@ -47,40 +70,72 @@ deptrac:
           type: className
           value: App.*\\Infrastructure\\.*
 
+    # Framework
+
     -
       name: Framework_Doctrine
       collectors:
         -
           type: className
-          value: Doctrine.*
-
-    -
-      name: Framework_Monolog
-      collectors:
-        -
-          type: className
-          value: Monolog.*
+          value: Doctrine\\.*
 
     -
       name: Framework_Symfony
       collectors:
         -
           type: className
-          value: Symfony.*
+          value: Symfony\\.*
 
-  # RULES
-  ruleset:
-    Application:
-      - Domain
-      - Framework_Symfony # @todo remove this ?
-    Domain:
-      - Framework_Doctrine
-    Infrastructure:
-      - Application
-      - Domain
-      - Framework_Doctrine
-      - Framework_Monolog
-      - Framework_Symfony
+    # Dependencies
+
+    -
+      name: _alsvanzelf
+      collectors:
+        -
+          type: className
+          value: alsvanzelf\\.*
+
+    -
+      name: _ApiPlatform
+      collectors:
+        -
+          type: className
+          value: ApiPlatform\\.*
+
+    -
+      name: _Art4
+      collectors:
+        -
+          type: className
+          value: Art4\\.*
+
+    -
+      name: _Fos
+      collectors:
+        -
+          type: className
+          value: FOS\\.*
+
+    -
+      name: _Monolog
+      collectors:
+        -
+          type: className
+          value: Monolog\\.*
+
+    -
+      name: _Psr
+      collectors:
+        -
+          type: className
+          value: Psr\\.*
+
+    -
+      name: _Predis
+      collectors:
+        -
+          type: className
+          value: Predis\\.*
 
   # formatters:
   #   graphviz:

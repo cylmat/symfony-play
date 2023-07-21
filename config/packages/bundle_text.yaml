@@ -18,6 +18,6 @@ services:
             calls:
                 - ['setLogger', ['@app.logger']]
 
-    # BUNDLES #
+    # BUNDLE #
     App\Text\:
         resource: ../../src/Text/

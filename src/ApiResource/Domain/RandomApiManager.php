@@ -4,7 +4,7 @@ namespace App\ApiResource\Domain;
 
 use App\ApiResource\Domain\Model\RandomApi;
 use App\AppBundle\Domain\Contracts\CacheInterface;
-use App\Local\Domain\RedisManager;
+use App\Local\Infrastructure\Manager\RedisManager;
 
 final class RandomApiManager
 {

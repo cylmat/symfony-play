@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Local\Domain;
+namespace App\Local\Infrastructure\Manager;
 
-use App\Local\Infrastructure\RedisClientInterface; /** @todo no infra */
+use App\Local\Domain\Manager\RedisManagerInterface;
+use App\Local\Infrastructure\RedisClientInterface;
 
-/* @see https://app.redislabs.com */
-class RedisManager
+/** @see https://app.redislabs.com */
+class RedisManager implements RedisManagerInterface
 {
     public function __construct(
         private readonly RedisClientInterface $redisClient
