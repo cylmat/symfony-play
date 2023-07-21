@@ -206,10 +206,10 @@ case "$1" in
 ############
 
 "build")
-	npm run build ;;
+	npm i && npm run build ;;
 
 "watch")
-	npm run watch ;;
+	npm i && npm run watch ;;
 
 "var")
 	rm var/cache/* -rf

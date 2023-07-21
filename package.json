@@ -12,6 +12,7 @@
         "jquery": "^3.6.1",
         "loader-utils": "^2.0.4",
         "regenerator-runtime": "^0.13.9",
+        "semver": "^7.5.2",
         "sass": "^1.55.0",
         "sass-loader": "^13.1.0",
         "webpack": "^5.76.0",
