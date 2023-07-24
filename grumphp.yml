@@ -52,9 +52,7 @@ grumphp:
           - phplint
           - shell
           # behav
-          # test
           - deptrac
-          - paratest
 
       ### Specific tasks ###
 
@@ -195,6 +193,7 @@ grumphp:
 
       shell:
         scripts:
+          - ['bin/run', 'iunit']
           - ['bin/run', 'md']
           - ['bin/run', 'paralint']
           - ['bin/run', 'stan']

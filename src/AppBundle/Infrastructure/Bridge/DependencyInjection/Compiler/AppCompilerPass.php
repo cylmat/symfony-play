@@ -2,14 +2,17 @@
 
 namespace App\AppBundle\Infrastructure\Bridge\DependencyInjection\Compiler;
 
-use App\Text\Domain\Manager\CommandManager; /** @todo move to TextBundle */
+use App\Text\Domain\Manager\CommandManager; // @todo move to TextBundle
 use Symfony\Component\DependencyInjection\Argument\IteratorArgument;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-/** @see https://symfony.com/doc/current/service_container/tags.html */
-/** @codeCoverageIgnore */
+/**
+ * @see https://symfony.com/doc/current/service_container/tags.html
+ *
+ * @codeCoverageIgnore
+ */
 class AppCompilerPass implements CompilerPassInterface
 {
     /**

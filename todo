@@ -5,7 +5,6 @@ use FOS\UserBundle\FOSUserBundle
 redismodel dto + factory
 
 
-WorkflowSubscriber use infrastructure!
 use multiple databases
 use postgre/mongodb
 https://sentry.io

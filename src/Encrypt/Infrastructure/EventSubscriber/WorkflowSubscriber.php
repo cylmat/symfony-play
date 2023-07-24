@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Encrypt\Application\EventSubscriber;
+namespace App\Encrypt\Infrastructure\EventSubscriber;
 
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\Manager\AppEntityRegistry;

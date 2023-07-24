@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Test\Encrypt\Application\EventSubscriber;
+namespace App\Test\Encrypt\Infrastructure\EventSubscriber;
 
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\AppDoctrine;
-use App\Encrypt\Application\EventSubscriber\WorkflowSubscriber;
+use App\AppBundle\Infrastructure\Manager\AppEntityRegistry;
 use App\Encrypt\Domain\Model\EncryptedData;
+use App\Encrypt\Infrastructure\EventSubscriber\WorkflowSubscriber;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -16,7 +17,7 @@ use Symfony\Component\Workflow\Marking;
 final class WorkflowSubscriberTest extends TestCase
 {
     private LoggerInterface|MockObject $logger;
-    private AppDoctrine|MockObject $doctrine;
+    private AppEntityRegistry|MockObject $doctrine;
     private WorkflowSubscriber $workflowListener;
 
     /**

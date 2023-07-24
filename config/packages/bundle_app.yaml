@@ -21,6 +21,7 @@ services:
     #################
     App\AppBundle\Domain\Contracts\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
     App\AppBundle\Domain\Contracts\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
+    App\AppBundle\Application\OutputInterface: '@App\AppBundle\Infrastructure\Service\Output\Output'
 
     ################
     # APP REGISTRY #
@@ -36,14 +37,14 @@ services:
         arguments:
             $repositories: !tagged_iterator app.repository
 
-    #############
-    # FORMATTER #
-    #############
-    App\AppBundle\Infrastructure\Validation\JsonApiValidator: ~
-    App\AppBundle\Infrastructure\Contracts\JsonApiValidatorInterface: '@App\AppBundle\Infrastructure\Validation\JsonApiValidator'
+    ##########
+    # OUTPUT #
+    ##########
+    App\AppBundle\Infrastructure\Service\Output\JsonApiValidator: ~
+    App\AppBundle\Infrastructure\Service\Output\ValidatorInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiValidator'
 
-    App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory: ~
-    App\AppBundle\Infrastructure\Contracts\JsonApiFormatterFactoryInterface: '@App\AppBundle\Infrastructure\Factory\DocumentFormatterFactory'
+    App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter: ~
+    App\AppBundle\Infrastructure\Service\Output\FormatterInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter'
 
     ###########
     # COMMAND #
