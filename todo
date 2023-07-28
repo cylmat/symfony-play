@@ -13,6 +13,7 @@ https://newrelic.com
 Opendata: https://www.data.gouv.fr https://opendata.paris.fr https://data.europa.eu
 ---------------------
 declare(strict_types=1)
+custom normaliser for response
 decorator stack
 logs in database
 wsl traefik.io
