@@ -4,7 +4,7 @@ namespace App\Test\ApiResource\Application\Controller;
 
 use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\AppRequest;
-use App\AppBundle\Domain\Contracts\CacheInterface;
+use App\AppBundle\Domain\CacheInterface;
 use App\Local\Infrastructure\RedisClientInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 

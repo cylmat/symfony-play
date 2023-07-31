@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Infrastructure\Service;
 
-use App\AppBundle\Domain\Contracts\MessageBusInterface;
+use App\AppBundle\Domain\MessageBusInterface;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface as SymfonyMessageBusInterface;
 

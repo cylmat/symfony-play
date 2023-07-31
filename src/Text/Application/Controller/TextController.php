@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Application\Controller;
+namespace App\Text\Application\Controller;
 
 use App\Text\Application\TextAction;
 use App\Text\Application\TextType;

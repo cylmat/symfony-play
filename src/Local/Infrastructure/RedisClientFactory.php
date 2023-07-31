@@ -2,7 +2,6 @@
 
 namespace App\Local\Infrastructure;
 
-use App\AppBundle\Infrastructure\NullClient;
 use Predis\Client;
 use Throwable;
 
@@ -19,12 +18,12 @@ class RedisClientFactory
      */
     public function __invoke(): RedisClientInterface
     {
-        $client = $this->redisClient ? new RedisClient($this->redisClient) : new NullClient();
+        $client = $this->redisClient ? new RedisClient($this->redisClient) : new NullRedisClient();
 
         try {
             $client->connect(); // @phpstan-ignore-line: Undefined method
         } catch (Throwable $exception) {
-            return new NullClient();
+            return new NullRedisClient();
         }
 
         return $client;

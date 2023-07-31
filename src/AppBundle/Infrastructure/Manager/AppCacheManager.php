@@ -2,7 +2,7 @@
 
 namespace App\AppBundle\Infrastructure\Manager;
 
-use App\AppBundle\Domain\Contracts\CacheInterface;
+use App\AppBundle\Domain\CacheInterface;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Contracts\Cache\CacheInterface as SymfonyCacheInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Domain\Contracts;
+namespace App\AppBundle\Domain; /** @todo use "contracts" directory */
 
 interface CacheInterface
 {

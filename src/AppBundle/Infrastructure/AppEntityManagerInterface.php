@@ -2,6 +2,7 @@
 
 namespace App\AppBundle\Infrastructure;
 
+/** @todo put in "contracts" directory */
 interface AppEntityManagerInterface
 {
     public function getClient(): object;
@@ -12,5 +13,5 @@ interface AppEntityManagerInterface
 
     public function flush(): void;
 
-    // @toto impelments find($id)
+    // @toto implements find($id)
 }

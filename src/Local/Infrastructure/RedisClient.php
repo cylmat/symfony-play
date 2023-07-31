@@ -4,6 +4,7 @@ namespace App\Local\Infrastructure;
 
 use Predis\Client as PredisClient;
 
+/** @todo put in "client" directory */
 /** @see https://github.com/predis/predis/wiki */
 class RedisClient implements RedisClientInterface
 {

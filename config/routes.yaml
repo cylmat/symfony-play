@@ -1,14 +1,24 @@
 # Must be configured to avoir error: "No route found"
-
-api_controllers:
+controllers_api:
     resource: ../src/ApiResource/Application/Controller
     type: annotation
     prefix: /api
 
-controllers:
-    resource: ../src/AppBundle/Application/Controller
-    type: annotation
-
 controllers_admin:
     resource: ../src/Admin/Application/Controller
     type: annotation
+
+controllers_encrypt:
+    resource: ../src/Encrypt/Application/Controller
+    type: annotation
+
+controllers_text:
+    resource: ../src/Text/Application/Controller
+    type: annotation
+
+homepage:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::urlRedirectAction
+    defaults:
+        path: /text
+        permanent: true

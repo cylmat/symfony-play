@@ -3,7 +3,7 @@
 namespace App\AppBundle\Infrastructure\Repository;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppBundle\Domain\Manager\AppEntityRegistry;
+use App\AppBundle\Infrastructure\Manager\AppEntityRegistry;
 use App\AppBundle\Infrastructure\Manager\AppRepositoryRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -34,6 +34,7 @@ class LogRepository extends ServiceEntityRepository
     {
         $objectFqcn = $this->_entityName;
 
+        /* @todo integration test this */ 
         foreach ($this->appEntityManager->getDoctrineRegistry()->getManagers() as $entityManager) {
             $entities = $entityManager->createQueryBuilder()
                 ->select('l')

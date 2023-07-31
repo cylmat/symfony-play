@@ -19,9 +19,12 @@ services:
     #################
     # DDD Interface #
     #################
-    App\AppBundle\Domain\Contracts\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
-    App\AppBundle\Domain\Contracts\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
     App\AppBundle\Application\OutputInterface: '@App\AppBundle\Infrastructure\Service\Output\Output'
+    App\AppBundle\Domain\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
+    App\AppBundle\Domain\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
+    App\AppBundle\Domain\Service\LoggerInterface: '@App\AppBundle\Infrastructure\Service\Logger'
+
+    app.logger: '@App\AppBundle\Domain\Service\LoggerInterface'
 
     ################
     # APP REGISTRY #

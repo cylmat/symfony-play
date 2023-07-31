@@ -17,6 +17,3 @@ services:
 
     App\ApiResource\:
         resource: ../src/ApiResource/
-
-    App\AppBundle\Domain\Service\LoggerInterface: '@App\AppBundle\Infrastructure\Service\Logger'
-    app.logger: '@App\AppBundle\Domain\Service\LoggerInterface'

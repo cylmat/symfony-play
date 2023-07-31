@@ -3,7 +3,7 @@
 namespace App\ApiResource\Domain;
 
 use App\ApiResource\Domain\Model\RandomApi;
-use App\AppBundle\Domain\Contracts\CacheInterface;
+use App\AppBundle\Domain\CacheInterface;
 use App\Local\Domain\Manager\RedisManagerInterface;
 
 final class RandomApiManager

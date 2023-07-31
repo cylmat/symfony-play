@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Domain\Contracts;
+namespace App\AppBundle\Domain;
 
 /** @see Symfony\Component\Messenger\Stamp\StampInterface\MessageBusInterface */
 interface MessageBusInterface
