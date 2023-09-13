@@ -4,14 +4,28 @@ use snc/redis-bundle
 use FOS\UserBundle\FOSUserBundle
 redismodel dto + factory
 
-
 use multiple databases
 use postgre/mongodb
 https://sentry.io
 https://newrelic.com
 
-Opendata: https://www.data.gouv.fr https://opendata.paris.fr https://data.europa.eu
 ---------------------
+* wrap json_encode 500 si error formattage (utilisation d'un json encoder à la place)
+    $encoder = try serializer.encoder.json ?? new JsonEncoder
+    $this->jsonEncoder->decode($data, JsonEncoder::FORMAT, [JsonDecode::ASSOCIATIVE => true]);
+
+* redis lock (faire tourner un "set" redis jusqu'à obtention) -> RedisSessionHandler
+    Snc/redisbundle
+    for(0>11) redis->set(...) if(success) $this->locked=true; 
+
+* enlever le "app" controller vers "bundle" controller :
+création de route/contrôleurs spécifiques pour les api (chaque route en class invokable)
+
+#[Route(path: '/api/code',name: 'api_code',methods: 'POST',)]
+final class ApiCodeRoute extends AbstractController  { __invoke(): JsonResponse }
+
+---------------------
+Opendata: https://www.data.gouv.fr https://opendata.paris.fr https://data.europa.eu
 declare(strict_types=1)
 custom normaliser for response
 decorator stack
