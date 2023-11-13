@@ -168,6 +168,10 @@ case "$1" in
 	echoinfo "Running Deptrac"
 	bin/deptrac analyse --config-file=tools/test/deptrac.yaml --cache-file=./var/.deptrac.cache --report-uncovered;;
 
+"deptrac-img")
+	echoinfo "Running Deptrac image"
+	bin/deptrac analyse --config-file=tools/test/deptrac.yaml -f graphviz-image --output project/archi_deptrac.jpg;;
+
 # @see https://infection.github.io
 # -derror_reporting=24575 (E_ALL & ~E_DEPRECATED)
 "infection")
