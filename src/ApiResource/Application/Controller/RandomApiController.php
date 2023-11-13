@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ApiResource\Application\Controller;
 
 use App\ApiResource\Application\RandomApiAction;
@@ -10,13 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /** @see https://fosrestbundle.readthedocs.io */
-class RandomApiController extends AbstractFOSRestController
+final class RandomApiController extends AbstractFOSRestController
 {
     #[Route('/')]
-    public function getRandomIntAction(
-        RandomApiAction $action,
-        OutputInterface $output,
-    ): Response {
+    public function getRandomIntAction(RandomApiAction $action, OutputInterface $output): Response
+    {
         $data = $action->execute(new AppRequest());
         $view = $this->view($data, Response::HTTP_OK);
 

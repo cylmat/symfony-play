@@ -14,7 +14,7 @@ final class AppDataCollector extends AbstractDataCollector implements DataCollec
 {
     // Called during kernel.response
     /** @SuppressWarnings(PHPMD.UnusedFormalParameter) */
-    public function collect(Request $request, Response $response, ?Throwable $exception = null): void
+    public function collect(Request $request, Response $response, Throwable $exception = null): void
     {
         $this->data = [
             'method' => $request->getMethod(),
@@ -31,7 +31,7 @@ final class AppDataCollector extends AbstractDataCollector implements DataCollec
     // ... for template ... //
 
     /** @return string[] */
-    public function getData(?string $key = null): array|string
+    public function getData(string $key = null): array|string
     {
         return $key ? $this->data[$key] : $this->data;
     }

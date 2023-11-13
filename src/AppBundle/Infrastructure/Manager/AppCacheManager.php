@@ -32,7 +32,7 @@ final class AppCacheManager implements CacheInterface
 
     // Adapter
 
-    public function setItem(string $key, mixed $value, ?int $expires = null): void
+    public function setItem(string $key, mixed $value, int $expires = null): void
     {
         $res = $this->symfonyCache->getItem($key);
         if (!$res->isHit()) {

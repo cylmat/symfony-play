@@ -1,16 +1,17 @@
 <?php
 
-namespace App\ApiResource\Domain;
+declare(strict_types=1);
 
-use App\ApiResource\Domain\Model\RandomApi;
+namespace App\AppBundle\Domain\Model;
+
 use App\AppBundle\Domain\CacheInterface;
-use App\Local\Domain\Manager\RedisManagerInterface;
+use App\Local\Domain\Manager\ScriptManagerInterface;
 
 final class RandomApiManager
 {
     public function __construct(
         private readonly CacheInterface $cache,
-        private readonly RedisManagerInterface $redisManager,
+        private readonly ScriptManagerInterface $scriptManager,
     ) {
     }
 
@@ -21,7 +22,7 @@ final class RandomApiManager
 
         $randomApi = new RandomApi();
         $randomApi->random_int = \random_int(1, 99);
-        $randomApi->random_redis = $this->redisManager->getLuaRandomInt();
+        $randomApi->random_script_int = $this->scriptManager->getRandomInt();
         $randomApi->cache_get = $item;
         $randomApi->cache_dynamic = $this->cache->get('cache.dynamic', fn () => 'nope');
 

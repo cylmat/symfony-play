@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Local\Infrastructure;
 
 use Predis\Client;
 use Throwable;
 
-class RedisClientFactory
+final class RedisClientFactory
 {
     public function __construct(
         private readonly ?Client $redisClient = null // @snc_redis

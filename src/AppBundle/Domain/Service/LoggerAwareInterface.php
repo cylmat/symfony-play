@@ -7,5 +7,5 @@ interface LoggerAwareInterface
 {
     public function setLogger(LoggerInterface $logger): self;
 
-    public function getLogger(?string $channel = null): LoggerInterface;
+    public function getLogger(string $channel = null): LoggerInterface;
 }

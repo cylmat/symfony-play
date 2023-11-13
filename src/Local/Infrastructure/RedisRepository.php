@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Local\Infrastructure;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
@@ -7,7 +9,7 @@ use App\AppBundle\Infrastructure\AppRepositoryInterface;
 use App\Local\Infrastructure\Manager\RedisEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
-class RedisRepository implements AppRepositoryInterface
+final class RedisRepository implements AppRepositoryInterface
 {
     private string $entityName;
 

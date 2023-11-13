@@ -34,7 +34,7 @@ class LogRepository extends ServiceEntityRepository
     {
         $objectFqcn = $this->_entityName;
 
-        /* @todo integration test this */ 
+        /* @todo integration test this */
         foreach ($this->appEntityManager->getDoctrineRegistry()->getManagers() as $entityManager) {
             $entities = $entityManager->createQueryBuilder()
                 ->select('l')

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Local\Infrastructure\Manager;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
 use App\Local\Infrastructure\RedisClientInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
-class RedisEntityManager implements AppEntityManagerInterface
+final class RedisEntityManager implements AppEntityManagerInterface
 {
     public function __construct(
         private readonly RedisClientInterface $redisClient,

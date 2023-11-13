@@ -2,8 +2,8 @@
 
 namespace App\Text\Domain\Manager;
 
-use App\AppBundle\Domain\MessageBusInterface;
 use App\AppBundle\Domain\Message\LogMessage;
+use App\AppBundle\Domain\MessageBusInterface;
 use App\AppBundle\Domain\Service\LoggerAwareInterface;
 use App\AppBundle\Domain\Service\LoggerTrait;
 use App\Text\Domain\Service\CommandProcessInterface;
@@ -39,7 +39,8 @@ final class CommandManager implements LoggerAwareInterface
         foreach ($this->commandProcesses as $process) {
             if ($process::CMD === $commandParams['cmd']) {
                 $this->logMessageBus->dispatch(
-                    new LogMessage([ /** @todo don't call message entity directly but use app service */
+                    new LogMessage([
+                        /** @todo don't call message entity directly but use app service */
                         'channel' => self::COMMAND_LOGGER_CHANNEL,
                         'logmessage' => 'Command "'.$process::CMD.'" with "'.substr($text, 0, 3).'..." processed.',
                     ])

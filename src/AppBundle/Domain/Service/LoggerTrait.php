@@ -14,7 +14,7 @@ trait LoggerTrait
         return $this;
     }
 
-    public function getLogger(?string $channel = null): LoggerInterface
+    public function getLogger(string $channel = null): LoggerInterface
     {
         $logger = clone $this->logger;
         $channel ? $logger->setChannel($channel) : null;

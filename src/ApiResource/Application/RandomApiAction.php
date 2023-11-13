@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\ApiResource\Application;
 
-use App\ApiResource\Application\DTO\RandomApiResponseFactory;
-use App\ApiResource\Domain\RandomApiManager;
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
+use App\AppBundle\Application\DTO\RandomApiResponseFactory;
 use App\AppBundle\Application\OutputInterface;
+use App\AppBundle\Domain\Model\RandomApiManager;
 
 final class RandomApiAction implements ActionInterface
 {

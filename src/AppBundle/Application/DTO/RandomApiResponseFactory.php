@@ -1,9 +1,11 @@
 <?php
 
-namespace App\ApiResource\Application\DTO;
+declare(strict_types=1);
 
-use App\ApiResource\Domain\Model\RandomApi;
+namespace App\AppBundle\Application\DTO;
+
 use App\AppBundle\Application\Common\ResponseFactoryInterface;
+use App\AppBundle\Domain\Model\RandomApi;
 
 /** @todo Something better than DTO factory ? */
 final class RandomApiResponseFactory implements ResponseFactoryInterface
@@ -12,7 +14,7 @@ final class RandomApiResponseFactory implements ResponseFactoryInterface
     {
         $data = [
             'id' => $randomApi->random_int,
-            'type' => 'redis',
+            'type' => 'script',
         ];
         foreach ($randomApi as $name => $property) {
             $data[$name] = $property;

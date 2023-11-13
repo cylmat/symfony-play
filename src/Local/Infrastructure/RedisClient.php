@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Local\Infrastructure;
 
 use Predis\Client as PredisClient;
 
 /** @todo put in "client" directory */
 /** @see https://github.com/predis/predis/wiki */
-class RedisClient implements RedisClientInterface
+final class RedisClient implements RedisClientInterface
 {
     public function __construct(
         private readonly PredisClient $redisClient
