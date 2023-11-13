@@ -1,3 +1,4 @@
+doctrine schema+migrations on mysql+sqlite + fixtures
 set logger in domain/service
 doctrine decorator instead of appdoctrine
 use snc/redis-bundle

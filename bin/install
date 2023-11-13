@@ -33,6 +33,7 @@ case "$1" in
 	$0 deployer
 	$0 kint
 	$0 volta
+	$0 node
 	$0 symfony
 	# $0 phing
 	# $0 phive
@@ -163,6 +164,10 @@ case "$1" in
 # @see https://www.npmjs.com
 "npm")
 	nvm install-latest-npm
+;;
+
+"node")
+	volta install node
 ;;
 
 # @see https://phing.info
