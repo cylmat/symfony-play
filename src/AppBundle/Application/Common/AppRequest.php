@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\AppBundle\Application\Common;
 
-class AppRequest
+final class AppRequest
 {
     /** @param mixed[] $data */
     public function __construct(

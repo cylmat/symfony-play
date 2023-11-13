@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Local\Infrastructure\Manager;
 
-use App\Local\Domain\Manager\ScriptManagerInterface;
+use App\AppBundle\Domain\Manager\ScriptManagerInterface;
 use App\Local\Infrastructure\RedisClientInterface;
 
 /** @see https://app.redislabs.com */
@@ -22,7 +22,7 @@ final class RedisManager implements ScriptManagerInterface
      */
     public function getRandomInt(): int
     {
-        /* @phpstan-ignore-next-line: Client method not exists */
+        /** @phpstan-ignore-next-line: Client method not exists */
         return (int) $this->redisClient->eval('math.randomseed(ARGV[1]); return math.random(0, 100)', 0, time() * rand());
     }
 }
