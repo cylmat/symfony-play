@@ -22,7 +22,7 @@ final class RedisManager implements ScriptManagerInterface
      */
     public function getRandomInt(): int
     {
-        /** @phpstan-ignore-next-line: Client method not exists */
+        /* @phpstan-ignore-next-line: Client method not exists */
         return (int) $this->redisClient->eval('math.randomseed(ARGV[1]); return math.random(0, 100)', 0, time() * rand());
     }
 }
