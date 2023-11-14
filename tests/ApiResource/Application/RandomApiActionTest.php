@@ -5,13 +5,13 @@ namespace App\Test\ApiResource\Application\Controller;
 use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\CacheInterface;
-use App\Local\Infrastructure\RedisClientInterface;
+use App\Data\Infrastructure\RedisClientInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */
 final class RandomApiActionTest extends KernelTestCase
 {
-    private RandomApiAction $randomApiAction;
+    private object $randomApiAction;
 
     public static function setUpBeforeClass(): void
     {
@@ -34,7 +34,7 @@ final class RandomApiActionTest extends KernelTestCase
         $this->assertArrayHasKey('id', $data['data']);
         $this->assertArrayHasKey('type', $data['data']);
         $this->assertArrayHasKey('random_int', $data['data']['attributes']);
-        $this->assertArrayHasKey('random_redis', $data['data']['attributes']);
+        $this->assertArrayHasKey('random_script_int', $data['data']['attributes']);
 
         $this->checkCache();
     }

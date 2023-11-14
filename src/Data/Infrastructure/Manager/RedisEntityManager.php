@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Local\Infrastructure\Manager;
+namespace App\Data\Infrastructure\Manager;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
-use App\Local\Infrastructure\RedisClientInterface;
+use App\Data\Infrastructure\RedisClientInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisEntityManager implements AppEntityManagerInterface
@@ -23,10 +23,7 @@ final class RedisEntityManager implements AppEntityManagerInterface
 
     public function persist(object $object): void
     {
-        $this->redisClient->set(
-            $this->definedId($object),
-            \serialize($object)
-        );
+        $this->redisClient->set($this->definedId($object), \serialize($object));
     }
 
     public function flush(): void

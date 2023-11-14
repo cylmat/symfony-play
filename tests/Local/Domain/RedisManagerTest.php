@@ -2,8 +2,8 @@
 
 namespace App\Test\Local\Domain;
 
-use App\Local\Domain\RedisManager;
-use App\Local\Infrastructure\RedisClientInterface;
+use App\Data\Infrastructure\Manager\RedisManager;
+use App\Data\Infrastructure\RedisClientInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 

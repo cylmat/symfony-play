@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Domain\Model;
+namespace App\Data\Domain\Model;
 
 final class RandomApi
 {

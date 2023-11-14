@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Domain\Manager;
+namespace App\Data\Domain\Manager;
 
 interface ScriptManagerInterface
 {

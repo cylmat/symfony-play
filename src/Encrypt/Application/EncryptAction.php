@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Encrypt\Application;
 
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\Encrypt\Domain\Manager\EncryptManager;
 
-class EncryptAction implements ActionInterface
+final class EncryptAction implements ActionInterface
 {
     /* @todo Use array of values and factory */
     private const BCRYPT = 'bcrypt';
 
     public function __construct(
-        private EncryptManager $encryptManager
+        private EncryptManager $encryptManager,
     ) {
     }
 

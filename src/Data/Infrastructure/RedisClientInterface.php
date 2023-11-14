@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Local\Infrastructure;
+namespace App\Data\Infrastructure;
 
 /**
  * @method del(array|string $keyOrKeys, ...$keys): int;

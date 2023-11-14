@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Local\Infrastructure;
+namespace App\Data\Infrastructure;
 
 use Predis\Client;
 use Throwable;

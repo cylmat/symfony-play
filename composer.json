@@ -104,8 +104,8 @@
             "App\\": "src/",
             "App\\AppBundle\\": "src/AppBundle/",
             "App\\Admin\\": "src/Admin/",
+            "App\\Data\\": "src/Data/",
             "App\\Encrypt\\": "src/Encrypt/",
-            "App\\Local\\": "src/Local/",
             "App\\Text\\": "src/Text/"
         }
     },
@@ -119,8 +119,8 @@
             "App\\Tests\\": "tests/",
             "App\\Tests\\AppBundle\\": "tests/AppBundle/",
             "App\\Tests\\Admin\\": "tests/Admin/",
+            "App\\Tests\\Data\\": "tests/Data/",
             "App\\Tests\\Encrypt\\": "tests/Encrypt/",
-            "App\\Tests\\Local\\": "tests/Local/",
             "App\\Tests\\Text\\": "tests/Text/",
             "spec\\App\\": "spec/"
         }

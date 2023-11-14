@@ -15,6 +15,9 @@ services:
     # BUNDLE #
     App\AppBundle\:
         resource: ../../src/AppBundle/
+        exclude: 
+            - ../../src/AppBundle/Domain/Message/LogMessage.php
+            - ../../src/AppBundle/Infrastructure/Dbal/ConnectionWrapper.php
 
     #################
     # DDD Interface #
@@ -53,7 +56,7 @@ services:
     # COMMAND #
     ###########
     App\AppBundle\Command\MakeEntityWrapper:
-        arguments: 
+        arguments:
             - '@maker.maker.make_entity'
 
     ###########

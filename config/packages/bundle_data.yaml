@@ -15,16 +15,18 @@ services:
             tags: ['app.repository']
 
     # BUNDLE #
-    App\Local\:
-        resource: ../../src/Local/
+    App\Data\:
+        resource: ../../src/Data/
+        exclude: 
+            - ../../src/Data/Infrastructure/RedisClient.php
 
     #################
     # DDD Interface #
     #################
-    App\Local\Domain\Manager\RedisManagerInterface: '@App\Local\Infrastructure\Manager\RedisManager'
+    App\Data\Domain\Manager\RedisManagerInterface: '@App\Data\Infrastructure\Manager\RedisManager'
 
     #########
     # INFRA #
     #########
-    App\Local\Infrastructure\RedisClientInterface:
-        factory: '@App\Local\Infrastructure\RedisClientFactory'
+    App\Data\Infrastructure\RedisClientInterface:
+        factory: '@App\Data\Infrastructure\RedisClientFactory'

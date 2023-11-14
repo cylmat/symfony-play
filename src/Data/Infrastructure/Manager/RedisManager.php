@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Local\Infrastructure\Manager;
+namespace App\Data\Infrastructure\Manager;
 
-use App\AppBundle\Domain\Manager\ScriptManagerInterface;
-use App\Local\Infrastructure\RedisClientInterface;
+use App\Data\Domain\Manager\ScriptManagerInterface;
+use App\Data\Infrastructure\RedisClientInterface;
 
 /** @see https://app.redislabs.com */
 final class RedisManager implements ScriptManagerInterface
 {
     public function __construct(
-        private readonly RedisClientInterface $redisClient
+        private readonly RedisClientInterface $redisClient,
     ) {
     }
 

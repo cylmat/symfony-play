@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Application\DTO;
+namespace App\Data\Application\DTO;
 
 use App\AppBundle\Application\Common\ResponseFactoryInterface;
-use App\AppBundle\Domain\Model\RandomApi;
+use App\Data\Domain\Model\RandomApi;
 
 /** @todo Something better than DTO factory ? */
 final class RandomApiResponseFactory implements ResponseFactoryInterface

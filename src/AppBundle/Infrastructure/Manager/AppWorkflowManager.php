@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\AppBundle\Infrastructure\Manager;
 
 use App\AppBundle\Domain\AppWorkflowInterface;
 use Symfony\Component\Workflow\Marking;
 use Symfony\Component\Workflow\Registry;
 
-class AppWorkflowManager implements AppWorkflowInterface
+final class AppWorkflowManager implements AppWorkflowInterface
 {
     public function __construct(
         private readonly Registry $registry

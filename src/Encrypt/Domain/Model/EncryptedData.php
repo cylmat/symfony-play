@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Encrypt\Domain\Model;
 
-class EncryptedData
+final class EncryptedData
 {
     public const PROCESS_TRANSITION = 'process';
     public const FINISH_TRANSITION = 'finish';
@@ -11,7 +13,7 @@ class EncryptedData
     private array $workflowPlace = [];
 
     public function __construct(
-        private readonly string $value
+        private readonly string $value,
     ) {
     }
 

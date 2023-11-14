@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Text\Application;
 
 use App\AppBundle\Application\Common\AbstractAction;
@@ -9,7 +11,7 @@ use App\Text\Domain\Manager\CommandManager;
 final class TextAction extends AbstractAction
 {
     public function __construct(
-        private readonly CommandManager $cmdManager
+        private readonly CommandManager $cmdManager,
     ) {
     }
 

@@ -56,10 +56,10 @@ Doc
             <directory suffix="Kernel.php">../../src</directory>
         </exclude>
 
-        <report>
+        <!--report>
             <html outputDirectory="../../public/coverage" lowUpperBound="50" highLowerBound="90"/>
             <text outputFile="../../public/coverage/text-coverage.txt" showUncoveredFiles="false" showOnlySummary="false"/>
-        </report>
+        </report-->
     </coverage>
 
     <php>

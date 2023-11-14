@@ -1,5 +1,9 @@
-* ServiceNotFoundException: The service has been removed ... You should make it public...
+* ServiceNotFoundException: The service or alias has been removed ... You should make it public...
     -> Use the service somewhere (e.g. in an other class) to avoid it be pruning
+    (test.private_services_locator)
+
+bin/console debug:container -e test
+bin/composer dump-autoload && rm -rf var/cache/* && bin/console cache:clear --env=test
 
 * Twig's namespace of "App/AppBundle" is "@App" */
 

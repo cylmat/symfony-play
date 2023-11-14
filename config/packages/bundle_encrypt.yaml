@@ -7,6 +7,8 @@ services:
     # BUNDLE #
     App\Encrypt\:
         resource: ../../src/Encrypt/
+        exclude:
+            - ../../src/Encrypt/Domain/Model/EncryptedData.php
 
     #################
     # DDD Interface #

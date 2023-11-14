@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\AppBundle\Domain\Message;
 
-class LogMessage implements MessageInterface
+final class LogMessage implements MessageInterface
 {
     public function __construct(
         public readonly array $message

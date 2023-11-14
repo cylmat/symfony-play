@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Domain\Manager;
+namespace App\Data\Domain\Manager;
 
 use App\AppBundle\Domain\CacheInterface;
-use App\AppBundle\Domain\Model\RandomApi;
+use App\Data\Domain\Model\RandomApi;
+use App\Data\Domain\Manager\ScriptManagerInterface;
 
 final class RandomApiManager
 {

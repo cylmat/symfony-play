@@ -4,10 +4,6 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
         
-    App\Local\Infrastructure\RedisClientFactory:
+    App\Data\Infrastructure\RedisClientFactory:
         arguments:
             $redisClient: '@snc_redis.test'
-
-    # must be public cause called inside message handler (async)
-    App\Local\Infrastructure\RedisRepository:
-        public: true
