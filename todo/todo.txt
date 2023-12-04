@@ -10,6 +10,11 @@ use postgre/mongodb
 https://sentry.io
 https://newrelic.com
 
+* normalizer de responses (response object -> normalizer: array)
+use Nelmio\ApiDocBundle\Annotation\Model;
+"nelmio/api-doc-bundle": "^4.12",
+use OpenApi\Attributes as OA;
+
 ---------------------
 * wrap json_encode 500 si error formattage (utilisation d'un json encoder à la place)
     $encoder = try serializer.encoder.json ?? new JsonEncoder
