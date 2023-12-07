@@ -4,8 +4,8 @@ deptrac:
   skip_violations:
 
     # Entity
-    App\AppBundle\Domain\Entity\AppUser:
-      - App\AppBundle\Infrastructure\Repository\AppUserRepository
+    App\AppBundle\Domain\Entity\User:
+      - App\AppBundle\Infrastructure\Repository\UserRepository
       - Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
       - Symfony\Component\Security\Core\User\UserInterface
     App\AppBundle\Domain\Entity\Log:

@@ -2,16 +2,16 @@
 
 namespace App\Test\AppBundle\Domain\Entity;
 
-use App\AppBundle\Domain\Entity\AppUser;
+use App\AppBundle\Domain\Entity\User;
 use PHPUnit\Framework\TestCase;
 
-final class AppUserTest extends TestCase
+final class UserTest extends TestCase
 {
-    private AppUser $appUser;
+    private User $appUser;
 
     protected function setUp(): void
     {
-        $this->appUser = new AppUser();
+        $this->appUser = new User();
     }
 
     public function testGetId(): void

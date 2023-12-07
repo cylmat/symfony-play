@@ -2,14 +2,15 @@
 
 namespace App\AppBundle\Domain\Entity;
 
-use App\AppBundle\Infrastructure\Repository\AppUserRepository;
+use App\AppBundle\Infrastructure\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */
-#[ORM\Entity(repositoryClass: AppUserRepository::class)]
-class AppUser implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Table(name: 'User')]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

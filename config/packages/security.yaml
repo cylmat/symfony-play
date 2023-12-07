@@ -3,7 +3,7 @@ security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
-        App\Entity\AppUser:
+        App\Entity\User:
             algorithm: auto
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
@@ -17,7 +17,7 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         app_user_provider:
             entity:
-                class: App\Entity\AppUser
+                class: App\Entity\User
                 property: uuid
 
     firewalls:
@@ -29,7 +29,7 @@ security:
             pattern: ^/admin
             provider: users_in_memory
             custom_authenticators:
-                - App\AppBundle\Infrastructure\Bridge\Security\AppUserGuardAuthenticator
+                - App\AppBundle\Infrastructure\Bridge\Security\UserGuardAuthenticator
             logout:
                 path: /logout
                 # target: homepage
@@ -43,7 +43,7 @@ security:
             lazy: true
             provider: users_in_memory
             custom_authenticators:
-                - App\AppBundle\Infrastructure\Bridge\Security\AppUserGuardAuthenticator
+                - App\AppBundle\Infrastructure\Bridge\Security\UserGuardAuthenticator
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used

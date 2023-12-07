@@ -2,20 +2,20 @@
 
 namespace App\Test\AppBundle\Infrastructure\Repository;
 
-use App\AppBundle\Infrastructure\Repository\AppUserRepository;
+use App\AppBundle\Infrastructure\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-final class AppUserRepositoryTest extends TestCase
+final class UserRepositoryTest extends TestCase
 {
-    private AppUserRepository $appUserRepository;
+    private UserRepository $appUserRepository;
     private ManagerRegistry|MockObject $registry;
 
     protected function setUp(): void
     {
         $this->registry = $this->createMock(ManagerRegistry::class);
-        $this->appUserRepository = new AppUserRepository($this->registry);
+        $this->appUserRepository = new UserRepository($this->registry);
     }
 
     public function testAdd(): void

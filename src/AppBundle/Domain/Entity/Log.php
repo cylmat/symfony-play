@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /** @SuppressWarnings(PHPMD.ShortVariable) */
 #[ApiResource()]
-#[ORM\Table(name: 'log')]
+#[ORM\Table(name: 'Log')]
 #[ORM\Entity(repositoryClass: LogRepository::class)]
 class Log
 {

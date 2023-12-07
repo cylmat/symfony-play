@@ -13,7 +13,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
-class AppUserGuardAuthenticator extends AbstractAuthenticator
+class UserGuardAuthenticator extends AbstractAuthenticator
 {
     /**
      * Called on every request to decide if this authenticator should be

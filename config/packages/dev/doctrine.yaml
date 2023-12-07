@@ -37,16 +37,10 @@ doctrine:
                     AppBundle:
                         # Use AttributeDriver class (with MappingDriverChain)
                         alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
+                        prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
                         type: attribute
                         dir: '../../Domain/Entity'
-                        prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
                         is_bundle: true # change 'dir' attribute as relative path
-                # metadata_cache_driver:
-                #     type: pool
-                #     pool: doctrine.system_cache_pool
-                # query_cache_driver:
-                #     type: service
-                #     id: CacheDriver
 
             sqlite:
                 connection: sqlite
@@ -54,6 +48,6 @@ doctrine:
                 mappings:
                     AppBundle:
                         type: attribute
-                        dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
                         prefix: 'App\AppBundle'
+                        dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
                         is_bundle: false # change 'dir' attribute as relative path

@@ -24,7 +24,6 @@ doctrine:
         # proxy_namespace: Proxies
         # proxy_dir: '%kernel.cache_dir%/doctrine/orm/Proxies'
         # class_metadata_factory_name: Doctrine\ORM\Mapping\ClassMetadataFactory
-        # default_repository_
 
         # @see https://symfony.com/doc/current/doctrine/multiple_entity_managers.html
         entity_managers:

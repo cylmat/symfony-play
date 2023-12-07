@@ -223,6 +223,21 @@ case "$1" in
 	bin/console cache:clear
 ;;
 
+"migrate")
+	bin/console doctrine:migrations:migrate --allow-no-migration --em=default
+;;
+
+"db"|"database"|"databases")
+	bin/console doctrine:schema:update --force --complete --em=default
+	bin/console doctrine:schema:update --force --complete --em=sqlite
+;;
+
+# MySql default
+"drop-warning")
+	bin/console doctrine:schema:drop --force --em=default
+	bin/console doctrine:query:sql "DROP TABLE IF EXISTS sessions"
+;;
+
 "varcache")
 	$0 var && $0 cache
 ;;
