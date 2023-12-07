@@ -6,12 +6,14 @@ namespace App\AppBundle\Infrastructure\Manager;
 
 use App\AppBundle\Domain\CacheInterface;
 use Psr\Cache\CacheItemInterface;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Contracts\Cache\CacheInterface as SymfonyCacheInterface;
 
+/**
+ * Proxy between Symfony cache manager and App cache manager.
+ *   - Implements "get" and "set" in simpler way.
+ */
 final class AppCacheManager implements CacheInterface
 {
-    /** @param AdapterInterface $symfonyCache */
     public function __construct(
         private readonly SymfonyCacheInterface $symfonyCache,
     ) {
@@ -34,7 +36,7 @@ final class AppCacheManager implements CacheInterface
 
     // Adapter
 
-    public function setItem(string $key, mixed $value, int $expires = null): void
+    public function set(string $key, mixed $value, int $expires = null): void
     {
         $res = $this->symfonyCache->getItem($key);
         if (!$res->isHit()) {

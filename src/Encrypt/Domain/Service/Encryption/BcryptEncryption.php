@@ -8,7 +8,7 @@ use App\Encrypt\Domain\Model\EncryptedData;
 class BcryptEncryption implements EncryptionInterface
 {
     public function __construct(
-        private readonly AppWorkflowInterface $encryptWorkflow
+        private readonly AppWorkflowInterface $encryptWorkflow,
     ) {
     }
 

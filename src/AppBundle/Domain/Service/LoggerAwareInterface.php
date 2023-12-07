@@ -2,7 +2,9 @@
 
 namespace App\AppBundle\Domain\Service;
 
-// Use with LoggerTrait !
+/**
+ * Use with LoggerTrait.
+ */
 interface LoggerAwareInterface
 {
     public function setLogger(LoggerInterface $logger): self;

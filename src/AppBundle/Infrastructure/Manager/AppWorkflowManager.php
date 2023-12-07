@@ -8,10 +8,14 @@ use App\AppBundle\Domain\AppWorkflowInterface;
 use Symfony\Component\Workflow\Marking;
 use Symfony\Component\Workflow\Registry;
 
+/**
+ * Only a simple proxy between App and the Symfony Workflow registry.
+ *   - Nothing added in it.
+ */
 final class AppWorkflowManager implements AppWorkflowInterface
 {
     public function __construct(
-        private readonly Registry $registry
+        private readonly Registry $registry,
     ) {
     }
 

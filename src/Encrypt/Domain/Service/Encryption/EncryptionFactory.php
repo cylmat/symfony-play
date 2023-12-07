@@ -8,7 +8,7 @@ use App\Encrypt\Domain\Exception\AlgorithmNotFoundException;
 class EncryptionFactory
 {
     public function __construct(
-        private readonly AppWorkflowInterface $encryptWorkflow
+        private readonly AppWorkflowInterface $encryptWorkflow,
     ) {
     }
 

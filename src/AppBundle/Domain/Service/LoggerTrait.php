@@ -2,7 +2,11 @@
 
 namespace App\AppBundle\Domain\Service;
 
-// Used with LoggerAwareInterface.
+/** 
+ * Used with LoggerAwareInterface.
+ * 
+ * Implements set et get of the interface
+ */
 trait LoggerTrait
 {
     protected LoggerInterface $logger;
