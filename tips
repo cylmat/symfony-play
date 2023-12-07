@@ -1,3 +1,11 @@
+Tools
+---
+VSCode
+- cweijan.vscode-mysql-client2
+- qwtel.sqlite-viewer
+
+Tips
+---
 * ServiceNotFoundException: The service or alias has been removed ... You should make it public...
     -> Use the service somewhere (e.g. in an other class) to avoid it be pruning
     (test.private_services_locator)

@@ -232,6 +232,10 @@ case "$1" in
 	bin/console doctrine:schema:update --force --complete --em=sqlite
 ;;
 
+"db-test")
+	rm var/data_test.db && cp var/data.db var/data_test.db && echo "-ok-"
+;;
+
 # MySql default
 "drop-warning")
 	bin/console doctrine:schema:drop --force --em=default

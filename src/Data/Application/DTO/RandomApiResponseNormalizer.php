@@ -8,7 +8,7 @@ use App\AppBundle\Application\Common\ResponseFactoryInterface;
 use App\Data\Domain\Model\RandomApi;
 
 /** @todo Something better than DTO factory ? */
-final class RandomApiResponseFactory implements ResponseFactoryInterface
+final class RandomApiResponseNormalizer implements ResponseFactoryInterface
 {
     public function __invoke(RandomApi $randomApi): array
     {

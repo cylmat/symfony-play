@@ -7,14 +7,14 @@ namespace App\ApiResource\Application;
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Application\OutputInterface;
-use App\Data\Application\DTO\RandomApiResponseFactory;
+use App\Data\Application\DTO\RandomApiResponseNormalizer;
 use App\Data\Domain\Manager\RandomApiManager;
 
 final class RandomApiAction implements ActionInterface
 {
     public function __construct(
         private readonly RandomApiManager $randomApiManager,
-        private readonly RandomApiResponseFactory $randomFactory,
+        private readonly RandomApiResponseNormalizer $randomFactory,
         private readonly OutputInterface $output,
     ) {
     }
