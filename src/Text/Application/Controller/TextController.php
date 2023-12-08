@@ -2,17 +2,17 @@
 
 namespace App\Text\Application\Controller;
 
+use App\AppBundle\Application\Common\AbstractController;
 use App\Text\Application\TextAction;
 use App\Text\Application\TextType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/text', name: 'app_text_index')]
 class TextController extends AbstractController
 {
-    #[Route('/text', name: 'app_text_index')]
-    public function index(Request $request, TextAction $textAction): Response
+    public function __invoke(Request $request, TextAction $textAction): Response
     {
         $textForm = $this->createForm(TextType::class, null, []);
         $textForm->handleRequest($request);
