@@ -17,9 +17,22 @@ final class AppRepositoryRegistry
     ) {
     }
 
-    /** @return AppRepositoryInterface[] */
-    public function getRepositories(): iterable
+    public function remove(string $entityName): void
     {
-        return $this->repositories;
+        $this->initRepositories($entityName);
+
+        /** @todo Integration test this ! */
+        foreach ($this->repositories as $repository) {
+            foreach ($repository->findAll() as $entity) {
+                $repository->getEntityManager()->remove($entity);
+            }
+        }
+    }
+    
+    private function initRepositories(string $entityName): void
+    {
+        foreach ($this->repositories as $repository) {
+            $repository->initialize($entityName);
+        }
     }
 }

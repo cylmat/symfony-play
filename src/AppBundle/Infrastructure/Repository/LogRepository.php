@@ -48,12 +48,7 @@ class LogRepository extends ServiceEntityRepository
             $entityManager->flush();
         }
 
-        foreach ($this->appRepositoryRegistry->getRepositories() as $repository) {
-            $repository->initialize($this->getEntityName());
-            foreach ($repository->findAll() as $entity) {
-                $repository->getEntityManager()->remove($entity);
-            }
-        }
+        $this->appRepositoryRegistry->remove($this->getEntityName());
     }
 
     public function save(Log $entity, bool $flush = false): void
