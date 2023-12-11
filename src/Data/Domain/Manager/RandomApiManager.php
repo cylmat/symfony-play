@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Data\Domain\Manager;
 
 use App\AppBundle\Domain\CacheInterface;
-use App\Data\Domain\Model\RandomApi;
+use App\Data\Application\DTO\RandomApi;
 
 final class RandomApiManager
 {
