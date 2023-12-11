@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\AppBundle\Infrastructure\Service\Output;
 
+use App\AppBundle\Application\OutputValidatorInterface;
 use Art4\JsonApiClient\Exception\InputException;
 use Art4\JsonApiClient\Exception\ValidationException;
 use Art4\JsonApiClient\Input\ResponseStringInput;
@@ -9,7 +12,7 @@ use Art4\JsonApiClient\Manager\ErrorAbortManager;
 use Art4\JsonApiClient\V1\Factory;
 
 /** @see https://jsonapi.org/format */
-final class JsonApiValidator implements ValidatorInterface
+final class JsonApiValidator implements OutputValidatorInterface
 {
     public function validate(string $json): void
     {

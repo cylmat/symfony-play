@@ -2,9 +2,7 @@
 
 namespace App\AppBundle\Application;
 
-interface OutputInterface
+interface OutputValidatorInterface
 {
-    public function format(array $data): array;
-
     public function validate(string $json): void;
 }

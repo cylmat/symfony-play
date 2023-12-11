@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Data\Application\DTO;
 
-use App\AppBundle\Application\Common\ResponseFactoryInterface;
+use App\AppBundle\Application\Common\ResponseNormalizerInterface;
 use App\Data\Domain\Model\RandomApi;
 
-/** @todo Something better than DTO factory ? */
-final class RandomApiResponseNormalizer implements ResponseFactoryInterface
+/** @todo Something better than DTO normalizer ? */
+final class RandomApiResponseNormalizer implements ResponseNormalizerInterface
 {
     public function __invoke(RandomApi $randomApi): array
     {
@@ -21,5 +21,10 @@ final class RandomApiResponseNormalizer implements ResponseFactoryInterface
         }
 
         return $data;
+    }
+
+    public function support(string $type): bool
+    {
+        return RandomApi::class === $type;
     }
 }
