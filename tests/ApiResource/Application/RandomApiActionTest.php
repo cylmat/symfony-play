@@ -3,6 +3,7 @@
 namespace App\Test\ApiResource\Application\Controller;
 
 use App\ApiResource\Application\RandomApiAction;
+use App\AppBundle\Application\Common\Api\ApiResponseNormalizerManagerInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\CacheInterface;
 use App\Data\Infrastructure\RedisClientInterface;
@@ -11,7 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 /** @group integration */
 final class RandomApiActionTest extends KernelTestCase
 {
-    private object $randomApiAction;
+    private RandomApiAction $randomApiAction;
+    private ApiResponseNormalizerManagerInterface $responseNormalizer;
 
     public static function setUpBeforeClass(): void
     {
@@ -24,11 +26,13 @@ final class RandomApiActionTest extends KernelTestCase
     protected function setUp(): void
     {   
         $this->randomApiAction = static::getContainer()->get(RandomApiAction::class);
+        $this->responseNormalizer = static::getContainer()->get(ApiResponseNormalizerManagerInterface::class);
     }
 
     public function testExecute(): void
     {
-        $data = $this->randomApiAction->execute(new AppRequest());
+        $response = $this->randomApiAction->execute(new AppRequest());
+        $data = $this->responseNormalizer->normalizeResponse($response);
 
         $this->assertArrayHasKey('data', $data);
         $this->assertArrayHasKey('id', $data['data']);

@@ -2,4 +2,16 @@ parameters:
 
 services:
     # default configuration for services in *this* file
+
+    #################
+    # DDD Interface #
+    #################
+    App\AppBundle\Application\OutputFormatterInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter'
+    App\AppBundle\Application\OutputValidatorInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiValidator'
+    App\AppBundle\Application\Common\ApiApiResponseNormalizerManagerInterface: '@App\AppBundle\Application\Common\Api\ApiResponseNormalizerManager'
+
+    App\AppBundle\Domain\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
+    App\AppBundle\Domain\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
+    App\AppBundle\Domain\Service\LoggerInterface: '@App\AppBundle\Infrastructure\Service\Logger'
     
+    app.logger: '@App\AppBundle\Domain\Service\LoggerInterface'

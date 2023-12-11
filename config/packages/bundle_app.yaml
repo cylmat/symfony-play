@@ -19,17 +19,6 @@ services:
             - ../../src/AppBundle/Domain/Message/LogMessage.php
             - ../../src/AppBundle/Infrastructure/Dbal/ConnectionWrapper.php
 
-    #################
-    # DDD Interface #
-    #################
-    App\AppBundle\Application\OutputFormatterInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter'
-    App\AppBundle\Application\OutputValidatorInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiValidator'
-    App\AppBundle\Domain\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
-    App\AppBundle\Domain\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'
-    App\AppBundle\Domain\Service\LoggerInterface: '@App\AppBundle\Infrastructure\Service\Logger'
-
-    app.logger: '@App\AppBundle\Domain\Service\LoggerInterface'
-
     ################
     # APP REGISTRY #
     ################
