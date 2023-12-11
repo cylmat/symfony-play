@@ -26,10 +26,7 @@ final class AbstractActionTest extends TestCase
     {
         $request = new AppRequest(['val']);
         $this->assertSame('test-ok', $this->abstractAction->execute($request));
-    }
 
-    public function testExecuteRequest(): void
-    {
-        $this->assertSame('test-ok', $this->abstractAction->executeRequest(['val']));
+        
     }
 }

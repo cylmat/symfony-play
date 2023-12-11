@@ -3,6 +3,7 @@
 namespace App\Text\Application\Controller;
 
 use App\AppBundle\Application\Common\AbstractController;
+use App\AppBundle\Application\Common\AppRequest;
 use App\Text\Application\TextAction;
 use App\Text\Application\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,9 +21,9 @@ class TextController extends AbstractController
         $result = null;
         /* @todo use Model */
         if ($textForm->isSubmitted() && $textForm->isValid()) {
-            $result = $textAction->executeRequest([
-                'text' => $textForm->get('text')->getData(),
-                'commands' => [
+            $result = $textAction->execute((new AppRequest)
+                ->setText($textForm->get('text')->getData())
+                ->setCommands([
                     $this->commandArguments(
                         'sed',
                         [
@@ -30,8 +31,8 @@ class TextController extends AbstractController
                             'replace' => $textForm->get('replace')->getData(),
                         ]
                     ),
-                ],
-            ]);
+                ]),
+            );
         }
 
         return $this->render('text/index.html.twig', [

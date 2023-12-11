@@ -11,5 +11,9 @@ final class AppRequestTest extends TestCase
     {
         $request = new AppRequest(['key' => 'value']);
         $this->assertSame('value', $request->key);
+
+        $request = (new AppRequest)
+            ->setMyValue('is val');
+        $this->assertSame('is val', $request->myValue);
     }
 }

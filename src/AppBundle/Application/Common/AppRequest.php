@@ -8,7 +8,7 @@ final class AppRequest
 {
     /** @param mixed[] $data */
     public function __construct(
-        private readonly array $data = []
+        private array $data = []
     ) {
     }
 
@@ -16,4 +16,17 @@ final class AppRequest
     {
         return $this->data[$name];
     }
+
+    /**
+     * Use self::setText1('value') to insert
+     *  ['text1' => 'value'] in data
+     */
+    public function __call(string $name, array $args): self
+    {
+        $attributeName = \lcfirst(\str_replace('set', '', $name));
+
+        $this->data[$attributeName] = $args[0];
+
+        return $this;
+    } 
 }
