@@ -17,7 +17,7 @@ services:
         resource: ../../src/AppBundle/
         exclude: 
             - ../../src/AppBundle/Domain/Message/LogMessage.php
-            - ../../src/AppBundle/Infrastructure/Dbal/ConnectionWrapper.php
+            - ../../src/AppBundle/Infrastructure/Dbal
 
     ################
     # APP REGISTRY #
