@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Data\Infrastructure;
 
-final class RedisClientNull implements RedisClientInterface
+final class ClientNull implements ClientInterface
 {
     public function __call(string $name, mixed $arguments): mixed
     {

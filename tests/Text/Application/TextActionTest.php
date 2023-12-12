@@ -5,8 +5,8 @@ namespace App\Tests\Text\Application;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\MessageHandler\MessageHandler;
-use App\Data\Infrastructure\RedisClientInterface;
-use App\Data\Infrastructure\RedisRepository; /** @todo use model redis repository interface */
+use App\Data\Infrastructure\Redis\RedisClientInterface;
+use App\Data\Infrastructure\Redis\RedisRepository; /** @todo use model redis repository interface */
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Messenger\Transport\TransportInterface;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Data\Infrastructure\Manager;
 
 use App\Data\Domain\Manager\CustomScriptInterface;
-use App\Data\Infrastructure\RedisClientInterface;
+use App\Data\Infrastructure\Redis\RedisClientInterface;
 
 /** @see https://app.redislabs.com */
 final class RedisManager implements CustomScriptInterface
@@ -20,7 +20,7 @@ final class RedisManager implements CustomScriptInterface
      * @see https://redis.io/docs/manual/programmability/eval-intro
      * @see https://redis-doc-test.readthedocs.io/en/latest/commands/eval
      */
-    public function getCustom(): mixed
+    public function getCustomScript(array $args): mixed
     {
         /* @phpstan-ignore-next-line: Client method not exists */
         return (int) $this->redisClient->eval('math.randomseed(ARGV[1]); return math.random(0, 100)', 0, time() * rand());

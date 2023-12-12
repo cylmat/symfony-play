@@ -6,7 +6,6 @@ namespace App\Data\Application\DTO;
 
 use App\AppBundle\Application\Common\Api\ApiResponseNormalizerInterface;
 
-/** @todo Something better than DTO normalizer ? */
 final class RandomApiResponseNormalizer implements ApiResponseNormalizerInterface
 {
     public function __invoke(RandomApi $randomApi): array

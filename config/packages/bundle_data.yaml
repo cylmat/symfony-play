@@ -18,7 +18,7 @@ services:
     App\Data\:
         resource: ../../src/Data/
         exclude: 
-            - ../../src/Data/Infrastructure/RedisClient.php
+            - ../../src/Data/Infrastructure/Redis/RedisClient.php
 
     #################
     # DDD Interface #
@@ -28,5 +28,5 @@ services:
     #########
     # INFRA #
     #########
-    App\Data\Infrastructure\RedisClientInterface:
+    App\Data\Infrastructure\Redis\RedisClientInterface:
         factory: '@App\Data\Infrastructure\Redis\RedisClientFactory'

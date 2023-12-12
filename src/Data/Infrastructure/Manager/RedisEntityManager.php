@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Data\Infrastructure\Manager;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
-use App\Data\Infrastructure\RedisClientInterface;
+use App\Data\Infrastructure\Redis\RedisClientInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisEntityManager implements AppEntityManagerInterface
 {
     public function __construct(
         private readonly RedisClientInterface $redisClient,
-        private readonly ManagerRegistry $doctrineRegistry
+        private readonly ManagerRegistry $doctrineRegistry,
     ) {
     }
 

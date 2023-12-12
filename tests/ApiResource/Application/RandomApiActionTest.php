@@ -6,7 +6,7 @@ use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\Api\ApiResponseNormalizerManagerInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\CacheInterface;
-use App\Data\Infrastructure\RedisClientInterface;
+use App\Data\Infrastructure\Redis\RedisClientInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */
