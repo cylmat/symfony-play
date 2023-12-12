@@ -236,7 +236,7 @@ case "$1" in
 	rm var/data_test.db && cp var/data.db var/data_test.db && echo "-ok-"
 ;;
 
-"auto")
+"dump"|"auto")
 	bin/composer dump-autoload
 ;;
 

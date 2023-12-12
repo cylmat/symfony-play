@@ -4,6 +4,6 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
         
-    App\Data\Infrastructure\Redis\RedisClientFactory:
+    App\AppData\Infrastructure\Redis\RedisClientFactory:
         arguments:
             $redisClient: '@snc_redis.test'

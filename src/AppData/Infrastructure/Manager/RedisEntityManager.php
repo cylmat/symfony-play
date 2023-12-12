@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Manager;
 
-use App\AppBundle\Infrastructure\AppEntityManagerInterface;
-use App\Data\Infrastructure\Redis\RedisClientInterface;
+use App\AppData\Infrastructure\AppEntityManagerInterface;
+use App\AppData\Infrastructure\Redis\RedisClientInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisEntityManager implements AppEntityManagerInterface

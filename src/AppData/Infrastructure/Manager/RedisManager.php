@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Manager;
 
-use App\Data\Domain\Manager\CustomScriptInterface;
-use App\Data\Infrastructure\Redis\RedisClientInterface;
+use App\AppData\Domain\Manager\CustomScriptInterface;
+use App\AppData\Infrastructure\Redis\RedisClientInterface;
 
 /** @see https://app.redislabs.com */
 final class RedisManager implements CustomScriptInterface

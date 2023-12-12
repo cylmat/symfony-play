@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Infrastructure;
+namespace App\AppData\Infrastructure;
 
-final class ClientNull implements ClientInterface
+class ClientNull implements ClientInterface
 {
     public function __call(string $name, mixed $arguments): mixed
     {

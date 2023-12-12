@@ -3,10 +3,10 @@
 namespace App\Test\ApiResource\Application\Controller;
 
 use App\ApiResource\Application\RandomApiAction;
-use App\AppBundle\Application\Common\Api\ApiResponseNormalizerManagerInterface;
+use App\AppBundle\Application\Common\Api\ApiResponseNormalizerManagerInterface; // @todo So long ?
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\CacheInterface;
-use App\Data\Infrastructure\Redis\RedisClientInterface;
+use App\AppData\Infrastructure\Redis\RedisClientInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */

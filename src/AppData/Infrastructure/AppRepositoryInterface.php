@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Infrastructure;
+namespace App\AppData\Infrastructure;
 
 interface AppRepositoryInterface
 {

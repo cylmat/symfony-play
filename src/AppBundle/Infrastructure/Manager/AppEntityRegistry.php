@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\AppBundle\Infrastructure\Manager;
 
+use App\AppData\Infrastructure\AppEntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class AppEntityRegistry
 {
-    /*
+    /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
      *
      * @param iterable<AppEntityManagerInterface> $persistanceEntityManager

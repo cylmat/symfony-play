@@ -3,7 +3,7 @@
 namespace App\Test\AppBundle\Infrastructure;
 
 use App\AppBundle\Infrastructure\NullClient;
-use App\Data\Infrastructure\RedisClientFactory;
+use App\AppData\Infrastructure\RedisClientFactory;
 use PHPUnit\Framework\TestCase;
 
 final class RedisClientFactoryTest extends TestCase

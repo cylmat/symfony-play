@@ -1,0 +1,30 @@
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false
+
+    ###
+    ### ! _instanceof only works for services declared in THIS file ! ###
+    ###
+    _instanceof:
+        App\AppData\Infrastructure\AppEntityManagerInterface:
+            tags: ['app.entity_manager'] # @todo use attributes
+
+        App\AppData\Infrastructure\AppRepositoryInterface:
+            tags: ['app.repository']
+
+    # BUNDLE #
+    App\AppData\:
+        resource: ../../src/AppData/
+
+    #################
+    # DDD Interface #
+    #################
+    App\AppData\Domain\Manager\RedisManagerInterface: '@App\AppData\Infrastructure\Manager\RedisManager'
+
+    #########
+    # INFRA #
+    #########
+    App\AppData\Infrastructure\Redis\RedisClientInterface:
+        factory: '@App\AppData\Infrastructure\Redis\RedisClientFactory'

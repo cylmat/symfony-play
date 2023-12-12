@@ -4,29 +4,7 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
-    ###
-    ### ! _instanceof only works for services declared in THIS file ! ###
-    ###
-    _instanceof:
-        App\AppBundle\Infrastructure\AppEntityManagerInterface:
-            tags: ['app.entity_manager'] # @todo use attributes
-        
-        App\AppBundle\Infrastructure\AppRepositoryInterface:
-            tags: ['app.repository']
-
     # BUNDLE #
     App\Data\:
         resource: ../../src/Data/
-        exclude: 
-            - ../../src/Data/Infrastructure/Redis/RedisClient.php
-
-    #################
-    # DDD Interface #
-    #################
-    App\Data\Domain\Manager\RedisManagerInterface: '@App\Data\Infrastructure\Manager\RedisManager'
-
-    #########
-    # INFRA #
-    #########
-    App\Data\Infrastructure\Redis\RedisClientInterface:
-        factory: '@App\Data\Infrastructure\Redis\RedisClientFactory'
+        

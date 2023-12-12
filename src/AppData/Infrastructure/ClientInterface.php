@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Infrastructure;
+namespace App\AppData\Infrastructure;
 
 interface ClientInterface
 {

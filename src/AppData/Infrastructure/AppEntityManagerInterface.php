@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AppBundle\Infrastructure;
+namespace App\AppData\Infrastructure;
 
 /** @todo put in "contracts" directory */
 interface AppEntityManagerInterface

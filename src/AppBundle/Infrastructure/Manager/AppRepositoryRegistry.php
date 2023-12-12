@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AppBundle\Infrastructure\Manager;
 
-use App\AppBundle\Infrastructure\AppRepositoryInterface;
+use App\AppData\Infrastructure\AppRepositoryInterface;
 
 /**
  * Get every EntityManager repositories from doctrine
