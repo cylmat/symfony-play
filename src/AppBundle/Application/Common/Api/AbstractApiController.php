@@ -13,7 +13,7 @@ class AbstractApiController extends AbstractFOSRestController
     public function __construct(
         protected readonly OutputValidatorInterface $output,
         // @todo use interface
-        protected readonly ApiResponseNormalizerManagerInterface $responseNormalizer,
+        protected readonly ApiNormalizerManagerInterface $responseNormalizer,
     ) {
     }
 

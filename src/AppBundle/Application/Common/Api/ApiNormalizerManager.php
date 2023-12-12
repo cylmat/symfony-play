@@ -12,11 +12,11 @@ use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
  * Api response normalizer
  * Change obect data to jsonify array
  */
-final class ApiResponseNormalizerManager implements ApiResponseNormalizerManagerInterface
+final class ApiNormalizerManager implements ApiNormalizerManagerInterface
 {
     public function __construct(
-        /** @param ApiResponseNormalizerInterface[] $normalizers */
-        #[TaggedIterator(ApiResponseNormalizerInterface::TAG)]
+        /** @param ApiNormalizerInterface[] $normalizers */
+        #[TaggedIterator(ApiNormalizerInterface::TAG)]
         private readonly iterable $normalizers,
         private readonly OutputFormatterInterface $apiFormatter,
     ) {
@@ -25,17 +25,17 @@ final class ApiResponseNormalizerManager implements ApiResponseNormalizerManager
     public function normalizeResponse(ApiResponseInterface $response): array
     {
         $normalizerFounds = $this->findNormalizer($response);
-        $data = $normalizerFounds($response);
+        $data = $normalizerFounds($response->getObjectData());
 
         return $this->apiFormatter->format($data);
     }
 
-    private function findNormalizer(ApiResponseInterface $response): ApiResponseNormalizerInterface
+    private function findNormalizer(ApiResponseInterface $response): ApiNormalizerInterface
     {
         $normalizerFounds = null;
         foreach ($this->normalizers as $normalizer) {
-            /** @var ApiResponseNormalizerInterface normalizer */
-            if ($normalizer->support($response::class)) {
+            /** @var ApiNormalizerInterface normalizer */
+            if ($normalizer->support(($response->getObjectData())::class)) {
                 $normalizerFounds = $normalizer;
             }
         }

@@ -76,7 +76,7 @@ deptrac:
           type: className
           value: App.*\\Infrastructure\\.*
 
-    # Framework
+    # Framework #################################
 
     -
       name: Framework_Doctrine
@@ -92,7 +92,7 @@ deptrac:
           type: className
           value: Symfony\\.*
 
-    # Dependencies
+    # Dependencies ###############################
 
     -
       name: _alsvanzelf

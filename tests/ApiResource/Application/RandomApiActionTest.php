@@ -3,7 +3,7 @@
 namespace App\Test\ApiResource\Application\Controller;
 
 use App\ApiResource\Application\RandomApiAction;
-use App\AppBundle\Application\Common\Api\ApiResponseNormalizerManagerInterface; // @todo So long ?
+use App\AppBundle\Application\Common\Api\ApiNormalizerManagerInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\CacheInterface;
 use App\AppData\Infrastructure\Redis\RedisClientInterface;
@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 final class RandomApiActionTest extends KernelTestCase
 {
     private RandomApiAction $randomApiAction;
-    private ApiResponseNormalizerManagerInterface $responseNormalizer;
+    private ApiNormalizerManagerInterface $responseNormalizer;
 
     public static function setUpBeforeClass(): void
     {
@@ -26,7 +26,7 @@ final class RandomApiActionTest extends KernelTestCase
     protected function setUp(): void
     {   
         $this->randomApiAction = static::getContainer()->get(RandomApiAction::class);
-        $this->responseNormalizer = static::getContainer()->get(ApiResponseNormalizerManagerInterface::class);
+        $this->responseNormalizer = static::getContainer()->get(ApiNormalizerManagerInterface::class);
     }
 
     public function testExecute(): void

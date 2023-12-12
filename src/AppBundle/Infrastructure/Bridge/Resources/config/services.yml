@@ -8,7 +8,7 @@ services:
     #################
     App\AppBundle\Application\OutputFormatterInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter'
     App\AppBundle\Application\OutputValidatorInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiValidator'
-    App\AppBundle\Application\Common\ApiApiResponseNormalizerManagerInterface: '@App\AppBundle\Application\Common\Api\ApiResponseNormalizerManager'
+    App\AppBundle\Application\Common\ApiApiNormalizerManagerInterface: '@App\AppBundle\Application\Common\Api\ApiNormalizerManager'
 
     App\AppBundle\Domain\CacheInterface: '@App\AppBundle\Infrastructure\Manager\AppCacheManager'
     App\AppBundle\Domain\MessageBusInterface: '@App\AppBundle\Infrastructure\Service\MessageBus'

@@ -2,7 +2,7 @@
 
 return [
     App\AppBundle\Infrastructure\Bridge\AppBundle::class => ['all' => true],
-    App\AppData\Infrastructure\Symfony\AppDataBundle::class => ['all' => true],
+    App\AppData\Infrastructure\Bridge\AppDataBundle::class => ['all' => true],
     ApiPlatform\Symfony\Bundle\ApiPlatformBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],

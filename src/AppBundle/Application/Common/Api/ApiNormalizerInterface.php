@@ -6,8 +6,8 @@ namespace App\AppBundle\Application\Common\Api;
 
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 
-#[AutoconfigureTag(ApiResponseNormalizerInterface::TAG)]
-interface ApiResponseNormalizerInterface
+#[AutoconfigureTag(ApiNormalizerInterface::TAG)]
+interface ApiNormalizerInterface
 {
     public const TAG = 'api.response.normalizer';
 

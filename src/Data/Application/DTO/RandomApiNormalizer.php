@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Data\Application\DTO;
 
-use App\AppBundle\Application\Common\Api\ApiResponseNormalizerInterface;
+use App\AppBundle\Application\Common\Api\ApiNormalizerInterface;
+use App\Data\Domain\Model\RandomApi;
 
-final class RandomApiResponseNormalizer implements ApiResponseNormalizerInterface
+final class RandomApiNormalizer implements ApiNormalizerInterface
 {
     public function __invoke(RandomApi $randomApi): array
     {
@@ -21,8 +22,8 @@ final class RandomApiResponseNormalizer implements ApiResponseNormalizerInterfac
         return $data;
     }
 
-    public function support(string $type): bool
+    public function support(string $dataType): bool
     {
-        return RandomApi::class === $type;
+        return RandomApi::class === $dataType;
     }
 }

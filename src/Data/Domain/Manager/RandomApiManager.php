@@ -6,7 +6,7 @@ namespace App\Data\Domain\Manager;
 
 use App\AppBundle\Domain\CacheInterface;
 use App\AppData\Domain\Manager\CustomScriptInterface;
-use App\Data\Application\DTO\RandomApi;
+use App\Data\Domain\Model\RandomApi;
 
 final class RandomApiManager
 {
