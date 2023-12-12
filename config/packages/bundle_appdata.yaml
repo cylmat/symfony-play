@@ -4,16 +4,6 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
-    ###
-    ### ! _instanceof only works for services declared in THIS file ! ###
-    ###
-    _instanceof:
-        App\AppData\Infrastructure\AppEntityManagerInterface:
-            tags: ['app.entity_manager'] # @todo use attributes
-
-        App\AppData\Infrastructure\AppRepositoryInterface:
-            tags: ['app.repository']
-
     # BUNDLE #
     App\AppData\:
         resource: ../../src/AppData/
@@ -28,3 +18,14 @@ services:
     #########
     App\AppData\Infrastructure\Redis\RedisClientInterface:
         factory: '@App\AppData\Infrastructure\Redis\RedisClientFactory'
+
+    # APP REGISTRY ###
+    # @todo: Use fake Doctrine for tests
+    # App\AppData\Infrastructure\Manager\AppEntityRegistry:
+    #     arguments: 
+    #         $reg: !tagged_iterator tag
+    #     decorates: Doctrine\Common\Persistence\ManagerRegistry
+    #     NOT NEEDED arguments: ['@.inner'] # Automatic with default service.yaml
+    # App\AppData\Infrastructure\Manager\AppRepositoryRegistry:
+    #     arguments:
+    #         $repositories: !tagged_iterator app.repository

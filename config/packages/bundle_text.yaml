@@ -4,15 +4,10 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
-    # App\Text\Domain\Manager\CommandManager:
-    #     arguments:
-    #         - !tagged_iterator { tag: app.command_process } # !tagged_iterator app.command_process
-
-    # _defaults and _instanceof apply for THIS file services
+    ###
+    ### ! _instanceof only works for services declared in THIS file ! ###
+    ###
     _instanceof:
-        App\Text\Domain\Service\CommandProcessInterface:
-            tags: ['app.command_process'] # can use AutoconfigureTag too
-
         # App LOGGER used in TextBundle #
         App\AppBundle\Domain\Service\LoggerAwareInterface:
             calls:
@@ -21,3 +16,7 @@ services:
     # BUNDLE #
     App\Text\:
         resource: ../../src/Text/
+
+    # App\Text\Domain\Manager\CommandManager:
+    #     arguments:
+    #         - !tagged_iterator { tag: app.command_process } # !tagged_iterator app.command_process

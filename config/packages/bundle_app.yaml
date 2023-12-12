@@ -19,20 +19,6 @@ services:
             - ../../src/AppBundle/Domain/Message/LogMessage.php
             - ../../src/AppBundle/Infrastructure/Dbal
 
-    ################
-    # APP REGISTRY #
-    ################
-    # @todo: Remove this and use fake Doctrine for tests
-    App\AppBundle\Infrastructure\Manager\AppEntityRegistry:
-        arguments: 
-            $persistanceEntityRegistry: !tagged_iterator app.entity_manager
-        # decorates: Doctrine\Common\Persistence\ManagerRegistry
-        # NOT NEEDED arguments: ['@.inner'] # Automatic with default service.yaml
-
-    App\AppBundle\Infrastructure\Manager\AppRepositoryRegistry:
-        arguments:
-            $repositories: !tagged_iterator app.repository
-
     ##########
     # OUTPUT #
     ##########

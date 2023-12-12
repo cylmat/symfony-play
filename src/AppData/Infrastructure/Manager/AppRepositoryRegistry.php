@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Manager;
 
 use App\AppData\Infrastructure\AppRepositoryInterface;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 /**
  * Get every EntityManager repositories from doctrine
@@ -13,6 +14,7 @@ final class AppRepositoryRegistry
 {
     /** @param AppRepositoryInterface[] $repositories */
     public function __construct(
+        #[TaggedIterator(AppRepositoryInterface::TAG)]
         private readonly iterable $repositories,
     ) {
     }

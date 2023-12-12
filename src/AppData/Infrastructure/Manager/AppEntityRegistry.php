@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Manager;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 final class AppEntityRegistry
 {
     /**
      * @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php
-     *
-     * @param iterable<AppEntityManagerInterface> $persistanceEntityManager
      */
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
+        #[TaggedIterator(AppEntityManagerInterface::TAG)]
         private readonly iterable $persistanceEntityRegistry,
     ) {
     }

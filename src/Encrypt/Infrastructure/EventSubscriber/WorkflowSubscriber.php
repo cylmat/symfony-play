@@ -3,7 +3,7 @@
 namespace App\Encrypt\Infrastructure\EventSubscriber;
 
 use App\AppBundle\Domain\Entity\Log; /** @todo don't call app entity directly, use log service */
-use App\AppBundle\Infrastructure\Manager\AppEntityRegistry;
+use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\Encrypt\Domain\Model\EncryptedData;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;

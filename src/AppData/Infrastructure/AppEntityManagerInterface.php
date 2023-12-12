@@ -2,9 +2,13 @@
 
 namespace App\AppData\Infrastructure;
 
-/** @todo put in "contracts" directory */
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+
+#[AutoconfigureTag(AppEntityManagerInterface::TAG)]
 interface AppEntityManagerInterface
 {
+    public const TAG = 'app.entity_manager';
+
     public function getClient(): object;
 
     public function persist(object $object): void;
