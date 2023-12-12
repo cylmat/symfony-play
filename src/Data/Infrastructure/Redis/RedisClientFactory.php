@@ -20,12 +20,12 @@ final class RedisClientFactory
      */
     public function __invoke(): RedisClientInterface
     {
-        $client = $this->redisClient ? new RedisClient($this->redisClient) : new NullRedisClient();
+        $client = $this->redisClient ? new RedisClient($this->redisClient) : new RedisClientNull();
 
         try {
             $client->connect(); // @phpstan-ignore-line: Undefined method
         } catch (Throwable $exception) {
-            return new NullRedisClient();
+            return new RedisClientNull();
         }
 
         return $client;

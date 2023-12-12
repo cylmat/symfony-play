@@ -29,4 +29,4 @@ services:
     # INFRA #
     #########
     App\Data\Infrastructure\RedisClientInterface:
-        factory: '@App\Data\Infrastructure\RedisClientFactory'
+        factory: '@App\Data\Infrastructure\Redis\RedisClientFactory'

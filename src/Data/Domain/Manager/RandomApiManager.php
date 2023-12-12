@@ -11,7 +11,7 @@ final class RandomApiManager
 {
     public function __construct(
         private readonly CacheInterface $cache,
-        private readonly ScriptManagerInterface $scriptManager,
+        private readonly CustomScriptInterface $scriptManager,
     ) {
     }
 
@@ -22,7 +22,7 @@ final class RandomApiManager
 
         $randomApi = new RandomApi();
         $randomApi->random_int = \random_int(1, 99);
-        $randomApi->random_script_int = $this->scriptManager->getRandomInt();
+        $randomApi->random_script_int = $this->scriptManager->getCustomScript([]);
         $randomApi->cache_get = $item;
         $randomApi->cache_dynamic = $this->cache->get('cache.dynamic', fn () => 'nope');
 

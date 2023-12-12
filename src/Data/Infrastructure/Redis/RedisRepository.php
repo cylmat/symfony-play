@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Infrastructure;
+namespace App\Data\Infrastructure\Redis;
 
 use App\AppBundle\Infrastructure\AppEntityManagerInterface;
 use App\AppBundle\Infrastructure\AppRepositoryInterface;
@@ -15,7 +15,7 @@ final class RedisRepository implements AppRepositoryInterface
 
     public function __construct(
         private readonly RedisEntityManager $redisPersistance,
-        private readonly ManagerRegistry $doctrineRegistry
+        private readonly ManagerRegistry $doctrineRegistry,
     ) {
     }
 
