@@ -47,34 +47,34 @@ deptrac:
     # DRIVING models
     # User or console input/output values
 
-    -
-      name: Application
-      collectors:
-        -
-          type: className
-          value: App.*\\Application\\.*
+    # -
+    #   name: Application
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App.*\\Application\\.*
 
-    ### Domain ###
-    # No dependencies or tech
-    # Business model and rules only
+    # ### Domain ###
+    # # No dependencies or tech
+    # # Business model and rules only
 
-    -
-      name: Domain
-      collectors:
-        -
-          type: className
-          value: App.*\\Domain\\.*
+    # -
+    #   name: Domain
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App.*\\Domain\\.*
 
-    ### Infrastructure ###
-    # DRIVERS models
-    # Server, framework, dependencies
+    # ### Infrastructure ###
+    # # DRIVERS models
+    # # Server, framework, dependencies
 
-    -
-      name: Infrastructure
-      collectors:
-        -
-          type: className
-          value: App.*\\Infrastructure\\.*
+    # -
+    #   name: Infrastructure
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App.*\\Infrastructure\\.*
 
     # Framework #################################
 
@@ -142,6 +142,42 @@ deptrac:
         -
           type: className
           value: Predis\\.*
+
+    ####### USE TO IMAGE BUNDLES ######
+    # -
+    #   name: AppBundle
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App\\AppBundle\\.*
+
+    # -
+    #   name: AppData
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App\\AppData\\.*
+
+    # -
+    #   name: Data
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App\\Data\\.*
+
+    # -
+    #   name: Encrypt
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App\\Encrypt\\.*
+
+    # -
+    #   name: Text
+    #   collectors:
+    #     -
+    #       type: className
+    #       value: App\\Text\\.*
 
   # formatters:
   #   graphviz:
