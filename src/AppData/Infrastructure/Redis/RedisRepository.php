@@ -16,6 +16,7 @@ final class RedisRepository implements AppRepositoryInterface
     public function __construct(
         private readonly RedisEntityManager $redisPersistance,
         private readonly ManagerRegistry $doctrineRegistry,
+        private readonly RedisClient $redisClient,
     ) {
     }
 
@@ -38,10 +39,10 @@ final class RedisRepository implements AppRepositoryInterface
             ->getClassMetadata($this->entityName)->getTableName();
 
         $all = [];
-        $keys = $this->redisPersistance->getClient()->keys($tableName.':*');
+        $keys = $this->redisClient->keys($tableName.':*');
 
         foreach ($keys as $key) {
-            $serializedEntity = $this->redisPersistance->getClient()->get($key);
+            $serializedEntity = $this->redisClient->get($key);
             $entity = \unserialize($serializedEntity);
             $all[$key] = $entity;
         }

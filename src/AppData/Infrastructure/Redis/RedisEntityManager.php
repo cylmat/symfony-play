@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
-use App\AppData\Infrastructure\ClientInterface;
 use App\AppData\Infrastructure\Redis\RedisClient;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -15,11 +14,6 @@ final class RedisEntityManager implements AppEntityManagerInterface
         private readonly RedisClient $redisClient,
         private readonly ManagerRegistry $doctrineRegistry,
     ) {
-    }
-
-    public function getClient(): ClientInterface
-    {
-        return $this->redisClient;
     }
 
     public function persist(object $object): void
