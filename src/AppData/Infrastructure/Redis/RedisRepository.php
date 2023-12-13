@@ -6,7 +6,7 @@ namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
 use App\AppData\Infrastructure\AppRepositoryInterface;
-use App\AppData\Infrastructure\Manager\RedisEntityManager;
+use App\AppData\Infrastructure\Redis\RedisEntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisRepository implements AppRepositoryInterface

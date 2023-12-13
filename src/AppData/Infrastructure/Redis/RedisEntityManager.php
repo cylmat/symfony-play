@@ -2,21 +2,22 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
-use App\AppData\Infrastructure\Redis\RedisClientInterface;
+use App\AppData\Infrastructure\ClientInterface;
+use App\AppData\Infrastructure\Redis\RedisClient;
 use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisEntityManager implements AppEntityManagerInterface
 {
     public function __construct(
-        private readonly RedisClientInterface $redisClient,
+        private readonly RedisClient $redisClient,
         private readonly ManagerRegistry $doctrineRegistry,
     ) {
     }
 
-    public function getClient(): RedisClientInterface
+    public function getClient(): ClientInterface
     {
         return $this->redisClient;
     }
@@ -24,11 +25,6 @@ final class RedisEntityManager implements AppEntityManagerInterface
     public function persist(object $object): void
     {
         $this->redisClient->set($this->definedId($object), \serialize($object));
-    }
-
-    public function flush(): void
-    {
-        // nothing to do for redis ...
     }
 
     public function remove(object $object): void

@@ -16,8 +16,9 @@ services:
     #########
     # INFRA #
     #########
-    App\AppData\Infrastructure\Redis\RedisClientInterface:
-        factory: '@App\AppData\Infrastructure\Redis\RedisClientFactory'
+    App\AppData\Infrastructure\Redis\RedisClient:
+        arguments:
+            $redisClient: ~
 
     # APP REGISTRY ###
     # @todo: Use fake Doctrine for tests

@@ -16,7 +16,7 @@ final class AppEntityRegistry
     public function __construct(
         private readonly ManagerRegistry $doctrineRegistry,
         #[TaggedIterator(AppEntityManagerInterface::TAG)]
-        private readonly iterable $persistanceEntityRegistry,
+        private readonly iterable $simulateEntityRegistry,
     ) {
     }
 
@@ -32,9 +32,8 @@ final class AppEntityRegistry
             $entityManager->flush();
         }
 
-        foreach ($this->persistanceEntityRegistry as $manager) {
+        foreach ($this->simulateEntityRegistry as $manager) {
             $manager->persist($object);
-            $manager->flush();
         }
     }
 }

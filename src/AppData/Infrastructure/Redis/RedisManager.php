@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Domain\Manager\CustomScriptInterface;
-use App\AppData\Infrastructure\Redis\RedisClientInterface;
+use App\AppData\Infrastructure\Redis\RedisClient;
 
 /** @see https://app.redislabs.com */
 final class RedisManager implements CustomScriptInterface
 {
     public function __construct(
-        private readonly RedisClientInterface $redisClient,
+        private readonly RedisClient $redisClient,
     ) {
     }
 

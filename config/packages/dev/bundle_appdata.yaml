@@ -5,7 +5,7 @@ services:
         public: false
 
     # @todo remove this factory and select client with config only !
-    App\AppData\Infrastructure\Redis\RedisClientFactory:
+    App\AppData\Infrastructure\Redis\RedisClient:
         arguments:
             $redisClient: "@= 
                 parameter('use_redis') === 'local' ? service('snc_redis.local') : (

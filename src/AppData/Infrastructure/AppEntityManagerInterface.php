@@ -9,13 +9,11 @@ interface AppEntityManagerInterface
 {
     public const TAG = 'app.entity_manager';
 
-    public function getClient(): object;
+    public function getClient(): ClientInterface;
 
     public function persist(object $object): void;
 
     public function remove(object $object): void;
-
-    public function flush(): void;
 
     // @toto implements find($id)
 }

@@ -6,7 +6,7 @@ use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\Api\ApiNormalizerManagerInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\CacheInterface;
-use App\AppData\Infrastructure\Redis\RedisClientInterface;
+use App\AppData\Infrastructure\Redis\RedisClient;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */
@@ -20,7 +20,7 @@ final class RandomApiActionTest extends KernelTestCase
         static::getContainer()->get(CacheInterface::class)->delete('cache.get');
         static::getContainer()->get(CacheInterface::class)->delete('cache.dynamic');
 
-        static::getContainer()->get(RedisClientInterface::class)->flushall();
+        static::getContainer()->get(RedisClient::class)->flushall();
     }
 
     protected function setUp(): void
