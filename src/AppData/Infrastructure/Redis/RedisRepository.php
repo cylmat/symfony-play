@@ -6,8 +6,8 @@ namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
 use App\AppData\Infrastructure\AppRepositoryInterface;
+use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Redis\RedisEntityManager;
-use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisRepository implements AppRepositoryInterface
 {
@@ -15,8 +15,8 @@ final class RedisRepository implements AppRepositoryInterface
 
     public function __construct(
         private readonly RedisEntityManager $redisPersistance,
-        private readonly ManagerRegistry $doctrineRegistry,
         private readonly RedisClient $redisClient,
+        private readonly AppEntityRegistry $appRegistry,
     ) {
     }
 
@@ -34,9 +34,7 @@ final class RedisRepository implements AppRepositoryInterface
 
     public function findAll(): array
     {
-        $tableName = $this->doctrineRegistry
-            ->getManagerForClass($this->entityName)
-            ->getClassMetadata($this->entityName)->getTableName();
+        $tableName = $this->appRegistry->getTableName($this->entityName);
 
         $all = [];
         $keys = $this->redisClient->keys($tableName.':*');

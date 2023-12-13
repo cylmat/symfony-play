@@ -5,32 +5,30 @@ declare(strict_types=1);
 namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
+use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Redis\RedisClient;
-use Doctrine\Persistence\ManagerRegistry;
 
 final class RedisEntityManager implements AppEntityManagerInterface
 {
     public function __construct(
         private readonly RedisClient $redisClient,
-        private readonly ManagerRegistry $doctrineRegistry,
+        private readonly AppEntityRegistry $appRegistry,
     ) {
     }
 
     public function persist(object $object): void
     {
-        $this->redisClient->set($this->definedId($object), \serialize($object));
+        $this->redisClient->set($this->getId($object), \serialize($object));
     }
 
     public function remove(object $object): void
     {
-        $this->redisClient->del($this->definedId($object));
+        $this->redisClient->del($this->getId($object));
     }
 
-    private function definedId(object $object): string
+    private function getId(object $object): string
     {
-        $tableName = $this->doctrineRegistry
-            ->getManagerForClass($object::class)
-            ->getClassMetadata($object::class)->getTableName();
+        $tableName = $this->appRegistry->getTableName($object::class);
 
         return $tableName.':'.$object->getId();
     }
