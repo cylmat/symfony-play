@@ -6,6 +6,7 @@ use App\AppBundle\Domain\Entity\Log;
 use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Manager\AppRepositoryRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Log>
@@ -26,8 +27,9 @@ class LogRepository extends ServiceEntityRepository
     public function __construct(
         private readonly AppEntityRegistry $appEntityManager,
         private readonly AppRepositoryRegistry $appRepositoryRegistry,
+        private readonly ManagerRegistry $doctrineRegistry,
     ) {
-        parent::__construct($appEntityManager->getDoctrineRegistry(), Log::class); // @phpstan-ignore-line: class-string
+        parent::__construct($doctrineRegistry, Log::class); // @phpstan-ignore-line: class-string
     }
 
     public function flushall() // LOG
@@ -35,7 +37,7 @@ class LogRepository extends ServiceEntityRepository
         $objectFqcn = $this->_entityName;
 
         /* @todo integration test this */
-        foreach ($this->appEntityManager->getDoctrineRegistry()->getManagers() as $entityManager) {
+        foreach ($this->doctrineRegistry->getManagers() as $entityManager) {
             $entities = $entityManager->createQueryBuilder()
                 ->select('l')
                 ->from($objectFqcn, 'l')
@@ -53,12 +55,12 @@ class LogRepository extends ServiceEntityRepository
 
     public function save(Log $entity, bool $flush = false): void
     {
-        // to implements
+        // to implements ...
     }
 
     public function remove(Log $entity, bool $flush = false): void
     {
-        // to implements
+        // to implements ...
     }
 
     /*

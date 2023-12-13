@@ -20,11 +20,6 @@ final class AppEntityRegistry
     ) {
     }
 
-    public function getDoctrineRegistry(): ManagerRegistry
-    {
-        return $this->doctrineRegistry;
-    }
-
     public function persist(object $object): void
     {
         foreach ($this->doctrineRegistry->getManagers() as $entityManager) {
