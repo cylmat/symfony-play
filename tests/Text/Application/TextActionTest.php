@@ -76,6 +76,6 @@ final class TextActionTest extends KernelTestCase
     private function assertRepository(int $count): void
     {
         $redisRepository = static::getContainer()->get(RedisRepository::class);
-        $this->assertCount($count, $redisRepository->initialize(Log::class)->findAll());
+        $this->assertCount($count, $redisRepository->setEntityName(Log::class)->findAll());
     }
 }

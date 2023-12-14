@@ -9,9 +9,9 @@ interface AppRepositoryInterface
 {
     public const TAG = 'app.repository';
 
-    public function initialize(string $entityName): self;
-
-    public function getEntityManager(): AppEntityManagerInterface;
+    public function setEntityName(string $entityName): self;
 
     public function findAll(): array;
+
+    public function remove(object $entity): void;
 }

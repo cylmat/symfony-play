@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\AppData\Infrastructure\Redis;
 
-use App\AppData\Infrastructure\AppEntityManagerInterface;
 use App\AppData\Infrastructure\AppRepositoryInterface;
 use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Redis\RedisEntityManager;
@@ -20,16 +19,16 @@ final class RedisRepository implements AppRepositoryInterface
     ) {
     }
 
-    public function initialize(string $entityName): self
+    public function setEntityName(string $entityName): self
     {
         $this->entityName = $entityName;
 
         return $this;
     }
 
-    public function getEntityManager(): AppEntityManagerInterface
+    public function remove(object $entity): void
     {
-        return $this->redisPersistance;
+        $this->redisPersistance->remove($entity);
     }
 
     public function findAll(): array
