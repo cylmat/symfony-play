@@ -19,22 +19,15 @@ final class AppRepositoryRegistry
     ) {
     }
 
+    /** @todo Use object entity instead of name. */
     public function remove(string $entityName): void
     {
-        $this->setRepositoryEntityName($entityName);
-
         /** @todo Integration test this ! */
         foreach ($this->repositories as $repository) {
+            $repository->setEntityName($entityName);
             foreach ($repository->findAll() as $entity) {
                 $repository->remove($entity);
             }
-        }
-    }
-    
-    private function setRepositoryEntityName(string $entityName): void
-    {
-        foreach ($this->repositories as $repository) {
-            $repository->setEntityName($entityName);
         }
     }
 }
