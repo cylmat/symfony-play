@@ -21,7 +21,7 @@ final class AppRepositoryRegistry
 
     public function remove(string $entityName): void
     {
-        $this->initRepositories($entityName);
+        $this->setRepositoryEntityName($entityName);
 
         /** @todo Integration test this ! */
         foreach ($this->repositories as $repository) {
@@ -31,7 +31,7 @@ final class AppRepositoryRegistry
         }
     }
     
-    private function initRepositories(string $entityName): void
+    private function setRepositoryEntityName(string $entityName): void
     {
         foreach ($this->repositories as $repository) {
             $repository->setEntityName($entityName);
