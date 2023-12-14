@@ -9,6 +9,8 @@ interface AppEntityManagerInterface
 {
     public const TAG = 'app.entity_manager';
 
+    public function getClient(): ClientInterface;
+
     public function persist(object $object): void;
 
     public function remove(object $object): void;
