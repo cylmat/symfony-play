@@ -35,7 +35,7 @@ final class RedisRepository implements AppRepositoryInterface
         $tableName = $this->appRegistry->getTableName($this->entityName);
 
         $all = [];
-        $keys = $this->redisPersistance->getClient()->keys($tableName.':*');
+        $keys = $this->redisPersistance->getClient()->keys($tableName.':*') ?? [];
 
         foreach ($keys as $key) {
             $serializedEntity = $this->redisPersistance->getClient()->get($key);
