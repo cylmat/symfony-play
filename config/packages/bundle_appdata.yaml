@@ -11,11 +11,6 @@ services:
     App\AppData\Domain\Service\CustomScriptsInterface:
         '@App\AppData\Infrastructure\Service\CustomScripts'
 
-    #################
-    # DDD Interface #
-    #################
-    App\AppData\Domain\Manager\RedisManagerInterface: '@App\AppData\Infrastructure\Manager\RedisManager'
-
     #########
     # INFRA #
     #########

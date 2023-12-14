@@ -7,7 +7,7 @@ namespace App\AppData\Infrastructure\Redis;
 use App\AppData\Infrastructure\Redis\RedisClient;
 
 /** @see https://app.redislabs.com */
-final class RedisManager
+final class RedisScriptManager
 {
     public function __construct(
         private readonly RedisClient $redisClient,
