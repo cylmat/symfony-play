@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Domain\Model;
+namespace App\AppData\Domain\Model;
 
 final class RandomApi
 {

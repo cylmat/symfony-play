@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Application\DTO;
+namespace App\AppData\Application\DTO;
 
 use App\AppBundle\Application\Common\Api\ApiNormalizerInterface;
-use App\Data\Domain\Model\RandomApi;
+use App\AppData\Domain\Model\RandomApi;
 
 final class RandomApiNormalizer implements ApiNormalizerInterface
 {

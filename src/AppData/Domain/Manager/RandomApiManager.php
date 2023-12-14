@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Domain\Manager;
+namespace App\AppData\Domain\Manager;
 
 use App\AppBundle\Domain\CacheInterface;
-use App\AppData\Domain\Manager\CustomScriptInterface;
-use App\Data\Domain\Model\RandomApi;
+use App\AppBundle\Domain\DomainManagerInterface;
+use App\AppData\Domain\Manager\CustomScriptsInterface;
+use App\AppData\Domain\Model\RandomApi;
 
-final class RandomApiManager
+final class RandomApiManager implements DomainManagerInterface
 {
     public function __construct(
         private readonly CacheInterface $cache,
-        private readonly CustomScriptInterface $scriptManager,
+        private readonly CustomScriptsInterface $scriptManager,
     ) {
     }
 
@@ -23,7 +24,7 @@ final class RandomApiManager
 
         $randomApi = new RandomApi();
         $randomApi->random_int = \random_int(1, 99);
-        $randomApi->random_script_int = $this->scriptManager->getCustomScript([]);
+        $randomApi->random_script_int = $this->scriptManager->getRandomInt();
         $randomApi->cache_get = $item;
         $randomApi->cache_dynamic = $this->cache->get('cache.dynamic', fn () => 'nope');
 

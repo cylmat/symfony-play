@@ -7,7 +7,7 @@ namespace App\ApiResource\Application;
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Application\Common\Api\ApiResponse;
-use App\Data\Domain\Manager\RandomApiManager;
+use App\AppData\Domain\Manager\RandomApiManager;
 
 final class RandomApiAction implements ActionInterface
 {
