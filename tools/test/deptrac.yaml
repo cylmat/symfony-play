@@ -14,10 +14,6 @@ deptrac:
     - '#.*Test.*#'
     - '#.*Admin.*#'
 
-  skip_violations:
-    App\AppBundle\Domain\Entity\User:
-      - Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
-
   # RULES
   ruleset:
     Application:
@@ -47,34 +43,34 @@ deptrac:
     # DRIVING models
     # User or console input/output values
 
-    # -
-    #   name: Application
-    #   collectors:
-    #     -
-    #       type: className
-    #       value: App.*\\Application\\.*
+    -
+      name: Application
+      collectors:
+        -
+          type: className
+          value: App.*\\Application\\.*
 
-    # ### Domain ###
-    # # No dependencies or tech
-    # # Business model and rules only
+    ### Domain ###
+    # No dependencies or tech
+    # Business model and rules only
 
-    # -
-    #   name: Domain
-    #   collectors:
-    #     -
-    #       type: className
-    #       value: App.*\\Domain\\.*
+    -
+      name: Domain
+      collectors:
+        -
+          type: className
+          value: App.*\\Domain\\.*
 
-    # ### Infrastructure ###
-    # # DRIVERS models
-    # # Server, framework, dependencies
+    ### Infrastructure ###
+    # DRIVERS models
+    # Server, framework, dependencies
 
-    # -
-    #   name: Infrastructure
-    #   collectors:
-    #     -
-    #       type: className
-    #       value: App.*\\Infrastructure\\.*
+    -
+      name: Infrastructure
+      collectors:
+        -
+          type: className
+          value: App.*\\Infrastructure\\.*
 
     # Framework #################################
 
