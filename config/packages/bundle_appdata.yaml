@@ -8,8 +8,8 @@ services:
     App\AppData\:
         resource: ../../src/AppData/
 
-    App\AppData\Domain\Manager\CustomScriptsInterface:
-        '@App\AppData\Infrastructure\Manager\CustomScripts'
+    App\AppData\Domain\Service\CustomScriptsInterface:
+        '@App\AppData\Infrastructure\Service\CustomScripts'
 
     #################
     # DDD Interface #

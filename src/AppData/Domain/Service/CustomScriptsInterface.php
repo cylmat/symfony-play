@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Domain\Manager;
+namespace App\AppData\Domain\Service;
 
 /** Interface for database scripting. */
 interface CustomScriptsInterface
