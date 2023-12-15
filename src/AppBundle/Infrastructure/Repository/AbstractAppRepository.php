@@ -31,7 +31,7 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
     ) {
         parent::__construct($appRegistry->getDoctrine(), self::ENTITY_NAME);
 
-        $this->appRepositoryRegistry->setEntityName(self::ENTITY_NAME);
+        $this->appRepositoryRegistry->setEntityName(static::ENTITY_NAME);
     }
 
     /** find and findBy inherited... */
