@@ -21,7 +21,7 @@ services:
     App\AppData\Infrastructure\Manager\AppEntityRegistry:
         arguments:
             $entityReplicasSupport: '%entityReplicasSupport%'
-            $noDoctrineEntityManagersByNames: '%noDoctrineEntityManagers%'
+            $noDoctrineEntityManagersByNames: '%noDoctrineEntityManagersByNames%'
 
     #########
     # INFRA #

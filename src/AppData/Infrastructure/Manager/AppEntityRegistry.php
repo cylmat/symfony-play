@@ -16,6 +16,8 @@ use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
  */
 final class AppEntityRegistry
 {
+    private const DEFAULT = 'default';
+
     /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
     public function __construct(
         private readonly ManagerRegistry $doctrineManagerRegistry,
@@ -57,7 +59,28 @@ final class AppEntityRegistry
 
     private function isSupportedReplicasEntity(object $entity, string $managerName): bool
     {
-        return \in_array($managerName, $this->entityReplicasSupport[$entity::class]);
+        $supportedClasses = $this->entityReplicasSupport[$entity::class];
+        $this->handleNotExistingManagerName($supportedClasses);
+
+        if (self::DEFAULT === $managerName) {
+            return true;
+        }
+
+        return \in_array($managerName, $supportedClasses);
+    }
+
+    private function handleNotExistingManagerName(array $supportedClasses): void
+    {
+        $managerNames = \array_merge(
+            \array_keys($this->doctrineManagerRegistry->getManagers())
+            , \array_keys($this->getNoDoctrineManagerByNames())
+        );
+
+        foreach ($supportedClasses as $supportedClass) {
+            if (!\in_array($supportedClass, $managerNames, true)) {
+                throw new \DomainException("Manager '".$supportedClass."' not handled.");
+            }
+        }
     }
 
     private function getNoDoctrineManagerByNames(): array
