@@ -3,7 +3,6 @@
 namespace App\AppBundle\Infrastructure\Repository;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Manager\AppRepositoryRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -24,32 +23,14 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 class LogRepository extends ServiceEntityRepository
 {
     public function __construct(
-        private readonly AppEntityRegistry $appEntityManager,
         private readonly AppRepositoryRegistry $appRepositoryRegistry,
     ) {
-        parent::__construct($appEntityManager->getDoctrineManagerRegistry(), Log::class); // @phpstan-ignore-line: class-string
+        $this->appRepositoryRegistry->setEntityName(Log::class);
     }
 
     public function flushall() // LOG
     {
-        $objectFqcn = $this->_entityName;
-
-        /** @todo integration test this */
-        /** @todo Simplify ! */
-        foreach ($this->appEntityManager->getDoctrineManagerRegistry()->getManagers() as $entityManager) {
-            $entities = $entityManager->createQueryBuilder()
-                ->select('l')
-                ->from($objectFqcn, 'l')
-                ->getQuery()
-                ->execute();
-
-            foreach ($entities as $e) {
-                $entityManager->remove($e);
-            }
-            $entityManager->flush();
-        }
-
-        $this->appRepositoryRegistry->remove($this->getEntityName());
+        $this->appRepositoryRegistry->flushall();
     }
 
     public function save(Log $entity, bool $flush = false): void
