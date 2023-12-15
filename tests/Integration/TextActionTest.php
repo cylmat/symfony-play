@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Text\Application;
+namespace App\Tests\Integration;
 
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\Entity\Log;

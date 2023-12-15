@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\ApiResource\Application\Controller;
+namespace App\Tests\Integration;
 
 use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\Api\ApiNormalizerManagerInterface;
