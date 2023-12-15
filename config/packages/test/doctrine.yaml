@@ -14,3 +14,23 @@ doctrine:
                 dbname_suffix: 'test_sqlite'
                 server_version: '3'
                 memory: false
+
+    orm:
+        default_entity_manager: default
+        #auto_generate_proxy_classes: true
+        #proxy_namespace: Proxies
+        #proxy_dir: '%kernel.cache_dir%/doctrine/orm/Proxies'
+        #class_metadata_factory_name: Doctrine\ORM\Mapping\ClassMetadataFactory
+        #default_repository_
+
+        # @see https://symfony.com/doc/current/doctrine/multiple_entity_managers.html
+        entity_managers:
+            sqlite:
+                connection: sqlite
+                # @todo Can we mutualized mapping ? #
+                mappings:
+                    AppBundle:
+                        type: attribute
+                        prefix: 'App\AppBundle'
+                        dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
+                        is_bundle: false # change 'dir' attribute as relative path

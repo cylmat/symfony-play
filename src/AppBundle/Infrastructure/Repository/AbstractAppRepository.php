@@ -29,7 +29,7 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
         private readonly AppEntityRegistry $appRegistry,
         private readonly AppRepositoryRegistry $appRepositoryRegistry,
     ) {
-        parent::__construct($appRegistry->getDoctrineManagerRegistry(), self::ENTITY_NAME);
+        parent::__construct($appRegistry->getDoctrine(), self::ENTITY_NAME);
 
         $this->appRepositoryRegistry->setEntityName(self::ENTITY_NAME);
     }

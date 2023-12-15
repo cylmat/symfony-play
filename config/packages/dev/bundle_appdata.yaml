@@ -10,11 +10,3 @@ services:
             $redisClient: "@= 
                 parameter('use_redis') === 'local' ? service('snc_redis.local') : (
                     parameter('use_redis') === 'remote' ? service('snc_redis.remote') : null)"
-
-    App\AppBundle\Infrastructure\Repository\LogRepository:
-        calls:
-            - setManagersSupport:
-                $main: 'default'
-                $replicas: 'sqlite'
-                $noDoctrine: 'redis'
-            

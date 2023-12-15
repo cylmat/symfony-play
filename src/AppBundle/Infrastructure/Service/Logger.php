@@ -43,7 +43,7 @@ final class Logger extends MonologLogger implements LoggerInterface
             ->setMessage($message)
         ;
 
-        $this->appDoctrine->persist($log, true);
+        $this->appDoctrine->persist($log);
 
         return true;
     }

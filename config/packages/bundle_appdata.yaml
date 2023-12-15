@@ -1,3 +1,10 @@
+parameters:
+    noDoctrineEntityManagersByNames:
+        redis: App\AppData\Infrastructure\Redis\RedisEntityManager
+
+    entityReplicasSupport: 
+        App\AppBundle\Domain\Entity\Log: ['sqlite', 'redis']
+
 services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -10,6 +17,11 @@ services:
 
     App\AppData\Domain\Service\CustomScriptsInterface:
         '@App\AppData\Infrastructure\Service\CustomScripts'
+
+    App\AppData\Infrastructure\Manager\AppEntityRegistry:
+        arguments:
+            $entityReplicasSupport: '%entityReplicasSupport%'
+            $noDoctrineEntityManagersByNames: '%noDoctrineEntityManagers%'
 
     #########
     # INFRA #

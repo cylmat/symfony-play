@@ -24,7 +24,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     public function __construct(
         private readonly AppEntityRegistry $appEntityManager,
     ) {
-        parent::__construct($appEntityManager->getDoctrineManagerRegistry(), User::class);
+        parent::__construct($appEntityManager->getDoctrine(), User::class);
     }
 
     public function add(User $entity, bool $flush = true): void

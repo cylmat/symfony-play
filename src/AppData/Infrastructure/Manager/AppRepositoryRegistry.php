@@ -25,7 +25,7 @@ final class AppRepositoryRegistry
         #[TaggedIterator(AppRepositoryInterface::TAG)]
         private readonly iterable $appRepositories,
     ) {
-        $this->doctrineManagers = $this->appRegistry->getDoctrineManagerRegistry()->getManagers();
+        $this->doctrineManagers = $this->appRegistry->getDoctrine()->getManagers();
     }
 
     public function setEntityName(string $entityName): self
