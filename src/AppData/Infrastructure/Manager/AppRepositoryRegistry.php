@@ -15,6 +15,10 @@ final class AppRepositoryRegistry
     private string $entityName;
     private array $doctrineManagers;
 
+    private string $mainSupport;
+    private array $doctrineReplicasSupport;
+    private array $noDoctrineReplicasSupport;
+
     /** @param AppRepositoryInterface[] $appRepositories */
     public function __construct(
         private readonly AppEntityRegistry $appRegistry,
@@ -31,16 +35,11 @@ final class AppRepositoryRegistry
         return $this;
     }
 
-    /** @todo Use object entity instead of name. */
-    public function remove(string $entityName): void
+    public function setManagersSupport(string $main, array $doctrineReplicas = [], array $noDoctrineReplicas = []): void
     {
-        /** @todo Integration test this ! */
-        foreach ($this->appRepositories as $repository) {
-            $repository->setEntityName($entityName);
-            foreach ($repository->findAll() as $entity) {
-                $repository->remove($entity);
-            }
-        }
+        $this->mainSupport = $main;
+        $this->doctrineReplicasSupport = $doctrineReplicas;
+        $this->noDoctrineReplicasSupport = $noDoctrineReplicas;
     }
 
     public function flushall(): void
@@ -61,5 +60,17 @@ final class AppRepositoryRegistry
 
         // Flush on App repositories
         $this->remove($this->entityName);
+    }
+
+    /** @todo Use object entity instead of name. */
+    public function remove(string $entityName): void
+    {
+        /** @todo Integration test this ! */
+        foreach ($this->appRepositories as $repository) {
+            $repository->setEntityName($entityName);
+            foreach ($repository->findAll() as $entity) {
+                $repository->remove($entity);
+            }
+        }
     }
 }
