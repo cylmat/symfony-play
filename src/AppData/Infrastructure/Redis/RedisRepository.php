@@ -45,4 +45,9 @@ final class RedisRepository implements AppRepositoryInterface
 
         return $all;
     }
+
+    public function flushAll(): void
+    {
+        // to implements ...
+    }
 }

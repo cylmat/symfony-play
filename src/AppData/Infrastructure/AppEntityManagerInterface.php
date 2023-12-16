@@ -11,7 +11,7 @@ interface AppEntityManagerInterface
 
     public function getClient(): ClientInterface;
 
-    public function persist(object $object): void;
+    public function save(object $object): void;
 
     public function remove(object $object): void;
 

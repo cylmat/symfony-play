@@ -33,7 +33,7 @@ final class AppEntityRegistry
         return $this->doctrineManagerRegistry;
     }
 
-    public function persist(object $entity): void
+    public function save(object $entity): void
     {
         foreach ($this->doctrineManagerRegistry->getManagers() as $managerName => $doctrineEntityManager) {
             /** @var EntityManagerInterface $doctrineEntityManager */
@@ -51,7 +51,7 @@ final class AppEntityRegistry
                 continue;
             }
 
-            $noDoctrineManager->persist($entity);
+            $noDoctrineManager->save($entity);
         }
     }
 

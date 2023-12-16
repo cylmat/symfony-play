@@ -29,12 +29,12 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
         private readonly AppEntityRegistry $appRegistry,
         private readonly AppRepositoryRegistry $appRepositoryRegistry,
     ) {
-        parent::__construct($appRegistry->getDoctrine(), self::ENTITY_NAME);
+        parent::__construct($appRegistry->getDoctrine(), static::ENTITY_NAME);
 
         $this->appRepositoryRegistry->setEntityName(static::ENTITY_NAME);
     }
 
-    /** find and findBy inherited... */
+    /** find(), findBy() and findAll() inherited... */
 
     public function setManagersSupport(string $main, array $replicas = [], array $noDoctrine = []): void
     {

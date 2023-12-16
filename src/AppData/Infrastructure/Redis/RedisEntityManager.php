@@ -22,7 +22,7 @@ final class RedisEntityManager implements AppEntityManagerInterface
         return $this->redisClient;
     }
 
-    public function persist(object $object): void
+    public function save(object $object): void
     {
         $this->redisClient->set($this->getId($object), \serialize($object));
     }

@@ -16,7 +16,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly LoggerInterface $mainLogger,
-        private readonly AppEntityRegistry $doctrine
+        private readonly AppEntityRegistry $appRegistry,
     ) {
     }
 
@@ -40,7 +40,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
             ->setLevel(LogLevel::INFO)
             ->setMessage('Encrypted data entered in '.$place);
 
-        $this->doctrine->persist($log, true);
+        $this->appRegistry->save($log);
     }
 
     /** @SuppressWarnings(PHPMD.MissingImport) */
