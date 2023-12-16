@@ -105,11 +105,25 @@ final class AppEntityRegistry
     private function isSupportedReplicasEntity(object $entity, string $managerName): bool
     {
         $supportedClasses = $this->entityReplicasSupport[$entity::class];
+        $this->handleNotExistingManagerName($supportedClasses);
 
         if (self::DEFAULT === $managerName) {
             return true;
         }
 
         return \in_array($managerName, $supportedClasses);
+    }
+
+    private function handleNotExistingManagerName(array $supportedClasses): void
+    {
+        $allManagerNames = \array_merge(
+            \array_keys($this->doctrineManagerRegistry->getManagers()),
+            \array_keys($this->noDoctrineEntityManagersByNames)
+        );
+
+        $diffClass = \array_diff($supportedClasses, $allManagerNames);
+        if (0 !== \count($diffClass)) {
+            throw new \DomainException("Manager '".\current($diffClass)."' not handled.");
+        }
     }
 }
