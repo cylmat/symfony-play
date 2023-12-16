@@ -26,7 +26,7 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
     protected const ENTITY_NAME = '';
 
     public function __construct(
-        private readonly AppEntityRegistry $appRegistry,
+        private readonly AppEntityRegistry $appRegistry, // for doctrine
         private readonly AppRepositoryRegistry $appRepositoryRegistry,
     ) {
         parent::__construct($appRegistry->getDoctrine(), static::ENTITY_NAME);

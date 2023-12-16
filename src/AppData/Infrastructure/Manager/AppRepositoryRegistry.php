@@ -59,18 +59,6 @@ final class AppRepositoryRegistry
         }
 
         // Flush on App repositories
-        $this->remove($this->entityName);
-    }
-
-    /** @todo Use object entity instead of name. */
-    public function remove(string $entityName): void
-    {
-        /** @todo Integration test this ! */
-        foreach ($this->appRepositories as $repository) {
-            $repository->setEntityName($entityName);
-            foreach ($repository->findAll() as $entity) {
-                $repository->remove($entity);
-            }
-        }
+        //$this->remove($this->entityName);
     }
 }

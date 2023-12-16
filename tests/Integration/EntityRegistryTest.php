@@ -52,11 +52,11 @@ final class EntityRegistryTest extends KernelTestCase
         // persist
         $this->assertNotNull($this->logRepository->find($id));
         $this->assertInstanceOf(Log::class, $this->logRepository->find($id));
-        ### @todo $this->assertCount(1, $this->logRepository->findAll());
+        $this->assertCount(1, $this->logRepository->findAll());
 
         // remove
-        $this->logRepository->remove($entity);
-        ### @todo $this->assertSame(0, $this->logRepository->count([]));
-        ### @todo $this->assertEmpty($this->logRepository->findAll());
+        $this->appEntityRegistry->remove($entity);
+        $this->assertSame(0, $this->logRepository->count([]));
+        $this->assertEmpty($this->logRepository->findAll());
     }
 }
