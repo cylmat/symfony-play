@@ -33,6 +33,8 @@ final class AppEntityRegistry
         return $this->doctrineManagerRegistry;
     }
 
+    // @todo get no-doctrine managers
+
     public function getTableName(string $entityName): string
     {
         /** @var ObjectManager $manager */
@@ -44,13 +46,17 @@ final class AppEntityRegistry
 
     public function save(object $entity): void
     {
-        // doctrine first (create id)
-        foreach ($this->getDoctrineManagerByNames($entity) as $doctrineEntityManager) {
+        // Create id
+        $this->getDefaultDoctrineManager()->persist($entity);
+
+        // other
+        foreach ($this->getOtherDoctrineManagerByNames($entity) as $doctrineEntityManager) {
             $doctrineEntityManager->persist($entity);
         }
         $doctrineEntityManager->flush();
 
-        foreach ($this->getNoDoctrineManagerByNames($entity) as $noDoctrineManager) {
+        // simili
+        foreach ($this->getSimiliDoctrineManagerByNames($entity) as $noDoctrineManager) {
             $noDoctrineManager->save($entity);
         }
     }
@@ -58,18 +64,25 @@ final class AppEntityRegistry
     public function remove(object $entity): void
     {
         // no doctrine first
-        foreach ($this->getNoDoctrineManagerByNames($entity) as $noDoctrineManager) {
+        foreach ($this->getSimiliDoctrineManagerByNames($entity) as $noDoctrineManager) {
             $noDoctrineManager->remove($entity);
         }
 
-        foreach ($this->getDoctrineManagerByNames($entity) as $doctrineEntityManager) {
+        // doctrine
+        $this->getDefaultDoctrineManager()->remove($entity);
+        foreach ($this->getOtherDoctrineManagerByNames($entity) as $doctrineEntityManager) {
             $doctrineEntityManager->remove($entity);
         }
         $doctrineEntityManager->flush();
     }
 
+    private function getDefaultDoctrineManager(): EntityManagerInterface
+    {
+        return $this->doctrineManagerRegistry->getManager(self::DEFAULT);
+    }
+
     /** @return array<EntityManagerInterface> */
-    private function getDoctrineManagerByNames(object $entity): array
+    private function getOtherDoctrineManagerByNames(object $entity): array
     {
         $managers = [];
         foreach ($this->doctrineManagerRegistry->getManagers() as $managerName => $doctrineEntityManager) {
@@ -85,7 +98,7 @@ final class AppEntityRegistry
     }
 
     /** @return array<AppEntityManagerInterface> */
-    private function getNoDoctrineManagerByNames(object $entity): array
+    private function getSimiliDoctrineManagerByNames(object $entity): array
     {
         $managers = [];
         foreach ($this->noDoctrineEntityManagersByNames as $managerName => $managerClassName) {
@@ -106,10 +119,6 @@ final class AppEntityRegistry
     {
         $supportedClasses = $this->entityReplicasSupport[$entity::class];
         $this->handleNotExistingManagerName($supportedClasses);
-
-        if (self::DEFAULT === $managerName) {
-            return true;
-        }
 
         return \in_array($managerName, $supportedClasses);
     }

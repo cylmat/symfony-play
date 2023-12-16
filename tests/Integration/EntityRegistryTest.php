@@ -46,6 +46,12 @@ final class EntityRegistryTest extends KernelTestCase
         $this->appEntityRegistry->save($entity);
         $id = $entity->getId();
 
+        // test
+        $mysql = $this->appEntityRegistry->getDoctrine()->getManager('default');
+        $sqlite = $this->appEntityRegistry->getDoctrine()->getManager('sqlite');
+        $r = $mysql->getRepository($entity::class)->findAll();
+        $d = $sqlite->getRepository($entity::class)->findAll();
+
         $this->assertNotNull($id);
         $this->assertTrue($id > 0);
 
