@@ -32,7 +32,7 @@ services:
 
     # APP REGISTRY ###
     # @todo: Use fake Doctrine for tests
-    # App\AppData\Infrastructure\Manager\AppEntityRegistry:
+    # App\AppData\Infrastructure\Manager\AppEntityManager:
     #     arguments: 
     #         $reg: !tagged_iterator tag
     #     decorates: Doctrine\Common\Persistence\ManagerRegistry

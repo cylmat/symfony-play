@@ -1,8 +1,5 @@
 # Info
 
-(like one Doctrine->EntityManager and multi Repositories)
-Autowiring : ManagerRegistry, doctrine.orm.default_entity_manager
-
 - AppEntityRegistry:
     * Use DoctrineRegistry to persist() and remove() Entity in Doctrine
     * Use AppEntityManagers[] to save() and delete() Entity in other DB
@@ -23,3 +20,11 @@ Autowiring : ManagerRegistry, doctrine.orm.default_entity_manager
 * AppRepositoryInterface
     - flushall($entity)
     - truncate()
+
+---
+(like one Doctrine->EntityManager and multi Repositories)
+Autowiring : ManagerRegistry $registry->getManagerForClass($entity::class), doctrine.orm.default_entity_manager
+
+For controller:
+    - EntityManagerInterface $entityManager->persist($entity);
+    - EntityManagerInterface $entityManager->getRepository(Entity::class)->find($id);

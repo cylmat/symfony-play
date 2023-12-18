@@ -4,7 +4,7 @@ namespace App\Tests\Integration;
 
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\Repository\LogRepository;
-use App\AppData\Infrastructure\Manager\AppEntityRegistry;
+use App\AppData\Infrastructure\Manager\AppEntityManager;
 use App\AppData\Infrastructure\Manager\AppSupportRegistry;
 use App\AppData\Infrastructure\Redis\RedisRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -12,14 +12,14 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 /** @group integration */
 final class EntityRegistryTest extends KernelTestCase
 {
-    private AppEntityRegistry $appEntityRegistry;
+    private AppEntityManager $appEntityRegistry;
     private LogRepository     $logRepository;
     private RedisRepository   $redisRepository;
     private AppSupportRegistry $appSupportRegistry;
 
     public function setUp(): void
     {
-        $this->appEntityRegistry = static::getContainer()->get(AppEntityRegistry::class);
+        $this->appEntityRegistry = static::getContainer()->get(AppEntityManager::class);
         $this->appSupportRegistry = static::getContainer()->get(AppSupportRegistry::class);
         // mysql & sqlite
         $this->logRepository = static::getContainer()->get(LogRepository::class);

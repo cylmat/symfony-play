@@ -4,32 +4,16 @@ declare(strict_types=1);
 
 namespace App\AppData\Infrastructure\Manager;
 
-use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
-
 /**
- * Main component to manager object entity
- *  with doctrine and no-doctrine managers
+ * Main component to manager object entity 
+ * with doctrine and no-doctrine managers.
  */
-// @todo Split into AppEntityManager (save & delete) and AppEntityRegistry (only list)
-final class AppEntityRegistry
+final class AppEntityManager
 {
     /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
     public function __construct(
-        private readonly ManagerRegistry $doctrineManagerRegistry,
         private readonly AppSupportRegistry $supportRegistry,
     ) {
-    }
-
-    // @todo getManagerFor(...)
-
-    public function getTableName(string $entityName): string
-    {
-        /** @var ObjectManager $manager */
-        $manager = $this->doctrineManagerRegistry
-            ->getManagerForClass($entityName);
-
-        return $manager->getClassMetadata($entityName)->getTableName();
     }
 
     public function save(object $entity): void

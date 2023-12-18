@@ -3,7 +3,6 @@
 namespace App\AppBundle\Infrastructure\Repository;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Manager\AppRepositoryRegistry;
 use App\AppData\Infrastructure\Manager\AppSupportRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

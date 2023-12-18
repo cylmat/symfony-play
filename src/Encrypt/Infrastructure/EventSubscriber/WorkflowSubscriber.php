@@ -2,8 +2,9 @@
 
 namespace App\Encrypt\Infrastructure\EventSubscriber;
 
-use App\AppBundle\Domain\Entity\Log; /** @todo don't call app entity directly, use log service */
-use App\AppData\Infrastructure\Manager\AppEntityRegistry;
+/** @todo factory: don't call app entity directly, use log service */
+use App\AppBundle\Domain\Entity\Log;
+use App\AppData\Infrastructure\Manager\AppEntityManager;
 use App\Encrypt\Domain\Model\EncryptedData;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -16,7 +17,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly LoggerInterface $mainLogger,
-        private readonly AppEntityRegistry $appRegistry,
+        private readonly AppEntityManager $appManager,
     ) {
     }
 
@@ -40,7 +41,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
             ->setLevel(LogLevel::INFO)
             ->setMessage('Encrypted data entered in '.$place);
 
-        $this->appRegistry->save($log);
+        $this->appManager->save($log);
     }
 
     /** @SuppressWarnings(PHPMD.MissingImport) */

@@ -4,7 +4,7 @@ namespace App\AppBundle\Infrastructure\Service;
 
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Domain\Service\LoggerInterface;
-use App\AppData\Infrastructure\Manager\AppEntityRegistry;
+use App\AppData\Infrastructure\Manager\AppEntityManager;
 use DateTimeImmutable;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
@@ -17,7 +17,7 @@ final class Logger extends MonologLogger implements LoggerInterface
     protected array $processors = []; // avoid "reset" errors in tests
 
     public function __construct(
-        private readonly AppEntityRegistry $appDoctrine
+        private readonly AppEntityManager $appDoctrine
     ) {
     }
 

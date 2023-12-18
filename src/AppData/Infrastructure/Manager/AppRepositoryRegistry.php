@@ -9,7 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 /**
- * Get every EntityManager repositories for no-doctrine
+ * Get every EntityManager for no-doctrine repositories.
  */
 final class AppRepositoryRegistry
 {
