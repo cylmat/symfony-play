@@ -1,5 +1,5 @@
 parameters:
-    noDoctrineEntityManagersByNames:
+    noDoctrineEntityManagerList:
         redis: App\AppData\Infrastructure\Redis\RedisEntityManager
 
     entityReplicasSupport: 
@@ -18,10 +18,10 @@ services:
     App\AppData\Domain\Service\CustomScriptsInterface:
         '@App\AppData\Infrastructure\Service\CustomScripts'
 
-    App\AppData\Infrastructure\Manager\AppEntityRegistry:
+    App\AppData\Infrastructure\Manager\AppSupportRegistry:
         arguments:
             $entityReplicasSupport: '%entityReplicasSupport%'
-            $noDoctrineEntityManagersByNames: '%noDoctrineEntityManagersByNames%'
+            $noDoctrineEntityManagerList: '%noDoctrineEntityManagerList%'
 
     #########
     # INFRA #

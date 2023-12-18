@@ -5,7 +5,9 @@ namespace App\AppBundle\Infrastructure\Repository;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Manager\AppRepositoryRegistry;
+use App\AppData\Infrastructure\Manager\AppSupportRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Log>
@@ -25,24 +27,46 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
 {
     protected const ENTITY_NAME = '';
 
+    protected string $entityName;
+
     public function __construct(
-        private readonly AppEntityRegistry $appRegistry, // for doctrine
+        private readonly ManagerRegistry $doctrineManagerRegistry,
+        private readonly AppSupportRegistry $appSupportRegistry,
         private readonly AppRepositoryRegistry $appRepositoryRegistry,
     ) {
-        parent::__construct($appRegistry->getDoctrine(), static::ENTITY_NAME);
+        $this->entityName = static::ENTITY_NAME; // Use once.
 
-        $this->appRepositoryRegistry->setEntityName(static::ENTITY_NAME);
+        parent::__construct($doctrineManagerRegistry, $this->entityName);
     }
 
     /** find(), findBy() and findAll() inherited... */
 
-    public function setManagersSupport(string $main, array $replicas = [], array $noDoctrine = []): void
+    public function flushAll(): void
     {
-        $this->appRepositoryRegistry->setManagersSupport($main, $replicas, $noDoctrine);
-    }
+        $this->appSupportRegistry->setEntityName($this->entityName);
 
-    public function flushall(): void
-    {
-        $this->appRepositoryRegistry->flushall();
+        /** @todo integration test this */
+        $defaultEntityManager = $this->appSupportRegistry->getDefaultDoctrineManager();
+        $entities = $defaultEntityManager->createQueryBuilder()
+                ->select('l')
+                ->from($this->entityName, 'l')
+                ->getQuery()
+                ->execute();
+
+        $replicaDoctrineManagers = $this->appSupportRegistry->getReplicaDoctrineManagers();
+        foreach ($replicaDoctrineManagers as $entityManager) {
+            foreach ($entities as $entity) {
+                $entityManager->remove($entity);
+            }
+        }
+
+        $defaultEntityManager->flush();
+
+        // no-doctrine
+        foreach ($this->appRepositoryRegistry as $repository) {
+            foreach ($entities as $entity) {
+                $repository->setEntityName($entity::class)->flushAll();
+            }
+        }
     }
 }

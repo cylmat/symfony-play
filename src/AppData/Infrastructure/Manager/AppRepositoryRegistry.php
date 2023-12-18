@@ -5,27 +5,22 @@ declare(strict_types=1);
 namespace App\AppData\Infrastructure\Manager;
 
 use App\AppData\Infrastructure\AppRepositoryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
 /**
- * Get every EntityManager repositories from doctrine
+ * Get every EntityManager repositories for no-doctrine
  */
 final class AppRepositoryRegistry
 {
     private string $entityName;
-    private array $doctrineManagers;
-
-    private string $mainSupport;
-    private array $doctrineReplicasSupport;
-    private array $noDoctrineReplicasSupport;
 
     /** @param AppRepositoryInterface[] $appRepositories */
     public function __construct(
-        private readonly AppEntityRegistry $appRegistry,
+        private readonly ManagerRegistry $doctrineManagerRegistry,
         #[TaggedIterator(AppRepositoryInterface::TAG)]
         private readonly iterable $appRepositories,
     ) {
-        $this->doctrineManagers = $this->appRegistry->getDoctrine()->getManagers();
     }
 
     public function setEntityName(string $entityName): self
@@ -35,30 +30,10 @@ final class AppRepositoryRegistry
         return $this;
     }
 
-    public function setManagersSupport(string $main, array $doctrineReplicas = [], array $noDoctrineReplicas = []): void
+    /** @param AppRepositoryInterface[] $appRepositories */
+    public function getSimiliDoctrineRepositories(): array // todo Generator 
     {
-        $this->mainSupport = $main;
-        $this->doctrineReplicasSupport = $doctrineReplicas;
-        $this->noDoctrineReplicasSupport = $noDoctrineReplicas;
-    }
-
-    public function flushall(): void
-    {
-        /** @todo integration test this */
-        foreach ($this->doctrineManagers as $entityManager) {
-            $entities = $entityManager->createQueryBuilder()
-                ->select('l')
-                ->from($this->entityName, 'l')
-                ->getQuery()
-                ->execute();
-
-            foreach ($entities as $e) {
-                $entityManager->remove($e);
-            }
-            $entityManager->flush();
-        }
-
-        // Flush on App repositories
-        //$this->remove($this->entityName);
+        // @todo init entity name
+        return $this->appRepositories;
     }
 }

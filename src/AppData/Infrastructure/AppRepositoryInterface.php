@@ -9,9 +9,10 @@ interface AppRepositoryInterface
 {
     public const TAG = 'app.repository';
 
+    /** Called from AbstractAppRepository */
     public function setEntityName(string $entityName): self;
 
-    public function findAll(): array;
+    public function flushAll(): void;
 
-    public function remove(object $entity): void;
+    public function truncate(): void;
 }

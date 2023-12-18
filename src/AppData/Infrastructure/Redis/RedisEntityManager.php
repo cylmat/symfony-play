@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
-use App\AppData\Infrastructure\ClientInterface;
 use App\AppData\Infrastructure\Manager\AppEntityRegistry;
 use App\AppData\Infrastructure\Redis\RedisClient;
 
@@ -15,11 +14,6 @@ final class RedisEntityManager implements AppEntityManagerInterface
         private readonly RedisClient $redisClient,
         private readonly AppEntityRegistry $appRegistry,
     ) {
-    }
-
-    public function getClient(): ClientInterface
-    {
-        return $this->redisClient;
     }
 
     public function save(object $object): void

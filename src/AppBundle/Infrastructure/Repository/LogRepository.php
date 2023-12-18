@@ -8,16 +8,6 @@ final class LogRepository extends AbstractAppRepository
 {
     protected const ENTITY_NAME = Log::class;
 
-    public function save(Log $entity): void
-    {
-        // to implements ...
-    }
-
-    public function remove(Log $entity): void
-    {
-        // to implements ...
-    }
-
     /*
     // @return Log[] Returns an array of Log objects
     public function findByExampleField($value): array

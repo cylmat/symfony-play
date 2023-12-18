@@ -5,8 +5,8 @@ namespace App\Tests\Integration;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\Repository\LogRepository;
 use App\AppData\Infrastructure\Manager\AppEntityRegistry;
+use App\AppData\Infrastructure\Manager\AppSupportRegistry;
 use App\AppData\Infrastructure\Redis\RedisRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */
@@ -15,25 +15,43 @@ final class EntityRegistryTest extends KernelTestCase
     private AppEntityRegistry $appEntityRegistry;
     private LogRepository     $logRepository;
     private RedisRepository   $redisRepository;
+    private AppSupportRegistry $appSupportRegistry;
 
     public function setUp(): void
     {
         $this->appEntityRegistry = static::getContainer()->get(AppEntityRegistry::class);
+        $this->appSupportRegistry = static::getContainer()->get(AppSupportRegistry::class);
         // mysql & sqlite
         $this->logRepository = static::getContainer()->get(LogRepository::class);
         // redis
         $this->redisRepository = static::getContainer()->get(RedisRepository::class);
+       
+        $this->appSupportRegistry->getDefaultDoctrineManager('default')
+            ->createQueryBuilder()
+            ->delete(Log::class, 'l')
+            ->where("1=1")
+            ->getQuery()
+            ->execute();
+
+        $this->appSupportRegistry->getManager('sqlite')
+            ->createQueryBuilder()
+            ->delete(Log::class, 'l')
+            ->where("1=1")
+            ->getQuery()
+            ->execute();
+        
+        $this->appSupportRegistry->getDefaultDoctrineManager('default')
+            ->createQuery("DELETE FROM ".Log::class)->execute();
+
+        $this->appSupportRegistry->getManager('sqlite')
+            ->createQuery("DELETE FROM ".Log::class)->execute();
 
         $this->logRepository->flushall();
         $this->redisRepository->flushall();
+    
     }
 
     /** Entities */
-
-    public function testEntityManager(): void
-    {
-        $this->assertInstanceOf(ManagerRegistry::class, $this->appEntityRegistry->getDoctrine());
-    }
 
     public function testDoctrineEntityPersistence(): void
     {
@@ -47,8 +65,8 @@ final class EntityRegistryTest extends KernelTestCase
         $id = $entity->getId();
 
         // test
-        $mysql = $this->appEntityRegistry->getDoctrine()->getManager('default');
-        $sqlite = $this->appEntityRegistry->getDoctrine()->getManager('sqlite');
+        $mysql = $this->appSupportRegistry->getDefaultDoctrineManager('default');
+        $sqlite = $this->appSupportRegistry->getManager('sqlite');
         $r = $mysql->getRepository($entity::class)->findAll();
         $d = $sqlite->getRepository($entity::class)->findAll();
 

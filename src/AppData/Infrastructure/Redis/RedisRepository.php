@@ -6,14 +6,13 @@ namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppRepositoryInterface;
 use App\AppData\Infrastructure\Manager\AppEntityRegistry;
-use App\AppData\Infrastructure\Redis\RedisEntityManager;
 
 final class RedisRepository implements AppRepositoryInterface
 {
     private string $entityName;
 
     public function __construct(
-        private readonly RedisEntityManager $redisPersistance,
+        private readonly RedisClient $redisClient,
         private readonly AppEntityRegistry $appRegistry,
     ) {
     }
@@ -25,9 +24,14 @@ final class RedisRepository implements AppRepositoryInterface
         return $this;
     }
 
-    public function remove(object $entity): void
+    public function flushAll(): void
     {
-        $this->redisPersistance->remove($entity);
+        // to implements ...
+    }
+
+    public function truncate(): void
+    {
+        // ...
     }
 
     public function findAll(): array
@@ -35,19 +39,14 @@ final class RedisRepository implements AppRepositoryInterface
         $tableName = $this->appRegistry->getTableName($this->entityName);
 
         $all = [];
-        $keys = $this->redisPersistance->getClient()->keys($tableName.':*') ?? [];
+        $keys = $this->redisClient->keys($tableName.':*') ?? [];
 
         foreach ($keys as $key) {
-            $serializedEntity = $this->redisPersistance->getClient()->get($key);
+            $serializedEntity = $this->redisClient->get($key);
             $entity = \unserialize($serializedEntity);
             $all[$key] = $entity;
         }
 
         return $all;
-    }
-
-    public function flushAll(): void
-    {
-        // to implements ...
     }
 }
