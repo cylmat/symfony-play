@@ -59,9 +59,7 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
 
         // no-doctrine
         foreach ($this->appSupportRegistry->getSimiliReplicaManagers() as $similiManager) {
-            foreach ($entities as $entity) {
-                $similiManager->getRepository()->setEntityName($entity::class)->flushAll();
-            }
+            $similiManager->getRepository()->setEntityName($this->entityName)->flushAll();
         }
     }
 }
