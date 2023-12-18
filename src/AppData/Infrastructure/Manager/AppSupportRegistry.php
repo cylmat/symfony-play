@@ -50,7 +50,7 @@ final class AppSupportRegistry
         $managers = [];
         foreach ($this->doctrineManagerRegistry->getManagers() as $managerName => $doctrineEntityManager) {
             /** @var EntityManagerInterface $doctrineEntityManager */
-            if (!$this->isSupportedReplicasEntity($managerName)) {
+            if (!$this->isSupportedReplicaManager($managerName)) {
                 continue;
             }
 
@@ -65,7 +65,7 @@ final class AppSupportRegistry
     {
         $managers = [];
         foreach ($this->noDoctrineEntityManagerList as $managerName => $managerClassName) {
-            if (!$this->isSupportedReplicasEntity($managerName)) {
+            if (!$this->isSupportedReplicaManager($managerName)) {
                 continue;
             }
 
@@ -78,7 +78,7 @@ final class AppSupportRegistry
         return $managers;
     }
 
-    private function isSupportedReplicasEntity(string $managerName): bool
+    private function isSupportedReplicaManager(string $managerName): bool
     {
         $supportedClasses = $this->entityReplicasSupport[$this->entityName];
         $this->handleNotExistingManagerName($supportedClasses);
