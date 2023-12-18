@@ -55,7 +55,6 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
                 $entityManager->remove($entity);
             }
         }
-
         $defaultEntityManager->flush();
 
         // no-doctrine
