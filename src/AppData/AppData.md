@@ -1,6 +1,7 @@
 # Info
 
 (like one Doctrine->EntityManager and multi Repositories)
+Autowiring : ManagerRegistry, doctrine.orm.default_entity_manager
 
 -> @todo AppEntityRegistry manage appmanagers[] (like ->getManager)
 -> @todo new AppEntityManager implements save() and remove()
