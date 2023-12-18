@@ -36,7 +36,7 @@ final class AppEntityManager
         $this->supportRegistry->getDefaultDoctrineManager()->persist($entity);
 
         // other
-        foreach ($this->supportRegistry->getReplicaDoctrineManagers() as $doctrineEntityManager) {
+        foreach ($this->supportRegistry->getDoctrineReplicaManagers() as $doctrineEntityManager) {
             $doctrineEntityManager->persist($entity);
         }
         $doctrineEntityManager->flush();
@@ -58,7 +58,7 @@ final class AppEntityManager
 
         // doctrine
         $this->supportRegistry->getDefaultDoctrineManager()->remove($entity);
-        foreach ($this->supportRegistry->getReplicaDoctrineManagers() as $doctrineEntityManager) {
+        foreach ($this->supportRegistry->getDoctrineReplicaManagers() as $doctrineEntityManager) {
             $doctrineEntityManager->remove($entity);
         }
         $doctrineEntityManager->flush();

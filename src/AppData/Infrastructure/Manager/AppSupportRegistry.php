@@ -45,7 +45,7 @@ final class AppSupportRegistry
     }
 
     /** @return array<EntityManagerInterface> */
-    public function getReplicaDoctrineManagers(): array
+    public function getDoctrineReplicaManagers(): array
     {
         $managers = [];
         foreach ($this->doctrineManagerRegistry->getManagers() as $managerName => $doctrineEntityManager) {

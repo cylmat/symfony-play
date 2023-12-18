@@ -49,7 +49,7 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->execute();
 
-        $replicaDoctrineManagers = $this->appSupportRegistry->getReplicaDoctrineManagers();
+        $replicaDoctrineManagers = $this->appSupportRegistry->getDoctrineReplicaManagers();
         foreach ($replicaDoctrineManagers as $entityManager) {
             foreach ($entities as $entity) {
                 $entityManager->remove($entity);
