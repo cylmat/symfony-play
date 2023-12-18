@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\AppData\Infrastructure\Manager;
 
+use Doctrine\Persistence\ManagerRegistry;
+
 /**
  * Main component to manager object entity 
  * with doctrine and no-doctrine managers.
@@ -12,8 +14,18 @@ final class AppEntityManager
 {
     /** @see vendor/doctrine/persistence/src/Persistence/AbstractManagerRegistry.php */
     public function __construct(
+        private readonly ManagerRegistry $doctrineManagerRegistry,
         private readonly AppSupportRegistry $supportRegistry,
     ) {
+    }
+
+    public function getTableName(string $entityName): string
+    {
+        /** @var ObjectManager $manager */
+        $manager = $this->doctrineManagerRegistry
+            ->getManagerForClass($entityName);
+
+        return $manager->getClassMetadata($entityName)->getTableName();
     }
 
     public function save(object $entity): void
@@ -30,7 +42,7 @@ final class AppEntityManager
         $doctrineEntityManager->flush();
 
         // simili
-        foreach ($this->supportRegistry->getSimiliReplicaDoctrineManagers() as $noDoctrineManager) {
+        foreach ($this->supportRegistry->getSimiliReplicaManagers() as $noDoctrineManager) {
             $noDoctrineManager->save($entity);
         }
     }
@@ -40,7 +52,7 @@ final class AppEntityManager
         $this->initSupport($entity);
 
         // no doctrine first
-        foreach ($this->supportRegistry->getSimiliReplicaDoctrineManagers() as $noDoctrineManager) {
+        foreach ($this->supportRegistry->getSimiliReplicaManagers() as $noDoctrineManager) {
             $noDoctrineManager->remove($entity);
         }
 

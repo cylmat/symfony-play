@@ -61,7 +61,7 @@ final class AppSupportRegistry
     }
 
     /** @return array<AppEntityManagerInterface> */
-    public function getSimiliReplicaDoctrineManagers(): array
+    public function getSimiliReplicaManagers(): array
     {
         $managers = [];
         foreach ($this->noDoctrineEntityManagerList as $managerName => $managerClassName) {

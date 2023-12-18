@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace App\AppData\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\AppEntityManagerInterface;
-use App\AppData\Infrastructure\Manager\AppManagerRegistry;
+use App\AppData\Infrastructure\Manager\AppEntityManager;
 use App\AppData\Infrastructure\Redis\RedisClient;
 
 final class RedisEntityManager implements AppEntityManagerInterface
 {
     public function __construct(
         private readonly RedisClient $redisClient,
-        private readonly AppManagerRegistry $appRegistry,
         private readonly RedisRepository $redisRepository,
+        private readonly AppEntityManager $appRegistry,
     ) {
     }
 
