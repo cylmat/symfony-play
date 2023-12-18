@@ -7,7 +7,7 @@ namespace App\AppData\Infrastructure\Redis;
 use App\AppData\Infrastructure\AppRepositoryInterface;
 use App\AppData\Infrastructure\Manager\AppEntityManager;
 
-final class RedisRepository implements AppRepositoryInterface
+final class RedisRepositoryForTest implements AppRepositoryInterface
 {
     private string $entityName;
 
@@ -32,5 +32,21 @@ final class RedisRepository implements AppRepositoryInterface
     public function truncate(): void
     {
         // ...
+    }
+
+    public function findAll(): array
+    {
+        $tableName = $this->appRegistry->getTableName($this->entityName);
+
+        $all = [];
+        $keys = $this->redisClient->keys($tableName.':*') ?? [];
+
+        foreach ($keys as $key) {
+            $serializedEntity = $this->redisClient->get($key);
+            $entity = \unserialize($serializedEntity);
+            $all[$key] = $entity;
+        }
+
+        return $all;
     }
 }

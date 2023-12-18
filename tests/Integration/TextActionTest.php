@@ -6,7 +6,10 @@ use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\MessageHandler\MessageHandler;
 use App\AppData\Infrastructure\Redis\RedisClient;
-use App\AppData\Infrastructure\Redis\RedisRepository; /** @todo use model redis repository interface */
+use App\AppData\Infrastructure\Redis\RedisRepository;
+use App\AppData\Infrastructure\Redis\RedisRepositoryForTest;
+
+ /** @todo use model redis repository interface */
 use App\Text\Application\TextAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Messenger\Transport\TransportInterface;
@@ -75,7 +78,7 @@ final class TextActionTest extends KernelTestCase
 
     private function assertRepository(int $count): void
     {
-        $redisRepository = static::getContainer()->get(RedisRepository::class);
+        $redisRepository = static::getContainer()->get(RedisRepositoryForTest::class);
         $this->assertCount($count, $redisRepository->setEntityName(Log::class)->findAll());
     }
 }
