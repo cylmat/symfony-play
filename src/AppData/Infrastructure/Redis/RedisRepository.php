@@ -34,6 +34,7 @@ final class RedisRepository implements AppRepositoryInterface
         // ...
     }
 
+    // ! only used for tests now... !
     public function findAll(): array
     {
         $tableName = $this->appRegistry->getTableName($this->entityName);

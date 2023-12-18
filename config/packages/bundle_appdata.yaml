@@ -29,14 +29,3 @@ services:
     App\AppData\Infrastructure\Redis\RedisClient:
         arguments:
             $redisClient: ~
-
-    # APP REGISTRY ###
-    # @todo: Use fake Doctrine for tests
-    # App\AppData\Infrastructure\Manager\AppEntityManager:
-    #     arguments: 
-    #         $reg: !tagged_iterator tag
-    #     decorates: Doctrine\Common\Persistence\ManagerRegistry
-    #     NOT NEEDED arguments: ['@.inner'] # Automatic with default service.yaml
-    # App\AppData\Infrastructure\Manager\AppRepositoryRegistry:
-    #     arguments:
-    #         $repositories: !tagged_iterator app.repository

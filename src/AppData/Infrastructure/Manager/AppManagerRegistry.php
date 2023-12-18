@@ -18,8 +18,6 @@ final class AppManagerRegistry
     ) {
     }
 
-    // @todo getManagerFor(...)
-
     public function getTableName(string $entityName): string
     {
         /** @var ObjectManager $manager */

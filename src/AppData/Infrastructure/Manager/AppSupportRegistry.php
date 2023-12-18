@@ -9,6 +9,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
 
+/**
+ * Manage supported managers from configured entity list
+ */
 final class AppSupportRegistry
 {
     private const DEFAULT = 'default';

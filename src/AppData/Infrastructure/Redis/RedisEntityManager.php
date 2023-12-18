@@ -13,7 +13,13 @@ final class RedisEntityManager implements AppEntityManagerInterface
     public function __construct(
         private readonly RedisClient $redisClient,
         private readonly AppManagerRegistry $appRegistry,
+        private readonly RedisRepository $redisRepository,
     ) {
+    }
+
+    public function getRepository(): RedisRepository
+    {
+        return $this->redisRepository;
     }
 
     public function save(object $object): void

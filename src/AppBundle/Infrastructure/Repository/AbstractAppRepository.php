@@ -3,7 +3,6 @@
 namespace App\AppBundle\Infrastructure\Repository;
 
 use App\AppBundle\Domain\Entity\Log;
-use App\AppData\Infrastructure\Manager\AppRepositoryRegistry;
 use App\AppData\Infrastructure\Manager\AppSupportRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -31,9 +30,9 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
     public function __construct(
         private readonly ManagerRegistry $doctrineManagerRegistry,
         private readonly AppSupportRegistry $appSupportRegistry,
-        private readonly AppRepositoryRegistry $appRepositoryRegistry,
     ) {
         $this->entityName = static::ENTITY_NAME; // Use once.
+        $this->appSupportRegistry->setEntityName($this->entityName);
 
         parent::__construct($doctrineManagerRegistry, $this->entityName);
     }
@@ -42,8 +41,6 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
 
     public function flushAll(): void
     {
-        $this->appSupportRegistry->setEntityName($this->entityName);
-
         /** @todo integration test this */
         $defaultEntityManager = $this->appSupportRegistry->getDefaultDoctrineManager();
         $entities = $defaultEntityManager->createQueryBuilder()
@@ -62,9 +59,9 @@ abstract class AbstractAppRepository extends ServiceEntityRepository
         $defaultEntityManager->flush();
 
         // no-doctrine
-        foreach ($this->appRepositoryRegistry as $repository) {
+        foreach ($this->appSupportRegistry->getSimiliReplicaDoctrineManagers() as $similiManager) {
             foreach ($entities as $entity) {
-                $repository->setEntityName($entity::class)->flushAll();
+                $similiManager->getRepository()->setEntityName($entity::class)->flushAll();
             }
         }
     }
