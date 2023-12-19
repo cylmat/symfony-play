@@ -23,11 +23,29 @@ framework:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
             # async: '%env(MESSENGER_TRANSPORT_DSN)%'
             # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
+            sync: 'sync://'
+            doctrine:
+                # serializer: messenger.transport.symfony_serializer
+                dsn: '%env(MESSENGER_TRANSPORT_DOCTRINE_DSN)%?auto_setup=1'
+                options:
+                    auto_setup: true
+                retry_strategy:
+                    max_retries: 0
+                    delay: 10 # milliseconds delay
+                    # override all of this with a service that
+                    # service: (implements Symfony\Component\Messenger\Retry\RetryStrategyInterface)
+            #failed: sync://
 
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
+            App\AppBundle\Domain\Message\MessageInterface: [doctrine, sync]
+
+        # serializer:
+        #     default_serializer: messenger.transport.symfony_serializer
+        #     symfony_serializer:
+        #         format: json
+        #         context: {}
 
 # when@test:
 #    framework:

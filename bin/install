@@ -35,6 +35,7 @@ case "$1" in
 	$0 volta
 	$0 node
 	$0 symfony
+	$0 local
 	# $0 phing
 	# $0 phive
 	echo -e "\033[1;32m------------\n- All good -\n------------ \033[0m"
@@ -60,6 +61,10 @@ case "$1" in
 
 "composer-nodev")
 	bin/composer install --prefer-dist --no-progress --no-dev --no-scripts --no-plugins ;;
+
+"local")
+	[ ! -f ./config/local/parameters.yaml ] && cp ./config/local/parameters.yaml.dist ./config/local/parameters.yaml
+;;
 
 ##########
 # BINARY #

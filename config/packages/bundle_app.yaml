@@ -50,3 +50,7 @@ services:
         arguments:
             - '%env(DATABASE_URL)%'
             - { db_table: 'sessions' }
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@snc_redis.local'

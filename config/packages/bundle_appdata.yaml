@@ -26,6 +26,9 @@ services:
     #########
     # INFRA #
     #########
+    # @todo remove this factory and select client with config only !
     App\AppData\Infrastructure\Redis\RedisClient:
         arguments:
-            $redisClient: ~
+            $redisClient: "@= 
+                parameter('use_redis') === 'local' ? service('snc_redis.local') : (
+                    parameter('use_redis') === 'remote' ? service('snc_redis.remote') : null)"

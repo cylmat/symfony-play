@@ -1,6 +1,3 @@
-parameters:
-    db_schema_filter: '~^(?!messenger_messages)~'
-
 doctrine:
     # @see https://symfony.com/doc/current/reference/configuration/doctrine.html
 
@@ -19,20 +16,6 @@ doctrine:
                 memory: true
                 driver_class: ~
                 wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
-                schema_filter: '%db_schema_filter%'
-
-            sqlite:
-                url: '%env(resolve:DEV_SQLITE_URL)%'
-                driver: pdo_sqlite
-                dbname_suffix: ''
-                # IMPORTANT: You MUST configure your server version,
-                # either here or in the DATABASE_URL env var (see .env file)
-                server_version: '3'
-                charset: utf8mb4
-                memory: true
-                driver_class: ~
-                wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
-                schema_filter: '%db_schema_filter%'
 
     # Object Relational Mapping
     orm:
@@ -61,12 +44,21 @@ doctrine:
                 #     type: service
                 #     id: CacheDriver
 
-            sqlite:
-                connection: sqlite
-                # @todo Can we mutualized mapping ? #
-                mappings:
-                    AppBundle:
-                        type: attribute
-                        prefix: 'App\AppBundle'
-                        dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
-                        is_bundle: false # change 'dir' attribute as relative path
+when@prod:
+    doctrine:
+        orm:
+            auto_generate_proxy_classes: false
+            query_cache_driver:
+                type: pool
+                pool: doctrine.system_cache_pool
+            result_cache_driver:
+                type: pool
+                pool: doctrine.result_cache_pool
+
+    framework:
+        cache:
+            pools:
+                doctrine.result_cache_pool:
+                    adapter: cache.app
+                doctrine.system_cache_pool:
+                    adapter: cache.system
