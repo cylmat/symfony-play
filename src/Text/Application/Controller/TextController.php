@@ -18,7 +18,7 @@ class TextController extends AbstractController
         $textForm = $this->createForm(TextType::class, null, []);
         $textForm->handleRequest($request);
 
-        $result = null;
+        $response = null;
         /* @todo use Model */
         if ($textForm->isSubmitted() && $textForm->isValid()) {
             $response = $textAction->execute((new AppRequest)
@@ -37,7 +37,7 @@ class TextController extends AbstractController
 
         return $this->render('text/index.html.twig', [
             'form' => $textForm,
-            'result' => $response->getObjectData()->text,
+            'result' => $response?->getObjectData()->text,
         ]);
     }
 
