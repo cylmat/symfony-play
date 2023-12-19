@@ -64,19 +64,36 @@ RUN apt update
 # /usr/local/etc/php/conf.d/docker-php-ext-***.ini 
 ##################
 
+# @see https://www.php.net/manual/en/refs.basic.other.php
+
 RUN apt install -y \
     libxslt1-dev \
     libzip-dev
-RUN docker-php-ext-install -j$(nproc) \
-    bcmath \
-    gettext \
-    intl \
-    opcache \
-    pcntl \
-    posix \
-    sockets \
-    xsl \
-    zip
+RUN docker-php-ext-install -j$(nproc) bcmath 
+RUN docker-php-ext-install -j$(nproc) ctype 
+RUN docker-php-ext-install -j$(nproc) fileinfo 
+RUN docker-php-ext-install -j$(nproc) gettext 
+RUN docker-php-ext-install -j$(nproc) intl 
+# RUN docker-php-ext-install -j$(nproc) json 
+# RUN docker-php-ext-install -j$(nproc) ldap 
+# RUN docker-php-ext-install -j$(nproc) mbstring 
+# RUN docker-php-ext-configure odbc && docker-php-ext-install -j$(nproc) odbc 
+RUN docker-php-ext-install -j$(nproc) opcache 
+RUN docker-php-ext-install -j$(nproc) pcntl 
+# RUN docker-php-ext-install -j$(nproc) phar 
+RUN docker-php-ext-install -j$(nproc) posix 
+# RUN docker-php-ext-install -j$(nproc) reflection 
+RUN docker-php-ext-install -j$(nproc) session 
+RUN docker-php-ext-install -j$(nproc) sockets 
+# RUN docker-php-ext-install -j$(nproc) sodium 
+# RUN docker-php-ext-install -j$(nproc) spl 
+# RUN docker-php-ext-configure standard && docker-php-ext-install -j$(nproc) standard 
+# RUN docker-php-ext-install -j$(nproc) tokenizer 
+RUN docker-php-ext-install -j$(nproc) xml 
+RUN docker-php-ext-install -j$(nproc) xsl 
+RUN docker-php-ext-install -j$(nproc) zip
+
+#bz2 #gd #hash
 
 ### GD ###
 
@@ -92,12 +109,15 @@ RUN pecl channel-update pecl.php.net
 ### (http://pecl.php.net/packages.php)
 ### Use "pecl list-all" for all supported modules.
 ### Add extension=*** in php.ini for each pecl's extensions
-RUN apt install -y libmcrypt-dev
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install \
-    apcu \
-    mcrypt \
-    psr
+RUN apt install -y libmcrypt-dev libpcre3-dev
+RUN pecl channel-update pecl.php.net && echo "\n" | pecl install apcu
+RUN pecl channel-update pecl.php.net && echo "\n" | pecl install ast
+RUN pecl channel-update pecl.php.net && echo "\n" | pecl install mcrypt
+RUN pecl channel-update pecl.php.net && echo "\n" | pecl install oauth
+RUN pecl channel-update pecl.php.net && echo "\n" | pecl install psr
 
+#crypto #env #handlebars #http_message #imagick #imap #ingres #mustache #lua #v8js
+    
 #####################
 ### DB extensions ###
 #####################
@@ -109,10 +129,16 @@ RUN apt update
 RUN apt install -y \
     libsqlite3-dev \
     libpq-dev
-RUN docker-php-ext-install -j$(nproc) \
-    pdo \
-    pdo_mysql \
-    pdo_sqlite
+
+RUN docker-php-ext-install -j$(nproc) dba
+RUN docker-php-ext-install -j$(nproc) pdo
+RUN docker-php-ext-install -j$(nproc) pdo_mysql
+RUN docker-php-ext-install -j$(nproc) pdo_pgsql
+RUN docker-php-ext-install -j$(nproc) pdo_sqlite
+
+# RUN docker-php-ext-install -j$(nproc) pdo_odbc
+
+RUN pecl channel-update pecl.php.net && echo "\yes" | pecl install mongodb
 
 ############################
 ### Coverage & Profiling ###

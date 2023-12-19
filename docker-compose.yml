@@ -20,10 +20,10 @@ services:
     phpfpm: 
         ###########
         # "Target" can be one of :
-        # - CORE     with php:8.1-fpm empty
+        # - CORE     with php:8.x-fpm empty
         # - SIMPLE   with apt utils and network tools
         # - EXT      with docker-php selected extensions and databases
-        # - DB_EXT with added Pecl extensions and databases
+        # - DB_EXT   with added Pecl extensions and databases
         # - FULL     with bench and profiling
         #
         # Feel free to modify for your own configuration.
@@ -61,68 +61,6 @@ services:
             - 8001:80
         networks:
             - sym
-
-    ############
-    # DATABASE #
-    ############
-    mysql:
-        image: mysql:5.7
-        restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_USER: user
-            MYSQL_PASSWORD: pass
-            MYSQL_DATABASE: mydb
-            MYSQL_TCP_PORT: 3306 # Mandatory 3306 for Adminer
-        volumes:
-            - .docker/data/mysql/my.cnf:/etc/mysql/my.cnf:ro
-            - .docker/data/mysql/conf.d/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf:ro
-            - mysql:/var/lib/mysql
-        networks: 
-            - sym
-
-    ##############
-    # Key-values #
-    ##############
-    redis:
-        image: redis:6.0  
-        restart: always
-        volumes: 
-            - .docker/data/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
-        # ports: [6379:6379]
-        networks:
-            - sym
-
-    #########
-    # ADMIN #
-    #########
-
-    adminer:
-        image: adminer:4-standalone
-        restart: always
-        networks: [sym]
-        ports: [8081:8080]
-
-    redisadmin:
-        image: erikdubbelboer/phpredisadmin
-        restart: always
-        environment:
-            - REDIS_1_HOST=redis
-            - REDIS_1_NAME=AppRedis
-        networks: [sym]
-        ports: [8082:80]
-
-    # phpmyadmin:
-    #     image: phpmyadmin:5.0
-    #     restart: always
-    #     ports: 
-    #         - 8081:80
-    #     environment: 
-    #         - PMA_ARBITRARY=1
-    #     external_links:
-    #         - mysql:mysql
-    #     networks:
-    #         - sym
 
 ######################
 # Other useful boxes #
