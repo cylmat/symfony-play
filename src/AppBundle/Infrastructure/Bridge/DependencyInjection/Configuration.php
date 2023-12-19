@@ -13,7 +13,7 @@ final class Configuration implements ConfigurationInterface
     {
         $treeBuilder = (new TreeBuilder('app'));
 
-        $treeBuilder->getRootNode() // @phpstan-ignore-line: undefined method children()
+        $treeBuilder->getRootNode()
             ->children()
                 ->booleanNode('enabled')->defaultNull()->end()
             ->end()

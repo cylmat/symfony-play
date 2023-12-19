@@ -47,5 +47,7 @@ parameters:
     # checkGenericClassInNonGenericObjectType: true
 
     ignoreErrors:
-        - '#Access to an undefined property App\\AppBundle\\Application\\Common\\AppRequest.*#'
-#       - '#Sample [a-zA-Z0-9\\_]+::doFoo\(\)#'
+        # - '#Sample [a-zA-Z0-9\\_]+::doFoo\(\)#'
+        - '*App\\Kernel*'
+        - '*App\\AppBundle\\Application\\Common\\AppRequest.*'
+        - '*RedisClient::*'

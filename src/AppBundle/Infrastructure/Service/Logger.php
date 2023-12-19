@@ -9,7 +9,6 @@ use DateTimeImmutable;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
 
-/* @phpstan-ignore-next-line: extends @final class Monolog\Logger */
 final class Logger extends MonologLogger implements LoggerInterface
 {
     public string $channel = 'default';

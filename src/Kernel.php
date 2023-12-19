@@ -13,7 +13,6 @@ class Kernel extends BaseKernel
     use MicroKernelTrait;
 
     /** @SuppressWarnings(PHPMD) Unused code */
-    /* @phpstan-ignore-next-line: unused private method */
     private function configureContainer(ContainerConfigurator $container, LoaderInterface $loader, ContainerBuilder $builder): void
     {
         $configDir = $this->getConfigDir();
