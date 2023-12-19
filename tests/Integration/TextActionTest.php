@@ -6,7 +6,6 @@ use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Domain\Entity\Log;
 use App\AppBundle\Infrastructure\MessageHandler\MessageHandler;
 use App\AppData\Infrastructure\Redis\RedisClient;
-use App\AppData\Infrastructure\Redis\RedisRepository;
 use App\AppData\Infrastructure\Redis\RedisRepositoryForTest;
 
  /** @todo use model redis repository interface */
@@ -51,7 +50,7 @@ final class TextActionTest extends KernelTestCase
         // @todo use workflow
 
         $res = $this->textAction->execute($this->getRequest());
-        $this->assertSame('gamma-beta', $res);
+        $this->assertSame('gamma-beta', $res->getObjectData()->text);
 
         $this->assertRepository(0);
         $this->assertMessage();

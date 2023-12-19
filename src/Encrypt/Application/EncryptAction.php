@@ -6,6 +6,7 @@ namespace App\Encrypt\Application;
 
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
+use App\AppBundle\Application\Common\AppResponse;
 use App\Encrypt\Domain\Manager\EncryptManager;
 
 final class EncryptAction implements ActionInterface
@@ -18,8 +19,10 @@ final class EncryptAction implements ActionInterface
     ) {
     }
 
-    public function execute(AppRequest $request): string
+    public function execute(AppRequest $request): AppResponse
     {
-        return $this->encryptManager->encryptValue(self::BCRYPT, $request->value, $request->options);
+        $data = $this->encryptManager->encryptValue(self::BCRYPT, $request->value, $request->options);
+
+        return new AppResponse($data);
     }
 }

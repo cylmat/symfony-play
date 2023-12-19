@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Encrypt\Domain\Model;
 
-final class EncryptedData
+use App\AppBundle\Application\Common\Contracts\ModelInterface;
+
+final class EncryptedData implements ModelInterface
 {
     public const PROCESS_TRANSITION = 'process';
     public const FINISH_TRANSITION = 'finish';

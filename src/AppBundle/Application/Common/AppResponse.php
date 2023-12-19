@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\AppBundle\Application\Common;
 
-class AppResponse
+use App\AppBundle\Application\Common\Contracts\ModelInterface;
+
+class AppResponse implements ResponseInterface
 {
     public function __construct(
-        private object $objectData,
+        private ModelInterface $objectData,
     ) {
     }
 

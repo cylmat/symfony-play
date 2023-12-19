@@ -21,7 +21,7 @@ class TextController extends AbstractController
         $result = null;
         /* @todo use Model */
         if ($textForm->isSubmitted() && $textForm->isValid()) {
-            $result = $textAction->execute((new AppRequest)
+            $response = $textAction->execute((new AppRequest)
                 ->setText($textForm->get('text')->getData())
                 ->setCommands([
                     $this->commandArguments(
@@ -37,7 +37,7 @@ class TextController extends AbstractController
 
         return $this->render('text/index.html.twig', [
             'form' => $textForm,
-            'result' => $result,
+            'result' => $response->getObjectData()->text,
         ]);
     }
 

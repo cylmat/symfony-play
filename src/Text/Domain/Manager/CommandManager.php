@@ -6,6 +6,7 @@ use App\AppBundle\Domain\Message\LogMessage;
 use App\AppBundle\Domain\MessageBusInterface;
 use App\AppBundle\Domain\Service\LoggerAwareInterface;
 use App\AppBundle\Domain\Service\LoggerTrait;
+use App\Text\Domain\Model\TextModel;
 use App\Text\Domain\Service\CommandProcessInterface;
 use LogicException;
 
@@ -23,14 +24,16 @@ final class CommandManager implements LoggerAwareInterface
     }
 
     /** @param mixed[][] $commandsParams */
-    public function processText(string $text, array $commandsParams): string
+    public function processText(string $text, array $commandsParams): TextModel
     {
         foreach ($commandsParams as $commandParams) {
             $cmd = $this->chooseCommand($text, $commandParams);
             $text = $cmd->processText($text, $commandParams);
         }
 
-        return $text;
+        return new TextModel(
+            $text
+        );
     }
 
     /** @param string[] $commandParams */
