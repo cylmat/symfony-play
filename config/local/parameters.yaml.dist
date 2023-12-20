@@ -1,2 +1,2 @@
 parameters:
-    # use_redis: ~
+    use_redis: ~

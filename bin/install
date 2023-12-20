@@ -44,26 +44,27 @@ case "$1" in
 # COMPOSER #
 "composer-dev")
 	test -e bin/composer || $0 composer-bin;
-	bin/composer require --dev \
-	brianium/paratest \
-	behat/behat \
-	friends-of-phpspec/phpspec-code-coverage \
-	kint-php/kint \
-	nikic/php-parser \
-	pestphp/pest \
-	phpro/grumphp \
-	phpspec/phpspec \
-	phpunit/phpunit \
-	phpunitgen/console \
-	sebastian/phpcpd \
-	squizlabs/php_codesniffer
+	bin/composer install --dev
+	# brianium/paratest \
+	# behat/behat \
+	# friends-of-phpspec/phpspec-code-coverage \
+	# kint-php/kint \
+	# nikic/php-parser \
+	# pestphp/pest \
+	# phpro/grumphp \
+	# phpspec/phpspec \
+	# phpunit/phpunit \
+	# phpunitgen/console \
+	# sebastian/phpcpd \
+	# squizlabs/php_codesniffer
 ;;
 
 "composer-nodev")
 	bin/composer install --prefer-dist --no-progress --no-dev --no-scripts --no-plugins ;;
 
 "local")
-	[ ! -f ./config/local/parameters.yaml ] && cp ./config/local/parameters.yaml.dist ./config/local/parameters.yaml
+	[ ! -f ./env.local ] && cp .env.dev.local.dist .env.local
+	[ ! -f ./config/local/parameters.yaml ] && cp config/local/parameters.yaml.dist config/local/parameters.yaml
 ;;
 
 ##########

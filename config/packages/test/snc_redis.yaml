@@ -1,5 +1,0 @@
-snc_redis:
-    clients:
-        test:
-            type: predis
-            dsn: "%env(TEST_REDIS_URL)%"
