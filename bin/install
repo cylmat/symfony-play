@@ -63,8 +63,9 @@ case "$1" in
 	bin/composer install --prefer-dist --no-progress --no-dev --no-scripts --no-plugins ;;
 
 "local")
-	[ ! -f ./env.local ] && cp .env.dev.local.dist .env.local
+	[ ! -f ./.env.local ] && cp .env.local.dev.dist .env.local
 	[ ! -f ./config/local/parameters.yaml ] && cp config/local/parameters.yaml.dist config/local/parameters.yaml
+	chmod 777 -R var
 ;;
 
 ##########

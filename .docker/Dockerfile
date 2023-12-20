@@ -112,6 +112,7 @@ RUN pecl channel-update pecl.php.net
 RUN apt install -y libmcrypt-dev libpcre3-dev
 RUN pecl channel-update pecl.php.net && echo "\n" | pecl install apcu
 RUN pecl channel-update pecl.php.net && echo "\n" | pecl install ast
+RUN pecl channel-update pecl.php.net && echo "\n" | pecl install ds
 RUN pecl channel-update pecl.php.net && echo "\n" | pecl install mcrypt
 RUN pecl channel-update pecl.php.net && echo "\n" | pecl install oauth
 RUN pecl channel-update pecl.php.net && echo "\n" | pecl install psr

@@ -2,8 +2,8 @@
 
 use App\Kernel;
 
-ini_set('display_errors', 'off');
-error_reporting(0);
+ini_set('display_errors', 'on');
+error_reporting(-1);
 
 $_SERVER['APP_RUNTIME_OPTIONS']['project_dir'] = dirname(__DIR__, 1);
 
