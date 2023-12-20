@@ -65,6 +65,7 @@ case "$1" in
 "local")
 	[ ! -f ./.env.local ] && cp .env.local.dev.dist .env.local
 	[ ! -f ./config/local/parameters.yaml ] && cp config/local/parameters.yaml.dist config/local/parameters.yaml
+	git config credential.helper store
 	chmod 777 -R var
 ;;
 
