@@ -40,7 +40,7 @@ class TextController extends AbstractController
 
         return $this->render('text/index.html.twig', [
             'form' => $textForm,
-            'result' => $data->text,
+            'result' => $data ? $data->text : null,
         ]);
     }
 
