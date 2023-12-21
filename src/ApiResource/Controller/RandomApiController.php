@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\ApiResource\Application\Controller;
+namespace App\ApiResource\Controller;
 
 use App\AppBundle\Application\Common\Api\AbstractApiController as ApiAbstractApiController;
 use App\AppBundle\Application\Common\AppRequest;
