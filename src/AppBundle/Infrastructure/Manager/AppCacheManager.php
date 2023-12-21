@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AppBundle\Infrastructure\Manager;
 
-use App\AppBundle\Domain\CacheInterface;
+use App\AppBundle\Domain\Contracts\AppCacheInterface;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Contracts\Cache\CacheInterface as SymfonyCacheInterface;
 
@@ -12,7 +12,7 @@ use Symfony\Contracts\Cache\CacheInterface as SymfonyCacheInterface;
  * Proxy between Symfony cache manager and App cache manager.
  *   - Implements "get" and "set" in simpler way.
  */
-final class AppCacheManager implements CacheInterface
+final class AppCacheManager implements AppCacheInterface
 {
     public function __construct(
         private readonly SymfonyCacheInterface $symfonyCache,

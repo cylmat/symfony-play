@@ -20,10 +20,13 @@ when@dev:
 when@test:
     snc_redis:
         clients:
-            test:
+            local:
                 type: predis
                 dsn: "%env(TEST_REDIS_URL)%"
 
+            remote:
+                type: predis
+                dsn: "%env(TEST_REDIS_URL)%"
 
 ###
 # NO snc_redis PROD BUNDLE !

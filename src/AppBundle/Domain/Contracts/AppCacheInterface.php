@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Domain;
+namespace App\AppBundle\Domain\Contracts;
 
 /** @todo use "contracts" directory */
-interface CacheInterface
+interface AppCacheInterface
 {
     public function set(string $key, mixed $value, int $expires = null): void;
     

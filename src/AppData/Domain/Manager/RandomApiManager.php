@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\AppData\Domain\Manager;
 
-use App\AppBundle\Domain\CacheInterface;
+use App\AppBundle\Domain\Contracts\AppCacheInterface;
 use App\AppBundle\Domain\DomainManagerInterface;
 use App\AppData\Domain\Model\RandomApi;
 use App\AppData\Domain\Service\CustomScriptsInterface;
@@ -12,7 +12,7 @@ use App\AppData\Domain\Service\CustomScriptsInterface;
 final class RandomApiManager implements DomainManagerInterface
 {
     public function __construct(
-        private readonly CacheInterface $cache,
+        private readonly AppCacheInterface $cache,
         private readonly CustomScriptsInterface $scriptManager,
     ) {
     }

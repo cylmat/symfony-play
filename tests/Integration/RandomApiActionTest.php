@@ -5,8 +5,8 @@ namespace App\Tests\Integration;
 use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\Api\ApiNormalizerManagerInterface;
 use App\AppBundle\Application\Common\AppRequest;
-use App\AppBundle\Domain\CacheInterface;
-use App\AppData\Infrastructure\Redis\RedisClient;
+use App\AppBundle\Domain\Contracts\AppCacheInterface;
+use App\AppData\Infrastructure\Redis\RedisRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */
@@ -17,10 +17,9 @@ final class RandomApiActionTest extends KernelTestCase
 
     public static function setUpBeforeClass(): void
     {
-        static::getContainer()->get(CacheInterface::class)->delete('cache.get');
-        static::getContainer()->get(CacheInterface::class)->delete('cache.dynamic');
-
-        static::getContainer()->get(RedisClient::class)->flushall();
+        static::getContainer()->get(AppCacheInterface::class)->delete('cache.get');
+        static::getContainer()->get(AppCacheInterface::class)->delete('cache.dynamic');
+        static::getContainer()->get(RedisRepository::class)->flushall();
     }
 
     protected function setUp(): void
@@ -45,7 +44,7 @@ final class RandomApiActionTest extends KernelTestCase
 
     private function checkCache(): void
     {
-        $cache = static::getContainer()->get(CacheInterface::class);
+        $cache = static::getContainer()->get(AppCacheInterface::class);
         $this->assertStringStartsWith('cache_get_', $cache->get('cache.get', fn() => ''));
         $this->assertStringStartsWith('cache_dynamic_', $cache->get('cache.dynamic', fn() => ''));
     }
