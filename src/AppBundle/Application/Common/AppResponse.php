@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\AppBundle\Application\Common;
 
 use App\AppBundle\Application\Common\Contracts\ModelInterface;
+use App\AppBundle\Application\Common\Contracts\ResponseInterface;
 
 class AppResponse implements ResponseInterface
 {
