@@ -35,12 +35,9 @@ class TextController extends AbstractController
             );
         }
 
-        /** @var TextModel $data */
-        $data = $response?->getObjectData();
-
         return $this->render('text/index.html.twig', [
             'form' => $textForm,
-            'result' => $data ? $data->text : null,
+            'result' => $response?->data->text,
         ]);
     }
 

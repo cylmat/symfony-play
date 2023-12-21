@@ -6,7 +6,6 @@ namespace App\Text\Application;
 
 use App\AppBundle\Application\Common\AbstractAction;
 use App\AppBundle\Application\Common\AppRequest;
-use App\AppBundle\Application\Common\AppResponse;
 use App\Text\Domain\Manager\CommandManager;
 
 final class TextAction extends AbstractAction
@@ -16,10 +15,10 @@ final class TextAction extends AbstractAction
     ) {
     }
 
-    public function execute(AppRequest $request): AppResponse
+    public function execute(AppRequest $request): TextResponse
     {
         $model = $this->cmdManager->processText($request->text, $request->commands);
 
-        return new AppResponse($model);
+        return new TextResponse($model);
     }
 }

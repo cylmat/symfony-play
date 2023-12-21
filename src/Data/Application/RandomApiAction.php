@@ -6,7 +6,6 @@ namespace App\Data\Application;
 
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
-use App\AppBundle\Application\Common\Api\ApiResponse;
 use App\Data\Domain\Manager\RandomApiManager;
 
 final class RandomApiAction implements ActionInterface
@@ -16,8 +15,8 @@ final class RandomApiAction implements ActionInterface
     ) {
     }
 
-    public function execute(AppRequest $request): ApiResponse
+    public function execute(AppRequest $request): RandomApiResponse
     {
-        return new ApiResponse($this->randomApiManager->getData());
+        return new RandomApiResponse($this->randomApiManager->getData());
     }
 }

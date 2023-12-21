@@ -7,15 +7,11 @@ namespace App\AppBundle\Application\Common;
 use App\AppBundle\Application\Common\Contracts\ModelInterface;
 use App\AppBundle\Application\Common\Contracts\ResponseInterface;
 
-class AppResponse implements ResponseInterface
+abstract class AppResponse implements ResponseInterface
 {
-    public function __construct(
-        private ModelInterface $objectData,
-    ) {
-    }
-
-    public function getObjectData(): object
+    // @todo Remove this and use ReflectionClass !
+    public function getData(): ModelInterface
     {
-        return $this->objectData;
+        return $this->data;
     }
 }

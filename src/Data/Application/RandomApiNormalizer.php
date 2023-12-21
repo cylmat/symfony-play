@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Application\DTO;
+namespace App\Data\Application;
 
 use App\AppBundle\Application\Common\Api\ApiNormalizerInterface;
 use App\Data\Domain\Model\RandomApi;

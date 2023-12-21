@@ -6,5 +6,5 @@ namespace App\AppBundle\Application\Common\Contracts;
 
 interface ResponseInterface
 {
-    public function getObjectData(): object;
+    public function getData(): ModelInterface;
 }

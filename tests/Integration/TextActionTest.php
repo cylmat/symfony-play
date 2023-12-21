@@ -50,7 +50,7 @@ final class TextActionTest extends KernelTestCase
         // @todo use workflow
 
         $res = $this->textAction->execute($this->getRequest());
-        $this->assertSame('gamma-beta', $res->getObjectData()->text);
+        $this->assertSame('gamma-beta', $res->data->text);
 
         $this->assertRepository(0);
         $this->assertMessage();

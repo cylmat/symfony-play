@@ -25,7 +25,8 @@ final class ApiNormalizerManager implements ApiNormalizerManagerInterface
     public function normalizeResponse(ApiResponseInterface $response): array
     {
         $normalizerFounds = $this->findNormalizer($response);
-        $data = $normalizerFounds($response->getObjectData());
+        // @todo Use ReflectionClass
+        $data = $normalizerFounds($response->getData());
 
         return $this->apiFormatter->format($data);
     }
@@ -35,7 +36,7 @@ final class ApiNormalizerManager implements ApiNormalizerManagerInterface
         $normalizerFounds = null;
         foreach ($this->normalizers as $normalizer) {
             /** @var ApiNormalizerInterface normalizer */
-            if ($normalizer->support(($response->getObjectData())::class)) {
+            if ($normalizer->support(($response->getData())::class)) {
                 $normalizerFounds = $normalizer;
             }
         }
