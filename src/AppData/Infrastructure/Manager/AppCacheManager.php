@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Infrastructure\Manager;
+namespace App\AppData\Infrastructure\Manager;
 
-use App\AppBundle\Domain\Contracts\AppCacheInterface;
+use App\AppData\Domain\Contracts\AppCacheInterface;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Contracts\Cache\CacheInterface as SymfonyCacheInterface;
 

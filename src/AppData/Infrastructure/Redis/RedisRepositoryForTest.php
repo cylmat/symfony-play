@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\AppData\Infrastructure\Redis;
 
-use App\AppData\Infrastructure\AppRepositoryInterface;
 use App\AppData\Infrastructure\Manager\AppEntityManager;
 
-final class RedisRepositoryForTest implements AppRepositoryInterface
+final class RedisRepositoryForTest
 {
     private string $entityName;
 
@@ -22,16 +21,6 @@ final class RedisRepositoryForTest implements AppRepositoryInterface
         $this->entityName = $entityName;
 
         return $this;
-    }
-
-    public function flushAll(): void
-    {
-        // to implements ...
-    }
-
-    public function truncate(): void
-    {
-        // ...
     }
 
     public function findAll(): array

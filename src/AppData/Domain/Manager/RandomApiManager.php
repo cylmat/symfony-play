@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\AppData\Domain\Manager;
 
-use App\AppBundle\Domain\Contracts\AppCacheInterface;
 use App\AppBundle\Domain\DomainManagerInterface;
+use App\AppData\Domain\Contracts\AppCacheInterface;
 use App\AppData\Domain\Model\RandomApi;
 use App\AppData\Domain\Service\CustomScriptsInterface;
 

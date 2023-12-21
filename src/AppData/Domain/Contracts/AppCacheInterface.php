@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AppBundle\Domain\Contracts;
+namespace App\AppData\Domain\Contracts;
 
 /** @todo use "contracts" directory */
 interface AppCacheInterface
