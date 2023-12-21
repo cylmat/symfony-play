@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Domain\Manager;
+namespace App\Data\Domain\Manager;
 
 use App\AppBundle\Domain\DomainManagerInterface;
 use App\AppData\Domain\Contracts\AppCacheInterface;
-use App\AppData\Domain\Model\RandomApi;
-use App\AppData\Domain\Service\CustomScriptsInterface;
+use App\Data\Domain\Model\RandomApi;
+use App\Data\Domain\Service\CustomScriptsInterface;
 
 final class RandomApiManager implements DomainManagerInterface
 {

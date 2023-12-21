@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false
+
+    # BUNDLE #
+    App\Data\:
+        resource: ../../src/Data/
+
+    #######
+    # DDD #
+    #######
+    App\Data\Domain\Service\CustomScriptsInterface: '@App\Data\Infrastructure\Service\CustomScripts'

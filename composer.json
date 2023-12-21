@@ -103,6 +103,7 @@
         "psr-4": {
             "App\\": "src/",
             "App\\AppBundle\\": "src/AppBundle/",
+            "App\\AppData\\": "src/AppData/",
             "App\\Admin\\": "src/Admin/",
             "App\\Data\\": "src/Data/",
             "App\\Encrypt\\": "src/Encrypt/",
@@ -120,6 +121,7 @@
             "App\\Tests\\AppBundle\\": "tests/AppBundle/",
             "App\\Tests\\AppData\\": "tests/AppData/",
             "App\\Tests\\Admin\\": "tests/Admin/",
+            "App\\Tests\\Data\\": "tests/Data/",
             "App\\Tests\\Encrypt\\": "tests/Encrypt/",
             "App\\Tests\\Text\\": "tests/Text/",
             "spec\\App\\": "spec/"

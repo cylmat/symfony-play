@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Domain\Model;
+namespace App\Data\Domain\Model;
 
 use App\AppBundle\Application\Common\Contracts\ModelInterface;
 

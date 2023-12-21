@@ -18,7 +18,6 @@ services:
     #######
     # DDD #
     #######
-    App\AppData\Domain\Service\CustomScriptsInterface: '@App\AppData\Infrastructure\Service\CustomScripts'
     App\AppData\Domain\Contracts\AppCacheInterface: '@App\AppData\Infrastructure\Manager\AppCacheManager'
 
     App\AppData\Infrastructure\Manager\AppSupportRegistry:

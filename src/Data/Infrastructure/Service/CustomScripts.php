@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Infrastructure\Service;
+namespace App\Data\Infrastructure\Service;
 
 use App\AppData\Infrastructure\Redis\RedisScriptManager;
-use App\AppData\Domain\Service\CustomScriptsInterface;
+use App\Data\Domain\Service\CustomScriptsInterface;
 
 final class CustomScripts implements CustomScriptsInterface
 {

@@ -2,11 +2,11 @@
 
 namespace App\Tests\Integration;
 
-use App\ApiResource\Application\RandomApiAction;
 use App\AppBundle\Application\Common\Api\ApiNormalizerManagerInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppData\Domain\Contracts\AppCacheInterface;
 use App\AppData\Infrastructure\Redis\RedisRepository;
+use App\Data\Application\RandomApiAction;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /** @group integration */

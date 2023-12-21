@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\ApiResource\Application;
+namespace App\Data\Application;
 
 use App\AppBundle\Application\Common\ActionInterface;
 use App\AppBundle\Application\Common\AppRequest;
 use App\AppBundle\Application\Common\Api\ApiResponse;
-use App\AppData\Domain\Manager\RandomApiManager;
+use App\Data\Domain\Manager\RandomApiManager;
 
 final class RandomApiAction implements ActionInterface
 {
