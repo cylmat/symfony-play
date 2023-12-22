@@ -6,6 +6,6 @@ namespace App\AppBundle\Application\Common\Api;
 
 use App\AppBundle\Application\Common\AppResponse;
 
-final class ApiResponse extends AppResponse implements ApiResponseInterface
+abstract class ApiResponse extends AppResponse implements ApiResponseInterface
 {
 }

@@ -21,6 +21,11 @@ class AbstractApiController extends AbstractFOSRestController
     {
         $data = $this->responseNormalizer->normalizeResponse($response);
         
+        return $this->getApiRawResponse($data, $statusCode, $headers);
+    }
+
+    protected function getApiRawResponse(mixed $data = null, ?int $statusCode = null, array $headers = []): Response
+    {
         $view = $this->view($data, $statusCode, $headers);
         $response = $this->handleView($view);
 
