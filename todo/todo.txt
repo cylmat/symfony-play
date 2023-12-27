@@ -5,6 +5,17 @@ use snc/redis-bundle
 use FOS\UserBundle\FOSUserBundle
 redismodel dto + factory
 
+https://github.com/doctrine/DoctrineMongoDBBundle
+https://github.com/FakerPHP
+https://zeromq.org/
+https://rocketmq.apache.org/
+https://aws.amazon.com/fr/dynamodb/
+https://hub.docker.com/r/amazon/dynamodb-local
+
+CLOUD
+https://console.cloud.google.com
+https://eu-west-3.console.aws.amazon.com
+
 use multiple databases
 use postgre/mongodb
 https://sentry.io
