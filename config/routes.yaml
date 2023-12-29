@@ -8,6 +8,10 @@ controllers_api:
     type: annotation
     prefix: /api
 
+controllers_data:
+    resource: ../src/Data/Application/Controller
+    type: annotation
+
 controllers_text:
     resource: ../src/Text/Application/Controller
     type: annotation
