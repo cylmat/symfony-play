@@ -3,13 +3,13 @@ controllers_admin:
     resource: ../src/Admin/Controller
     type: annotation
 
-controllers_api:
-    resource: ../src/ApiResource/Controller
-    type: annotation
-    prefix: /api
-
 controllers_data:
     resource: ../src/Data/Application/Controller
+    type: annotation
+
+# @todo in Data bundle !
+controllers_data_api:
+    resource: ../src/Data/Application/Api
     type: annotation
 
 controllers_text:

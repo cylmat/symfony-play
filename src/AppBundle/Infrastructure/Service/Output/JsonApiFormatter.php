@@ -19,6 +19,9 @@ final class JsonApiFormatter implements OutputFormatterInterface
             $document->add($k, $v);
         }
 
-        return $document->toArray();
+        $array = $document->toArray();
+        unset($array['jsonapi']);
+
+        return $array;
     }
 }

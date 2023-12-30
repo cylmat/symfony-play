@@ -13,6 +13,15 @@ final class DataController extends AbstractController
 {
     public function __invoke(): Response
     {
-        return $this->render('data/index.html.twig');
+        return $this->render('data/index.html.twig', [
+            'links' => $this->getLinks(),
+        ]);
+    }
+
+    private function getLinks(): array
+    {
+        return [
+            'randomApi' => $this->generateUrl('randomint')
+        ];
     }
 }
