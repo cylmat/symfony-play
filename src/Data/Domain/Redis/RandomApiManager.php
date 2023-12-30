@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Data\Domain\Manager;
+namespace App\Data\Domain\Redis;
 
 use App\AppBundle\Domain\DomainManagerInterface;
 use App\AppData\Domain\Contracts\AppCacheInterface;
-use App\Data\Domain\Model\RandomApi;
-use App\Data\Domain\Service\CustomScriptsInterface;
+use App\Data\Domain\Redis\RandomApi;
+use App\Data\Domain\Redis\RedisScriptsInterface;
 
 final class RandomApiManager implements DomainManagerInterface
 {
     public function __construct(
         private readonly AppCacheInterface $cache,
-        private readonly CustomScriptsInterface $scriptManager,
+        private readonly RedisScriptsInterface $scriptManager,
     ) {
     }
 

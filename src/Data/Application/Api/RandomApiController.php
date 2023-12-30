@@ -6,7 +6,7 @@ namespace App\Data\Application\Api;
 
 use App\AppBundle\Application\Common\Api\AbstractApiController;
 use App\AppBundle\Application\Common\AppRequest;
-use App\Data\Application\RandomApiAction;
+use App\Data\Application\Redis\RandomApiAction;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 

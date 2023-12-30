@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\AppData\Infrastructure\Redis;
+namespace App\Data\Infrastructure\Redis;
 
 use App\AppData\Infrastructure\Redis\RedisClient;
+use App\Data\Domain\Redis\RedisScriptsInterface;
 
 /** @see https://app.redislabs.com */
-final class RedisScriptManager
+final class RedisScripts implements RedisScriptsInterface
 {
     public function __construct(
         private readonly RedisClient $redisClient,
