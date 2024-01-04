@@ -3,6 +3,15 @@ controllers_admin:
     resource: ../src/Admin/Controller
     type: annotation
 
+controllers_cloud:
+    resource: ../src/Cloud/Application/Controller
+    type: annotation
+
+# @todo in Cloud bundle !
+controllers_cloud_api:
+    resource: ../src/Cloud/Application/Api
+    type: annotation
+
 controllers_data:
     resource: ../src/Data/Application/Controller
     type: annotation

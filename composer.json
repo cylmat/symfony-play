@@ -96,6 +96,7 @@
             "App\\AppBundle\\": "src/AppBundle/",
             "App\\AppData\\": "src/AppData/",
             "App\\Admin\\": "src/Admin/",
+            "App\\Cloud\\": "src/Cloud/",
             "App\\Data\\": "src/Data/",
             "App\\Encrypt\\": "src/Encrypt/",
             "App\\Text\\": "src/Text/"
@@ -112,6 +113,7 @@
             "App\\Tests\\AppBundle\\": "tests/AppBundle/",
             "App\\Tests\\AppData\\": "tests/AppData/",
             "App\\Tests\\Admin\\": "tests/Admin/",
+            "App\\Tests\\Cloud\\": "tests/Cloud/",
             "App\\Tests\\Data\\": "tests/Data/",
             "App\\Tests\\Encrypt\\": "tests/Encrypt/",
             "App\\Tests\\Text\\": "tests/Text/",

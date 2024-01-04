@@ -45,23 +45,7 @@
     <body>
 
         <!-- Masterhead-->
-        <header class="bg-black fixed-top">
-            <div class="px-4 px-lg-5 h-100 align-items-center justify-content-center">
-                <div class="justify-content-center">
-                    <div class="m-4 text-center">
-                        <a href="/">Home</a>
-                        &nbsp;
-                        <a href="/data">Data</a>
-                        &nbsp;
-                        <a href="/admin">Admin</a>
-
-                        {# <!--h1 class="mx-auto my-0 text-uppercase">Sym</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">desc.</h2>
-                        <a class="btn btn-primary" href="#about">about</a--> #}
-                    </div>
-                </div>
-            </div>
-        </header>
+        {% include 'menu.html.twig' %}
 
         <div class="h-100 m-5">&nbsp;</div>
 
