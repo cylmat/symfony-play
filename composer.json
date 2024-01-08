@@ -99,6 +99,7 @@
             "App\\Cloud\\": "src/Cloud/",
             "App\\Data\\": "src/Data/",
             "App\\Encrypt\\": "src/Encrypt/",
+            "App\\Front\\": "src/Front/",
             "App\\Text\\": "src/Text/"
         }
     },
@@ -116,6 +117,7 @@
             "App\\Tests\\Cloud\\": "tests/Cloud/",
             "App\\Tests\\Data\\": "tests/Data/",
             "App\\Tests\\Encrypt\\": "tests/Encrypt/",
+            "App\\Tests\\Front\\": "tests/Front/",
             "App\\Tests\\Text\\": "tests/Text/",
             "spec\\App\\": "spec/"
         }

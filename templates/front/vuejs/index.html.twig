@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VueJs{% endblock %}
+
+{% block javascripts_end %}
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script-->
+    <script src="/scripts/vuejs/vue-1.0.28.min.js"></script>
+    <script src="/scripts/vuejs/app.js"></script>
+{% endblock %}
+
+{% block body %}
+
+    <section id="cloud" class="text-center mt-100">
+        <div class="px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-12">
+                    <h2 class="mb-4">VueJs</h2>
+
+                    <div id="app">
+                        {{ "{{ message }}" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info" class="text-center">
+        <div><a href="https://vuejs.org/guide/introduction.html">VueJs - Doc</a></div>
+        <div><a href="https://play.vuejs.org/#eNp9kUFLwzAUx7/">VueJs - Playground</a></div>
+    </section>
+
+{% endblock %}

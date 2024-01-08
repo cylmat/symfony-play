@@ -25,6 +25,8 @@
                 rel="stylesheet"
                 integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
                 crossorigin="anonymous">
+
+            {% block stylesheets_add %}{% endblock %}
         {% endblock %}
 
         {% block javascripts %}
@@ -39,6 +41,8 @@
 
             <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
             <script defer src="/scripts/data.js"></script>
+
+            {% block javascripts_add %}{% endblock %}
         {% endblock %}
 
     </head>
@@ -58,5 +62,8 @@
             <div class="container px-4 px-lg-5">&copy; symfony.camency.fr {{ "now"|date('Y') }}</div>
             <div>Theme by <a href="https://startbootstrap.com/theme/grayscale">startbootstrap.com</a></div>
         </footer>
+
+        {% block javascripts_end %}{% endblock %}
+
     </body>
 </html>
