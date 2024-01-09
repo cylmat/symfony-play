@@ -1,0 +1,19 @@
+
+        <!-- Footer-->
+        <footer class="footer bg-black fixed-bottom text-center text-white-50 p-5">
+
+            <div class="container px-4">
+
+            {% block footer_add %}
+                <a href="https://symfony.com/doc">Symfony doc</a> - 
+                <a href="https://twig.symfony.com/doc">Twig doc</a>
+            {% endblock %}
+
+            </div>
+
+            <div class="container px-4">
+                &copy; Symfony play {{ "now"|date('Y') }} - 
+                Theme by <a href="https://startbootstrap.com/theme/grayscale">startbootstrap.com</a>
+            </div>
+        </footer>
+

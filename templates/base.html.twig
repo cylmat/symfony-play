@@ -57,11 +57,7 @@
             {% block body %}{% endblock %}
         </div>
 
-        <!-- Footer-->
-        <footer class="footer bg-black fixed-bottom text-center text-white-50 p-5">
-            <div class="container px-4 px-lg-5">&copy; symfony.camency.fr {{ "now"|date('Y') }}</div>
-            <div>Theme by <a href="https://startbootstrap.com/theme/grayscale">startbootstrap.com</a></div>
-        </footer>
+        {% include 'footer.html.twig' %}
 
         {% block javascripts_end %}{% endblock %}
 
