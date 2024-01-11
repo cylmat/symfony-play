@@ -3,9 +3,21 @@
 {% block title %}VueJs{% endblock %}
 
 {% block javascripts_end %}
-    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.28/vue.min.js"></script-->
-    <script src="/scripts/vuejs/vue-1.0.28.min.js"></script>
-    <script src="/scripts/vuejs/app.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> <!-- v3.4.9 -->
+    <!-- allow import from 'vue' -->
+    <script type="importmap">{"imports":{"vue":"https://unpkg.com/vue@3/dist/vue.esm-browser.js"}}</script>
+
+    <script type="module" src="/scripts/vuejs/app_module.js"></script>
+
+    <!--
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.4.9/dist/vue.global.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.8/vue.global.min.js"></script>
+
+        <script type="module">
+            import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.esm.browser.js'
+        </script>
+    -->    
 {% endblock %}
 
 {% block body %}
@@ -17,11 +29,15 @@
                     <h2 class="mb-4"><img src="https://vuejs.org/logo.svg" width=20 height=20 /> VueJs</h2>
 
                     <div id="app">
+                        {% include "front/vuejs/_button_click.html.twig" with {
+                            'btn_text': "Click",
+                            'btn_onclick': "appChangeButton",
+                        } %}
                         {{ "{{ message }}" }}
                     </div>
 
-                    <div>
-                        https://leafletjs.com/
+                    <div id="app_c">
+                        {{ "{{ counter }}" }}
                     </div>
                 </div>
             </div>
@@ -31,6 +47,10 @@
     <section id="info" class="text-center p-2 w-25 fixed-bottom border border-warning" style="margin: 0 auto 10em auto">
         <div><a href="https://vuejs.org/guide/introduction.html">VueJs doc</a></div>
         <div><a href="https://play.vuejs.org/#eNp9kUFLwzAUx7/">Play.vueJs playground</a></div>
+        
+        <div>
+            (https://leafletjs.com)
+        </div>
     </section>
 
 {% endblock %}

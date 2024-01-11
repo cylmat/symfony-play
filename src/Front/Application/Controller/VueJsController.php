@@ -8,7 +8,7 @@ use App\AppBundle\Application\Common\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/vuejs', name: 'app_vuejs')]
+#[Route('/vuejs2', name: 'app_vuejs')]
 final class VueJsController extends AbstractController
 {
     public function __invoke(): Response
