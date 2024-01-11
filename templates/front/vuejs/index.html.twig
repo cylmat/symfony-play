@@ -33,7 +33,17 @@
                             'btn_text': "Click",
                             'btn_onclick': "appChangeButton",
                         } %}
-                        {{ "{{ message }}" }}
+
+                        {{ "{{ message_raw }}" }}
+                        <span
+                            v-html="message"
+                            v-bind:id="dynamicId"
+                            :class="dynamicClass"
+                            :disabled=false
+                        ></span>
+                        <!--span
+                            v-bind="helloAttributes"
+                        ></span-->
                     </div>
 
                     <div id="app_c">
