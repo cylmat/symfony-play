@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Script{% endblock %}
+
+{% block body %}
+
+    <section id="script" class="text-center mt-100">
+        <div class="px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-12">
+                    <h2 class="mb-4">Script</h2>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-8 mt-4 position-relative">
+
+                                {# REDIS #}
+                                <fieldset class="border border-warning p-2" style="text-align:left">
+                                    <div class="position-relative">
+                                        <span class="position-absolute text-danger" style="top:-1.5em;left:2em">Python</span>
+                                        <form>
+                                            {% include "common/_button.html.twig" with {
+                                                'btn_text': "Python",
+                                                'btn_links': links.scriptApi,
+                                            } %}
+                                        </form>
+                                        <div style="text-align:right">
+                                            <a href="https://docs.python.org/fr/3" target="_blank">Doc v3</a> - 
+                                            <a href="https://www.online-python.com" target="_blank">Playground</a>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+
+                            <div class="col col-4">
+                                <fieldset>
+                                    <legend class="border-bottom text-left">
+                                        <div class="text-left" style="font-size: 0.5em">Api return</div>
+                                    </legend>
+                                    <div class="mw-100" id="data_result">&nbsp;</div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

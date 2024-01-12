@@ -17,3 +17,6 @@ services:
 
     App\Front\:
         resource: ../src/Front/
+
+    App\Script\:
+        resource: ../src/Script/

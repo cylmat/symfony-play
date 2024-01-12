@@ -100,6 +100,7 @@
             "App\\Data\\": "src/Data/",
             "App\\Encrypt\\": "src/Encrypt/",
             "App\\Front\\": "src/Front/",
+            "App\\Script\\": "src/Script/",
             "App\\Text\\": "src/Text/"
         }
     },
@@ -118,6 +119,7 @@
             "App\\Tests\\Data\\": "tests/Data/",
             "App\\Tests\\Encrypt\\": "tests/Encrypt/",
             "App\\Tests\\Front\\": "tests/Front/",
+            "App\\Tests\\Script\\": "tests/Script/",
             "App\\Tests\\Text\\": "tests/Text/",
             "spec\\App\\": "spec/"
         }
