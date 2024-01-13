@@ -10,7 +10,6 @@ networks:
 
 volumes:
     app_volume:
-    mysql:
     phpfpm_home_volume:
 
 services: 
@@ -42,8 +41,7 @@ services:
             - .docker/server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
             - phpfpm_home_volume:/root
         #command: bash -c "cp /tmp/Makefile /root/Makefile && docker-php-ext-install pdo_mysql && php-fpm"
-        networks:
-            - sym
+        networks: [sym]
 
     apache:
         image: httpd:2.4
@@ -57,10 +55,8 @@ services:
             - .docker/server/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
             - .docker/server/apache/httpd-custom.conf:/usr/local/apache2/conf/httpd-custom.conf:ro
             - .docker/server/apache/my-extra:/usr/local/apache2/conf/my-extra:ro
-        ports: 
-            - 8001:80
-        networks:
-            - sym
+        ports: [8001:80]
+        networks: [sym]
 
 ######################
 # Other useful boxes #

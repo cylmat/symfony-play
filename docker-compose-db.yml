@@ -9,9 +9,7 @@ networks:
     sym:
 
 volumes:
-    app_volume:
     mysql:
-    phpfpm_home_volume:
 
 services: 
     ############
@@ -30,8 +28,7 @@ services:
             - .docker/data/mysql/my.cnf:/etc/mysql/my.cnf:ro
             - .docker/data/mysql/conf.d/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf:ro
             - mysql:/var/lib/mysql
-        networks: 
-            - sym
+        networks: [sym]
 
     ##############
     # Key-values #
@@ -42,8 +39,7 @@ services:
         volumes: 
             - .docker/data/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
         # ports: [6379:6379]
-        networks:
-            - sym
+        networks: [sym]
 
     #########
     # ADMIN #
@@ -52,8 +48,8 @@ services:
     adminer:
         image: adminer:4-standalone
         restart: always
-        networks: [sym]
         ports: [8081:8080]
+        networks: [sym]
 
     redisadmin:
         image: erikdubbelboer/phpredisadmin
@@ -61,8 +57,8 @@ services:
         environment:
             - REDIS_1_HOST=redis
             - REDIS_1_NAME=AppRedis
-        networks: [sym]
         ports: [8082:80]
+        networks: [sym]
 
     # phpmyadmin:
     #     image: phpmyadmin:5.0
