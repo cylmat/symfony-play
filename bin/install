@@ -45,18 +45,6 @@ case "$1" in
 "composer-dev")
 	test -e bin/composer || $0 composer-bin;
 	bin/composer install --dev
-	# brianium/paratest \
-	# behat/behat \
-	# friends-of-phpspec/phpspec-code-coverage \
-	# kint-php/kint \
-	# nikic/php-parser \
-	# pestphp/pest \
-	# phpro/grumphp \
-	# phpspec/phpspec \
-	# phpunit/phpunit \
-	# phpunitgen/console \
-	# sebastian/phpcpd \
-	# squizlabs/php_codesniffer
 ;;
 
 "composer-nodev")

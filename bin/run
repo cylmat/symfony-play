@@ -212,6 +212,10 @@ case "$1" in
 "build")
 	npm i && npm run build ;;
 
+# @see https://symfony.com/bundles/EasyAdminBundle/current/design.html
+"build-assets")
+	bin/console assets:install --symlink ;;
+
 "watch")
 	npm i && npm run watch ;;
 
