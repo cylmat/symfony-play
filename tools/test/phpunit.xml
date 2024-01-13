@@ -35,7 +35,8 @@ Doc
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory phpVersionOperator=">" phpVersion="8.1">../../tests</directory>
+            <directory phpVersionOperator=">" phpVersion="8.2">../../tests/**/Domain/*</directory>
+            <directory phpVersionOperator=">" phpVersion="8.2">../../tests/**/Infrastructure/*</directory>
         </testsuite>
     </testsuites>
 
@@ -48,12 +49,11 @@ Doc
         disableCodeCoverageIgnore="false"
     >
         <include>
-            <directory suffix=".php">../../src</directory>
+            <directory suffix=".php">../../src/**/Domain/*</directory>
+            <directory suffix=".php">../../src/**/Infrastructure/*</directory>
         </include>
         <exclude>
-            <directory suffix="Controller.php">../../src</directory>
-            <directory suffix="Fixtures.php">../../src</directory>
-            <directory suffix="Kernel.php">../../src</directory>
+            <directory suffix=".php">../../src/**/Infrastructure/Bridge/*</directory>
         </exclude>
 
         <!--report>
@@ -87,6 +87,7 @@ Doc
         <!-- Controller class are "functional" -->
         <exclude>
             <group>functional</group>
+            <group>integration</group>
         </exclude>
         <!-- Action class are "integration" -->
     </groups>

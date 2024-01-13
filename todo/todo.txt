@@ -1,4 +1,5 @@
 doctrine schema+migrations on mysql+sqlite + fixtures
+menu admindb:port
 set logger in domain/service
 doctrine decorator instead of appdoctrine
 use snc/redis-bundle

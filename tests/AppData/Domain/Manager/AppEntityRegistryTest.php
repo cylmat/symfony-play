@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Test\AppBundle\Domain\Manager;
+namespace App\Test\AppData\Domain\Manager;
 
-use App\AppBundle\Domain\Manager\AppEntityRegistry;
+use App\AppData\Domain\Manager\AppEntityRegistry;
 use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

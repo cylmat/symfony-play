@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\Local\Domain;
+namespace App\Test\AppData\Domain;
 
 use App\AppData\Infrastructure\Manager\RedisManager;
 use App\AppData\Infrastructure\Redis\RedisClientInterface;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Test\AppBundle\Infrastructure;
+namespace App\Test\AppData\Infrastructure;
 
-use App\AppBundle\Infrastructure\NullClient;
+use App\AppData\Infrastructure\NullClient;
 use App\AppData\Infrastructure\RedisClientFactory;
 use PHPUnit\Framework\TestCase;
 
