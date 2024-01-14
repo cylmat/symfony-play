@@ -21,11 +21,12 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-//.addEntry('bootstrap', './assets/bootstrap.js')
-    .addEntry('bootstrap-stimulus', './assets/bootstrap-stimulus.js')
-
+    .addEntry('bootstrap', './assets/bootstrap.js')
+    .addEntry('theme-start', './assets/theme-start.js')
+    
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+    .addEntry('stimulus', './assets/stimulus.js')
+    .enableStimulusBridge('./assets/stimulus/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     // Avoid dependencies duplication, and change "filename" as "filename.123hash123.js"

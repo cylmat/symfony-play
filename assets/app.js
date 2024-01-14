@@ -17,8 +17,7 @@
 /*
  * Can't use dynamic require on js files, they went to "unused" 
  */
-import './scripts/app.js'
-import './scripts/startbootstrap.js'
+import './scripts/global.js'
 
 /**
  * STYLES
@@ -29,4 +28,4 @@ import './scripts/startbootstrap.js'
  * @see https://github.com/webpack/webpack/issues/118
 */
 //require.context("./styles/app", true, /* (sub) */ /.*/)
-import './styles/app.scss'
+import './styles/global.scss'
