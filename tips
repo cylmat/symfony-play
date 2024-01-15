@@ -24,3 +24,5 @@ bin/composer dump-autoload && rm -rf var/cache/* && bin/console cache:clear --en
 @https://www.invivoo.com/architecture-hexagonale
 @https://dev.to/juanoa/folder-structure-in-a-react-hexagonal-architecture-h77
 @https://blog.allegro.tech/2020/05/hexagonal-architecture-by-example.html
+
+* add npm dependencies : npm install --save-dev jquery popper.js

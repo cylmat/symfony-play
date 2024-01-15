@@ -1,3 +1,3 @@
-/*export default function testing(name) {
+export default function testing(name) {
     return `Welcome ${name}`;
-};*/
+};

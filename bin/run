@@ -216,7 +216,7 @@ case "$1" in
 "build-assets")
 	bin/console assets:install --symlink ;;
 
-"watch")
+"dev"|"watch")
 	npm i && npm run watch ;;
 
 "var")
