@@ -12,20 +12,14 @@
  */
 
 /**
- * Bootstrap
- */
-import './bootstrap/bootstrap.js'
-import './bootstrap/bootstrap.scss'
-
-/**
  * STIMULUS
  */
-import './stimulus/stimulus.js'
+//import './stimulus/stimulus.js'
 
 /**
  * START THEME
  */
-import './theme/startbootstrap.js'
+//import './theme/startbootstrap.js'
 
 /**
  * SCRIPTS

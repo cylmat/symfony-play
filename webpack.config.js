@@ -21,9 +21,23 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+
+    /* VUE */
+    .addEntry('vue', './assets/vue.js')
+
+    .addEntry('bootstrap', './assets/bootstrap.js')
+    
+    /*
+        Webpack v7
+        
+    .addAliases({
+        Vue: path.resolve(__dirname, 'node_modules/vue/dist/vue.esm-browser.js'),
+    })*/
+
+    // .addStyleEntry('mobile', './assets/styles/mobile.less')
    
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/stimulus/controllers.json')
+    //.enableStimulusBridge('./assets/stimulus/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     // Avoid dependencies duplication, and change "filename" as "filename.123hash123.js"
@@ -65,7 +79,7 @@ Encore
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
@@ -73,6 +87,11 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
+
+    /*Encore.addExternals({
+        jquery: 'jQuery',
+        react: 'react'
+    })*/
 ;
 
 module.exports = Encore.getWebpackConfig();

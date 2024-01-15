@@ -37,9 +37,9 @@
         <!-- Block stylesheets -->
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('bootstrap') }}
+            {{ encore_entry_link_tags('vue') }}
             {# <link rel="preload" as="style" href="{{ preload(asset('style/global.scss'), { as: 'style' }) }}"> #}
-
-            
 
             {% block stylesheets_add %}{% endblock %}
         {% endblock %}
@@ -48,6 +48,8 @@
         <!-- Block javascripts -->
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('bootstrap') }}
+            {{ encore_entry_script_tags('vue') }}
             {# <script src="{{ preload(asset('script/app.js'), { as: 'script' }) }}"></script> #}
             
             <!--script defer src="/scripts/data.js"></script-->
