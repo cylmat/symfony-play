@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+var webpack = require('webpack');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -92,6 +93,23 @@ Encore
         jquery: 'jQuery',
         react: 'react'
     })*/
+
+    /*
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+    */
 ;
 
+/**
+ * @see https://stackoverflow.com/questions/56718584/webpack-encore-include-external-js
+ */
+
+/*Encore.addPlugin(new webpack.ProvidePlugin({
+    sample: require.resolve("sample"),
+    runapi: require.resolve("runapi")
+}));*/
+
 module.exports = Encore.getWebpackConfig();
+module.exports.output.library = 'packed'

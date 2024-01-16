@@ -1,3 +1,4 @@
-export default function testing(name) {
+
+export default function sample(name) {
     return `Welcome ${name}`;
 };

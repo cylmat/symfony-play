@@ -28,8 +28,13 @@
  * Can't use dynamic require on js files, they went to "unused" 
  */
 import './scripts/global.js'
-import './scripts/sample.js'
+//import sample from './scripts/sample'
+//const sample = require('./scripts/sample.js')
 
+/** SAMPLE @see https://symfonycasts.com/screencast/webpack-encore/require-import */
+//const runapi = require('./scripts/runapi.js'); # without Webpack
+//import runapi from './scripts/runapi.js';
+//const sample = require('./scripts/sample.js')
 
 /**
  * STYLES

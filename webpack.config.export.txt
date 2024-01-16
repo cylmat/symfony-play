@@ -1,0 +1,100 @@
+{
+  context: '/var/www/application',
+  entry: {
+    app: './assets/app.js',
+    vue: './assets/vue.js',
+    bootstrap: './assets/bootstrap.js'
+  },
+  mode: 'development',
+  output: {
+    path: '/var/www/application/public/build',
+    filename: '[name].js',
+    assetModuleFilename: 'assets/[name].[hash:8][ext]',
+    publicPath: '/build/',
+    pathinfo: true
+  },
+  module: {
+    rules: [ [Object], [Object], [Object], [Object], [Object], [Object] ]
+  },
+  plugins: [
+    MiniCssExtractPlugin {
+      _sortedModulesCache: [WeakMap],
+      options: [Object],
+      runtimeOptions: [Object]
+    },
+    DeleteUnusedEntriesJSPlugin { entriesToDelete: [] },
+    WebpackManifestPlugin { options: [Object] },
+    ProvidePlugin { definitions: [Object] },
+    CleanWebpackPlugin {
+      dangerouslyAllowCleanPatternsOutsideProject: false,
+      dry: false,
+      verbose: false,
+      cleanStaleWebpackAssets: false,
+      protectWebpackAssets: true,
+      cleanAfterEveryBuildPatterns: [],
+      cleanOnceBeforeBuildPatterns: [Array],
+      currentAssets: [],
+      initialClean: false,
+      outputPath: '',
+      apply: [Function: bound apply],
+      handleInitial: [Function: bound handleInitial],
+      handleDone: [Function: bound handleDone],
+      removeFiles: [Function: bound removeFiles]
+    },
+    DefinePlugin { definitions: [Object] },
+    WebpackNotifierPlugin {
+      options: [Object],
+      lastBuildSucceeded: false,
+      isFirstBuild: true
+    },
+    FriendlyErrorsWebpackPlugin {
+      compilationSuccessInfo: [Object],
+      onErrors: undefined,
+      shouldClearConsole: false,
+      logLevel: 0,
+      formatters: [Array],
+      transformers: [Array],
+      previousEndTimes: {},
+      reporter: [BaseReporter]
+    },
+    AssetOutputDisplayPlugin {
+      outputPath: 'public/build',
+      friendlyErrorsPlugin: [FriendlyErrorsWebpackPlugin]
+    },
+    AssetsWebpackPlugin { options: [Object] }
+  ],
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: { chunks: 'all', cacheGroups: {} }
+  },
+  watchOptions: { ignored: /node_modules/ },
+  devtool: 'inline-source-map',
+  performance: { hints: false },
+  stats: {
+    hash: false,
+    version: false,
+    timings: false,
+    assets: false,
+    chunks: false,
+    modules: false,
+    reasons: false,
+    children: false,
+    source: false,
+    errors: false,
+    errorDetails: false,
+    warnings: false,
+    publicPath: false,
+    builtAt: false
+  },
+  resolve: {
+    extensions: [
+      '.wasm',   '.mjs',
+      '.js',     '.json',
+      '.jsx',    '.vue',
+      '.ts',     '.tsx',
+      '.svelte'
+    ],
+    alias: {}
+  },
+  externals: []
+}
