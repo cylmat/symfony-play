@@ -11,3 +11,4 @@ export default function runapi() {
 const buttonElement = $('.clickableButton').each(function(i) {
   this.addEventListener("click", runapi);
 }) //document.getElementById("ninebutton");
+

@@ -1,0 +1,8 @@
+{
+	"workspaceFolder": "/var/www/application",
+	"extensions": [
+		"bmewburn.vscode-intelephense-client",
+		"hakcorp.php-awesome-snippets",
+		"Vue.volar"
+	]
+}

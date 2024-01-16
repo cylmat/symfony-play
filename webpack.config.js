@@ -1,5 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
-var webpack = require('webpack');
+const webpack = require('webpack');
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -89,6 +90,8 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
 
+    .enableVueLoader()
+
     /*Encore.addExternals({
         jquery: 'jQuery',
         react: 'react'
@@ -102,17 +105,30 @@ Encore
     */
 ;
 
-/*Encore.addPlugin(new webpack.ProvidePlugin({
+/*
+SAMPLE
+Encore.addPlugin(new webpack.ProvidePlugin({
     sample: require.resolve("sample"),
     runapi: require.resolve("runapi")
-}));*/
+}));
 
+// Using Encore.configureLoaderRule()
+Encore.configureLoaderRule('javascript ', loaderRule => {
+    loaderRule.test = /\.(jsx?|vue)$/
+});*/
 
 module.exports = Encore.getWebpackConfig();
 
-module.exports.node = { global: true }
+//module.exports.node = { global: true }
+//module.exports.output.library = 'packed'
+//module.exports.resolve.alias = { 'vue': path.resolve(__dirname, 'node_modules/vue/dist/vue.esm-browser.js') }
+//module.exports.externalsType = 'script'
+/*module.exports.externals = {
+    lodash: [
+        'https://cdn.jsdelivr.net/npm/lodash@4.17.19/lodash.min.js'
+    ]
+}*/
 
-module.exports.output.library = 'packed'
 
 /**
  * NOTE : Les données Webpack ne sont pas accessibles de l'extérieur, pour les utiliser en script dans le html
@@ -125,8 +141,8 @@ module.exports.output.library = 'packed'
  * 
  * @todo
  *  see html-webpack-plugin
- *  see https://lodash.com/
- *  see https://htmx.org/docs/
+ *  see https://lodash.com
+ *  see https://htmx.org/docs
  *
   @tests...
 */

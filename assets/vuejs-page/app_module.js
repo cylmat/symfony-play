@@ -15,8 +15,11 @@ import { createApp } from 'vue' // 'https://unpkg.com/vue@3/dist/vue.esm-browser
 import Hello from './component/hello.js'
 import Counter from './component/counter.js'
 
+import Sfc from './app_module.vue'
+
 const app = createApp(Hello).mount('#app')
 const app_counter = createApp(Counter).mount('#app_c')
+createApp(Sfc).mount('#app_sfc')
 
 /*
     var app = new Vue({
