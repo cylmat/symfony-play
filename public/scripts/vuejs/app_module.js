@@ -11,6 +11,7 @@
 
 // MODULE build 
 import { createApp } from 'vue' // 'https://unpkg.com/vue@3/dist/vue.esm-browser.js' -> use importmap
+
 import Hello from './component/hello.js'
 import Counter from './component/counter.js'
 
