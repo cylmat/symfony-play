@@ -23,27 +23,27 @@
 
 /**
  * SCRIPTS
- */
-/*
  * Can't use dynamic require on js files, they went to "unused" 
+ *
+ * SAMPLE 
+ * @see https://symfonycasts.com/screencast/webpack-encore/require-import
+ * @see https://codesweetly.com/javascript-module-bundler
+ * 
+ * //const runapi = require('./scripts/runapi.js'); # without Webpack
  */
 import './scripts/global.js'
-//import sample from './scripts/sample'
-//const sample = require('./scripts/sample.js')
-
-/** SAMPLE @see https://symfonycasts.com/screencast/webpack-encore/require-import */
-//const runapi = require('./scripts/runapi.js'); # without Webpack
-//import runapi from './scripts/runapi.js';
-//const sample = require('./scripts/sample.js')
+import sample from './scripts/sample.js'
+import runapi from './scripts/runapi';
 
 /**
  * STYLES
- */
 // Any CSS you import will output into a single css file (app.css in this case)
+ */
 
-/* Dynamic imports
+/*
+ * Dynamic imports
  * @see https://github.com/webpack/webpack/issues/118
-*/
-//require.context("./styles/app", true, /* (sub) */ /.*/)
+ */
 import './styles/global.scss'
 
+//require.context("./styles/app", true, /* (sub) */ /.*/)

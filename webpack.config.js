@@ -102,14 +102,31 @@ Encore
     */
 ;
 
-/**
- * @see https://stackoverflow.com/questions/56718584/webpack-encore-include-external-js
- */
-
 /*Encore.addPlugin(new webpack.ProvidePlugin({
     sample: require.resolve("sample"),
     runapi: require.resolve("runapi")
 }));*/
 
+
 module.exports = Encore.getWebpackConfig();
+
+module.exports.node = { global: true }
+
 module.exports.output.library = 'packed'
+
+/**
+ * NOTE : Les données Webpack ne sont pas accessibles de l'extérieur, pour les utiliser en script dans le html
+ *        - Soit il faut exporter les data comme "module" externe
+ *        - Soit placer les données dans global, ou window
+ *        - Soit utiliser les addEventListener sur la balise html (button)
+ * 
+ * @see https://stackoverflow.com/questions/56718584/webpack-encore-include-external-js
+ * @see https://stackoverflow.com/questions/35781579/basic-webpack-not-working-for-button-click-function-uncaught-reference-error
+ * 
+ * @todo
+ *  see html-webpack-plugin
+ *  see https://lodash.com/
+ *  see https://htmx.org/docs/
+ *
+  @tests...
+*/

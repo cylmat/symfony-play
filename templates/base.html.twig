@@ -51,8 +51,6 @@
             {{ encore_entry_script_tags('bootstrap') }}
             {{ encore_entry_script_tags('vue') }}
             {# <script src="{{ preload(asset('script/app.js'), { as: 'script' }) }}"></script> #}
-            
-            <!--script defer src="/scripts/data.js"></script-->
 
             {% block javascripts_add %}{% endblock %}
         {% endblock %}
@@ -71,7 +69,6 @@
         </div>
 
         {% include 'footer.html.twig' %}
-
         {% block javascripts_end %}{% endblock %}
 
     </body>

@@ -1,10 +1,13 @@
 // module.exports = # without webpack
 
-export default function runapi(moduleName) {
-  $.get(moduleName, function(data) {
-    json = JSON.stringify(data, null, 2)
+export default function runapi() {
+  var link = this.getAttribute('data-link')
+  $.get(link, function(data) {
+    const json = JSON.stringify(data, null, 2)
     $('#data_result').html(json)
   })
-
-  return false
 }
+
+const buttonElement = $('.clickableButton').each(function(i) {
+  this.addEventListener("click", runapi);
+}) //document.getElementById("ninebutton");
