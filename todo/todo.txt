@@ -5,6 +5,7 @@ doctrine decorator instead of appdoctrine
 use snc/redis-bundle
 use FOS\UserBundle\FOSUserBundle
 redismodel dto + factory
+https://arangodb.com/download-major/
 
 https://github.com/doctrine/DoctrineMongoDBBundle
 https://github.com/FakerPHP
