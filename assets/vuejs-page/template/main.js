@@ -5,6 +5,7 @@
  * @see https://vuejs.org/api/application
  *
  * Using Html - Option preference : data, methods, and mounted
+ * 
  */
 
 // GLOBAL build : const { createApp } = Vue 
@@ -12,10 +13,9 @@
 // MODULE build 
 import { createApp } from 'vue' // 'https://unpkg.com/vue@3/dist/vue.esm-browser.js' -> use importmap
 
-import Hello from './component/hello.js'
-import Counter from './component/counter.js'
-
-import Sfc from './app_module.vue'
+import Hello from '../atom/hello.js'
+import Counter from '../atom/counter.js'
+import Sfc from '../atom/counter.vue'
 
 const app = createApp(Hello).mount('#app')
 const app_counter = createApp(Counter).mount('#app_c')
