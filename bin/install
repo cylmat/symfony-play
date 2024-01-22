@@ -42,8 +42,10 @@ case "$1" in
 ;;
 
 # COMPOSER #
+
 "composer-dev")
 	test -e bin/composer || $0 composer-bin;
+	cd lib && ../bin/composer install && cd -
 	bin/composer install --dev
 ;;
 
