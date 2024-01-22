@@ -6,6 +6,8 @@
 # (Un)comment extensions for your need on your own application.
 #
 # Use "docker run --rm -it php:8.1-fpm bash" to try your own installation
+#
+# Build with docker build --pull --rm -f ".docker\Dockerfile" -t symplay:latest ".docker" 
 ##############
 
 ### Debian GNU/Linux 11 (bullseye) ###
@@ -74,15 +76,12 @@ RUN docker-php-ext-install -j$(nproc) ctype
 RUN docker-php-ext-install -j$(nproc) fileinfo 
 RUN docker-php-ext-install -j$(nproc) gettext 
 RUN docker-php-ext-install -j$(nproc) intl 
-# RUN docker-php-ext-install -j$(nproc) json 
 # RUN docker-php-ext-install -j$(nproc) ldap 
-# RUN docker-php-ext-install -j$(nproc) mbstring 
 # RUN docker-php-ext-configure odbc && docker-php-ext-install -j$(nproc) odbc 
 RUN docker-php-ext-install -j$(nproc) opcache 
 RUN docker-php-ext-install -j$(nproc) pcntl 
 # RUN docker-php-ext-install -j$(nproc) phar 
 RUN docker-php-ext-install -j$(nproc) posix 
-# RUN docker-php-ext-install -j$(nproc) reflection 
 RUN docker-php-ext-install -j$(nproc) session 
 RUN docker-php-ext-install -j$(nproc) sockets 
 # RUN docker-php-ext-install -j$(nproc) sodium 
