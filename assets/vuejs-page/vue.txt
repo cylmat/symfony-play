@@ -1,4 +1,4 @@
-Atomic design @see:
+### Atomic design @see:
     - https://medium.com/@kevinkurniawan97/atomic-design-with-vue-fa1b50a1251e
     - https://dev.to/berryjam/introducing-atomic-design-in-vuejs-1l2h
 
@@ -10,3 +10,8 @@ Atoms, Molecules, Organisms, Templates, Pages
     - Search Form Molecule
       - TextBox Atom
       - Button Atom
+
+### Tips
++ v-* are called "directives"
++ v-on:click= <=> @click 
++ full directive syntax: v-on:submit.prevent="onSubmit" (name:argument.modifiers="value")

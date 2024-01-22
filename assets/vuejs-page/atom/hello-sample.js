@@ -3,7 +3,9 @@ export default {
         return {
             message: 'Hello Vue !',
             dynamicId: Math.floor(Math.random() * 5),
-            dynamicClass: "dynamic"
+            dynamicclass: "dynamic",
+            testattributes: "voila",
+            deux: "voila2"
         }
         /* return { helloAttributes: { message: 'Hello Vue !' } } */
     },
@@ -12,8 +14,12 @@ export default {
         <span
             v-html="message"
             v-bind:id="dynamicId"
-            :class="dynamicClass"
+            :class="dynamicclass"
             :disabled=false
+            v-if="true"
+
+            v-bind:[attributenamedata]="deux"
+            attributenamedata="testattributes"
         ></span>
     `,
     methods: {
