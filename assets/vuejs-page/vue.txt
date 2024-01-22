@@ -1,4 +1,17 @@
-### Atomic design @see:
+## Tuto @https://vuejs.org/guide/essentials
+
+### Template
++ v-* are called "directives"
++ v-on:click= <=> @click 
++ full directive syntax: v-on:submit.prevent="onSubmit" (name:argument.modifiers="value")
+
+### Reactive State 
++ import { ref } from 'vue'; const count = ref(0);
++ ref() takes the argument and returns it wrapped with a .value
+  with "dependency-tracking based reactivity system"
++ reactive() makes an object itself reactive
+
+## Atomic design @see:
     - https://medium.com/@kevinkurniawan97/atomic-design-with-vue-fa1b50a1251e
     - https://dev.to/berryjam/introducing-atomic-design-in-vuejs-1l2h
 
@@ -11,7 +24,7 @@ Atoms, Molecules, Organisms, Templates, Pages
       - TextBox Atom
       - Button Atom
 
-### Tips
-+ v-* are called "directives"
-+ v-on:click= <=> @click 
-+ full directive syntax: v-on:submit.prevent="onSubmit" (name:argument.modifiers="value")
+## Tips
+- Options API is the traditional way, using a set of options, such as data, methods to define a component behavior.
+- Composition API is a new way in Vue3, allows to use a reactive programming style more flexible and expressive.
+- Use https://lodash.com (fork of Underscore.js)
