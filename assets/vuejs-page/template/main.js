@@ -14,11 +14,9 @@
 import { createApp } from 'vue' // 'https://unpkg.com/vue@3/dist/vue.esm-browser.js' -> use importmap
 
 import Hello from '../atom/hello.js'
-import Counter from '../atom/counter.js'
 import Sfc from '../atom/counter.vue'
 
 const app = createApp(Hello).mount('#app')
-const app_counter = createApp(Counter).mount('#app_c')
 createApp(Sfc).mount('#app_sfc')
 
 /*

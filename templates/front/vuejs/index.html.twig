@@ -60,30 +60,29 @@
                     <h2 class="mb-4"><img src="https://vuejs.org/logo.svg" width=20 height=20 /> VueJs</h2>
 
                     <div id="app">
-                        {% include "front/vuejs/_button_click.html.twig" with {
+                        {# SAMPLE
+                            % include "front/vuejs/_button_click.html.twig" with {
                             'btn_text': "Click",
                             'btn_onclick': "appChangeButton",
-                        } %}
+                        } %
+                            <button type="button" class="btn btn-primary" @click="{{ btn_onclick }}">
+                                {{ btn_text }}
+                            </button>
+                       
 
-                        {{ "{{ message_raw }}" }}
-                        <span
-                            v-html="message"
-                            v-bind:id="dynamicId"
-                            :class="dynamicClass"
-                            :disabled=false
-                        ></span>
-                        <!--span
-                            v-bind="helloAttributes"
-                        ></span-->
+                            {{ "{{ message }}" }}
+
+                            <span
+                                v-html="message"
+                                v-bind:id="dynamicId"
+                                :class="dynamicClass"
+                                :disabled=false
+                                // or v-bind="helloAttributes"
+                            ></span>
+                        #}
                     </div>
 
-                    <div id="app_c">
-                        {{ "{{ counter }}" }}
-                    </div>
-
-                    <div id="app_sfc">
-                        
-                    </div>
+                    <div id="app_sfc"> </div>
                     
                     <div>
                         <div id="map"></div>

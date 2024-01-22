@@ -29,6 +29,8 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 
 ---------------------
+https://mercure.rocks/spec : https://speakerdeck.com/lyrixx/asynchrone-avec-symfony-messenger-et-mercure
+
 * wrap json_encode 500 si error formattage (utilisation d'un json encoder à la place)
     $encoder = try serializer.encoder.json ?? new JsonEncoder
     $this->jsonEncoder->decode($data, JsonEncoder::FORMAT, [JsonDecode::ASSOCIATIVE => true]);
