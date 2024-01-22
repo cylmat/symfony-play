@@ -26,3 +26,5 @@ bin/composer dump-autoload && rm -rf var/cache/* && bin/console cache:clear --en
 @https://blog.allegro.tech/2020/05/hexagonal-architecture-by-example.html
 
 * add npm dependencies : npm install --save-dev jquery popper.js
+
+* git config credential.helper 'store'
