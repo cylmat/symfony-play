@@ -8,11 +8,11 @@ use App\AppBundle\Application\Common\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/vuejs2', name: 'app_vuejs')]
-final class VueJsController extends AbstractController
+#[Route('/react', name: 'app_react')]
+final class ReactController extends AbstractController
 {
     public function __invoke(): Response
     {
-        return $this->render('front/vuejs/index.html.twig');
+        return $this->render('front/react/index.html.twig');
     }
 }
