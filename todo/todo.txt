@@ -9,6 +9,7 @@ https://arangodb.com/download-major/
 
 composer: zircote/swagger-php, symfony/asset, nelmio/api-doc-bundle
 
+https://docs.docker.com/engine/swarm/secrets/
 https://github.com/doctrine/DoctrineMongoDBBundle
 https://github.com/FakerPHP
 https://zeromq.org/
