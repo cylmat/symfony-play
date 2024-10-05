@@ -1,0 +1,17 @@
+class Fixture 
+{
+$contact = new Contact();
+        FixtureHelper::assignEntityUuid($manager, $contact);
+        Hydrator::hydrate($contact, [
+            'function'  => 'officer',
+            'service'   => 'data',
+            'firstname' => 'John',
+            'lastname'  => 'Doe',
+            'email'     => 'john.doe@arobase.com',
+            'mobile'    => '+33606060202',
+            'phone'     => '+33102030405',
+            'comment'   => 'comment',
+        ]);
+        $manager->persist($contact);
+}
+
