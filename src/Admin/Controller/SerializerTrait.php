@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Admin\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;

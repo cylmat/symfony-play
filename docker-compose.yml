@@ -1,15 +1,10 @@
-###########################################
-# THIS IS A TEMPLATE DOCKER CONFIGURATION #
-# UN(COMMENT) FOR YOUR OWN USAGE          #
-###########################################
 
-version: '3.4'
 
 networks: 
     sym:
 
 volumes:
-    app_volume:
+    # app_volume:
     phpfpm_home_volume:
 
 services: 
@@ -28,14 +23,16 @@ services:
         # Feel free to modify for your own configuration.
         # Then add specific extension in conf.d/php-custom.ini
         ###########
+        container_name: phpfpm
         build:
             context: .docker
-            target: full
+            target: db_ext
         restart: always
-        # environment:
+        environment:
+            APP_ENV: dev
         #    - MYSQL_DSN=mysql:host=mysql;port=port;dbname=mydb
         volumes:
-            - app_volume:/var/www/application
+            - .:/var/www/application
             - .docker/.home/Makefile:/tmp/Makefile:ro
             - .docker/server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
             - .docker/server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
@@ -49,7 +46,7 @@ services:
         depends_on:
             - phpfpm
         volumes:
-            - app_volume:/var/www/application
+            - .:/var/www/application
 
             # (Un)comment for your own config.
             - .docker/server/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
@@ -81,6 +78,10 @@ services:
             # -> on services
         labels:
             - "traefik.http.routers.front.rule=Host(`front`)"
+
+include:
+
+    - docker-compose-db.yml
 
 ######################
 # Other useful boxes #
