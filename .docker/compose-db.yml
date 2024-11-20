@@ -1,7 +1,4 @@
 
-networks: 
-    sym:
-
 volumes:
     mysql:
 
@@ -19,10 +16,9 @@ services:
             MYSQL_DATABASE: mydb
             MYSQL_TCP_PORT: 3306 # Mandatory 3306 for Adminer
         volumes:
-            - .docker/data/mysql/my.cnf:/etc/mysql/my.cnf:ro
-            - .docker/data/mysql/conf.d/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf:ro
+            - ./data/mysql/my.cnf:/etc/mysql/my.cnf:ro
+            - ./data/mysql/conf.d/my-custom.cnf:/etc/mysql/conf.d/my-custom.cnf:ro
             - mysql:/var/lib/mysql
-        networks: [sym]
 
     ##############
     # Key-values #
@@ -31,9 +27,8 @@ services:
         image: redis:6.0  
         restart: always
         volumes: 
-            - .docker/data/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
+            - ./data/redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
         # ports: [6379:6379]
-        networks: [sym]
 
     #########
     # ADMIN #
@@ -43,7 +38,6 @@ services:
         image: adminer:4-standalone
         restart: always
         ports: [8081:8080]
-        networks: [sym]
 
     redisadmin:
         image: erikdubbelboer/phpredisadmin
@@ -52,7 +46,6 @@ services:
             - REDIS_1_HOST=redis
             - REDIS_1_NAME=AppRedis
         ports: [8082:80]
-        networks: [sym]
 
     # phpmyadmin:
     #     image: phpmyadmin:5.0

@@ -1,0 +1,51 @@
+
+
+networks: 
+    sym:
+
+volumes:
+    # app_volume:
+    phpfpm_home_volume:
+
+services: 
+    ###########
+    # PHP-FPM #
+    ###########
+    phpfpm: 
+        ###########
+        # "Target" can be one of :
+        # - CORE     with php:8.x-fpm empty
+        # - SIMPLE   with apt utils and network tools
+        # - EXT      with docker-php selected extensions and databases
+        # - DB_EXT   with added Pecl extensions and databases
+        # - FULL     with bench and profiling
+        #
+        # Feel free to modify for your own configuration.
+        # Then add specific extension in conf.d/php-custom.ini
+        ###########
+        container_name: phpfpm
+        build:
+            context: .
+            target: db_ext
+        restart: always
+        environment:
+            APP_ENV: dev
+        #    - MYSQL_DSN=mysql:host=mysql;port=port;dbname=mydb
+        volumes:
+            - ..:/var/www/application
+            - ./.home/Makefile:/tmp/Makefile:ro
+            - ./server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
+            - ./server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
+            - phpfpm_home_volume:/root
+        #command: bash -c "cp /tmp/Makefile /root/Makefile && docker-php-ext-install pdo_mysql && php-fpm"
+
+
+######################
+# Other useful boxes #
+# https://devilbox.org
+# https://easyphp.org
+# https://laradock.io
+# https://laragon.org
+# https://github.com/laraedit/laraedit-docker
+# https://hub.docker.com/r/mattrayner/lamp
+######################
