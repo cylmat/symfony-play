@@ -1,8 +1,9 @@
 <?php
 
 //use ramsey/uuid
+namespace App\DataFixtures;
 
-class FixtureHelper
+class FixturesHelper
 {
     public static function assignEntityUuid(ObjectManager $manager, object $entity, string $defaultUuidValue = null): void
     {

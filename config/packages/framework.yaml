@@ -13,7 +13,7 @@ framework:
     session:
         # Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
         # PdoSessionHandler, RedisSessionHandler, MemcachedSessionHandler
-        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
+        # handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler
         cookie_secure: auto
         cookie_samesite: lax
         storage_factory_id: session.storage.factory.native

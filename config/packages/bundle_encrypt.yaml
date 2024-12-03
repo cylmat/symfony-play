@@ -5,12 +5,12 @@ services:
         public: false
 
     # BUNDLE #
-    App\Encrypt\:
-        resource: ../../src/Encrypt/
-        exclude:
-            - ../../src/Encrypt/Domain/Model/EncryptedData.php
+    # App\Encrypt\:
+    #     resource: ../../src/Encrypt/
+    #     exclude:
+    #         - ../../src/Encrypt/Domain/Model/EncryptedData.php
 
     #################
     # DDD Interface #
     #################
-    App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'
+    # App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'

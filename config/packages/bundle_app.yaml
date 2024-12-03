@@ -1,5 +1,5 @@
-app:
-    enabled: false # sample
+# app:
+#     enabled: false # sample
 
 parameters:
 
@@ -13,44 +13,44 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
 
     # BUNDLE #
-    App\AppBundle\:
-        resource: ../../src/AppBundle/
-        exclude: 
-            - ../../src/AppBundle/Domain/Message/LogMessage.php
-            - ../../src/AppBundle/Infrastructure/Dbal
+    # App\AppBundle\:
+    #     resource: ../../src/AppBundle/
+    #     exclude: 
+    #         - ../../src/AppBundle/Domain/Message/LogMessage.php
+    #         - ../../src/AppBundle/Infrastructure/Dbal
 
     ##########
     # OUTPUT #
     ##########
-    App\AppBundle\Infrastructure\Service\Output\JsonApiValidator: ~
-    App\AppBundle\Infrastructure\Service\Output\ValidatorInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiValidator'
+    # App\AppBundle\Infrastructure\Service\Output\JsonApiValidator: ~
+    # App\AppBundle\Infrastructure\Service\Output\ValidatorInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiValidator'
 
-    App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter: ~
-    App\AppBundle\Infrastructure\Service\Output\FormatterInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter'
+    # App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter: ~
+    # App\AppBundle\Infrastructure\Service\Output\FormatterInterface: '@App\AppBundle\Infrastructure\Service\Output\JsonApiFormatter'
 
     ###########
     # COMMAND #
     ###########
-    App\AppBundle\Command\MakeEntityWrapper:
-        arguments:
-            - '@maker.maker.make_entity'
+    # App\AppBundle\Command\MakeEntityWrapper:
+    #     arguments:
+    #         - '@maker.maker.make_entity'
 
     ###########
     # Message #
     ###########
-    App\AppBundle\Infrastructure\MessageHandler\MessageHandler:
-        arguments: 
-            $logger: '@app.logger'
+    # App\AppBundle\Infrastructure\MessageHandler\MessageHandler:
+    #     arguments: 
+    #         $logger: '@app.logger'
 
     ###########
     # SESSION #
     ###########
     # https://symfony.com/doc/current/session.html#store-sessions-in-a-relational-database-mariadb-mysql-postgresql
-    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
-        arguments:
-            - '%env(DATABASE_URL)%'
-            - { db_table: 'sessions' }
+    # Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+    #     arguments:
+    #         - '%env(DATABASE_URL)%'
+    #         - { db_table: 'sessions' }
 
-    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
-        arguments:
-            - '@snc_redis.local'
+    # Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+    #     arguments:
+    #         - '@snc_redis.local'

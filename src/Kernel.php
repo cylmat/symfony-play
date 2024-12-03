@@ -28,7 +28,7 @@ class Kernel extends BaseKernel
         }
 
         $container->import($configDir.'/parameters.yaml');
-        $this->getLocal($container, $configDir);
+        //$this->getLocal($container, $configDir);
     }
 
     private function getData(ContainerConfigurator $container, string $configDir): void
@@ -36,9 +36,9 @@ class Kernel extends BaseKernel
         $container->import($configDir.'/local/parameters.{php,yaml}');
     }
     
-    private function getLocal(ContainerConfigurator $container, string $configDir): void
-    {        
-        $container->import($configDir.'/{packages}-data/*.{php,yaml}');
-        $container->import($configDir.'/{packages}-data/'.$this->environment.'/*.{php,yaml}');
-    }
+    // private function getLocal(ContainerConfigurator $container, string $configDir): void
+    // {        
+    //     $container->import($configDir.'/{packages}-data/*.{php,yaml}');
+    //     $container->import($configDir.'/{packages}-data/'.$this->environment.'/*.{php,yaml}');
+    // }
 }

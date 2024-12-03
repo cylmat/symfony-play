@@ -3,40 +3,17 @@ controllers_admin:
     resource: ../src/Admin/Controller
     type: annotation
 
-controllers_cloud:
-    resource: ../src/Cloud/Application/Controller
-    type: annotation
-
-# @todo in Cloud bundle !
-controllers_cloud_api:
-    resource: ../src/Cloud/Application/Api
-    type: annotation
-
 controllers_data:
-    resource: ../src/Data/Application/Controller
-    type: annotation
-
-# @todo in Data bundle !
-controllers_data_api:
-    resource: ../src/Data/Application/Api
+    resource: ../src/DataBundle/Controller
     type: annotation
 
 # FRONT
 controllers_front:
-    resource: ../src/Front/Application/Controller
-    type: annotation
-
-# Script
-controllers_script:
-    resource: ../src/Script/Application/Controller
-    type: annotation
-
-controllers_script_api:
-    resource: ../src/Script/Application/Api
+    resource: ../src/FrontBundle
     type: annotation
 
 controllers_text:
-    resource: ../src/Text/Application/Controller
+    resource: ../src/TextBundle/Controller
     type: annotation
 
 homepage:

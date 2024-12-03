@@ -1,0 +1,72 @@
+parameters:
+    db_schema_filter: '~^(?!messenger_messages)~'
+
+doctrine:
+    # @see https://symfony.com/doc/current/reference/configuration/doctrine.html
+
+    # DB Abstraction Layer
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                url: '%env(resolve:DATABASE_URL)%'
+                driver: pdo_mysql
+                dbname_suffix: ''
+                # IMPORTANT: You MUST configure your server version,
+                # either here or in the DATABASE_URL env var (see .env file)
+                server_version: '5.6'
+                charset: utf8mb4
+                memory: true
+                driver_class: ~
+                # wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
+                schema_filter: '%db_schema_filter%'
+
+            sqlite:
+                url: '%env(resolve:DEV_SQLITE_URL)%'
+                driver: pdo_sqlite
+                dbname_suffix: ''
+                # IMPORTANT: You MUST configure your server version,
+                # either here or in the DATABASE_URL env var (see .env file)
+                server_version: '3'
+                charset: utf8mb4
+                memory: true
+                driver_class: ~
+                # wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
+                schema_filter: '%db_schema_filter%'
+
+    # Object Relational Mapping
+    orm:
+        default_entity_manager: default
+        # auto_generate_proxy_classes: true
+        # proxy_namespace: Proxies
+        # proxy_dir: '%kernel.cache_dir%/doctrine/orm/Proxies'
+        # class_metadata_factory_name: Doctrine\ORM\Mapping\ClassMetadataFactory
+
+        # @see https://symfony.com/doc/current/doctrine/multiple_entity_managers.html
+        entity_managers:
+            default:
+                connection: default
+                # mappings:
+                #     AppBundle:
+                #         # Use AttributeDriver class (with MappingDriverChain)
+                #         alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
+                #         type: attribute
+                #         dir: '../../Domain/Entity'
+                #         prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
+                #         is_bundle: true # change 'dir' attribute as relative path
+                # metadata_cache_driver:
+                #     type: pool
+                #     pool: doctrine.system_cache_pool
+                # query_cache_driver:
+                #     type: service
+                #     id: CacheDriver
+
+            sqlite:
+                connection: sqlite
+                # @todo Can we mutualized mapping ? #
+                # mappings:
+                #     AppBundle:
+                #         type: attribute
+                #         prefix: 'App\AppBundle'
+                #         dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
+                #         is_bundle: false # change 'dir' attribute as relative path

@@ -2,8 +2,7 @@
 
 namespace App\Admin\Controller;
 
-use App\AppBundle\Domain\Entity\Log;
-use App\AppBundle\Infrastructure\Repository\LogRepository;
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Option\EA;

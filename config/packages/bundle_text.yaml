@@ -9,13 +9,13 @@ services:
     ###
     _instanceof:
         # App LOGGER used in TextBundle #
-        App\AppBundle\Domain\Service\LoggerAwareInterface:
+        App\Common\LoggerAwareInterface:
             calls:
                 - ['setLogger', ['@app.logger']]
 
     # BUNDLE #
-    App\Text\:
-        resource: ../../src/Text/
+    App\TextBundle\:
+        resource: ../../src/TextBundle/
 
     # App\Text\Domain\Manager\CommandManager:
     #     arguments:

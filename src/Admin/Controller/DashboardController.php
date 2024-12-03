@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controller;
 
-use App\AppBundle\Domain\Entity\Log;
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -59,7 +59,7 @@ class DashboardController extends AbstractDashboardController
     /** @SuppressWarnings(PHPMD.StaticAccess) */
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToCrud('Log', 'fas fa-list', Log::class);
+        // yield MenuItem::linkToCrud('Log', 'fas fa-list', Log::class);
         // yield MenuItem::linkToCrud('SqliteLog', 'fas fa-list', SqliteLog::class);
 
         yield MenuItem::linkToUrl(

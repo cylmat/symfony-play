@@ -94,15 +94,12 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "App\\AppBundle\\": "src/AppBundle/",
-            "App\\AppData\\": "src/AppData/",
             "App\\Admin\\": "src/Admin/",
-            "App\\Cloud\\": "src/Cloud/",
-            "App\\Data\\": "src/Data/",
-            "App\\Encrypt\\": "src/Encrypt/",
-            "App\\Front\\": "src/Front/",
-            "App\\Script\\": "src/Script/",
-            "App\\Text\\": "src/Text/"
+            "App\\Common\\": "src/Common/",
+            "App\\DataBundle\\": "src/DataBundle/",
+            "App\\FrontBundle\\": "src/FrontBundle/",
+            "App\\PlayBundle\\": "src/PlayBundle/",
+            "App\\TextBundle\\": "src/TextBundle/"
         }
     },
     "autoload-dev": {
@@ -113,15 +110,7 @@
         "psr-4": {
             "App\\Features\\": "features/bootstrap/",
             "App\\Tests\\": "tests/",
-            "App\\Tests\\AppBundle\\": "tests/AppBundle/",
-            "App\\Tests\\AppData\\": "tests/AppData/",
-            "App\\Tests\\Admin\\": "tests/Admin/",
-            "App\\Tests\\Cloud\\": "tests/Cloud/",
-            "App\\Tests\\Data\\": "tests/Data/",
-            "App\\Tests\\Encrypt\\": "tests/Encrypt/",
-            "App\\Tests\\Front\\": "tests/Front/",
-            "App\\Tests\\Script\\": "tests/Script/",
-            "App\\Tests\\Text\\": "tests/Text/",
+            "App\\Tests\\App\\": "tests/App/",
             "spec\\App\\": "spec/"
         }
     },
