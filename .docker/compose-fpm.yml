@@ -1,8 +1,5 @@
 
 
-networks: 
-    sym:
-
 volumes:
     # app_volume:
     phpfpm_home_volume:
@@ -39,13 +36,3 @@ services:
             - phpfpm_home_volume:/root
         #command: bash -c "cp /tmp/Makefile /root/Makefile && docker-php-ext-install pdo_mysql && php-fpm"
 
-
-######################
-# Other useful boxes #
-# https://devilbox.org
-# https://easyphp.org
-# https://laradock.io
-# https://laragon.org
-# https://github.com/laraedit/laraedit-docker
-# https://hub.docker.com/r/mattrayner/lamp
-######################

@@ -66,6 +66,8 @@ RUN apt update
 # /usr/local/etc/php/conf.d/docker-php-ext-***.ini 
 ##################
 
+RUN curl https://get.volta.sh | bash
+
 # @see https://www.php.net/manual/en/refs.basic.other.php
 
 RUN apt install -y \
@@ -79,11 +81,11 @@ RUN docker-php-ext-install -j$(nproc) intl
 # RUN docker-php-ext-install -j$(nproc) ldap 
 # RUN docker-php-ext-configure odbc && docker-php-ext-install -j$(nproc) odbc 
 RUN docker-php-ext-install -j$(nproc) opcache 
-RUN docker-php-ext-install -j$(nproc) pcntl 
+# RUN docker-php-ext-install -j$(nproc) pcntl 
 # RUN docker-php-ext-install -j$(nproc) phar 
 RUN docker-php-ext-install -j$(nproc) posix 
 RUN docker-php-ext-install -j$(nproc) session 
-RUN docker-php-ext-install -j$(nproc) sockets 
+# RUN docker-php-ext-install -j$(nproc) sockets 
 # RUN docker-php-ext-install -j$(nproc) sodium 
 # RUN docker-php-ext-install -j$(nproc) spl 
 # RUN docker-php-ext-configure standard && docker-php-ext-install -j$(nproc) standard 

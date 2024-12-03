@@ -1,49 +1,52 @@
 
 
-networks: 
-    sym:
+services:
 
-volumes:
-    # app_volume:
-    phpfpm_home_volume:
-
-services: 
-    ###########
-    # PHP-FPM #
-    ###########
-    phpfpm: 
-        ###########
-        # "Target" can be one of :
-        # - CORE     with php:8.x-fpm empty
-        # - SIMPLE   with apt utils and network tools
-        # - EXT      with docker-php selected extensions and databases
-        # - DB_EXT   with added Pecl extensions and databases
-        # - FULL     with bench and profiling
-        #
-        # Feel free to modify for your own configuration.
-        # Then add specific extension in conf.d/php-custom.ini
-        ###########
-        container_name: phpfpm
-        build:
-            context: .docker
-            target: db_ext
+    apache:
+        image: httpd:2.4
         restart: always
-        environment:
-            APP_ENV: dev
-        #    - MYSQL_DSN=mysql:host=mysql;port=port;dbname=mydb
+        depends_on:
+            - phpfpm
         volumes:
             - .:/var/www/application
-            - .docker/.home/Makefile:/tmp/Makefile:ro
-            - .docker/server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
-            - .docker/server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
-            - phpfpm_home_volume:/root
-        #command: bash -c "cp /tmp/Makefile /root/Makefile && docker-php-ext-install pdo_mysql && php-fpm"
 
+            # (Un)comment for your own config.
+            - .docker/server/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+            - .docker/server/apache/httpd-custom.conf:/usr/local/apache2/conf/httpd-custom.conf:ro
+            - .docker/server/apache/my-extra:/usr/local/apache2/conf/my-extra:ro
+        ports: [8001:80]
+
+    ### TRAEFIK
+    # @https://doc.traefik.io/traefik/getting-started/quick-start/
+    # @http://localhost:8080/api/rawdata
+    traefik:
+        container_name: traefik
+        # The official v2.8 Traefik docker image
+        image: traefik:v2.7
+        # Enables the web UI and tells Traefik to listen to docker
+        command:
+            --api.insecure=true
+            --providers.docker
+        #      --entrypoints.websecure.address=:443
+        # ports:
+        #     # The HTTP port
+        #     - "80:80"
+        #     # The Web UI (enabled by --api.insecure=true)
+        #     - "8080:8080"
+        volumes:
+            # So that Traefik can listen to the Docker events
+            - /var/run/docker.sock:/var/run/docker.sock
+            # -> on services
+        labels:
+            - "traefik.http.routers.front.rule=Host(`front`)"
+
+    
 
 include:
 
     - .docker/compose-db.yml
-    - .docker/compose-server.yml
+    - .docker/compose-fpm.yml
+
 
 ######################
 # Other useful boxes #

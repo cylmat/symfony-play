@@ -1,9 +1,14 @@
-lib:
-- docker exec symplay-phpfpm --rm composer install
+RUN
+- volta install node
+- npm install
+- npm run build
+- bin/console assets:install
 
-project:
+
+Project:
 - docker exec symplay-phpfpm --rm composer install
 - docker exec symplay-phpfpm --rm npm install 
+
 
 
 @todo
