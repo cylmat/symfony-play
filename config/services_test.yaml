@@ -1,9 +1,0 @@
-services:
-    # _default and _instanceof configuration for services in !this! file
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: true
-
-    App\Features\:
-        resource: '../features/bootstrap/*'

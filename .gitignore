@@ -25,32 +25,12 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
-###> squizlabs/php_codesniffer ###
-/.phpcs-cache
-/phpcs.xml
-###< squizlabs/php_codesniffer ###
-
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
-
-###> friends-of-behat/symfony-extension ###
-/behat.yml.local
-###< friends-of-behat/symfony-extension ###
-
-###> liip/imagine-bundle ###
-/public/media/cache/
-###< liip/imagine-bundle ###
-
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml

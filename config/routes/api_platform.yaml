@@ -1,5 +1,0 @@
-# https://api-platform.com/docs
-api_platform:
-    resource: .
-    type: api_platform
-    prefix: /apip

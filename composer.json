@@ -6,75 +6,48 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "api-platform/core": "3.*",
-        "doctrine/doctrine-bundle": "^2.7",
-        "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.14",
-        "easycorp/easyadmin-bundle": "^4.4",
-        "friendsofsymfony/rest-bundle": "^3.5",
-        "friendsofsymfony/user-bundle": "^3.1",
-        "liip/imagine-bundle": "^2.10",
-        "nelmio/cors-bundle": "^2.2",
-        "predis/predis": "^2.1",
-        "snc/redis-bundle": "^4.6",
-        "stof/doctrine-extensions-bundle": "^1.7",
-        "symfony/apache-pack": "^1.0",
-        "symfony/asset": "6.3.*",
-        "symfony/doctrine-messenger": "6.3.*",
-        "symfony/dotenv": "6.3.*",
-        "symfony/expression-language": "6.3.*",
-        "symfony/flex": "^2.2",
-        "symfony/form": "6.3.*",
-        "symfony/framework-bundle": "6.3.*",
-        "symfony/messenger": "6.3.*",
-        "symfony/monolog-bundle": "^3.8",
-        "symfony/property-access": "6.3.*",
-        "symfony/property-info": "6.3.*",
-        "symfony/proxy-manager-bridge": "6.3.*",
-        "symfony/runtime": "6.3.*",
-        "symfony/security-bundle": "6.3.*",
-        "symfony/serializer": "6.3.*",
-        "symfony/translation": "6.3.*",
-        "symfony/twig-bundle": "6.3.*",
-        "symfony/validator": "6.3.*",
-        "symfony/web-link": "6.3.*",
-        "symfony/webpack-encore-bundle": "^1.16",
-        "symfony/workflow": "6.3.*",
-        "symfony/yaml": "6.3.*",
-        "twig/extra-bundle": "^3.0",
-        "twig/twig": "^3.0"
+        "doctrine/doctrine-bundle": "^2",
+        "doctrine/doctrine-migrations-bundle": "^3",
+        "doctrine/orm": "^3",
+        "nelmio/cors-bundle": "^2",
+        "symfony/apache-pack": "^1",
+        "symfony/asset": "^7",
+        "symfony/doctrine-messenger": "^7",
+        "symfony/dotenv": "^7",
+        "symfony/expression-language": "^7",
+        "symfony/flex": "^2",
+        "symfony/form": "^7",
+        "symfony/framework-bundle": "^7",
+        "symfony/messenger": "^7",
+        "symfony/monolog-bundle": "^3",
+        "symfony/proxy-manager-bridge": "^6",
+        "symfony/runtime": "^7",
+        "symfony/security-bundle": "^7",
+        "symfony/serializer": "^7",
+        "symfony/translation": "^7",
+        "symfony/twig-bundle": "^7",
+        "symfony/validator": "^7",
+        "symfony/web-link": "^7",
+        "symfony/webpack-encore-bundle": "^2",
+        "symfony/workflow": "^7",
+        "symfony/yaml": "^7",
+        "twig/extra-bundle": "^3",
+        "twig/twig": "^3",
+        "wikimedia/composer-merge-plugin": "^2"
     },
     "require-dev": {
-        "behat/behat": "^3.12",
-        "behat/mink": "^1.10",
-        "behat/mink-goutte-driver": "^2.0",
-        "brianium/paratest": "^6.7",
-        "dg/bypass-finals": "^1.4",
-        "doctrine/doctrine-fixtures-bundle": "^3.4",
-        "friends-of-behat/mink-extension": "^2.7",
-        "friends-of-behat/symfony-extension": "^2.3",
-        "friends-of-phpspec/phpspec-code-coverage": "^6.1",
-        "jetbrains/phpstorm-stubs": "^2022.2",
-        "kint-php/kint": "^5.0",
-        "nikic/php-parser": "^4.15",
-        "pestphp/pest": "^1.22",
-        "phpmd/phpmd": "^2.13",
-        "phpro/grumphp": "^1.15",
-        "phpspec/phpspec": "^7.3",
-        "phpspec/prophecy-phpunit": "^2.0",
-        "phpunit/phpunit": "^9.5",
-        "phpunitgen/console": "^4.2",
-        "sebastian/phpcpd": "^6.0",
-        "squizlabs/php_codesniffer": "^3.7",
-        "symfony/browser-kit": "6.3.*",
-        "symfony/console": "6.3.*",
-        "symfony/css-selector": "6.3.*",
-        "symfony/maker-bundle": "1.40",
-        "symfony/phpunit-bridge": "^6.3",
-        "symfony/web-profiler-bundle": "6.3.*"
+        "doctrine/doctrine-fixtures-bundle": "^4",
+        "jetbrains/phpstorm-stubs": "^2022",
+        "kint-php/kint": "^5",
+        "symfony/browser-kit": "^7",
+        "symfony/console": "^7",
+        "symfony/css-selector": "^7",
+        "symfony/maker-bundle": "^1",
+        "symfony/phpunit-bridge": "^7",
+        "symfony/web-profiler-bundle": "^7"
     },
     "config": {
         "bin-dir": "bin",
@@ -83,7 +56,8 @@
             "symfony/flex": true,
             "symfony/runtime": true,
             "pestphp/pest-plugin": true,
-            "phpro/grumphp": true
+            "phpro/grumphp": true,
+            "wikimedia/composer-merge-plugin": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
@@ -93,24 +67,16 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/",
-            "App\\Admin\\": "src/Admin/",
-            "App\\Common\\": "src/Common/",
-            "App\\DataBundle\\": "src/DataBundle/",
-            "App\\FrontBundle\\": "src/FrontBundle/",
-            "App\\PlayBundle\\": "src/PlayBundle/",
-            "App\\TextBundle\\": "src/TextBundle/"
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
         "classmap": [
-            "tests/AppTestCase.php",
-            "tests/RepositoryTestCase.php"
+            "tests/AppTestCase.php"
         ],
         "psr-4": {
             "App\\Features\\": "features/bootstrap/",
             "App\\Tests\\": "tests/",
-            "App\\Tests\\App\\": "tests/App/",
             "spec\\App\\": "spec/"
         }
     },
@@ -137,9 +103,19 @@
         "symfony/symfony": "*"
     },
     "extra": {
+        "merge-plugin": {
+            "require": [
+                "tools/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "ignore-duplicates": false,
+            "merge-dev": true,
+            "merge-extra": false
+        },
         "symfony": {
             "allow-contrib": false,
-            "require": "6.3.*"
+            "require": "^7"
         },
         "runtime": {}
     }

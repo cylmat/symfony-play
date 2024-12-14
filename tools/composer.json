@@ -1,0 +1,15 @@
+{
+    "name": "symplay/libs",
+    "description": "libs",
+    "type": "library",
+    "minimum-stability": "stable",
+    "require": {
+        "easycorp/easyadmin-bundle": "^4",
+        "liip/imagine-bundle": "^2",
+        "predis/predis": "^2",
+        "snc/redis-bundle": "^4"
+    },
+    "require-dev": {
+        
+    }
+}

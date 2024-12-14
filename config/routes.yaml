@@ -1,20 +1,20 @@
 # Must be configured to avoir error: "No route found"
 controllers_admin:
     resource: ../src/Admin/Controller
-    type: annotation
+    type: attribute
 
 controllers_data:
     resource: ../src/DataBundle/Controller
-    type: annotation
+    type: attribute
 
 # FRONT
 controllers_front:
     resource: ../src/FrontBundle
-    type: annotation
+    type: attribute
 
 controllers_text:
     resource: ../src/TextBundle/Controller
-    type: annotation
+    type: attribute
 
 homepage:
     path: /

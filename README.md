@@ -10,6 +10,7 @@ Project:
 
 Run
 - docker compose up -d
+- docker exec -it phpfpm bash
 - docker compose down --remove-orphans
 
 @todo
