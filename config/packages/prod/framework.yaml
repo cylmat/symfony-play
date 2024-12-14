@@ -1,5 +1,0 @@
-framework:
-    # https://symfony.com/doc/current/session.html#store-sessions-in-a-database
-    session:
-        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
-

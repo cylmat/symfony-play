@@ -47,10 +47,20 @@ framework:
         #         format: json
         #         context: {}
 
-# when@test:
-#    framework:
-#        messenger:
-#            transports:
-#                # replace with your transport name here (e.g., my_transport: 'in-memory://')
-#                # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
-#                async: 'in-memory://'
+when@test:
+   framework:
+        messenger:
+           transports:
+               # replace with your transport name here (e.g., my_transport: 'in-memory://')
+               # For more Messenger testing tools, see https://github.com/zenstruck/messenger-test
+               async: 'in-memory://'
+
+when@prod:
+    framework:
+        messenger:
+            transports:
+                # https://symfony.com/doc/current/messenger.html#transport-configuration
+                # async: '%env(MESSENGER_TRANSPORT_DSN)%'
+                # failed: 'doctrine://default?queue_name=failed'
+                # sync: 'sync://'
+                async: 'in-memory://'

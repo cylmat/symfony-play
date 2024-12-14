@@ -8,12 +8,12 @@ doctrine:
                 server_version: '3'
                 memory: false
 
-            sqlite:
-                url: '%env(resolve:TEST_SQLITE_URL)%'
-                driver: pdo_sqlite
-                dbname_suffix: 'test_sqlite'
-                server_version: '3'
-                memory: false
+            # sqlite:
+            #     url: '%env(resolve:TEST_SQLITE_URL)%'
+            #     driver: pdo_sqlite
+            #     dbname_suffix: 'test_sqlite'
+            #     server_version: '3'
+            #     memory: false
 
     orm:
         default_entity_manager: default

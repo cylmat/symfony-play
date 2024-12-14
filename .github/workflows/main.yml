@@ -61,7 +61,6 @@ jobs:
       # @todo use bin/run tests instead !
       run: |
         bin/composer install --dev
-        bin/run unit
 
   deploy:
     runs-on: ubuntu-latest

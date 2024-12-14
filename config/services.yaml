@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    # @TODO use "app.redis.enabled" parameters
+    use_redis: ~ # ~|local|remote
 
 services:
     # _default configuration for services in !this! file
@@ -12,8 +14,49 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
+    _instanceof:
+        # App LOGGER used in TextBundle #
+        App\Common\LoggerAwareInterface:
+            calls:
+                - ['setLogger', ['@app.logger']]
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
 
     App\Common\:
         resource: ../src/Common/
+
+    # Admin #
+    App\Admin\Controller\:
+        resource: ../src/Admin/Controller
+
+    # Data #
+    App\DataBundle\:
+        resource: ../src/DataBundle/
+
+    # Encrypt #
+    # App\Encrypt\:
+    #     resource: ../src/Encrypt/
+    #     exclude:
+    #         - ../src/Encrypt/Domain/Model/EncryptedData.php
+
+    # Text #
+    App\TextBundle\:
+        resource: ../src/TextBundle/
+
+    # App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'
+
+
+
+    ################
+    ### Specific ###
+    ################
+
+liip_imagine:
+    # valid drivers options include "gd" or "gmagick" or "imagick"
+    driver: "gd"
+
+# Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
+# See the official DoctrineExtensions documentation for more details: https://github.com/doctrine-extensions/DoctrineExtensions/tree/main/doc
+stof_doctrine_extensions:
+    default_locale: en_US

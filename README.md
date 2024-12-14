@@ -1,15 +1,16 @@
-RUN
+Install
 - volta install node
 - npm install
 - npm run build
 - bin/console assets:install
 
-
 Project:
 - docker exec symplay-phpfpm --rm composer install
 - docker exec symplay-phpfpm --rm npm install 
 
-
+Run
+- docker compose up -d
+- docker compose down --remove-orphans
 
 @todo
 - install composer in phpfpm

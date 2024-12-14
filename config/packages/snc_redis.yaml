@@ -11,12 +11,6 @@ when@dev:
                 dsn: "%env(REDIS_URL)%"
                 logging: '%kernel.debug%'
 
-            # @snc_redis.remote
-            remote:
-                type: predis
-                dsn: "%env(REDIS_REMOTE_URL)%"
-                logging: '%kernel.debug%'
-
 when@test:
     snc_redis:
         clients:
@@ -24,9 +18,6 @@ when@test:
                 type: predis
                 dsn: "%env(TEST_REDIS_URL)%"
 
-            remote:
-                type: predis
-                dsn: "%env(TEST_REDIS_URL)%"
 
 ###
 # NO snc_redis PROD BUNDLE !
