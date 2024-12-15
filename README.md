@@ -13,6 +13,8 @@ Run
 - docker exec -it phpfpm bash
 - docker compose down --remove-orphans
 
+Front: docker exec -it phpfpm npm run dev
+
 @todo
 - install composer in phpfpm
 - check atal: detected dubious ownership in repository at '/var/www/application'

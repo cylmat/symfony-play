@@ -16,6 +16,7 @@ FROM php:8.3-fpm AS core
 
 ENV UID=1000
 ENV GID=1000
+ENV NODE_VERSION=20
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
@@ -39,24 +40,6 @@ RUN apt install -y \
     make \
     pkg-config \
     software-properties-common
-
-
-### NODE ###
-
-SHELL ["/bin/bash", "-c"]
-# tell bash to load .bashrc manually
-ENV BASH_ENV ~/.bashrc
-# needed by volta() function
-ENV VOLTA_HOME /root/.volta
-# make sure packages managed by volta will be in PATH
-ENV PATH $VOLTA_HOME/bin:$PATH
-
-RUN curl https://get.volta.sh | bash
-
-RUN volta install node@20
-
-
-
 
 
 
@@ -204,6 +187,22 @@ RUN addgroup user -gid ${GID}
 RUN adduser user --uid ${UID} --gid ${GID} --gecos GECOS --disabled-password
 USER user:user
 
-RUN whoami
+
+
+### NODE ###
+
+SHELL ["/bin/bash", "-c"]
+# tell bash to load .bashrc manually
+ENV BASH_ENV ~/.bashrc
+# needed by volta() function
+ENV VOLTA_HOME /home/user/.volta
+# make sure packages managed by volta will be in PATH
+ENV PATH /home/user/.volta/bin:$PATH
+
+RUN curl https://get.volta.sh | bash
+
+RUN volta install node@${NODE_VERSION}
+
+
 
 WORKDIR /var/www/application

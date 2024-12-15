@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\FrontBundle;
+namespace App\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +13,6 @@ final class VueJsController extends AbstractController
 {
     public function __invoke(): Response
     {
-        return $this->render('front/vuejs/index.html.twig');
+        return $this->render('vuejs/index.html.twig');
     }
 }

@@ -1,6 +1,6 @@
 # Must be configured to avoir error: "No route found"
 controllers_admin:
-    resource: ../src/Admin/Controller
+    resource: ../src/Admin
     type: attribute
 
 controllers_data:
@@ -9,7 +9,7 @@ controllers_data:
 
 # FRONT
 controllers_front:
-    resource: ../src/FrontBundle
+    resource: ../src/FrontBundle/Controller
     type: attribute
 
 controllers_text:

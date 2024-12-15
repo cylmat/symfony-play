@@ -23,11 +23,12 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
-
-    /* VUE */
-    .addEntry('vue', './assets/vue.js')
-
     .addEntry('bootstrap', './assets/bootstrap.js')
+
+    
+    /* FRONT BUNDLE - VUEJS */
+    .addEntry('vue', './src/FrontBundle/Resources/assets/vue.js')
+
     
     /*
         Webpack v7

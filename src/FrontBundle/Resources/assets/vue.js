@@ -15,10 +15,13 @@
     npm install vue-loader@^17.0.0 --save-dev
 */
 
+
 /**
  * VUEJS lib
- */
-import './lib/vuejs/vuejs.js'
+*/
+
+// @see https://vuejs.org/guide/introduction.html
+require('vue'); 
 
 /**
  * Vuejs page

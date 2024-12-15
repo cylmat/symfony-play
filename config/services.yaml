@@ -24,15 +24,19 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
 
     App\Common\:
-        resource: ../src/Common/
+        resource: ../src/Common
 
     # Admin #
-    App\Admin\Controller\:
-        resource: ../src/Admin/Controller
+    App\Admin\:
+        resource: ../src/Admin
 
     # Data #
     App\DataBundle\:
-        resource: ../src/DataBundle/
+        resource: ../src/DataBundle
+
+    # Front #
+    App\FrontBundle\:
+        resource: ../src/FrontBundle
 
     # Encrypt #
     # App\Encrypt\:
@@ -42,7 +46,7 @@ services:
 
     # Text #
     App\TextBundle\:
-        resource: ../src/TextBundle/
+        resource: ../src/TextBundle
 
     # App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'
 

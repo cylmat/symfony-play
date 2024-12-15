@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AwsBundle;
+namespace App\AwsBundle\Controller;
 
 class TestController
 {
-    
+
 }
