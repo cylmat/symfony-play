@@ -23,7 +23,6 @@ services:
         container_name: phpfpm
         build:
             context: .
-            target: db_ext
         restart: always
         environment:
             APP_ENV: dev

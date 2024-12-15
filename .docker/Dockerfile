@@ -5,34 +5,31 @@
 # Use this Dockerfile as a base template,
 # (Un)comment extensions for your need on your own application.
 #
-# Use "docker run --rm -it php:8.1-fpm bash" to try your own installation
+# Use "docker run --rm -it php:8.3-fpm bash" to try your own installation
 #
 # Build with docker build --pull --rm -f ".docker\Dockerfile" -t symplay:latest ".docker" 
 ##############
 
 ### Debian GNU/Linux 11 (bullseye) ###
 
-FROM php:8.2-fpm AS core
+FROM php:8.3-fpm AS core
 
-RUN apt update && apt install -y curl git zip
-WORKDIR /var/www/application
-
-FROM core AS simple
-
+ENV UID=1000
+ENV GID=1000
 ARG DEBIAN_FRONTEND=noninteractive
+
 RUN apt update
+
+RUN apt install -y curl git vim zip
+
 
 ### Common and build (https://packages.debian.org) ###
 
 RUN apt install -y \
     bzip2 \
-    curl \
-    git \
     gnupg \
     sqlite3 \
-    wget \
-    vim \
-    zip
+    wget
 
 RUN apt install -y \
     apt-utils \
@@ -43,13 +40,31 @@ RUN apt install -y \
     pkg-config \
     software-properties-common
 
+
+### NODE ###
+
+SHELL ["/bin/bash", "-c"]
+# tell bash to load .bashrc manually
+ENV BASH_ENV ~/.bashrc
+# needed by volta() function
+ENV VOLTA_HOME /root/.volta
+# make sure packages managed by volta will be in PATH
+ENV PATH $VOLTA_HOME/bin:$PATH
+
+RUN curl https://get.volta.sh | bash
+
+RUN volta install node@20
+
+
+
+
+
+
+
 ##################
 # PHP extensions #
 ##################
 
-FROM core AS ext
-
-RUN apt update
 
 ##################
 # Already installed extensions "php -m" :
@@ -66,13 +81,12 @@ RUN apt update
 # /usr/local/etc/php/conf.d/docker-php-ext-***.ini 
 ##################
 
-RUN curl https://get.volta.sh | bash
-
 # @see https://www.php.net/manual/en/refs.basic.other.php
 
 RUN apt install -y \
     libxslt1-dev \
     libzip-dev
+
 RUN docker-php-ext-install -j$(nproc) bcmath 
 RUN docker-php-ext-install -j$(nproc) ctype 
 RUN docker-php-ext-install -j$(nproc) fileinfo 
@@ -103,30 +117,37 @@ RUN apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
     && docker-php-ext-install -j$(nproc) gd \
     && php -r "var_dump(gd_info());"
 
+
 ### PECL extensions ###
 
 RUN pecl channel-update pecl.php.net
+
 
 ### (http://pecl.php.net/packages.php)
 ### Use "pecl list-all" for all supported modules.
 ### Add extension=*** in php.ini for each pecl's extensions
 RUN apt install -y libmcrypt-dev libpcre3-dev
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install apcu
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install ast
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install ds
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install mcrypt
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install oauth
-RUN pecl channel-update pecl.php.net && echo "\n" | pecl install psr
+
+
+RUN echo "\n" | pecl install apcu
+RUN echo "\n" | pecl install ast
+RUN echo "\n" | pecl install ds
+RUN echo "\n" | pecl install mcrypt
+RUN echo "\n" | pecl install oauth
+RUN echo "\n" | pecl install psr
 
 #crypto #env #handlebars #http_message #imagick #imap #ingres #mustache #lua #v8js
     
+
+
+
+
+
+
 #####################
 ### DB extensions ###
 #####################
 
-FROM ext AS db_ext
-
-RUN apt update
 
 RUN apt install -y \
     libsqlite3-dev \
@@ -140,22 +161,25 @@ RUN docker-php-ext-install -j$(nproc) pdo_sqlite
 
 # RUN docker-php-ext-install -j$(nproc) pdo_odbc
 
-RUN pecl channel-update pecl.php.net && echo "\yes" | pecl install mongodb
+RUN echo "\yes" | pecl install mongodb
+
+
+
+
+
 
 ############################
 ### Coverage & Profiling ###
 ############################
 
-FROM db_ext AS full
-
-RUN apt update
 
 ### @see https://xdebug.org ###
 
 RUN pecl install \
-    pcov \
-    xdebug \
-    xhprof
+#     pcov \
+    xdebug
+#     xhprof
+
 
 ### Ssh ###
 
@@ -170,4 +194,16 @@ RUN apt install -y ssh && \
 #############
 ### Clean ###
 #############
-RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+# RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+
+### USER ###
+
+RUN echo 'root:root' | chgpasswd
+RUN addgroup user -gid ${GID}
+RUN adduser user --uid ${UID} --gid ${GID} --gecos GECOS --disabled-password
+USER user:user
+
+RUN whoami
+
+WORKDIR /var/www/application
