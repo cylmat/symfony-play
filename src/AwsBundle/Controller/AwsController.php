@@ -2,6 +2,7 @@
 
 namespace App\AwsBundle\Controller;
 
+use App\AwsBundle\Manager\AwsManager;
 use App\AwsBundle\Manager\ElastiCacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,14 +10,16 @@ use Symfony\Component\Routing\Attribute\Route;
 class AwsController extends AbstractController
 {
     public function __construct(
-        private readonly ElastiCacheManager $cacheManager
+        private readonly AwsManager $awsManager
     ) {}
 
     #[Route('/aws')]
     public function run()
     {
-        $this->cacheManager->run();
+        $data = $this->awsManager->run();
 
-        return $this->render('test-run.html.twig');
+        return $this->render('aws-run.html.twig', [
+            'dynamodb' => $data['dynamodb']
+        ]);
     }
 }

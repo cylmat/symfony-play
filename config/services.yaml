@@ -38,6 +38,10 @@ services:
     App\FrontBundle\:
         resource: ../src/FrontBundle
 
+    # Play #
+    # App\PlayBundle\:
+    #     resource: ../src/PlayBundle
+
     # Encrypt #
     # App\Encrypt\:
     #     resource: ../src/Encrypt/

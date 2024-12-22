@@ -1,8 +1,6 @@
 
 parameters:
-  # ElastiCache 
-  aws_arn: '%env(AWS_ARN)%'
-  aws_terminaison: '%env(AWS_TERMINAISON)%'
+  
 
 services:
 
@@ -21,6 +19,8 @@ services:
   App\AwsBundle\:
     resource: ../../src/AwsBundle
 
-  # App\AwsBundle\Service\ElastiCacheService:
-  #   arguments:
-  #     $awsElastiCache: '@snc_redis.elasticache'
+  App\AwsBundle\Service\DynamoService:
+    arguments:
+      $iamKey: '%env(AWS_IAM_KEY)%'
+      $iamSecret: '%env(AWS_IAM_SECRET)%'
+      $dynamoRegion: '%env(AWS_DYNAMODB_REGION)%'
