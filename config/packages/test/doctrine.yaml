@@ -2,14 +2,14 @@ doctrine:
     dbal:
         connections:
             default:
-                url: '%env(resolve:TEST_SQLITE_URL)%'
+                url: '%env(resolve:TEST_DATABASE_URL)%'
                 driver: pdo_sqlite
                 dbname_suffix: 'test_default'
                 server_version: '3'
                 memory: false
 
             # sqlite:
-            #     url: '%env(resolve:TEST_SQLITE_URL)%'
+            #     url: '%env(resolve:DATABASE_URL)%'
             #     driver: pdo_sqlite
             #     dbname_suffix: 'test_sqlite'
             #     server_version: '3'
@@ -20,11 +20,11 @@ doctrine:
 
         # @see https://symfony.com/doc/current/doctrine/multiple_entity_managers.html
         entity_managers:
-            sqlite:
-                connection: sqlite
-                mappings:
-                    AppBundle:
-                        type: attribute
-                        prefix: 'App\AppBundle'
-                        dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
-                        is_bundle: false # change 'dir' attribute as relative path
+            # sqlite:
+            #     connection: sqlite
+                # mappings:
+                #     AppBundle:
+                #         type: attribute
+                #         prefix: 'App\AppBundle'
+                #         dir: '%kernel.project_dir%/src/AppBundle/Domain/Entity'
+                #         is_bundle: false # change 'dir' attribute as relative path

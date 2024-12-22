@@ -5,19 +5,32 @@ when@dev:
         # how to configure the bundle.
         clients:
             # @snc_redis.local
-            local:
+            default:
                 type: predis
                 alias: local
                 dsn: "%env(REDIS_URL)%"
                 logging: '%kernel.debug%'
 
+            # @snc_redis.elasticache
+            elasticache:
+                type: predis
+                alias: elasticache
+                dsn: "%env(AWS_TERMINAISON)%"
+                logging: '%kernel.debug%'
+
 when@test:
     snc_redis:
         clients:
-            local:
+            default:
                 type: predis
                 dsn: "%env(TEST_REDIS_URL)%"
 
+            #  # @snc_redis.elasticache
+            # elasticache:
+            #     type: predis
+            #     alias: elasticache
+            #     dsn: "%env(AWS_TERMINAISON)%"
+            #     logging: '%kernel.debug%'
 
 ###
 # NO snc_redis PROD BUNDLE !

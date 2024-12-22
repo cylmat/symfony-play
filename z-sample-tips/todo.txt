@@ -17,6 +17,8 @@ https://rocketmq.apache.org/
 https://aws.amazon.com/fr/dynamodb/
 https://hub.docker.com/r/amazon/dynamodb-local
 
+socket.io
+
 CLOUD
 https://console.cloud.google.com
 https://eu-west-3.console.aws.amazon.com

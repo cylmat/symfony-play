@@ -1,0 +1,26 @@
+
+parameters:
+  # ElastiCache 
+  aws_arn: '%env(AWS_ARN)%'
+  aws_terminaison: '%env(AWS_TERMINAISON)%'
+
+services:
+
+  _defaults:
+    autowire: true
+    autoconfigure: true 
+    public: false
+
+  _instanceof:
+      # App LOGGER used in TextBundle #
+      App\Common\LoggerAwareInterface:
+          calls:
+            - ['setLogger', ['@app.logger']]
+
+
+  App\AwsBundle\:
+    resource: ../../src/AwsBundle
+
+  # App\AwsBundle\Service\ElastiCacheService:
+  #   arguments:
+  #     $awsElastiCache: '@snc_redis.elasticache'

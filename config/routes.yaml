@@ -3,6 +3,10 @@ controllers_admin:
     resource: ../src/Admin
     type: attribute
 
+controllers_aws:
+    resource: ../src/AwsBundle/Controller
+    type: attribute
+
 controllers_data:
     resource: ../src/DataBundle/Controller
     type: attribute

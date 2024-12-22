@@ -21,18 +21,18 @@ doctrine:
                 # wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
                 schema_filter: '%db_schema_filter%'
 
-            sqlite:
-                url: '%env(resolve:DEV_SQLITE_URL)%'
-                driver: pdo_sqlite
-                dbname_suffix: ''
-                # IMPORTANT: You MUST configure your server version,
-                # either here or in the DATABASE_URL env var (see .env file)
-                server_version: '3'
-                charset: utf8mb4
-                memory: true
-                driver_class: ~
-                # wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
-                schema_filter: '%db_schema_filter%'
+            # sqlite:
+            #     url: '%env(resolve:SQLITE_URL)%'
+            #     driver: pdo_sqlite
+            #     dbname_suffix: ''
+            #     # IMPORTANT: You MUST configure your server version,
+            #     # either here or in the DATABASE_URL env var (see .env file)
+            #     server_version: '3'
+            #     charset: utf8mb4
+            #     memory: true
+            #     driver_class: ~
+            #     # wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
+            #     schema_filter: '%db_schema_filter%'
 
     # Object Relational Mapping
     orm:
@@ -61,8 +61,8 @@ doctrine:
                 #     type: service
                 #     id: CacheDriver
 
-            sqlite:
-                connection: sqlite
+            # sqlite:
+            #     connection: sqlite
                 # @todo Can we mutualized mapping ? #
                 # mappings:
                 #     AppBundle:
