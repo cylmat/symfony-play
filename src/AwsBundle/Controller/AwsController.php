@@ -3,7 +3,6 @@
 namespace App\AwsBundle\Controller;
 
 use App\AwsBundle\Manager\AwsManager;
-use App\AwsBundle\Manager\ElastiCacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
 

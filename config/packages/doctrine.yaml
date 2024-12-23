@@ -46,14 +46,14 @@ doctrine:
         entity_managers:
             default:
                 connection: default
-                # mappings:
-                #     AppBundle:
-                #         # Use AttributeDriver class (with MappingDriverChain)
-                #         alias: AppBundle # Can use "console AppBundle:<entity> --regenerate"
-                #         type: attribute
-                #         dir: '../../Domain/Entity'
-                #         prefix: 'App\AppBundle' # MUST begin with <mapping-name>\
-                #         is_bundle: true # change 'dir' attribute as relative path
+                mappings:
+                    DataBundle:
+                        # Use AttributeDriver class (with MappingDriverChain)
+                        alias: DataBundle # Can use "console AppBundle:<entity> --regenerate"
+                        type: attribute
+                        dir: '../DataBundle/Entity'
+                        prefix: 'App\DataBundle' # MUST begin with <mapping-name>\
+                        is_bundle: true # change 'dir' attribute as relative path
                 # metadata_cache_driver:
                 #     type: pool
                 #     pool: doctrine.system_cache_pool

@@ -6,6 +6,6 @@ namespace App\DataBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class AppDataBundle extends Bundle
+final class DataBundle extends Bundle
 {
 }

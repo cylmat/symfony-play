@@ -1,6 +1,7 @@
 <?php
 
 return [
+    App\DataBundle\DataBundle::class => ['all' => true],
     App\FrontBundle\FrontBundle::class => ['all' => true],
     App\TextBundle\TextBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
