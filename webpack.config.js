@@ -1,6 +1,6 @@
-const Encore = require('@symfony/webpack-encore');
-const webpack = require('webpack');
-const path = require('path');
+const Encore = require('@symfony/webpack-encore')
+const webpack = require('webpack')
+const path = require('path')
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -9,6 +9,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
+   
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
@@ -26,8 +27,12 @@ Encore
     .addEntry('bootstrap', './assets/bootstrap.js')
 
     
+    /* DATA BUNDLE  */
+    .addEntry('datafactory_action', './src/DataBundle/Resources/assets/factory_action.js')
+
     /* FRONT BUNDLE - VUEJS */
     .addEntry('vue', './src/FrontBundle/Resources/assets/vue.js')
+
 
     
     /*
@@ -104,6 +109,24 @@ Encore
         to: 'images/[path][name].[ext]',
     })
     */
+
+     // DEV SERVER
+    // @https://symfony.com/doc/current/frontend/encore/dev-server.html
+    // .configureDevServerOptions(options => {
+    //     options.liveReload = true;
+    //     options.static = {
+    //         watch: false
+    //     };
+    //     options.watchFiles = {
+    //         paths: ['src/**/*.php', 'templates/**/*', 'src/**/*.js'],
+    //     };
+
+    //     // If you experience issues related to CORS (Cross Origin Resource Sharing), set the following option:
+    //     options.allowedHosts = 'all';
+    // })
+
+
+
 ;
 
 /*

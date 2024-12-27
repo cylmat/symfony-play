@@ -1,9 +1,13 @@
 {
 	"extensions": [
+		// AI
+		"codeium.codeium", // OR sourcegraph.cody-ai
+
+		// DEV
 		"bmewburn.vscode-intelephense-client",
+		
+		// SNIPPETS
+		"dsznajder.es7-react-js-snippets",
 		"hakcorp.php-awesome-snippets",
-		"Vue.volar",
-		"mubaidr.vuejs-extension-pack"
-	],
-	"workspaceFolder": "/var/www/application"
+	]
 }

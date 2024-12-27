@@ -3,6 +3,7 @@ twig:
     form_themes: ['bootstrap_5_horizontal_layout.html.twig']
     paths: 
         - '%kernel.project_dir%/src/AwsBundle/Resources/templates'
+        - '%kernel.project_dir%/src/DataBundle/Resources/templates'
         - '%kernel.project_dir%/src/FrontBundle/Resources/templates'
         - '%kernel.project_dir%/src/TextBundle/Resources/templates'
 

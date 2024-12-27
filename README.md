@@ -1,21 +1,42 @@
-Install
+# DataBundle
+============
+
+## Usage
+--------
+
+### Install
 - volta install node
 - npm install
 - npm run build
 - bin/console assets:install
 
-Project:
+### Project:
 - docker exec symplay-phpfpm --rm composer install
 - docker exec symplay-phpfpm --rm npm install 
 
-Run
+### Run
 - docker compose up --build -d
 - docker exec -it phpfpm bash
 - docker compose down --remove-orphans
 
-Front: docker exec -it phpfpm npm run dev
+### Front
+- docker exec -it phpfpm npm run dev
+
+### Assets
+- docker exec phpfpm bin/console assets:install
+- docker exec phpfpm npm run watch
+
+## Autocomplete
+---------------
+- Codeium
+VsCode "codeium.codeium"
+
+- To use VsCode Intellisense, add npm's jQuery types
+npm i --save @types/jquery 
+
 
 @todo
+-----
 - install composer in phpfpm
 - check atal: detected dubious ownership in repository at '/var/www/application'
         git config --global --add safe.directory /var/www/application

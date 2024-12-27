@@ -3,17 +3,19 @@
 namespace App\Common;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Contracts\Service\Attribute\Required;
+use Symfony\Component\Serializer\Serializer;
 
 trait SerializerTrait
 {
-    private SerializerInterface $serializer;
-
-    #[Required]
-    public function setSerializer(SerializerInterface $serializer): void
+    public function deserialize(array $data, string $type, array $context = []): object
     {
-        $this->serializer = $serializer;
+        if ($this->container->has('serializer')) {
+            $serializer = $this->container->get('serializer');
+            /** @var Serializer $serializer */
+            $object = $serializer->deserialize(json_encode($data), $type, 'json', $context);
+        }
+
+        return $object;
     }
 
     private function createJsonResponse(mixed $data, int $status = JsonResponse::HTTP_OK, array $context = [], array $headers = []): JsonResponse

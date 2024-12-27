@@ -18,7 +18,12 @@ class Factory
     #[ORM\Column(length: 50)]
     private string $name;
 
-    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'factory', cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\OneToMany(
+        targetEntity: Contact::class,
+        mappedBy: 'factory', 
+        cascade: ['persist'],
+        orphanRemoval: true
+    )]
     private Collection $contacts;
 
     public function __construct()
@@ -55,7 +60,7 @@ class Factory
     {
         if (!$this->contacts->contains($contact)) {
             $this->contacts->add($contact);
-            $contact->setFactory($this);
+            // $contact->setFactory($this);
         }
 
         return $this;
@@ -65,9 +70,9 @@ class Factory
     {
         if ($this->contacts->removeElement($contact)) {
             // set the owning side to null (unless already changed)
-            if ($contact->getFactory() === $this) {
-                $contact->setFactory(null);
-            }
+            // if ($contact->getFactory() === $this) {
+            //     $contact->setFactory(null);
+            // }
         }
 
         return $this;
