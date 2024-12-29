@@ -22,6 +22,9 @@ class Contact
     #[ORM\Column(length: 50)]
     private string $phone;
 
+    #[ORM\ManyToOne(targetEntity: Factory::class, inversedBy: 'contacts')]
+    private ?Factory $factory = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Contact
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getFactory(): ?Factory
+    {
+        return $this->factory;
+    }
+
+    public function setFactory(Factory $factory): self
+    {
+        $this->factory = $factory;
 
         return $this;
     }

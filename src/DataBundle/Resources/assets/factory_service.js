@@ -1,8 +1,8 @@
 
 
 
-export function getFactories() {
-    return $.get("/api/factoryAll", function (response, textStatus , xhr) {
+export function getAllDataFactories() {
+    return $.get("/api/factoryAllData", function (response, textStatus , xhr) {
         return response
     })
 }
@@ -12,7 +12,17 @@ export function postFactory(factoryName) {
       name: factoryName 
   }
 
-  $.post("/api/factory", body, function (response, textStatus , xhr) {
+  return $.post("/api/factory", body, function (response, textStatus , xhr) {
       console.log(response, textStatus , xhr.status)
+  })
+}
+
+export function deleteFactory(factoryId) {
+  return $.ajax({
+    url: "/api/factory/"+factoryId, 
+    type: 'DELETE', 
+    success: function (response, textStatus , xhr) {
+      console.log(response, textStatus , xhr.status)
+    }
   })
 }

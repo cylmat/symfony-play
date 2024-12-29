@@ -30,18 +30,15 @@ final class FactoryController extends AbstractController
 
     // API
 
-    #[Route('/api/factoryAll', methods: ['GET'])]
+
+    #[Route('/api/factoryAllData', methods: ['GET'])]
     public function getFactories(): JsonResponse
     {
-        $data = [
-            'factories' => [
-                'test',
-                'deux'
-            ]
-        ];
+        $data = $this->factoryManager->getAllData();
                 
         return $this->json([
-            'factories' => $data['factories'] 
+            'factories' => $data['factories'],
+            'contacts '=> $data['contacts'],
         ]);
     }
 
@@ -56,5 +53,13 @@ final class FactoryController extends AbstractController
         $this->factoryManager->addFactory($factory);
                 
         return $this->json(null, 201);
+    }
+
+    #[Route('/api/factory/{id}', methods: ['DELETE'])]
+    public function deleteFactory(Factory $factory): JsonResponse
+    {
+        $this->factoryManager->deleteFactory($factory);
+                
+        return $this->json(null, 204);
     }
 }
