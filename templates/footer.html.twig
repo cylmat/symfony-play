@@ -1,19 +1,61 @@
 
-        <!-- Footer-->
-        <footer class="footer bg-black fixed-bottom text-center text-white-50 p-5">
+  {% block footer %}
+        <footer class="container py-4 my-md-3 border-top">
 
-            <div class="container px-4">
-
-            {% block footer_add %}
-                <a href="https://symfony.com/doc">Symfony doc</a> - 
-                <a href="https://twig.symfony.com/doc">Twig doc</a>
-            {% endblock %}
-
+            <div class="row">
+                <div class="col">
+                    {% block footer_add %}
+                        
+                    {% endblock %}
+                </div>
             </div>
 
-            <div class="container px-4">
-                &copy; Symfony play {{ "now"|date('Y') }} - 
-                Theme by <a href="https://startbootstrap.com/theme/grayscale">startbootstrap.com</a>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    &copy; Symfony play {{ "now"|date('Y') }} - 
+                    Theme from <a href="https://getbootstrap.com/docs/4.0/examples/pricing/">getbootstrap.com</a>
+                    {# Theme by <a href="https://startbootstrap.com/theme/grayscale">startbootstrap.com</a> #}
+                </div>
             </div>
         </footer>
+{% endblock %}
 
+
+
+{# <footer class="pt-4 my-md-5 pt-md-5 border-top">
+        <div class="row">
+          <div class="col-12 col-md">
+            <img class="mb-2" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+            <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Cool stuff</a></li>
+              <li><a class="text-muted" href="#">Random feature</a></li>
+              <li><a class="text-muted" href="#">Team feature</a></li>
+              <li><a class="text-muted" href="#">Stuff for developers</a></li>
+              <li><a class="text-muted" href="#">Another one</a></li>
+              <li><a class="text-muted" href="#">Last time</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Resource</a></li>
+              <li><a class="text-muted" href="#">Resource name</a></li>
+              <li><a class="text-muted" href="#">Another resource</a></li>
+              <li><a class="text-muted" href="#">Final resource</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Team</a></li>
+              <li><a class="text-muted" href="#">Locations</a></li>
+              <li><a class="text-muted" href="#">Privacy</a></li>
+              <li><a class="text-muted" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </footer> #}
