@@ -1,0 +1,12 @@
+/** @var DoctrineRegistry $doctrine */
+  $doctrine = self::$kernel->getContainer()->get('doctrine');
+  /** @var EntityManagerInterface $entityManager */
+  $entityManager = $doctrine->getManager();
+
+  $referentialDataCode = (new ReferentialData())
+      ->setCode('test_code')
+      ->setLabel('test_label');
+  $entityManager->persist($referentialDataCode);
+  $entityManager->flush();
+
+  $d = $doctrine->getRepository(ReferentialData::class)->findAll();
