@@ -1,0 +1,30 @@
+Tools
+---
+VSCode
+- cweijan.vscode-mysql-client2
+- qwtel.sqlite-viewer
+
+Tips
+---
+* ServiceNotFoundException: The service or alias has been removed ... You should make it public...
+    -> Use the service somewhere (e.g. in an other class) to avoid it be pruning
+    (test.private_services_locator)
+
+bin/console debug:container -e test
+bin/composer dump-autoload && rm -rf var/cache/* && bin/console cache:clear --env=test
+
+* Twig's namespace of "App/AppBundle" is "@App" */
+
+* _instanceof is like _default : it only works for services declared in current .yaml file !
+
+* DDD
+    - Infra : Put symfony framework/config  -> can use Appli or Domain layer
+    - Application : No infra/framework      -> can use Domain
+    - Domain : No infra/framework           -> no aware of other layer
+@https://www.invivoo.com/architecture-hexagonale
+@https://dev.to/juanoa/folder-structure-in-a-react-hexagonal-architecture-h77
+@https://blog.allegro.tech/2020/05/hexagonal-architecture-by-example.html
+
+* add npm dependencies : npm install --save-dev jquery popper.js
+
+* git config credential.helper 'store'

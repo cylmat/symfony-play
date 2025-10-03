@@ -1,0 +1,189 @@
+// jenkins sample file
+
+def dockerImage = "backend"
+def dockerRepository
+def dockerUser
+def dockerPassword
+def context
+def namespace
+def helmVersionSymfony
+def helmVersionCronjob
+def commitBranch
+def envCluster
+def basePath = 'backend'
+
+def getVersion(branch) {
+	def parser = /(release|hotfix)\/(?<major>\d+).(?<minor>\d+).(?<revision>\d+)/
+	def match = (branch =~ parser)
+
+	if (match.matches()) {
+		def major = match[0][2]
+		def minor = match[0][3]
+		def revision = match[0][4]
+		def tagMajor = "${major}"
+		def tagMinor = "${major}.${minor}"
+		def tagRevision = "${major}.${minor}.${revision}"
+		match = null
+		return tagRevision
+	}
+	return "unstable"
+}
+
+def getEnvironment(branch) {
+	def parser = /(.*)\/(.*)/
+	def match = (branch =~ parser)
+
+	if (branch == "master" || branch == "main") {
+		return "prod"
+	}
+
+	if (match.matches()) {
+		def branchType = match[0][1]
+		def branchDescription = match[0][2]
+		match = null
+		if (branchType == "release" || branchType == "hotfix") {
+			return "int"
+		}
+	}
+	return "dev"
+}
+
+def hasBuilt(environment) {
+	if (environment != "prod" && environment != "preprod") {
+		return true
+	}
+	return false
+}
+
+podTemplate(
+	label: 'jenkins-backend',
+	containers: [
+		containerTemplate(
+			name: 'k8s-kubectl-helm',
+			image: "dockerregistry.azurecr.io/k8s-kubectl-helm:k1.20.9",
+			alwaysPullImage: true,
+			ttyEnabled: true,
+			command: 'cat',
+			envVars: [
+				envVar(key: 'KUBECONFIG', value: '/root/.kube/config'),
+			]
+		),
+		containerTemplate(
+			name: 'docker',
+			image: 'moby/buildkit:v0.8.3',
+			ttyEnabled: true,
+			command: 'cat',
+			envVars: [
+				secretEnvVar(key: 'DOCKER_REGISTRY_SERVER', secretName: 'docker-registry', secretKey: 'server'),
+				secretEnvVar(key: 'DOCKER_REGISTRY_USER', secretName: 'docker-registry', secretKey: 'username'),
+				secretEnvVar(key: 'DOCKER_REGISTRY_PASSWORD', secretName: 'docker-registry', secretKey: 'password'),
+				envVar(key: 'DOCKER_CONFIG', value: '/docker'),
+			],
+		),
+		containerTemplate(
+			name: 'git',
+			image: 'alpine/git',
+			ttyEnabled: true,
+			command: 'cat',
+		),
+	],
+	volumes: [
+		secretVolume(secretName: 'k8s-kubeconfig-contexts', mountPath: '/root/.kube'),
+		secretVolume(secretName: 'buildkit-client-certs', mountPath: '/buildkit/certs'),
+		secretVolume(secretName: 'regsecret-azure', mountPath: '/docker'),
+	]
+) {
+	node('jenkins-backend') {
+		try {
+			container('git') {
+				stage('Checkout code') {
+					def scmVars = checkout scm
+					commitHash = scmVars.GIT_COMMIT
+					commitBranch = scmVars.GIT_BRANCH
+					echo "branch: ${commitBranch}"
+					environment = getEnvironment(commitBranch)
+					echo "environment: ${environment}"
+					version = getVersion(commitBranch)
+					echo "version: ${version}"
+					
+					if (environment == "prod" || environment == "preprod") {
+						timeout(time: 300, unit: 'SECONDS') {
+							try {
+								version = input(
+									id: 'prod-version',
+									message: "Which version you want to deploy to ${env}",
+									parameters: [
+										[
+											$class: 'TextParameterDefinition',
+											defaultValue: '0.0.0',
+											description: 'Create a new version',
+											name: 'version'
+										]
+									]
+								)
+							} catch (e) {
+								skippedDeployment = true
+								throw e
+							}
+						}
+					}
+
+					echo "envCluster: ${envCluster}"
+					echo "helm version: ${helmVersionSymfony}"
+					echo "context: ${context}"
+					echo "namespace: ${namespace}"
+				}
+			}
+
+			container('docker') {
+				stage('Init vars') {
+					dockerUser = sh(
+						script: 'echo $DOCKER_REGISTRY_USER',
+						returnStdout: true
+					).trim()
+					
+					dockerPassword = sh(
+						script: 'echo $DOCKER_REGISTRY_PASSWORD',
+						returnStdout: true
+					).trim()
+					
+					dockerRepository = sh(
+						script: 'echo $DOCKER_REGISTRY_SERVER',
+						returnStdout: true
+					).trim()
+				}
+			}
+
+			if (hasBuilt(environment)) {
+				container('docker') {
+					stage('Build') {
+						sh "cd ${basePath} && buildctl-daemonless.sh \
+						--addr tcp://buildkitd:1234 \
+						--tlscacert /buildkit/certs/ca.pem \
+						--tlscert /buildkit/certs/cert.pem \
+						--tlskey /buildkit/certs/key.pem build \
+						--frontend=dockerfile.v0 \
+						--local context=. \
+						--local dockerfile=. \
+						--opt build-arg:BUILD_VERSION=${version} \
+						--output type=image,name=${dockerRepository}/${dockerImage}:${version},push=true"
+					}
+				}
+			}
+
+			container('k8s-kubectl-helm') {
+				stage('Deploy') {
+				sh "helm repo add origin 'https://raw.githubusercontent.com/my-helm-chart/repo'"
+				sh "helm upgrade ${dockerImage} my/symfony \
+					--kube-context=${context} \
+					--namespace=${namespace} \
+					--reuse-values \
+					--set image.tag=${version} \
+					--version=${helmVersionSymfony}"
+				}
+			}
+		} catch (e) {
+			throw e
+		}
+	}
+}

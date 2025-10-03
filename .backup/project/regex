@@ -1,0 +1,10 @@
+$p =  \RegexParser\Parser\Parser::create();
+$ast = $p->parse('/[a-t]*/');
+$format = new \RegexParser\Formatter\XMLFormatter();
+$xml = $format->format($ast);
+$xml->formatOutput = true;
+//echo $xml->saveXML();
+$generator = new \RegexParser\Generator\RandomGenerator($ast);
+$e =$generator->generate();
+
+        
