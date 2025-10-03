@@ -4,24 +4,19 @@
 #
 # Use this Dockerfile as a base template,
 # (Un)comment extensions for your need on your own application.
-#
-# Use "docker run --rm -it php:8.3-fpm bash" to try your own installation
-#
-# Build with docker build --pull --rm -f ".docker\Dockerfile" -t symplay:latest ".docker" 
 ##############
 
 ### Debian GNU/Linux 11 (bullseye) ###
 
 FROM php:8.3-fpm AS core
 
+
 ENV UID=1000
 ENV GID=1000
 ENV NODE_VERSION=20
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update
-
-RUN apt install -y curl git vim zip
+RUN apt update && apt install -y curl git vim zip
 
 
 ### Common and build (https://packages.debian.org) ###
@@ -93,13 +88,6 @@ RUN docker-php-ext-install -j$(nproc) zip
 
 #bz2 #gd #hash
 
-### GD ###
-
-RUN apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd \
-    && php -r "var_dump(gd_info());"
-
 
 ### PECL extensions ###
 
@@ -124,9 +112,6 @@ RUN echo "\n" | pecl install psr
 
 
 
-
-
-
 #####################
 ### DB extensions ###
 #####################
@@ -148,36 +133,8 @@ RUN echo "\yes" | pecl install mongodb
 
 
 
+WORKDIR /var/www/application
 
-
-
-############################
-### Coverage & Profiling ###
-############################
-
-
-### @see https://xdebug.org ###
-
-RUN pecl install \
-#     pcov \
-    xdebug
-#     xhprof
-
-
-### Ssh ###
-
-# Use following to send an ssh key on remote host
-# ssh-copy-id -i ~/.ssh/id_ed25519.pub user@remote-host.com
-RUN rm -f ~/.ssh/id_ed25519*
-RUN apt install -y ssh && \
-    ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/id_ed25519 -N "" && \
-    eval "$(ssh-agent -s)" && \
-    ssh-add ~/.ssh/id_ed25519
-
-#############
-### Clean ###
-#############
-# RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 
 ### USER ###
@@ -189,20 +146,61 @@ USER user:user
 
 
 
+
+
+
+############################
+### Coverage & Profiling ###
+############################
+
+
+### @see https://xdebug.org ###
+
+# RUN pecl install \
+# #     pcov \
+#     xdebug
+# #     xhprof
+
+
+### Ssh ###
+
+# Use following to send an ssh key on remote host
+# ssh-copy-id -i ~/.ssh/id_ed25519.pub user@remote-host.com
+# RUN rm -f ~/.ssh/id_ed25519*
+# RUN apt install -y ssh && \
+#     ssh-keygen -t ed25519 -C "your_email@example.com" -f ~/.ssh/id_ed25519 -N "" && \
+#     eval "$(ssh-agent -s)" && \
+#     ssh-add ~/.ssh/id_ed25519
+
+#############
+### Clean ###
+#############
+# RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+
+
+
+
 ### NODE ###
 
-SHELL ["/bin/bash", "-c"]
-# tell bash to load .bashrc manually
-ENV BASH_ENV ~/.bashrc
-# needed by volta() function
-ENV VOLTA_HOME /home/user/.volta
-# make sure packages managed by volta will be in PATH
-ENV PATH /home/user/.volta/bin:$PATH
+# SHELL ["/bin/bash", "-c"]
+# # tell bash to load .bashrc manually
+# ENV BASH_ENV ~/.bashrc
+# # needed by volta() function
+# ENV VOLTA_HOME /home/user/.volta
+# # make sure packages managed by volta will be in PATH
+# ENV PATH /home/user/.volta/bin:$PATH
 
-RUN curl https://get.volta.sh | bash
+# RUN curl https://get.volta.sh | bash
 
-RUN volta install node@${NODE_VERSION}
+# RUN volta install node@${NODE_VERSION}
 
 
 
-WORKDIR /var/www/application
+### GD ###
+
+# RUN apt install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+#     && docker-php-ext-configure gd --with-freetype --with-jpeg \
+#     && docker-php-ext-install -j$(nproc) gd \
+#     && php -r "var_dump(gd_info());"
+

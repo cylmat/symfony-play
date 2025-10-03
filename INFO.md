@@ -1,23 +1,31 @@
-# DataBundle
-============
+# Symfony playground
+
+## Install
+
+Build
+```shell
+# uncomment databases if needed (for module DATA)
+docker compose up --build -d
+
+# Use to try your own installation:
+# docker run --rm -it php:8.3-fpm bash
+#
+# docker build --pull --rm -f ".docker\Dockerfile" -t symplay:latest ".docker" 
+
+docker exec -it phpfpm bash
+docker compose down --remove-orphans
+```
 
 
-### Install
+### Frontend
 - npm install
 - npm run build
 - bin/console assets:install
+- docker exec -it phpfpm npm run dev
 
-### Project:
+### Project
 - docker exec symplay-phpfpm --rm composer install
 - docker exec symplay-phpfpm --rm npm install 
-
-### Run
-- docker compose up --build -d
-- docker exec -it phpfpm bash
-- docker compose down --remove-orphans
-
-### Front
-- docker exec -it phpfpm npm run dev
 
 ### Assets
 - docker exec phpfpm bin/console assets:install
