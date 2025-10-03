@@ -33,3 +33,4 @@
 - Environment variable not found: "DEV_SQLITE_URL
 - export APP_ENV=dev
 - desactivate grumphp on host (no php)
+
