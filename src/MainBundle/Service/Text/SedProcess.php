@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TextBundle\Service;
+namespace App\MainBundle\Service\Text;
 
 use Symfony\Component\Process\Process;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TextBundle\Manager;
+namespace App\MainBundle\Manager\Text;
 
 use App\LoggerAwareInterface;
 use App\LoggerTrait;

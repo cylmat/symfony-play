@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TextBundle\Controller;
+namespace App\MainBundle\Controller\Text;
 
 use App\TextBundle\Form\TextType;
 use App\TextBundle\Manager\CommandManager;
