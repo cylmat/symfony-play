@@ -1,11 +1,8 @@
 # DataBundle
 ============
 
-## Usage
---------
 
 ### Install
-- volta install node
 - npm install
 - npm run build
 - bin/console assets:install
@@ -25,14 +22,6 @@
 ### Assets
 - docker exec phpfpm bin/console assets:install
 - docker exec phpfpm npm run watch
-
-## Autocomplete
----------------
-- Codeium
-VsCode "codeium.codeium"
-
-- To use VsCode Intellisense, add npm's jQuery types
-npm i --save @types/jquery 
 
 
 @todo
