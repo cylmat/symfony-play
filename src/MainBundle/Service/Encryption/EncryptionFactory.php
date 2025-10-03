@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PlayBundle\Service\Encryption;
+namespace App\MainBundle\Service\Encryption;
 
 use App\Encrypt\Domain\Exception\AlgorithmNotFoundException;
 

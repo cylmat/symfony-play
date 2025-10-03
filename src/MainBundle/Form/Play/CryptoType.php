@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PlayBundle\Form;
+namespace App\MainBundle\Form\Play;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type;

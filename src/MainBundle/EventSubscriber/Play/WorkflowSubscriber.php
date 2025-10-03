@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PlayBundle\EventSubscriber;
+namespace App\MainBundle\EventSubscriber\Play;
 
 /** @todo factory: don't call app entity directly, use log service */
 

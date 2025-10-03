@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PlayBundle\Manager;
+namespace App\MainBundle\Manager\Play;
 
 
 use App\Encrypt\Domain\Model\EncryptedData;

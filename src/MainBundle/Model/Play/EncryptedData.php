@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\PlayBundle\Model;
+namespace App\MainBundle\Model\Play;
 
 
 final class EncryptedData //implements ModelInterface

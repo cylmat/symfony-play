@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PlayBundle\Controller;
+namespace App\MainBundle\Controller\Play;
 
 
 use App\Encrypt\Application\EncryptAction;

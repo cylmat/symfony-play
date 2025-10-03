@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PlayBundle\Exception;
+namespace App\MainBundle\Exception\Play;
 
 use Exception;
 
