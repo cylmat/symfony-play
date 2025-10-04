@@ -5,23 +5,28 @@
 
 services:
 
+    ##########
+    # APACHE #
+    ##########
+
     apache:
-        image: httpd:2.4
+        # image: httpd:2.4
+        container_name: symplay
+        build:
+            context: .docker
         restart: always
-        depends_on:
-            - phpfpm
+        ports: [8001:80]
         volumes:
             - .:/var/www/application
-            # (Un)comment for your own config.
-            - .docker/server/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
-            - .docker/server/apache/httpd-custom.conf:/usr/local/apache2/conf/httpd-custom.conf:ro
-            - .docker/server/apache/my-extra:/usr/local/apache2/conf/my-extra:ro
-        ports: [8001:80]
+            - .docker/server/apache2/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+            - .docker/server/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
+            - .docker/server/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+            # - .docker/server/apache/my-extra:/usr/local/apache2/conf/my-extra:ro
 
     ###########
     # PHP-FPM #
     ###########
-    phpfpm: 
+    #    phpfpm: 
         ###########
         # "Target" can be one of :
         # - CORE     with php:8.x-fpm empty
@@ -30,20 +35,19 @@ services:
         # - DB_EXT   with added Pecl extensions and databases
         # - FULL     with bench and profiling
         #
-        # Feel free to modify for your own configuration.
         # Then add specific extension in conf.d/php-custom.ini
         ###########
-        container_name: phpfpm
-        build:
-            context: .docker
-        restart: always
-        environment:
-            APP_ENV: dev
-        #    - MYSQL_DSN=mysql:host=mysql;port=port;dbname=mydb
-        volumes:
-            - ..:/var/www/application
-            - ./server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
-            - ./server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
+        # container_name: phpfpm
+        # build:
+        #     context: .docker
+        # restart: always
+        # environment:
+        #     APP_ENV: dev
+        # #    - MYSQL_DSN=mysql:host=mysql;port=port;dbname=mydb
+        # volumes:
+        #     - ..:/var/www/application
+        #     - ./server/phpfpm/php/php.ini:/usr/local/etc/php/php.ini:ro
+        #     - ./server/phpfpm/php/conf.d/php-custom.ini:/usr/local/etc/php/conf.d/php-custom.ini:ro
             # - phpfpm_home_volume:/root
         #command: bash -c "cp /tmp/Makefile /root/Makefile && docker-php-ext-install pdo_mysql && php-fpm"
 

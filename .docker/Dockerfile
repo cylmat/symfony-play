@@ -3,12 +3,14 @@
 # @see https://hub.docker.com/_/php
 #
 # Use this Dockerfile as a base template,
-# (Un)comment extensions for your need on your own application.
+# (Un)comment extensions for own application.
+#
+# docker build --pull --rm -f ".docker\Dockerfile" -t symplay:latest ".docker" 
 ##############
 
 ### Debian GNU/Linux 11 (bullseye) ###
 
-FROM php:8.3-fpm AS core
+FROM php:8.3-apache AS core
 
 
 ENV UID=1000
@@ -27,14 +29,12 @@ RUN apt install -y \
     sqlite3 \
     wget
 
-RUN apt install -y \
-    apt-utils \
-    autoconf \
-    gcc \
-    libc6-dev \
-    make \
-    pkg-config \
-    software-properties-common
+RUN apt install -y apt-utils
+RUN apt install -y autoconf 
+RUN apt install -y gcc 
+RUN apt install -y libc6-dev 
+RUN apt install -y make 
+RUN apt install -y pkg-config 
 
 
 
@@ -69,22 +69,23 @@ RUN docker-php-ext-install -j$(nproc) bcmath
 RUN docker-php-ext-install -j$(nproc) ctype 
 RUN docker-php-ext-install -j$(nproc) fileinfo 
 RUN docker-php-ext-install -j$(nproc) gettext 
-RUN docker-php-ext-install -j$(nproc) intl 
-# RUN docker-php-ext-install -j$(nproc) ldap 
-# RUN docker-php-ext-configure odbc && docker-php-ext-install -j$(nproc) odbc 
 RUN docker-php-ext-install -j$(nproc) opcache 
-# RUN docker-php-ext-install -j$(nproc) pcntl 
-# RUN docker-php-ext-install -j$(nproc) phar 
 RUN docker-php-ext-install -j$(nproc) posix 
 RUN docker-php-ext-install -j$(nproc) session 
+RUN docker-php-ext-install -j$(nproc) xml 
+RUN docker-php-ext-install -j$(nproc) xsl 
+RUN docker-php-ext-install -j$(nproc) zip
+
+# RUN docker-php-ext-install -j$(nproc) intl
+# RUN docker-php-ext-install -j$(nproc) ldap 
+# RUN docker-php-ext-configure odbc && docker-php-ext-install -j$(nproc) odbc 
+# RUN docker-php-ext-install -j$(nproc) pcntl 
+# RUN docker-php-ext-install -j$(nproc) phar 
 # RUN docker-php-ext-install -j$(nproc) sockets 
 # RUN docker-php-ext-install -j$(nproc) sodium 
 # RUN docker-php-ext-install -j$(nproc) spl 
 # RUN docker-php-ext-configure standard && docker-php-ext-install -j$(nproc) standard 
 # RUN docker-php-ext-install -j$(nproc) tokenizer 
-RUN docker-php-ext-install -j$(nproc) xml 
-RUN docker-php-ext-install -j$(nproc) xsl 
-RUN docker-php-ext-install -j$(nproc) zip
 
 #bz2 #gd #hash
 
@@ -97,17 +98,18 @@ RUN pecl channel-update pecl.php.net
 ### (http://pecl.php.net/packages.php)
 ### Use "pecl list-all" for all supported modules.
 ### Add extension=*** in php.ini for each pecl's extensions
-RUN apt install -y libmcrypt-dev libpcre3-dev
+# RUN apt install -y libmcrypt-dev libpcre3-dev
 
 
 RUN echo "\n" | pecl install apcu
 RUN echo "\n" | pecl install ast
 RUN echo "\n" | pecl install ds
-RUN echo "\n" | pecl install mcrypt
-RUN echo "\n" | pecl install oauth
 RUN echo "\n" | pecl install psr
 
-#crypto #env #handlebars #http_message #imagick #imap #ingres #mustache #lua #v8js
+# RUN echo "\n" | pecl install mcrypt
+# RUN echo "\n" | pecl install oauth
+
+#crypto #env #http_message #imagick #imap #ingres #lua #v8js
     
 
 
@@ -133,7 +135,11 @@ RUN echo "\yes" | pecl install mongodb
 
 
 
-WORKDIR /var/www/application
+##############
+### APACHE ###
+##############
+
+RUN a2enmod rewrite
 
 
 
@@ -145,6 +151,7 @@ RUN adduser user --uid ${UID} --gid ${GID} --gecos GECOS --disabled-password
 USER user:user
 
 
+WORKDIR /var/www/application
 
 
 
