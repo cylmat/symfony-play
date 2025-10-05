@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Manager\Data;
 
-use App\AppData\Domain\Contracts\AppCacheInterface;
+use App\MainBundle\Contract\Data\AppCacheInterface;
 use Psr\Cache\CacheItemInterface;
 use Symfony\Contracts\Cache\CacheInterface as SymfonyCacheInterface;
 

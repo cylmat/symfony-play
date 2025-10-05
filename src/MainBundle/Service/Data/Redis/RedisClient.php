@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Service\Data\Redis;
 
-use App\AppData\Infrastructure\ClientInterface;
-use App\AppData\Infrastructure\ClientNull;
+use App\MainBundle\Service\Data\ClientInterface;
+use App\MainBundle\Service\Data\ClientNull;
 use Predis\Client; // Doc.
 
 /** @see https://github.com/predis/predis/wiki */

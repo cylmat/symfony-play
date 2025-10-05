@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Service\Data\Redis;
 
-use App\AppData\Infrastructure\Redis\RedisClient;
-use App\Data\Domain\Redis\RedisScriptsInterface;
+use App\MainBundle\Service\Data\Redis\RedisScriptsInterface;
 
 /** @see https://app.redislabs.com */
 final class RedisScripts implements RedisScriptsInterface

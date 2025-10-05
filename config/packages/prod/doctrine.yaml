@@ -15,7 +15,7 @@ doctrine:
                 charset: utf8mb4
                 memory: true
                 driver_class: ~
-                wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
+                # wrapper_class: App\AppBundle\Infrastructure\Dbal\ConnectionWrapper
 
     # Object Relational Mapping
     orm:

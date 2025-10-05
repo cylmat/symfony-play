@@ -9,7 +9,7 @@ interface AppEntityManagerInterface
 {
     public const TAG = 'app.entity_manager';
 
-    public function getRepository(): AppRepositoryInterface;
+    public function getRepository();
 
     public function save(object $object): void;
 

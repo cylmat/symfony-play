@@ -4,8 +4,8 @@ namespace App\MainBundle\EventSubscriber\Play;
 
 /** @todo factory: don't call app entity directly, use log service */
 
-use App\AppData\Infrastructure\Manager\AppEntityManager;
-use App\Encrypt\Domain\Model\EncryptedData;
+// use App\MainBundle\Manager\Data\AppEntityManager;
+use App\MainBundle\Model\Play\EncryptedData;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use RuntimeException;
@@ -17,7 +17,7 @@ class WorkflowSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly LoggerInterface $mainLogger,
-        private readonly AppEntityManager $appManager,
+        // private readonly AppEntityManager $appManager,
     ) {
     }
 
@@ -33,20 +33,20 @@ class WorkflowSubscriber implements EventSubscriberInterface
     /** @SuppressWarnings(PHPMD.MissingImport) */
     public function entered(EnteredEvent $event): void
     {
-        $event->getSubject() instanceof EncryptedData or throw new RuntimeException('Event subject must be an instance of '.EncryptedData::class);
-        $this->mainLogger->debug(EncryptedData::class.' entered in "'.($place = \array_key_first($event->getSubject()->getCurrentPlace())).'" place.');
+        // $event->getSubject() instanceof EncryptedData or throw new RuntimeException('Event subject must be an instance of '.EncryptedData::class);
+        // $this->mainLogger->debug(EncryptedData::class.' entered in "'.($place = \array_key_first($event->getSubject()->getCurrentPlace())).'" place.');
 
-        $log = (new Log())
-            ->setChannel('workflow')
-            ->setLevel(LogLevel::INFO)
-            ->setMessage('Encrypted data entered in '.$place);
+        // $log = (new Log())
+        //     ->setChannel('workflow')
+        //     ->setLevel(LogLevel::INFO)
+        //     ->setMessage('Encrypted data entered in '.$place);
 
-        $this->appManager->save($log);
+        // $this->appManager->save($log);
     }
 
     /** @SuppressWarnings(PHPMD.MissingImport) */
     public function transition(TransitionEvent $event): void
     {
-        $event->getSubject() instanceof EncryptedData or throw new RuntimeException('Event subject must be an instance of '.EncryptedData::class);
+        // $event->getSubject() instanceof EncryptedData or throw new RuntimeException('Event subject must be an instance of '.EncryptedData::class);
     }
 }

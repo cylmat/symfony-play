@@ -3,8 +3,8 @@
 namespace App\MainBundle\Manager\Play;
 
 
-use App\Encrypt\Domain\Model\EncryptedData;
-use App\Encrypt\Domain\Service\Encryption\EncryptionFactory;
+use App\MainBundle\Model\Play\EncryptedData;
+use App\MainBundle\Service\Encryption\EncryptionFactory;
 
 final class EncryptManager
 {

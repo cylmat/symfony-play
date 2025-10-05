@@ -4,8 +4,6 @@ twig:
     paths: 
         - '%kernel.project_dir%/src/AwsBundle/Resources/templates'
         - '%kernel.project_dir%/src/MainBundle/Resources/templates'
-        - '%kernel.project_dir%/src/FrontBundle/Resources/templates'
-        - '%kernel.project_dir%/src/TextBundle/Resources/templates'
 
 when@test:
     twig:

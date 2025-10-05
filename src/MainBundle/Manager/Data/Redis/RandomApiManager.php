@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\MainBundle\Manager\Data\Redis;
 
 
-use App\AppData\Domain\Contracts\AppCacheInterface;
-use App\Data\Domain\Redis\RandomApi;
-use App\Data\Domain\Redis\RedisScriptsInterface;
+use App\MainBundle\Contract\Data\AppCacheInterface;
+use App\MainBundle\Manager\Data\Redis\RandomApi;
+use App\MainBundle\Service\Data\Redis\RedisScriptsInterface;
 
 final class RandomApiManager 
 {

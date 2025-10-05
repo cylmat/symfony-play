@@ -22,14 +22,7 @@ services:
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
-
-    # MainBundle Contract #
-    App\MainBundle\Contract\:
-        resource: ../src/MainBundle/Contract
-
-    # MainBundle Admin #
-    App\MainBundle\Controller\Admin\:
-        resource: ../src/MainBundle/Controller/Admin
+    
 
     # MainBundle - All components #
     App\MainBundle\:
@@ -38,35 +31,16 @@ services:
             - ../src/MainBundle/MainBundle.php
             - ../src/MainBundle/Resources/
 
-    # Front #
-    App\FrontBundle\:
-        resource: ../src/FrontBundle
-
-    # Play #
-    # App\PlayBundle\:
-    #     resource: ../src/PlayBundle
-
-    # Encrypt #
-    # App\Encrypt\:
-    #     resource: ../src/Encrypt/
-    #     exclude:
-    #         - ../src/Encrypt/Domain/Model/EncryptedData.php
-
-    # Text #
-    App\TextBundle\:
-        resource: ../src/TextBundle
-
     # App\AppBundle\Domain\WorkflowInterface: '@App\AppBundle\Infrastructure\Manager\AppWorkflowManager'
-
 
 
     ################
     ### Specific ###
     ################
 
-liip_imagine:
+# liip_imagine:
     # valid drivers options include "gd" or "gmagick" or "imagick"
-    driver: "gd"
+    # driver: "gd"
 
 # Read the documentation: https://symfony.com/doc/current/bundles/StofDoctrineExtensionsBundle/index.html
 # See the official DoctrineExtensions documentation for more details: https://github.com/doctrine-extensions/DoctrineExtensions/tree/main/doc

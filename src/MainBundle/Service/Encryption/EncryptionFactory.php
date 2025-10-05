@@ -2,7 +2,7 @@
 
 namespace App\MainBundle\Service\Encryption;
 
-use App\Encrypt\Domain\Exception\AlgorithmNotFoundException;
+use App\MainBundle\Exception\Play\AlgorithmNotFoundException;
 
 class EncryptionFactory
 {

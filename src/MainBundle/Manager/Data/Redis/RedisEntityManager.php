@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Manager\Data\Redis;
 
-use App\AppData\Infrastructure\AppEntityManagerInterface;
-use App\AppData\Infrastructure\Manager\AppEntityManager;
-use App\AppData\Infrastructure\Redis\RedisClient;
+use App\MainBundle\Manager\Data\AppEntityManagerInterface;
+use App\MainBundle\Manager\Data\AppEntityManager;
+use App\MainBundle\Service\Data\Redis\RedisClient;
+use App\MainBundle\Repository\Data\Redis\RedisRepository;
 
 final class RedisEntityManager implements AppEntityManagerInterface
 {

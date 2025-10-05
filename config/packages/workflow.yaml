@@ -6,7 +6,7 @@ framework:
                 enabled: false
             type: workflow # One of "workflow"; "state_machine"
             supports:
-                - App\PlayBundle\Model\EncryptedData
+                - App\MainBundle\Model\Play\EncryptedData
 
             initial_marking: start
             marking_store:

@@ -1,24 +1,13 @@
 # Must be configured to avoir error: "No route found"
-controllers_admin:
-    resource: ../src/Admin
-    type: attribute
 
 controllers_aws:
     resource: ../src/AwsBundle/Controller
     type: attribute
 
-controllers_data:
-    resource: ../src/MainBundle/Controller/Data
+controllers_main:
+    resource: ../src/MainBundle/Controller
     type: attribute
 
-# FRONT
-controllers_front:
-    resource: ../src/FrontBundle/Controller
-    type: attribute
-
-controllers_text:
-    resource: ../src/TextBundle/Controller
-    type: attribute
 
 homepage:
     path: /

@@ -28,10 +28,10 @@ Encore
 
     
     /* DATA BUNDLE  */
-    .addEntry('datafactory_action', './src/DataBundle/Resources/assets/factory_action.js')
+    .addEntry('datafactory_action', './src/MainBundle/Resources/assets/data_page/factory_action.js')
 
     /* FRONT BUNDLE - VUEJS */
-    .addEntry('vue', './src/FrontBundle/Resources/assets/vue.js')
+    .addEntry('vue', './src/MainBundle/Resources/assets/vuejs_page/vue.js')
 
 
     

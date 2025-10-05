@@ -2,7 +2,7 @@
 
 namespace App\MainBundle\Service\Encryption;
 
-use App\Encrypt\Domain\Model\EncryptedData;
+use App\MainBundle\Model\Play\EncryptedData;
 
 interface EncryptionInterface
 {

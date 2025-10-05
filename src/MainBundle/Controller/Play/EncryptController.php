@@ -3,8 +3,9 @@
 namespace App\MainBundle\Controller\Play;
 
 
-use App\Encrypt\Application\EncryptAction;
-use App\Encrypt\Application\Form\CryptoType;
+// Note: These classes may need to be created or updated
+// use App\MainBundle\Service\Play\EncryptAction;
+use App\MainBundle\Form\Play\CryptoType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

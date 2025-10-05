@@ -2,8 +2,8 @@
 
 namespace App\MainBundle\Manager\Data;
 
-use App\MainBundle\Entity\Contact;
-use App\MainBundle\Entity\Factory;
+use App\MainBundle\Entity\Data\Contact;
+use App\MainBundle\Entity\Data\Factory;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class FactoryManager

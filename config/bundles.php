@@ -1,12 +1,11 @@
 <?php
 
 return [
-    App\FrontBundle\FrontBundle::class => ['all' => true],
-    App\TextBundle\TextBundle::class => ['all' => true],
+    App\MainBundle\MainBundle::class => ['all' => true],
     Doctrine\Bundle\DoctrineBundle\DoctrineBundle::class => ['all' => true],
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
-    Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
+    // Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
     Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],

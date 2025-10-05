@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Manager\Data;
 
-use App\AppData\Infrastructure\AppEntityManagerInterface;
+use App\MainBundle\Manager\Data\AppEntityManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
