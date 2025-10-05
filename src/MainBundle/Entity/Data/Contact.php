@@ -2,7 +2,7 @@
 
 namespace App\MainBundle\Entity\Data;
 
-use App\DataBundle\Repository\ContactRepository;
+use App\MainBundle\Repository\Data\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]

@@ -2,7 +2,7 @@
 
 namespace App\MainBundle\Repository\Data;
 
-use App\DataBundle\Entity\Contact;
+use App\MainBundle\Entity\Data\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

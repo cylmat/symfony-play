@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Controller\Data;
 
-use App\Common\SerializerTrait;
-use App\DataBundle\Entity\Factory;
-use App\DataBundle\Manager\FactoryManager;
+use App\MainBundle\Contract\SerializerTrait;
+use App\MainBundle\Entity\Data\Factory;
+use App\MainBundle\Manager\Data\FactoryManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

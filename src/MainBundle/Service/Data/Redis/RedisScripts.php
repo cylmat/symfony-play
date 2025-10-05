@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataBundle\Service\Redis;
+namespace App\MainBundle\Service\Data\Redis;
 
 use App\AppData\Infrastructure\Redis\RedisClient;
 use App\Data\Domain\Redis\RedisScriptsInterface;

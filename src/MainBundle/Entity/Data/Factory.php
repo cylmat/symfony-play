@@ -2,7 +2,7 @@
 
 namespace App\MainBundle\Entity\Data;
 
-use App\DataBundle\Repository\FactoryRepository;
+use App\MainBundle\Repository\Data\FactoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

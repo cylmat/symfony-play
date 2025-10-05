@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Common\DataFixtures;
+namespace App\MainBundle\DataFixtures;
 
-use App\DataBundle\Entity\Factory;
-use App\DataBundle\Repository\FactoryRepository;
+use App\MainBundle\Entity\Data\Factory;
+use App\MainBundle\Repository\Data\FactoryRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

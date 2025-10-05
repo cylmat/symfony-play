@@ -2,7 +2,7 @@
 
 namespace App\MainBundle\Repository\Data;
 
-use App\DataBundle\Entity\Factory;
+use App\MainBundle\Entity\Data\Factory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

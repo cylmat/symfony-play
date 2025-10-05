@@ -2,9 +2,9 @@
 
 namespace App\MainBundle\Manager\Text;
 
-use App\LoggerAwareInterface;
-use App\LoggerTrait;
-use App\Text\Service\CommandProcessInterface;
+use App\MainBundle\Contract\LoggerAwareInterface;
+use App\MainBundle\Contract\LoggerTrait;
+use App\MainBundle\Service\Text\CommandProcessInterface;
 use LogicException;
 
 final class CommandManager //implements LoggerAwareInterface

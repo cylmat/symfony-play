@@ -2,8 +2,8 @@
 
 namespace App\MainBundle\Controller\Text;
 
-use App\TextBundle\Form\TextType;
-use App\TextBundle\Manager\CommandManager;
+use App\MainBundle\Form\Text\TextType;
+use App\MainBundle\Manager\Text\CommandManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

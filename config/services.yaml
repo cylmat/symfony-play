@@ -16,23 +16,27 @@ services:
 
     _instanceof:
         # App LOGGER used in TextBundle #
-        App\Common\LoggerAwareInterface:
+        App\MainBundle\Contract\LoggerAwareInterface:
             calls:
                 - ['setLogger', ['@app.logger']]
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
 
-    App\Common\:
-        resource: ../src/Common
+    # MainBundle Contract #
+    App\MainBundle\Contract\:
+        resource: ../src/MainBundle/Contract
 
-    # Admin #
-    App\Admin\:
-        resource: ../src/Admin
+    # MainBundle Admin #
+    App\MainBundle\Controller\Admin\:
+        resource: ../src/MainBundle/Controller/Admin
 
-    # Data #
-    App\DataBundle\:
-        resource: ../src/DataBundle
+    # MainBundle - All components #
+    App\MainBundle\:
+        resource: ../src/MainBundle
+        exclude:
+            - ../src/MainBundle/MainBundle.php
+            - ../src/MainBundle/Resources/
 
     # Front #
     App\FrontBundle\:

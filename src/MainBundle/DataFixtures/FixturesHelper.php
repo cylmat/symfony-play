@@ -1,7 +1,7 @@
 <?php
 
 //use ramsey/uuid
-namespace App\Common\DataFixtures;
+namespace App\MainBundle\DataFixtures;
 
 class FixturesHelper
 {

@@ -8,7 +8,7 @@ controllers_aws:
     type: attribute
 
 controllers_data:
-    resource: ../src/DataBundle/Controller
+    resource: ../src/MainBundle/Controller/Data
     type: attribute
 
 # FRONT

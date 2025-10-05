@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Common;
+namespace App\MainBundle\Contract;
 
 /** 
  * Used with LoggerAwareInterface.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Common;
+namespace App\MainBundle\Contract;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Serializer;

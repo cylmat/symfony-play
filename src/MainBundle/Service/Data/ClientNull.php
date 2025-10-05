@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataBundle\Service;
+namespace App\MainBundle\Service\Data;
 
 class ClientNull implements ClientInterface
 {

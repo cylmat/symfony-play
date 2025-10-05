@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Controller\Data;
 
-use App\SampleBundle\Application\Common\Api\AbstractApiController;
+// use App\SampleBundle\Application\Common\Api\AbstractApiController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
