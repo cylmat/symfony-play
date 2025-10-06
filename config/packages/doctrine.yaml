@@ -51,7 +51,7 @@ doctrine:
                         # Use AttributeDriver class (with MappingDriverChain)
                         alias: MainBundleData # Can use "console MainBundleData:<entity> --regenerate"
                         type: attribute
-                        dir: '../src/MainBundle/Entity/Data'
+                        dir: 'src/MainBundle/Entity/Data'
                         prefix: 'App\MainBundle\Entity\Data' # MUST begin with <mapping-name>\
                         is_bundle: false # change 'dir' attribute as relative path
                 # metadata_cache_driver:

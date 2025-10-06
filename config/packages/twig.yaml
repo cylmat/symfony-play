@@ -1,9 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['bootstrap_5_horizontal_layout.html.twig']
-    paths: 
-        - '%kernel.project_dir%/src/AwsBundle/Resources/templates'
-        - '%kernel.project_dir%/src/MainBundle/Resources/templates'
+    # paths: 
+        # - '%kernel.project_dir%/src/AwsBundle/Resources/templates'
+        # - '%kernel.project_dir%/src/MainBundle/Resources/templates'
 
 when@test:
     twig:

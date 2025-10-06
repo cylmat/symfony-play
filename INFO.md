@@ -15,10 +15,15 @@ docker compose down --remove-orphans
 ```
 
 ### Frontend
+
+```shell
+docker exec -it -u root bin/install npm 
+docker exec bin/run npm
 - npm install
 - npm run build
 - bin/console assets:install
 - docker exec -it phpfpm npm run dev
+```
 
 ### Install
 
@@ -27,16 +32,21 @@ docker exec symplay bin/composer install
 docker exec symplay npm install 
 ```
 
+```shell
+docker exec -it -u root symplay bin/install deptrac
+docker exec symplay bin/run deptrac
+```
+
 ### Assets
 
 ```shell
-- docker exec phpfpm bin/console assets:install
-- docker exec phpfpm npm run watch
+docker exec symplay bin/console assets:install
+docker exec symplay npm run watch
 ```
 
 
 Db
 ---
-https://customer.cloudamqp.com/instance/  
+https://customer.cloudamqp.com/instance/
 https://woodpecker.rmq.cloudamqp.com/#/connections  
-https://customer.elephantsql.com/instance/
+https://customer.elephantsql.com/instance

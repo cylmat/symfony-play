@@ -39,6 +39,7 @@
         "wikimedia/composer-merge-plugin": "^2"
     },
     "require-dev": {
+        "deptrac/deptrac": "^4.2",
         "doctrine/doctrine-fixtures-bundle": "^4",
         "symfony/browser-kit": "^7",
         "symfony/console": "^7",
