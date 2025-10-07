@@ -4,16 +4,14 @@ use Symfony\Component\Dotenv\Dotenv;
 
 require dirname(__DIR__).'/vendor/autoload.php';
 
-DG\BypassFinals::enable();
+// DG\BypassFinals::enable();
 
 if (file_exists(dirname(__DIR__).'/config/bootstrap.php')) {
     require dirname(__DIR__).'/config/bootstrap.php';
-} 
-// elseif (method_exists(Dotenv::class, 'bootEnv')) {
-//     (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
-// }
+}
 if (method_exists(Dotenv::class, 'bootEnv')) {
     (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
+    (new Dotenv())->bootEnv(dirname(__DIR__).'/.env.test');
 }
 
 $_ENV['APP_ENV']='test';
@@ -23,10 +21,10 @@ if ($_SERVER['APP_DEBUG']) {
 }
 
 // Mandatory to avoid Phpunit error
-\Symfony\Component\ErrorHandler\ErrorHandler::register();
+// \Symfony\Component\ErrorHandler\ErrorHandler::register();
 
 // Executes console command
-$console = sprintf('APP_ENV=%s php %s', $_ENV['APP_ENV'], __DIR__.'/../bin/console');
+// $console = sprintf('APP_ENV=%s php %s', $_ENV['APP_ENV'], __DIR__.'/../bin/console');
 
 # passthru(sprintf('%s %s', $console, 'doctrine:schema:drop --force'));
 # passthru(sprintf('%s %s', $console, 'doctrine:schema:create'));

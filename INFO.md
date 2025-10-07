@@ -37,6 +37,12 @@ docker exec -it -u root symplay bin/install deptrac
 docker exec symplay bin/run deptrac
 ```
 
+Tests
+```shell
+docker exec -it -u root symplay bin/install phpunit
+docker exec symplay bin/run funit
+```
+
 ### Assets
 
 ```shell

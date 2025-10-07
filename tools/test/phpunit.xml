@@ -12,50 +12,18 @@ Doc
 <!-- xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd" -->
 <phpunit 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
     bootstrap="../../tests/bootstrap.php"
-    cacheResultFile="../../var/cache/.phpunit.result.cache"
-    colors="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
     executionOrder="random"
-    forceCoversAnnotation="false"
-    processIsolation="false"
-    resolveDependencies="true"
-    stopOnError="false"
-    stopOnFailure="false"
-    stopOnIncomplete="false"
-    stopOnSkipped="false"
-    stopOnRisky="false"
-    timeoutForSmallTests="1"
-    timeoutForMediumTests="10"
-    timeoutForLargeTests="60"
-    verbose="false"
 >
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory phpVersionOperator=">" phpVersion="8.2">../../tests/**/Domain/*</directory>
-            <directory phpVersionOperator=">" phpVersion="8.2">../../tests/**/Infrastructure/*</directory>
+            <directory >../../tests</directory>
         </testsuite>
     </testsuites>
 
-    <coverage
-        cacheDirectory="../../var/cache" 
-        includeUncoveredFiles="true"
-        processUncoveredFiles="true"
-        pathCoverage="false"
-        ignoreDeprecatedCodeUnits="true"
-        disableCodeCoverageIgnore="false"
-    >
-        <include>
-            <directory suffix=".php">../../src/**/Domain/*</directory>
-            <directory suffix=".php">../../src/**/Infrastructure/*</directory>
-        </include>
-        <exclude>
-            <directory suffix=".php">../../src/**/Infrastructure/Bridge/*</directory>
-        </exclude>
-
+    <coverage>
         <!--report>
             <html outputDirectory="../../public/coverage" lowUpperBound="50" highLowerBound="90"/>
             <text outputFile="../../public/coverage/text-coverage.txt" showUncoveredFiles="false" showOnlySummary="false"/>
@@ -65,7 +33,7 @@ Doc
     <php>
         <ini name="display_errors" value="on" />
         <ini name="error_reporting" value="24575" /><!-- E_ALL & ~E_DEPRECATED -->
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled" />
         <server name="APP_ENV" value="test" force="true" />
         <server name="APP_SECRET" value="blob"/>
         <server name="CORS_ALLOW_ORIGIN" value="true"/>
@@ -73,7 +41,6 @@ Doc
         <server name="KERNEL_CLASS" value="App\Kernel"/>
         <server name="SHELL_VERBOSITY" value="-1"/>
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
-        <server name="SYMFONY_PHPUNIT_VERSION" value="9.5" />
     </php>
 
     <logging>
@@ -83,14 +50,13 @@ Doc
 
     <!-- "@group" annotation -->
     <!-- @see https://symfony.com/doc/current/testing.html -->
-    <groups>
-        <!-- Controller class are "functional" -->
+    <!-- <groups>
+        
         <exclude>
-            <group>functional</group>
-            <group>integration</group>
+            
         </exclude>
-        <!-- Action class are "integration" -->
-    </groups>
+        
+    </groups> -->
 
     <!--listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />

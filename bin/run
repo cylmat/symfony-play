@@ -195,13 +195,13 @@ case "$1" in
 # @see https://phpunit.readthedocs.io
 "unit"|"phpunit")
 	echoinfo "Running Phpunit"
-    bin/phpunit -v -c tools/test/phpunit.xml ${ARGUMENT} ${ARGUMENT2} ${ARGUMENT3};;
+    bin/phpunit -c tools/test/phpunit.xml ${ARGUMENT} ${ARGUMENT2} ${ARGUMENT3};;
 "funit"|"ftest")
 	echoinfo "Running Phpunit functional"
-    bin/phpunit -v -c tools/test/phpunit.xml --group functional ${ARGUMENT} ;;
+    bin/phpunit -c tools/test/phpunit.xml --group functional ${ARGUMENT} ;;
 "iunit"|"itest")
 	echoinfo "Running Phpunit integration (action)"
-    bin/phpunit -v -c tools/test/phpunit.xml --group integration ${ARGUMENT} ;;
+    bin/phpunit --debug -c tools/test/phpunit.xml --group integration ${ARGUMENT} ;;
 
 ##########################################################
 

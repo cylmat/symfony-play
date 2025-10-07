@@ -22,23 +22,7 @@ class TextController extends AbstractController
         $textForm = $this->createForm(TextType::class, null, []);
         $textForm->handleRequest($request);
 
-        // $response = null;
-        // /* @todo use Model */
-        // if ($textForm->isSubmitted() && $textForm->isValid()) {
-        //     $response = $textAction->execute((new AppRequest)
-        //         ->setText($textForm->get('text')->getData())
-        //         ->setCommands([
-        //             $this->commandArguments(
-        //                 'sed',
-        //                 [
-        //                     'pattern' => $textForm->get('pattern')->getData(),
-        //                     'replace' => $textForm->get('replace')->getData(),
-        //                 ]
-        //             ),
-        //         ]),
-        //     );
-        // }
-
+       
         return $this->render('text/index.html.twig', [
             'form' => $textForm,
             'result' => 'ok',
