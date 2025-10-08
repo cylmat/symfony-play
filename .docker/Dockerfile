@@ -19,6 +19,7 @@ ENV NODE_VERSION=20
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt install -y curl git vim zip
+RUN apt install -y ca-certificates
 
 
 ### Common and build (https://packages.debian.org) ###
@@ -130,8 +131,40 @@ RUN docker-php-ext-install -j$(nproc) pdo_pgsql
 RUN docker-php-ext-install -j$(nproc) pdo_sqlite
 
 # RUN docker-php-ext-install -j$(nproc) pdo_odbc
+# RUN echo "\yes" | pecl install mongodb
 
-RUN echo "\yes" | pecl install mongodb
+
+
+###########
+### NVM ###
+###########
+
+SHELL ["/bin/bash", "-c"]
+ENV NVM_DIR="/usr/local/nvm"
+ENV NODE_VERSION=lts/*
+RUN mkdir -p "$NVM_DIR"
+RUN curl --silent -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# Install NVM and Node in one layer
+# RUN curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash && \
+RUN . "$NVM_DIR/nvm.sh" && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+    nvm install --lts && \
+    nvm use --lts && \
+    nvm alias default 'lts/*' && \
+    nvm use default && \
+    # Make node/npm accessible to all users
+    ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/node" /usr/local/bin/node && \
+    ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/npm" /usr/local/bin/npm && \
+    ln -sf "$NVM_DIR/versions/node/$(nvm version)/bin/npx" /usr/local/bin/npx && \
+    chmod a+x /usr/local/bin/node /usr/local/bin/npm /usr/local/bin/npx
+
+# Add NVM sourcing for all interactive shells
+RUN echo 'export NVM_DIR="/usr/local/nvm"' >> /etc/bash.bashrc && \
+    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /etc/bash.bashrc
+
+# Verify acces from another shell instance
+# RUN nvm --version && node -v && npm -v
+RUN bash -ic "nvm --version && node -v && npm -v"
 
 
 

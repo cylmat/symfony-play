@@ -6,12 +6,31 @@ Build
 ```shell
 # uncomment databases if needed (for module DATA)
 docker compose up --build -d
+docker exec -it symplay bash
 
 # Use to try your own installation:
 # docker run --rm -it php:8.3-fpm bash
 
-docker exec -it symplay bash
 docker compose down --remove-orphans
+```
+
+### Install
+
+```shell
+docker exec symplay bin/composer install
+docker exec symplay npm install 
+
+# e.g. for deptrac 
+docker exec -it -u root symplay bin/install deptrac
+docker exec -it -u root symplay bin/install phpunit
+```
+
+### Run
+
+Tests
+```shell
+docker exec symplay bin/run deptrac
+docker exec symplay bin/run funit
 ```
 
 ### Frontend
@@ -23,24 +42,6 @@ docker exec bin/run npm
 - npm run build
 - bin/console assets:install
 - docker exec -it phpfpm npm run dev
-```
-
-### Install
-
-```shell
-docker exec symplay bin/composer install
-docker exec symplay npm install 
-```
-
-```shell
-docker exec -it -u root symplay bin/install deptrac
-docker exec symplay bin/run deptrac
-```
-
-Tests
-```shell
-docker exec -it -u root symplay bin/install phpunit
-docker exec symplay bin/run funit
 ```
 
 ### Assets
