@@ -17,7 +17,7 @@ services:
         restart: always
         ports: 
             - 8001:80   # apache
-            - 8002:8080 # npm dev server
+            - 8080:8080 # npm dev server (must match weback config)
             - 8003:81   # symfony server if needed
         
         volumes:
