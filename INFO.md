@@ -14,6 +14,13 @@ docker exec -it symplay bash
 docker compose down --remove-orphans
 ```
 
+### Assets
+
+```shell
+docker exec symplay bin/console assets:install
+docker exec symplay npm run watch
+```
+
 ### Install
 
 ```shell
@@ -42,13 +49,6 @@ docker exec bin/run npm
 - npm run build
 - bin/console assets:install
 - docker exec -it phpfpm npm run dev
-```
-
-### Assets
-
-```shell
-docker exec symplay bin/console assets:install
-docker exec symplay npm run watch
 ```
 
 
