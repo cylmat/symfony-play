@@ -1,9 +1,11 @@
 {
+    "license": "UNLICENSED",
+    "private": true,
     "scripts": {
-        "dev-server": "encore dev-server",
+        "build": "encore production --progress",
         "dev": "encore dev",
-        "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "serve": "encore dev-server",
+        "watch": "encore dev --watch"
     },
     "dependencies": {
         "@babel/core": "^7.17",
@@ -11,8 +13,8 @@
         "@hotwired/stimulus": "^3.0",
         "@popperjs/core": "^2.11",
         "@symfony/stimulus-bridge": "^3.2",
-        "@symfony/webpack-encore": "^4.0",
-        "@types/jquery": "^3.5.32",
+        "@symfony/webpack-encore": "^5.2",
+        "@types/jquery": "^3.5",
         "axios": "^1.6",
         "bootstrap": "^5.2",
         "core-js": "^3.23",
@@ -23,10 +25,8 @@
         "popper.js": "^1.16",
         "regenerator-runtime": "^0.13",
         "semver": "^7.5",
-        "vue": "^3.4",
-        "webpack": "^5.76",
-        "webpack-cli": "^4.10",
-        "webpack-notifier": "^1.15"
+        "webpack": "^5.102",
+        "webpack-dev-server": "^5.2"
     },
     "devDependencies": {
         "autoprefixer": "^10.4",
@@ -34,12 +34,9 @@
         "eslint": "^8.56",
         "postcss-loader": "^7.3",
         "sass": "^1.69",
-        "sass-loader": "^13.3",
+        "sass-loader": "^16.0",
         "style-loader": "^3.3",
         "ts-loader": "^9.5",
-        "typescript": "^5.3",
-        "vue-loader": "^17.4"
-    },
-    "license": "UNLICENSED",
-    "private": true
+        "typescript": "^5.3"
+    }
 }

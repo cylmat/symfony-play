@@ -15,7 +15,11 @@ services:
         build:
             context: .docker
         restart: always
-        ports: [8001:80]
+        ports: 
+            - 8001:80   # apache
+            - 8002:8080 # npm dev server
+            - 8003:81   # symfony server if needed
+        
         volumes:
             - .:/var/www/application
             - .docker/server/apache2/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro

@@ -8,6 +8,14 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+/************************************
+ !!!
+  Made Webpack encore HMR wrks by adding
+  options.host = '0.0.0.0';
+  Encore.disableCssExtraction();
+ !!!
+*************************************/
+
 Encore
    
     // directory where compiled assets will be stored
@@ -27,26 +35,8 @@ Encore
     .addEntry('bootstrap', './assets/bootstrap.js')
 
     
-    /* DATA BUNDLE  */
-    .addEntry('datafactory_action', './src/MainBundle/Resources/assets/data_page/factory_action.js')
-
-    /* FRONT BUNDLE - VUEJS */
-    .addEntry('vue', './src/MainBundle/Resources/assets/vuejs_page/vue.js')
-
-
-    
-    /*
-        Webpack v7
+    /* Webpack v7 */
         
-    .addAliases({
-        Vue: path.resolve(__dirname, 'node_modules/vue/dist/vue.esm-browser.js'),
-    })*/
-
-    // .addStyleEntry('mobile', './assets/styles/mobile.less')
-   
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    //.enableStimulusBridge('./assets/stimulus/controllers.json')
-
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     // Avoid dependencies duplication, and change "filename" as "filename.123hash123.js"
     .splitEntryChunks()
@@ -67,15 +57,15 @@ Encore
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
     .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
-    // enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
 
-    // configure Babel
-    // .configureBabel((config) => {
-    //     config.plugins.push('@babel/a-babel-plugin');
-    // })
+    // Prevent source maps from being huge in dev
+    // .enableSourceMaps(!Encore.isProduction(), 'cheap-module-source-map');
+
+    // .enableBuildNotifications()
+    // enables hashed filenames (e.g. app.abc123.css)
+
+    .enableVersioning(Encore.isProduction())
 
     // enables and configure @babel/preset-env polyfills
     .configureBabelPresetEnv((config) => {
@@ -96,38 +86,69 @@ Encore
     // uncomment if you're having problems with a jQuery plugin
     .autoProvidejQuery()
 
-    .enableVueLoader()
 
-    /*Encore.addExternals({
-        jquery: 'jQuery',
-        react: 'react'
-    })*/
+    //////////////////////////////
+     // DEV SERVER (Reload CSS a well !)
+    //////////////////////////////
 
-    /*
-    .copyFiles({
-        from: './assets/images',
-        to: 'images/[path][name].[ext]',
-    })
-    */
-
-     // DEV SERVER
+    // --watch doesn’t rebuild at all when editing CSS, use webserver instead
     // @https://symfony.com/doc/current/frontend/encore/dev-server.html
-    // .configureDevServerOptions(options => {
-    //     options.liveReload = true;
-    //     options.static = {
-    //         watch: false
-    //     };
-    //     options.watchFiles = {
-    //         paths: ['src/**/*.php', 'templates/**/*', 'src/**/*.js'],
-    //     };
+    .configureDevServerOptions(options => {
 
-    //     // If you experience issues related to CORS (Cross Origin Resource Sharing), set the following option:
-    //     options.allowedHosts = 'all';
-    // })
+        // Allow Symfony (port 8000) to fetch from this dev server
+        options.allowedHosts = 'all';
+        
+        options.hot = true;
+        options.liveReload = true;
 
+        options.port = 8080;
+        options.host = '0.0.0.0'; // IMPORANT in docker !!! avoid CORS allow origin error !
 
+        // Correct place for CORS headers in WDS 5
+        options.headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+            'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+        };
 
+        options.watchFiles = {
+            paths: [
+                'assets/**/*.{js,scss,css}',
+                'templates/**/*',
+                'src/**/*.php'
+            ]
+        };
+
+        // options.static = {
+        //     directory: path.resolve(__dirname, 'public'),
+        //     watch: true,
+        // };
+
+        // Optional: live reload over WebSocket
+        // options.client = {
+        //     webSocketURL: 'auto://0.0.0.0:0/ws',
+        // };
+    })
 ;
+
+    //If you want to only disable CSS extraction when you’re using encore dev-server,
+    // not for plain encore dev, you can use:
+
+    //if (process.env.ENCORE_DEV_SERVER) {
+        if (!Encore.isProduction()) {
+            Encore.disableCssExtraction(); // <-- use style-loader instead of MiniCssExtractPlugin
+        }
+   // }
+
+module.exports = Encore.getWebpackConfig()
+
+
+
+
+
+
+
+
 
 /*
 SAMPLE
@@ -141,7 +162,12 @@ Encore.configureLoaderRule('javascript ', loaderRule => {
     loaderRule.test = /\.(jsx?|vue)$/
 });*/
 
-module.exports = Encore.getWebpackConfig();
+
+    // configure Babel
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/a-babel-plugin');
+    // })
+
 
 //module.exports.node = { global: true }
 //module.exports.output.library = 'packed'
@@ -154,7 +180,27 @@ module.exports = Encore.getWebpackConfig();
 }*/
 
 
-/**
+    /*.addAliases({
+        Vue: path.resolve(__dirname, 'node_modules/vue/dist/vue.esm-browser.js'),
+    })*/
+
+    // .addStyleEntry('mobile', './assets/styles/mobile.less')
+   
+    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+    //.enableStimulusBridge('./assets/stimulus/controllers.json')
+    /*Encore.addExternals({
+        jquery: 'jQuery',
+        react: 'react'
+    })*/
+
+    /*
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+    */
+
+/*
  * NOTE : Les données Webpack ne sont pas accessibles de l'extérieur, pour les utiliser en script dans le html
  *        - Soit il faut exporter les data comme "module" externe
  *        - Soit placer les données dans global, ou window
