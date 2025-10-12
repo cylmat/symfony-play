@@ -14,6 +14,10 @@ services:
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         public: false
 
+    #####################
+    # _instanceof is like _default : it only works for services declared in CURRENT .yaml file !
+    #####################
+
     _instanceof:
         # App LOGGER used in TextBundle #
         App\MainBundle\Contract\LoggerAwareInterface:
