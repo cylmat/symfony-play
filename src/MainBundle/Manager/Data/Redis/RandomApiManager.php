@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\MainBundle\Manager\Data\Redis;
 
-
 use App\MainBundle\Contract\Data\AppCacheInterface;
 use App\MainBundle\Manager\Data\Redis\RandomApi;
 use App\MainBundle\Service\Data\Redis\RedisScriptsInterface;
 
-final class RandomApiManager 
+final class RandomApiManager
 {
     public function __construct(
         private readonly AppCacheInterface $cache,

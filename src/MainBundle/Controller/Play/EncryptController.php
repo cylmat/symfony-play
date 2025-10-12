@@ -2,7 +2,6 @@
 
 namespace App\MainBundle\Controller\Play;
 
-
 // Note: These classes may need to be created or updated
 // use App\MainBundle\Service\Play\EncryptAction;
 use App\MainBundle\Form\Play\CryptoType;

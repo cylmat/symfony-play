@@ -6,7 +6,9 @@ namespace App\MainBundle\Service\Data\Redis;
 
 use App\MainBundle\Service\Data\ClientInterface;
 use App\MainBundle\Service\Data\ClientNull;
-use Predis\Client; // Doc.
+use Predis\Client;
+
+// Doc.
 
 /** @see https://github.com/predis/predis/wiki */
 final class RedisClient implements ClientInterface

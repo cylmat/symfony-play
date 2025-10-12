@@ -2,7 +2,6 @@
 
 namespace App\MainBundle\Controller\Admin;
 
-
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Option\EA;
@@ -64,7 +63,7 @@ class LogController extends AbstractCrudController
         ;
         $filters = $this->container->get(FilterFactory::class)->create(new FilterConfigDto(), $fields, $context->getEntity());
         $queryBuilder = $this->createIndexQueryBuilder(
-            $context->getSearch(), 
+            $context->getSearch(),
             $context->getEntity(),
             $fields,
             $filters

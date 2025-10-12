@@ -13,14 +13,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 final class FactoryController extends AbstractController
 {
     use SerializerTrait;
 
     public function __construct(
         private readonly FactoryManager $factoryManager,
-    ) { }
+    ) {
+    }
 
     #[Route('/data')]
     public function index(): Response
@@ -35,7 +35,7 @@ final class FactoryController extends AbstractController
     public function getFactories(): JsonResponse
     {
         $data = $this->factoryManager->getAllData();
-                
+
         return $this->json([
             'factories' => $data['factories'],
             'contacts '=> $data['contacts'],
@@ -51,7 +51,7 @@ final class FactoryController extends AbstractController
         );
 
         $this->factoryManager->addFactory($factory);
-                
+
         return $this->json(null, 201);
     }
 
@@ -59,7 +59,7 @@ final class FactoryController extends AbstractController
     public function deleteFactory(Factory $factory): JsonResponse
     {
         $this->factoryManager->deleteFactory($factory);
-                
+
         return $this->json(null, 204);
     }
 }

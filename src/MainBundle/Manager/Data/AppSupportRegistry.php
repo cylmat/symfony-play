@@ -70,7 +70,8 @@ final class AppSupportRegistry
             }
 
             $managers[$managerName] =
-                \array_filter(\iterator_to_array($this->noDoctrineEntityManagers),
+                \array_filter(
+                    \iterator_to_array($this->noDoctrineEntityManagers),
                     fn (AppEntityManagerInterface $manager) => $manager::class === $managerClassName
                 )[0];
         }

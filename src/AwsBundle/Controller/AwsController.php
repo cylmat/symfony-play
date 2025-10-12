@@ -10,7 +10,8 @@ class AwsController extends AbstractController
 {
     public function __construct(
         private readonly AwsManager $awsManager
-    ) {}
+    ) {
+    }
 
     #[Route('/aws')]
     public function run()

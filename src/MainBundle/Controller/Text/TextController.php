@@ -22,7 +22,7 @@ class TextController extends AbstractController
         $textForm = $this->createForm(TextType::class, null, []);
         $textForm->handleRequest($request);
 
-       
+
         return $this->render('text/index.html.twig', [
             'form' => $textForm,
             'result' => 'ok',

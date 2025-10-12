@@ -2,9 +2,9 @@
 
 namespace App\MainBundle\Contract;
 
-/** 
+/**
  * Used with LoggerAwareInterface.
- * 
+ *
  * Implements set et get of the interface
  */
 trait LoggerTrait

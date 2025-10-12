@@ -2,7 +2,6 @@
 
 namespace App\MainBundle\Manager\Play;
 
-
 use App\MainBundle\Model\Play\EncryptedData;
 use App\MainBundle\Service\Encryption\EncryptionFactory;
 

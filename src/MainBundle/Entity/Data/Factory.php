@@ -20,7 +20,7 @@ class Factory
 
     #[ORM\OneToMany(
         targetEntity: Contact::class,
-        mappedBy: 'factory', 
+        mappedBy: 'factory',
         cascade: ['persist'],
         orphanRemoval: true
     )]

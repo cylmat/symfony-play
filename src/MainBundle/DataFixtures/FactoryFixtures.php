@@ -11,7 +11,8 @@ class FactoryFixtures extends Fixture
 {
     public function __construct(
         FactoryRepository $factoryRepository
-    ) {}
+    ) {
+    }
 
     public function load(ObjectManager $manager): void
     {

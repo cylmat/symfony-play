@@ -2,8 +2,6 @@
 
 namespace App\MainBundle\EventSubscriber\Play;
 
-/** @todo factory: don't call app entity directly, use log service */
-
 // use App\MainBundle\Manager\Data\AppEntityManager;
 use App\MainBundle\Model\Play\EncryptedData;
 use Psr\Log\LoggerInterface;
@@ -12,6 +10,8 @@ use RuntimeException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Workflow\Event\EnteredEvent;
 use Symfony\Component\Workflow\Event\TransitionEvent;
+
+/** @todo factory: don't call app entity directly, use log service */
 
 class WorkflowSubscriber implements EventSubscriberInterface
 {

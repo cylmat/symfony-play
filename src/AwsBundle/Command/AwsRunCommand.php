@@ -18,12 +18,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 class AwsRunCommand extends Command
 {
-
     public function __construct(
         // private readonly ElastiCacheManager $cacheManager,
         private readonly AwsManager $awsManager
-    )
-    {
+    ) {
         parent::__construct();
     }
 

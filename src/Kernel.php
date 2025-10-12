@@ -29,12 +29,12 @@ class Kernel extends BaseKernel
     }
 
     private function getData(ContainerConfigurator $container, string $configDir): void
-    {        
+    {
         // $container->import($configDir.'/local/parameters.{php,yaml}');
     }
-    
+
     // private function getLocal(ContainerConfigurator $container, string $configDir): void
-    // {        
+    // {
     //     $container->import($configDir.'/{packages}-data/*.{php,yaml}');
     //     $container->import($configDir.'/{packages}-data/'.$this->environment.'/*.{php,yaml}');
     // }

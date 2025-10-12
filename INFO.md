@@ -19,6 +19,8 @@ docker compose down --remove-orphans
 ```shell
 docker exec symplay bin/run deptrac
 docker exec symplay bin/run funit
+docker exec symplay bin/run phpcs
+docker exec symplay bin/run phpmd
 ```
 
 

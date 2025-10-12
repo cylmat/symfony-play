@@ -11,7 +11,8 @@ final class AwsManager
     public function __construct(
         // private readonly ElastiCacheService $elastiCacheService,
         private readonly DynamoService $dynamoService
-    ) {}
+    ) {
+    }
 
     public function run(): array
     {

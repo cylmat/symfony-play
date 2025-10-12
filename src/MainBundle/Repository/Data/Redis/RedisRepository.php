@@ -20,7 +20,7 @@ final class RedisRepository
     public function find(string $key): mixed
     {
         $data = $this->redisClient->get($key);
-        
+
         return $data ? unserialize($data) : null;
     }
 
@@ -42,11 +42,11 @@ final class RedisRepository
     public function save(string $key, mixed $data, ?int $ttl = null): bool
     {
         $serializedData = serialize($data);
-        
+
         if ($ttl) {
             return $this->redisClient->setex($key, $ttl, $serializedData);
         }
-        
+
         return $this->redisClient->set($key, $serializedData);
     }
 
@@ -110,7 +110,7 @@ final class RedisRepository
     public function saveMultiple(array $data, ?int $ttl = null): bool
     {
         $pipeline = $this->redisClient->pipeline();
-        
+
         foreach ($data as $key => $value) {
             $serializedValue = serialize($value);
             if ($ttl) {
@@ -119,9 +119,9 @@ final class RedisRepository
                 $pipeline->set($key, $serializedValue);
             }
         }
-        
+
         $results = $pipeline->execute();
-        
+
         // Check if all operations were successful
         return !in_array(false, $results, true);
     }
