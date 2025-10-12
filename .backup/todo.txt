@@ -7,6 +7,9 @@ use FOS\UserBundle\FOSUserBundle
 redismodel dto + factory
 https://arangodb.com/download-major/
 
+- Algo : solveur mastermind
+- Projet: skyjo
+
 composer: zircote/swagger-php, symfony/asset, nelmio/api-doc-bundle
 
 https://docs.docker.com/engine/swarm/secrets/
